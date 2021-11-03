@@ -15,6 +15,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Stundenplaner");
         stage.setScene(scene);
         stage.show();
+        // Test
     }
 
     public static void main(String[] args) {
