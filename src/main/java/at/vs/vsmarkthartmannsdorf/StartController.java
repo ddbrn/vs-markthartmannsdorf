@@ -3,7 +3,7 @@ package at.vs.vsmarkthartmannsdorf;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class StartController {
     @FXML
     private Label welcomeText;
 
