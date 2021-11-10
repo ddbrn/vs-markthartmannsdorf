@@ -1,5 +1,4 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
-public enum Subject {
-
+public enum SubjectAbbreviation {
 }
