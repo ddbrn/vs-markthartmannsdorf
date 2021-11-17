@@ -1,2 +1,2 @@
-# Administrierungssoftware für die Volkschule Markt Hartmannsdorf 
+# Administrierungssoftware für die Volksschule Markt Hartmannsdorf 
 * Ablösung der Stecktafeln
