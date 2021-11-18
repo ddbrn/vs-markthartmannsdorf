@@ -12,7 +12,6 @@
     -fx-text-fill: black;
 }
 
-
 .tab-pane:top .tab-header-area .tab-header-background {
     -fx-opacity: 0.5;
 }
@@ -20,6 +19,12 @@
 .tab-pane .tab {
     -fx-background-color: #d9d8d8;
 }
+
+.button {
+    -fx-background-radius: 10px;
+    -fx-background-color: lightgray;
+}
+
 
 .tab-pane .tab-label{
     -fx-text-fill: black;
@@ -36,4 +41,6 @@
 
 .list-view {
     -fx-background-color: gray;
+    -fx-background-radius: 0px 10px 10px 0px;
 }
+

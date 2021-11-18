@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="vs-markthartmannsdorf" target="17" />
+      <module name="vs-markthartmannsdorf" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
