@@ -1,5 +1,7 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
-public enum Subject {
+import java.util.List;
 
+public enum Subject {
+    Mathe, Sport;
 }
