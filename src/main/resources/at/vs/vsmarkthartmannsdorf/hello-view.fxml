@@ -46,6 +46,41 @@
       </MenuBar>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1">
         <tabs>
+            <Tab text="Stundenplan">
+                <content>
+                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                        <left>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <top>
+                                    <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
+                                        <children>
+                                            <Button mnemonicParsing="false" onAction="#onAddTimetable" text="+">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                                <HBox.margin>
+                                                    <Insets bottom="2.0" top="2.0" />
+                                                </HBox.margin>
+                                            </Button>
+                                            <Button id="removeTimetable" mnemonicParsing="false" onAction="#onRemoveTimetable" text="-">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                                <HBox.margin>
+                                                    <Insets bottom="2.0" top="2.0" />
+                                                </HBox.margin>
+                                            </Button>
+                                        </children>
+                                    </HBox>
+                                </top>
+                                <center>
+                                    <ListView fx:id="timetableList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                </center>
+                            </BorderPane>
+                        </left>
+                    </BorderPane>
+                </content>
+            </Tab>
           <Tab text="Klassen">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -116,6 +151,7 @@
                   </BorderPane>
                </content>
           </Tab>
+
         </tabs>
       </TabPane>
    </children>
