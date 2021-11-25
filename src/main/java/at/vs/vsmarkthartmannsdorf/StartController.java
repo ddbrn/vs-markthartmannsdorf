@@ -29,7 +29,7 @@ public class StartController {
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
 
     @FXML
-    protected void onAddTeacher(){
+    protected void onAddTeacher() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("teacher-dialog.fxml"));
@@ -42,12 +42,12 @@ public class StartController {
             dialog.setTitle("Lehrer hinzufügen");
 
             Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if (clickedButton.get() == ButtonType.APPLY){
+            if (clickedButton.get() == ButtonType.APPLY) {
                 teachers.add(new Teacher(teacherController.getFirstname().getText(),
                         teacherController.getSurname().getText(),
                         teacherController.getAbbreviation().getText(), null));
             }
-        }catch(IOException exception){
+        } catch (IOException exception) {
 
         }
 
@@ -55,7 +55,7 @@ public class StartController {
     }
 
     @FXML
-    protected void onRemoveTeacher(){
+    protected void onRemoveTeacher() {
         int index = teacherList.getSelectionModel().getSelectedIndex();
 
         teachers.remove(index);
@@ -63,23 +63,40 @@ public class StartController {
     }
 
     @FXML
-    protected void onAddClass(){
-        SchoolClass class1 = new SchoolClass("AHIF18", teachers.get(0));
+    protected void onAddClass() {
+        try {
+            FXMLLoader classLoader = new FXMLLoader();
+            classLoader.setLocation(getClass().getResource("class-dialog.fxml"));
 
-        classes.add(class1);
+            DialogPane classPane = classLoader.load();
+            ClassController classController = classLoader.getController();
 
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(classPane);
+            dialog.setTitle("Klasse hinzufügen");
+
+            Optional<ButtonType> clickedButton = dialog.showAndWait();
+            if(clickedButton.get() == ButtonType.APPLY){
+                classes.add(new SchoolClass(classController.getClassName().getText(),
+                       teachers.get(0)));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         classList.setItems(classes);
     }
 
     @FXML
-    protected void onRemoveClass(){
+    protected void onRemoveClass() {
         int index = classList.getSelectionModel().getSelectedIndex();
 
         classes.remove(index);
         classList.setItems(classes);
     }
+
     @FXML
-    protected void onAddTimetable(){
+    protected void onAddTimetable() {
         Timetable timetable1 = new Timetable("AHIF18", null);
 
         timetables.add(timetable1);
@@ -88,7 +105,7 @@ public class StartController {
     }
 
     @FXML
-    protected void onRemoveTimetable(){
+    protected void onRemoveTimetable() {
         int index = timetableList.getSelectionModel().getSelectedIndex();
 
         timetables.remove(index);
