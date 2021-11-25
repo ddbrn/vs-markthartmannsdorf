@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ public class StartApplication extends Application {
         stage.setTitle("Stundenplaner");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {
