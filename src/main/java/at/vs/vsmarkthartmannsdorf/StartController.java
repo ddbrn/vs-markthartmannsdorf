@@ -39,10 +39,7 @@ public class StartController {
 
             TeacherController teacherController = fxmlLoader.getController();
 
-            // Verfügbare Fächer setzen
-            List<Subject> subjects = new ArrayList<>();
-            subjects.add(Subject.Mathe);
-            subjects.add(Subject.Sport);
+            List<Subject> subjects = Arrays.stream(Subject.values()).toList();
             teacherController.setSubjects(subjects);
 
             Dialog<ButtonType> dialog = new Dialog<>();
