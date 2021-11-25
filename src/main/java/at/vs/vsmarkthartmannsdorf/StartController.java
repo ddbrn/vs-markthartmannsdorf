@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
+import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.data.Timetable;
 import javafx.beans.InvalidationListener;
@@ -28,6 +29,7 @@ public class StartController {
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
 
+
     @FXML
     protected void onAddTeacher(){
         try {
@@ -37,6 +39,9 @@ public class StartController {
 
             TeacherController teacherController = fxmlLoader.getController();
 
+            List<Subject> subjects = Arrays.stream(Subject.values()).toList();
+            teacherController.setSubjects(subjects);
+
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(teacherDialog);
             dialog.setTitle("Lehrer hinzufügen");
@@ -45,10 +50,10 @@ public class StartController {
             if (clickedButton.get() == ButtonType.APPLY){
                 teachers.add(new Teacher(teacherController.getFirstname().getText(),
                         teacherController.getSurname().getText(),
-                        teacherController.getAbbreviation().getText(), null));
+                        teacherController.getAbbreviation().getText(), teacherController.getAssignedSubjects()));
             }
         }catch(IOException exception){
-
+            System.out.println("Datei nicht vorhanden");
         }
 
         teacherList.setItems(teachers);
