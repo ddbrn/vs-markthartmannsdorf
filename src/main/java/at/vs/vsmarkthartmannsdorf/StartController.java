@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -18,8 +19,10 @@ public class StartController {
 
     @FXML
     public ListView<Teacher> teacherList;
+    public ListView<SchoolClass> classList;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
+    private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
 
     @FXML
     protected void onAddTeacher(){
@@ -36,5 +39,22 @@ public class StartController {
 
         teachers.remove(index);
         teacherList.setItems(teachers);
+    }
+
+    @FXML
+    protected void onAddClass(){
+        SchoolClass class1 = new SchoolClass("AHIF18", teachers.get(0));
+
+        classes.add(class1);
+
+        classList.setItems(classes);
+    }
+
+    @FXML
+    protected void onRemoveClass(){
+        int index = classList.getSelectionModel().getSelectedIndex();
+
+        classes.remove(index);
+        classList.setItems(classes);
     }
 }
