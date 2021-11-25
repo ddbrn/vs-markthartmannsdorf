@@ -1,6 +1,8 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.data.Timetable;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -19,8 +21,12 @@ public class StartController {
 
     @FXML
     public ListView<Teacher> teacherList;
+    public ListView<SchoolClass> classList;
+    public ListView<Timetable> timetableList;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
+    private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
+    private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
 
     @FXML
     protected void onAddTeacher(){
@@ -54,5 +60,38 @@ public class StartController {
 
         teachers.remove(index);
         teacherList.setItems(teachers);
+    }
+
+    @FXML
+    protected void onAddClass(){
+        SchoolClass class1 = new SchoolClass("AHIF18", teachers.get(0));
+
+        classes.add(class1);
+
+        classList.setItems(classes);
+    }
+
+    @FXML
+    protected void onRemoveClass(){
+        int index = classList.getSelectionModel().getSelectedIndex();
+
+        classes.remove(index);
+        classList.setItems(classes);
+    }
+    @FXML
+    protected void onAddTimetable(){
+        Timetable timetable1 = new Timetable("AHIF18", null);
+
+        timetables.add(timetable1);
+
+        timetableList.setItems(timetables);
+    }
+
+    @FXML
+    protected void onRemoveTimetable(){
+        int index = timetableList.getSelectionModel().getSelectedIndex();
+
+        timetables.remove(index);
+        timetableList.setItems(timetables);
     }
 }
