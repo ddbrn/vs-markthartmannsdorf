@@ -63,8 +63,10 @@ public class StartController {
     protected void onRemoveTeacher(){
         int index = teacherList.getSelectionModel().getSelectedIndex();
 
-        teachers.remove(index);
-        teacherList.setItems(teachers);
+        if (index != -1){
+            teachers.remove(index);
+            teacherList.setItems(teachers);
+        }
     }
 
     @FXML
