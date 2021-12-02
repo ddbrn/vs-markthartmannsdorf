@@ -16,7 +16,6 @@ public class StartApplication extends Application {
         stage.setTitle("Stundenplaner");
         stage.setScene(scene);
         stage.show();
-
     }
 
     public static void main(String[] args) {
