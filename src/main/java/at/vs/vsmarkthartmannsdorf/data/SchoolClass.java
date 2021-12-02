@@ -12,9 +12,6 @@ public class SchoolClass {
     private Teacher teacher;
 
 
-    public String getClassname() {
-        return classname;
-    }
     @Override
     public String toString() {
         return String.format("%s, %s", classname.toUpperCase(), teacher.toString());
