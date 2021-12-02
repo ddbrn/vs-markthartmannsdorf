@@ -18,7 +18,7 @@ public class StartController {
     @FXML
     public ListView<Teacher> teacherList;
     public ListView<SchoolClass> classList;
-    public ListView<Timetable> timetableList;
+    public ListView<SchoolClass> timetableList;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
@@ -161,6 +161,7 @@ public class StartController {
             e.printStackTrace();
         }
         classList.setItems(classes);
+        timetableList.setItems(classes);
     }
 
     @FXML
@@ -169,22 +170,50 @@ public class StartController {
 
         classes.remove(index);
         classList.setItems(classes);
+        timetableList.setItems(classes);
     }
 
     @FXML
-    protected void onAddTimetable() {
-        Timetable timetable1 = new Timetable("AHIF18", null);
+    protected void onChangeTimetable() {
+        if(timetableList.getSelectionModel().isEmpty()){
+            System.out.println("Keine Klasse ausgewählt bwz. keine erstellt");
+        }else {
+            try {
+                FXMLLoader TableLoader = new FXMLLoader();
+                TableLoader.setLocation(getClass().getResource("timetable-dialog.fxml"));
+                DialogPane timeTableDialog = TableLoader.load();
 
-        timetables.add(timetable1);
+                TimetableController timetableController = TableLoader.getController();
+                timetableController.setTeacher(teachers);
 
-        timetableList.setItems(timetables);
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(timeTableDialog);
+                dialog.setTitle("Stundenplan bearbeiten");
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
+                if (clickedButton.get() == ButtonType.APPLY) {
+                    String name = classes.get(classList.getSelectionModel().getSelectedIndex()).getClassname();
+                    System.out.println(timetableController.getAssignedTeacher());
+                    System.out.println("Name:" + name);
+                    timetables.get(timetableList.getSelectionModel().getSelectedIndex())
+                            .setContent(timetableController.getAssignedTeacher(),name);
+                }
+
+
+            } catch (Exception e) {
+                System.out.println("Fehler");
+            }
+            System.out.println();
+        }
     }
 
     @FXML
-    protected void onRemoveTimetable() {
+    protected void deleteContent() {
         int index = timetableList.getSelectionModel().getSelectedIndex();
+        try{
+            timetables.get(index).deleteContent();
+        }catch (Exception e){
+            System.out.println("Diese Klasse besitzt bereits keine Daten");
+        }
 
-        timetables.remove(index);
-        timetableList.setItems(timetables);
     }
 }
