@@ -1,19 +1,23 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Timetable {
-    private String Classname;
+    SchoolClass classname;
     List<Teacher> tlist ;
 
+    public Timetable(SchoolClass classname) {
+        this.classname = classname;
+    }
 
-    public void setContent(List<Teacher> tlist, String Classname){
-        this.Classname = Classname;
+    public void setContent(List<Teacher> tlist){
         this.tlist = tlist;
     }
 
@@ -23,11 +27,21 @@ public class Timetable {
 
     @Override
     public String toString() {
-        return Classname ;
+        return String.format("%s, %s", classname.getClassname().toUpperCase(), classname.getTeacher().toString());
     }
 
+    public String getteachersubjects(){
+        List<Subject> subjects = classname.getTeacher().getSubjects();
+        return "Liste der F des Lehrers" + subjects.toString();
+        /*for(int i = 0;i<tlist.size();i++){
+            for(int j = 0;j<tlist.get(i).getSubjects().size();j++){
+                if(subjects.contains(tlist.get(i).getSubjects().get(j)))
+                {
+                    subjects.add(tlist.get(i).getSubjects().get(j));
+                }
+            }
 
-
-    //ArrayList<Subject>
-
+        }
+        return String.valueOf(subjects);*/
+    }
 }
