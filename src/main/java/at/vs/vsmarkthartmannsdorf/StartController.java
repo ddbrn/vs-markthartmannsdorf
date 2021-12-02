@@ -228,4 +228,14 @@ public class StartController {
         }
 
     }
+
+    public void setTeachers(List<Teacher> teachers){
+        this.teachers = FXCollections.observableArrayList(teachers);
+        teacherList.setItems(this.teachers);
+    }
+
+    public void setClasses(List<SchoolClass> classes){
+        this.classes = FXCollections.observableArrayList(classes);
+        classList.setItems(this.classes);
+    }
 }
