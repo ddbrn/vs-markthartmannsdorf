@@ -203,15 +203,15 @@ public class StartController {
                     String name = classes.get(classList.getSelectionModel().getSelectedIndex()).getClassname();
                     System.out.println(timetableController.getAssignedTeacher());
                     System.out.println("Name:" + name);
+                    System.out.println(timetableController.getAssignedTeacher());
                     timetables.get(timetableList.getSelectionModel().getSelectedIndex())
                             .setContent(timetableController.getAssignedTeacher(),name);
+
                 }
-
-
             } catch (Exception e) {
                 System.out.println("Fehler");
             }
-            System.out.println();
+
         }
     }
 
