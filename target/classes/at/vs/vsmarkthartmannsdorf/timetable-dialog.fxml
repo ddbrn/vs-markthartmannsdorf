@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<DialogPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimetableController">
+    <buttonTypes>
+        <ButtonType fx:constant="APPLY"/>
+        <ButtonType fx:constant="CANCEL"/>
+    </buttonTypes>
+
+    <content>
+    <BorderPane prefHeight="600.0" prefWidth="400.0">
+        <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                        <children>
+                            <Label alignment="TOP_LEFT" text="Verfügbare Lehrer" />
+                            <ListView fx:id="availableTeacher" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                        </children>
+                    </VBox>
+                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                            <Button mnemonicParsing="false" onAction="#addTeacher" text="&gt;">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                </VBox.margin>
+                            </Button>
+                            <Button mnemonicParsing="false" onAction="#removeTeacher" text="&lt;">
+                                <VBox.margin>
+                                    <Insets top="5.0" />
+                                </VBox.margin>
+                            </Button>
+                        </children>
+                    </VBox>
+                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                        <children>
+                            <Label text="Zugewiesene Lehrer" />
+                            <ListView fx:id="assignedTeacher" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                        </children>
+                    </VBox>
+                </children>
+            </HBox>
+        </top>
+
+    </BorderPane>
+    </content>
+</DialogPane>

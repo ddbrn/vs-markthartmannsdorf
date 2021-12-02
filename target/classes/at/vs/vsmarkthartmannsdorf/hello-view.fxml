@@ -54,7 +54,7 @@
                                 <top>
                                     <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Button mnemonicParsing="false" onAction="#onAddTimetable" text="+">
+                                            <Button mnemonicParsing="false" onAction="#onChangeTimetable" text="+">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
@@ -62,7 +62,7 @@
                                                     <Insets bottom="2.0" top="2.0" />
                                                 </HBox.margin>
                                             </Button>
-                                            <Button id="removeTimetable" mnemonicParsing="false" onAction="#onRemoveTimetable" text="-">
+                                            <Button id="deleteContent" mnemonicParsing="false" onAction="#deleteContent" text="-">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
