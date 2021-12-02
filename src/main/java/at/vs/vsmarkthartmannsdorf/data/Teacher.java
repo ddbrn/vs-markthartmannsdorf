@@ -1,19 +1,20 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Teacher {
     private String firstname;
     private String surname;
     private String abbreviation;
-
     private List<Subject> subjects;
-
-    public Teacher(String firstname, String surname, String abbreviation, List<Subject> subjects) {
-        this.firstname = firstname;
-        this.surname = surname;
-        this.abbreviation = abbreviation;
-        this.subjects = subjects;
-    }
 
     @Override
     public String toString() {

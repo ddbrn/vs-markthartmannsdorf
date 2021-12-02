@@ -1,13 +1,16 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SchoolClass {
     private String classname;
     private Teacher teacher;
 
-    public SchoolClass(String classname, Teacher teacher) {
-        this.classname = classname;
-        this.teacher = teacher;
-    }
 
     @Override
     public String toString() {
