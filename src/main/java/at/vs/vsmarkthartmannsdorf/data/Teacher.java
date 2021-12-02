@@ -20,20 +20,4 @@ public class Teacher {
     public String toString() {
         return String.format("%s %s (%s)", surname.toUpperCase(), firstname, abbreviation.toUpperCase());
     }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getAbbreviation() {
-        return abbreviation;
-    }
-
-    public List<Subject> getSubjects() {
-        return subjects;
-    }
 }

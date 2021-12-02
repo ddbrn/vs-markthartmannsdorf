@@ -26,6 +26,7 @@ public class StartApplication extends Application {
 
         schoolClassList.add(new SchoolClass("AHIF", new Teacher("Simon", "Schöggler", "SGR", new ArrayList<>())));
         schoolClassList.add(new SchoolClass("BHIF", new Teacher("David", "Brannan", "BRN", new ArrayList<>())));
+        //we
         System.out.println(schoolClassList);
 
         IOAccess.storeClassFiles(schoolClassList);
