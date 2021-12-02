@@ -18,6 +18,7 @@ public class ClassController {
     public ChoiceBox<Teacher> teachers;
     public Label classLabel;
     public Label teacherLabel;
+    public Label classExists;
 
     public TextField getClassName() {
         return className;
@@ -37,5 +38,9 @@ public class ClassController {
 
     public Label getTeacherLabel() {
         return teacherLabel;
+    }
+
+    public Label getClassExists() {
+        return classExists;
     }
 }
