@@ -85,12 +85,12 @@ public class StartController {
                             teacherController.setAssignedSubjectsVisibility(false);
                             teacherController.setAssignedSubjects(assignedSubjects);
                         }
-                        if (alreadyContainsAbbreviation){
+                        if (alreadyContainsAbbreviation) {
                             teacherController.setAbbreviationVisibility(true);
                             teacherController.setAbbreviationLabelText("Dieses Kürzel gibt es bereits!");
                         }
                     }
-                }else if(clickedButton.get() == ButtonType.CANCEL){
+                } else if (clickedButton.get() == ButtonType.CANCEL) {
                     break;
                 }
             } while ((firstname.isEmpty() || surname.isEmpty() || abbreviation.isEmpty() || assignedSubjects.isEmpty() || alreadyContainsAbbreviation));
@@ -120,16 +120,43 @@ public class StartController {
             DialogPane classPane = classLoader.load();
             ClassController classController = classLoader.getController();
 
+            String className = "";
+            Teacher teacher = null;
+            classController.setTeachers(teachers);
 
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(classPane);
-            dialog.setTitle("Klasse hinzufügen");
+            do {
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(classPane);
+                dialog.setTitle("Klasse hinzufügen");
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
 
-            Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if (clickedButton.get() == ButtonType.APPLY) {
-                classes.add(new SchoolClass(classController.getClassName().getText(),
-                        teachers.get(0)));
-            }
+                if (clickedButton.get() == ButtonType.APPLY) {
+                    className = classController.getClassName().getText();
+                    teacher = classController.getTeachers().getValue();
+                    if (!className.isEmpty()
+                            && teacher != null) {
+                        classes.add(new SchoolClass(classController.getClassName().getText(),
+                                classController.getTeachers().getValue()));
+                    } else {
+                        if (className.isEmpty()) {
+                            classController.getClassLabel().setVisible(true);
+                        } else {
+                            classController.getClassName().setText(className);
+                            classController.getClassLabel().setVisible(false);
+                        }
+                        if (teacher == null) {
+                            classController.getTeacherLabel().setVisible(true);
+                        } else {
+                            classController.getTeachers().setValue(teacher);
+                            classController.getTeacherLabel().setVisible(false);
+                        }
+                    }
+                }
+                if (clickedButton.get() == ButtonType.CANCEL) {
+                    break;
+                }
+            } while (classController.getClassName().getText().isEmpty() || classController.getTeachers().getValue() == null);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

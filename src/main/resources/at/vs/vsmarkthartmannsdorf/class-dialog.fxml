@@ -5,24 +5,43 @@
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<DialogPane prefHeight="123.0" prefWidth="393.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.ClassController">
+<DialogPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.ClassController">
+   <content>
+      <GridPane prefHeight="154.0" prefWidth="447.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Klassenname" />
+            <Label text="Klassenlehrer" GridPane.rowIndex="2" />
+            <VBox prefHeight="62.0" prefWidth="190.0" GridPane.columnIndex="1">
+               <children>
+                  <TextField fx:id="className" />
+                  <Label fx:id="classLabel" prefHeight="40.0" prefWidth="190.0" text="Bitte Klassennamen angeben!" textFill="RED" visible="false" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <ChoiceBox fx:id="teachers" prefWidth="150.0" />
+                  <Label fx:id="teacherLabel" text="Bitte einen Lehrer auswählen!" textFill="RED" visible="false" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </content>
    <buttonTypes>
       <ButtonType fx:constant="APPLY" />
       <ButtonType fx:constant="CANCEL" />
    </buttonTypes>
-   <content>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
-         <left>
-            <Label text="Klassenname" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <TextField fx:id="className" BorderPane.alignment="CENTER" />
-         </right>
-         <bottom>
-            <ChoiceBox prefWidth="150.0" BorderPane.alignment="CENTER_LEFT" />
-         </bottom>
-      </BorderPane>
-   </content>
 </DialogPane>
