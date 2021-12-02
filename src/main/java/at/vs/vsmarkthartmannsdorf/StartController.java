@@ -54,8 +54,8 @@ public class StartController {
                     abbreviation = teacherController.getAbbreviation().getText();
                     assignedSubjects = teacherController.getAssignedSubjects();
 
-                    String finalAbbreviation = abbreviation;
-                    alreadyContainsAbbreviation = teachers.stream().anyMatch(teacher -> teacher.getAbbreviation().equals(finalAbbreviation));
+                    String finalAbbreviation = abbreviation.toLowerCase();
+                    alreadyContainsAbbreviation = teachers.stream().anyMatch(teacher -> teacher.getAbbreviation().toLowerCase().equals(finalAbbreviation));
 
                     if (!(firstname.isEmpty() || surname.isEmpty() || abbreviation.isEmpty() || assignedSubjects.isEmpty() || alreadyContainsAbbreviation)) {
                         teachers.add(new Teacher(firstname, surname, abbreviation, assignedSubjects));
