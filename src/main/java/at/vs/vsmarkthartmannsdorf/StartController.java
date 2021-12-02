@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
+import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.data.Timetable;
 import javafx.beans.InvalidationListener;
@@ -35,7 +36,10 @@ public class StartController {
             fxmlLoader.setLocation(getClass().getResource("teacher-dialog.fxml"));
             DialogPane teacherDialog = fxmlLoader.load();
 
+            List<Subject> subjects = Arrays.asList(Subject.values());
+
             TeacherController teacherController = fxmlLoader.getController();
+            teacherController.setSubjects(subjects);
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(teacherDialog);
@@ -45,7 +49,7 @@ public class StartController {
             if (clickedButton.get() == ButtonType.APPLY) {
                 teachers.add(new Teacher(teacherController.getFirstname().getText(),
                         teacherController.getSurname().getText(),
-                        teacherController.getAbbreviation().getText(), null));
+                        teacherController.getAbbreviation().getText(), teacherController.getAssignedSubjects()));
             }
         } catch (IOException exception) {
 
@@ -58,8 +62,10 @@ public class StartController {
     protected void onRemoveTeacher() {
         int index = teacherList.getSelectionModel().getSelectedIndex();
 
-        teachers.remove(index);
-        teacherList.setItems(teachers);
+        if (index != -1){
+            teachers.remove(index);
+            teacherList.setItems(teachers);
+        }
     }
 
     @FXML

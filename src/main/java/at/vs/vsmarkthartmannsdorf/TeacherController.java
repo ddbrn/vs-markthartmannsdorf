@@ -4,21 +4,19 @@ import at.vs.vsmarkthartmannsdorf.data.Subject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TeacherController {
 
     @FXML
-    public TextField firstname;
-    public TextField surname;
-    public TextField abbreviation;
-    public ListView<Subject> availableSubjects;
-    public ListView<Subject> assignedSubjects;
+    public TextField firstname, surname, abbreviation;
+    public ListView<Subject> availableSubjects, assignedSubjects;
+    public Label firstnameInfo, surnameInfo, abbreviationInfo, assignedSubjectsInfo;
 
     private ObservableList<Subject> olAvailableSubjects;
     private ObservableList<Subject> olAssignedSubjects;
