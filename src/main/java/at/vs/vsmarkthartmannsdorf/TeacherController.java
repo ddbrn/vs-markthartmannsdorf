@@ -21,6 +21,7 @@ public class TeacherController {
     private ObservableList<Subject> olAvailableSubjects;
     private ObservableList<Subject> olAssignedSubjects;
 
+
     public TextField getFirstname() {
         return firstname;
     }
@@ -69,5 +70,41 @@ public class TeacherController {
 
     public List<Subject> getAssignedSubjects(){
         return olAssignedSubjects.stream().collect(Collectors.toList());
+    }
+
+    public void setFirstnameVisibility(boolean v){
+        firstnameInfo.setVisible(v);
+    }
+
+    public void setSurnameVisibility(boolean v){
+        surnameInfo.setVisible(v);
+    }
+
+    public void setAbbreviationVisibility(boolean v){
+        abbreviationInfo.setVisible(v);
+    }
+
+    public void setAssignedSubjectsVisibility(boolean v){
+        assignedSubjectsInfo.setVisible(v);
+    }
+
+    public void setFirstnameText(String text){
+        firstname.setText(text);
+    }
+
+    public void setSurnameText(String text){
+        surname.setText(text);
+    }
+
+    public void setAbbreviationText(String text){
+        abbreviation.setText(text);
+    }
+
+    public void setAssignedSubjects(List<Subject> subjects){
+        ObservableList<Subject> os = FXCollections.observableArrayList(subjects);
+        assignedSubjects.setItems(os);
+    }
+    public void setAbbreviationLabelText(String text){
+        abbreviationInfo.setText(text);
     }
 }
