@@ -4,16 +4,11 @@ import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.data.Timetable;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.IOException;
 import java.util.*;
@@ -41,18 +36,66 @@ public class StartController {
             TeacherController teacherController = fxmlLoader.getController();
             teacherController.setSubjects(subjects);
 
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(teacherDialog);
-            dialog.setTitle("Lehrer hinzufügen");
+            String firstname = "";
+            String surname = "";
+            String abbreviation = "";
+            List<Subject> assignedSubjects = new ArrayList<>();
+            boolean alreadyContainsAbbreviation = false;
 
-            Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if (clickedButton.get() == ButtonType.APPLY) {
-                teachers.add(new Teacher(teacherController.getFirstname().getText(),
-                        teacherController.getSurname().getText(),
-                        teacherController.getAbbreviation().getText(), teacherController.getAssignedSubjects()));
-            }
+            do {
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(teacherDialog);
+                dialog.setTitle("Lehrer hinzufügen");
+
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
+                if (clickedButton.get() == ButtonType.APPLY) {
+                    firstname = teacherController.getFirstname().getText();
+                    surname = teacherController.getSurname().getText();
+                    abbreviation = teacherController.getAbbreviation().getText();
+                    assignedSubjects = teacherController.getAssignedSubjects();
+
+                    String finalAbbreviation = abbreviation;
+                    alreadyContainsAbbreviation = teachers.stream().anyMatch(teacher -> teacher.getAbbreviation().equals(finalAbbreviation));
+
+                    if (!(firstname.isEmpty() || surname.isEmpty() || abbreviation.isEmpty() || assignedSubjects.isEmpty() || alreadyContainsAbbreviation)) {
+                        teachers.add(new Teacher(firstname, surname, abbreviation, assignedSubjects));
+                    } else {
+                        if (firstname.isEmpty()) {
+                            teacherController.setFirstnameVisibility(true);
+                        } else {
+                            teacherController.setFirstnameVisibility(false);
+                            teacherController.setFirstnameText(firstname);
+                        }
+
+                        if (surname.isEmpty()) {
+                            teacherController.setSurnameVisibility(true);
+                        } else {
+                            teacherController.setSurnameVisibility(false);
+                            teacherController.setSurnameText(surname);
+                        }
+                        if (abbreviation.isEmpty()) {
+                            teacherController.setAbbreviationVisibility(true);
+                        } else {
+                            teacherController.setAbbreviationVisibility(false);
+                            teacherController.setAbbreviationText(abbreviation);
+                        }
+                        if (assignedSubjects.isEmpty()) {
+                            teacherController.setAssignedSubjectsVisibility(true);
+                        } else {
+                            teacherController.setAssignedSubjectsVisibility(false);
+                            teacherController.setAssignedSubjects(assignedSubjects);
+                        }
+                        if (alreadyContainsAbbreviation){
+                            teacherController.setAbbreviationVisibility(true);
+                            teacherController.setAbbreviationLabelText("Dieses Kürzel gibt es bereits!");
+                        }
+                    }
+                }else if(clickedButton.get() == ButtonType.CANCEL){
+                    break;
+                }
+            } while ((firstname.isEmpty() || surname.isEmpty() || abbreviation.isEmpty() || assignedSubjects.isEmpty() || alreadyContainsAbbreviation));
         } catch (IOException exception) {
-
+            System.out.println("Datei nicht gefunden");
         }
 
         teacherList.setItems(teachers);
@@ -62,7 +105,7 @@ public class StartController {
     protected void onRemoveTeacher() {
         int index = teacherList.getSelectionModel().getSelectedIndex();
 
-        if (index != -1){
+        if (index != -1) {
             teachers.remove(index);
             teacherList.setItems(teachers);
         }
@@ -83,9 +126,9 @@ public class StartController {
             dialog.setTitle("Klasse hinzufügen");
 
             Optional<ButtonType> clickedButton = dialog.showAndWait();
-            if(clickedButton.get() == ButtonType.APPLY){
+            if (clickedButton.get() == ButtonType.APPLY) {
                 classes.add(new SchoolClass(classController.getClassName().getText(),
-                       teachers.get(0)));
+                        teachers.get(0)));
             }
         } catch (IOException e) {
             e.printStackTrace();
