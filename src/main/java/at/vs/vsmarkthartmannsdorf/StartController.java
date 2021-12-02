@@ -122,6 +122,7 @@ public class StartController {
 
             String className = "";
             Teacher teacher = null;
+            boolean classExists = false;
             classController.setTeachers(teachers);
 
             do {
@@ -133,8 +134,12 @@ public class StartController {
                 if (clickedButton.get() == ButtonType.APPLY) {
                     className = classController.getClassName().getText();
                     teacher = classController.getTeachers().getValue();
+
+                    String finalClassName = className;
+                    classExists = classes.stream().anyMatch(schoolClass -> schoolClass.getClassname().equals(finalClassName));
+
                     if (!className.isEmpty()
-                            && teacher != null) {
+                            && teacher != null && !classExists) {
                         classes.add(new SchoolClass(classController.getClassName().getText(),
                                 classController.getTeachers().getValue()));
                     } else {
@@ -150,12 +155,16 @@ public class StartController {
                             classController.getTeachers().setValue(teacher);
                             classController.getTeacherLabel().setVisible(false);
                         }
+                        if(classExists){
+                            classController.getClassLabel().setVisible(true);
+                            classController.getClassLabel().setText("Klassenname existiert bereits!");
+                        }
                     }
                 }
                 if (clickedButton.get() == ButtonType.CANCEL) {
                     break;
                 }
-            } while (classController.getClassName().getText().isEmpty() || classController.getTeachers().getValue() == null);
+            } while (classController.getClassName().getText().isEmpty() || classController.getTeachers().getValue() == null || classExists);
 
         } catch (IOException e) {
             e.printStackTrace();
