@@ -32,8 +32,9 @@ public class StartApplication extends Application {
         IOAccess.storeClassFiles(schoolClassList);
         System.out.println(IOAccess.readClassFiles());
 
+        StartController controller = fxmlLoader.getController();
 
-
+        controller.setClasses(schoolClassList);
     }
 
     public static void main(String[] args) {
