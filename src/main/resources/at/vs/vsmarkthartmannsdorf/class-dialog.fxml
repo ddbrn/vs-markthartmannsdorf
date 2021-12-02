@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+
+<DialogPane prefHeight="123.0" prefWidth="393.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.ClassController">
+   <buttonTypes>
+      <ButtonType fx:constant="APPLY" />
+      <ButtonType fx:constant="CANCEL" />
+   </buttonTypes>
+   <content>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <left>
+            <Label text="Klassenname" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <TextField fx:id="className" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <ChoiceBox prefWidth="150.0" BorderPane.alignment="CENTER_LEFT" />
+         </bottom>
+      </BorderPane>
+   </content>
+</DialogPane>
