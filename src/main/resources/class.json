@@ -1,0 +1,17 @@
+[ {
+  "classname" : "AHIF",
+  "teacher" : {
+    "firstname" : "Simon",
+    "surname" : "Schöggler",
+    "abbreviation" : "SGR",
+    "subjects" : [ ]
+  }
+}, {
+  "classname" : "BHIF",
+  "teacher" : {
+    "firstname" : "David",
+    "surname" : "Brannan",
+    "abbreviation" : "BRN",
+    "subjects" : [ ]
+  }
+} ]

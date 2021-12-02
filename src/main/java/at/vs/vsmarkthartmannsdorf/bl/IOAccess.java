@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
@@ -21,7 +22,7 @@ public class IOAccess {
         try {
 
             ObjectMapper om = new ObjectMapper();
-            String jsonStr = om.writeValueAsString(schoolClassList);
+            String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(schoolClassList);
 
             FileWriter fileWriter = new FileWriter(IOAccess.FILE_CLASS.getAbsolutePath());
             fileWriter.write(jsonStr);
@@ -41,6 +42,13 @@ public class IOAccess {
         List<SchoolClass> schoolClassList = new ArrayList<>();
         try  {
             String result = Files.readString(Paths.get(FILE_CLASS.getAbsolutePath()));
+
+            ObjectMapper om = new ObjectMapper();
+            SchoolClass[] schoolClasses = om.readValue(result, SchoolClass[].class);
+
+            schoolClassList = Arrays.asList(schoolClasses);
+            System.out.println("FileWrite read in \"" + IOAccess.FILE_CLASS.getName() + "\".");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
