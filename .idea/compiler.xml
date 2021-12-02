@@ -16,7 +16,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="vs-markthartmannsdorf" options="--add-exports com.fasterxml.jackson.databind/com.fasterxml=at.vs.vsmarkthartmannsdorf" />
+      <module name="vs-markthartmannsdorf" options="" />
     </option>
   </component>
 </project>
