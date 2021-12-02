@@ -16,4 +16,20 @@ public class SchoolClass {
     public String toString() {
         return String.format("%s, %s", classname.toUpperCase(), teacher.toString());
     }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 }
