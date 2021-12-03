@@ -140,6 +140,7 @@
                                           <Insets bottom="2.0" top="2.0" />
                                        </HBox.margin>
                                     </Button>
+                                    <Button mnemonicParsing="false" onAction="#onEditTeacher" text="edit" />
                                  </children>
                               </HBox>
                            </top>

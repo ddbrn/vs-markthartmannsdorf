@@ -238,4 +238,9 @@ public class StartController {
         this.classes = FXCollections.observableArrayList(classes);
         classList.setItems(this.classes);
     }
+
+    @FXML
+    public void onEditTeacher(){
+        // Edit
+    }
 }
