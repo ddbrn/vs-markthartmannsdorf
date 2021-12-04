@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartApplication extends Application {
+
+    StartController controller;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("hello-view.fxml"));
@@ -22,19 +25,17 @@ public class StartApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        List<SchoolClass> schoolClassList = new ArrayList<>();
+        controller = fxmlLoader.getController();
+        controller.setTeachers(IOAccess.readTeacherFiles());
+        controller.setClasses(IOAccess.readClassFiles());
+    }
 
-        schoolClassList.add(new SchoolClass("AHIF", new Teacher("Simon", "Schöggler", "SGR", new ArrayList<>())));
-        schoolClassList.add(new SchoolClass("BHIF", new Teacher("David", "Brannan", "BRN", new ArrayList<>())));
+    @Override
+    public void stop() throws Exception {
+        System.out.println("CLOSED WINDOW");
 
-        System.out.println(schoolClassList);
-
-        IOAccess.storeClassFiles(schoolClassList);
-        System.out.println(IOAccess.readClassFiles());
-
-        StartController controller = fxmlLoader.getController();
-
-        controller.setClasses(schoolClassList);
+        IOAccess.storeTeacherFiles(controller.getTeacher());
+        IOAccess.storeClassFiles(controller.getClasses());
     }
 
     public static void main(String[] args) {

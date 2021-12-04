@@ -239,6 +239,14 @@ public class StartController {
         classList.setItems(this.classes);
     }
 
+    public List<Teacher> getTeacher () {
+        return teachers.stream().toList();
+    }
+
+    public List<SchoolClass> getClasses () {
+        return classes.stream().toList();
+    }
+
     @FXML
     public void onEditTeacher(){
         // Edit
