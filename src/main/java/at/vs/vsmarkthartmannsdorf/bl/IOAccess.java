@@ -50,6 +50,10 @@ public class IOAccess {
         try  {
             String result = Files.readString(Paths.get(FILE_CLASS.getAbsolutePath()));
 
+            if (result.isEmpty()) {
+                return new ArrayList<>();
+            }
+
             ObjectMapper om = new ObjectMapper();
             SchoolClass[] schoolClasses = om.readValue(result, SchoolClass[].class);
 
@@ -89,6 +93,10 @@ public class IOAccess {
         }
         try  {
             String result = Files.readString(Paths.get(FILE_TEACHER.getAbsolutePath()));
+
+            if (result.isEmpty()) {
+                return new ArrayList<>();
+            }
 
             ObjectMapper om = new ObjectMapper();
             Teacher[] teachers = om.readValue(result, Teacher[].class);
