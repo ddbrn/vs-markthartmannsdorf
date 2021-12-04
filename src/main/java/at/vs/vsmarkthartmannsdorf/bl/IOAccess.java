@@ -22,7 +22,7 @@ public class IOAccess {
     private static File FILE_CLASS = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","class.json").toFile();
     private static File FILE_TEACHER = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","teacher.json").toFile();
 
-    public static boolean storeClassFiles(List<SchoolClass> schoolClassList) {
+    public static synchronized boolean storeClassFiles(List<SchoolClass> schoolClassList) {
         try {
 
             ObjectMapper om = new ObjectMapper();
@@ -42,7 +42,7 @@ public class IOAccess {
         }
     }
 
-    public static List<SchoolClass> readClassFiles() {
+    public static synchronized List<SchoolClass> readClassFiles() {
         List<SchoolClass> schoolClassList = new ArrayList<>();
         if (!new File(FILE_CLASS.getAbsolutePath()).exists()) {
             return new ArrayList<>();
@@ -66,7 +66,7 @@ public class IOAccess {
         return schoolClassList;
     }
 
-    public static boolean storeTeacherFiles(List<Teacher> teacherList) {
+    public static synchronized boolean storeTeacherFiles(List<Teacher> teacherList) {
         try {
 
             ObjectMapper om = new ObjectMapper();
@@ -86,7 +86,7 @@ public class IOAccess {
         }
     }
 
-    public static List<Teacher> readTeacherFiles() {
+    public static synchronized List<Teacher> readTeacherFiles() {
         List<Teacher> teacherList = new ArrayList<>();
         if (!new File(FILE_TEACHER.getAbsolutePath()).exists()) {
             return new ArrayList<>();
