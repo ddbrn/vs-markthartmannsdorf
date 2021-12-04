@@ -157,7 +157,7 @@ public class StartController {
                             classController.getTeachers().setValue(teacher);
                             classController.getTeacherLabel().setVisible(false);
                         }
-                        if(classExists){
+                        if (classExists) {
                             classController.getClassLabel().setVisible(true);
                             classController.getClassLabel().setText("Klassenname existiert bereits!");
                         }
@@ -179,17 +179,18 @@ public class StartController {
     protected void onRemoveClass() {
         int index = classList.getSelectionModel().getSelectedIndex();
 
-        classes.remove(index);
-        timetables.remove(index);
-        classList.setItems(classes);
-        timetableList.setItems(timetables);
+        if (index != -1) {
+            classes.remove(index);
+            classList.setItems(classes);
+        }
+
     }
 
     @FXML
     protected void onChangeTimetable() {
-        if(timetableList.getSelectionModel().isEmpty()){
+        if (timetableList.getSelectionModel().isEmpty()) {
             System.out.println("Keine Klasse ausgewählt bzw. keine erstellt");
-        }else {
+        } else {
 
             try {
 
@@ -211,44 +212,44 @@ public class StartController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-          for(int i = 0;i<timetables.size();i++){
-              System.out.println(timetables.get(i).getteachersubjects());
-          }
+            for (int i = 0; i < timetables.size(); i++) {
+                System.out.println(timetables.get(i).getteachersubjects());
+            }
         }
     }
 
     @FXML
     protected void deleteContent() {
         int index = timetableList.getSelectionModel().getSelectedIndex();
-        try{
+        try {
             timetables.get(index).deleteContent();
             System.out.println(timetables.toString());
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public void setTeachers(List<Teacher> teachers){
+    public void setTeachers(List<Teacher> teachers) {
         this.teachers = FXCollections.observableArrayList(teachers);
         teacherList.setItems(this.teachers);
     }
 
-    public void setClasses(List<SchoolClass> classes){
+    public void setClasses(List<SchoolClass> classes) {
         this.classes = FXCollections.observableArrayList(classes);
         classList.setItems(this.classes);
     }
 
-    public List<Teacher> getTeacher () {
+    public List<Teacher> getTeacher() {
         return teachers.stream().toList();
     }
 
-    public List<SchoolClass> getClasses () {
+    public List<SchoolClass> getClasses() {
         return classes.stream().toList();
     }
 
     @FXML
-    public void onEditTeacher(){
+    public void onEditTeacher() {
         // Edit
     }
 }
