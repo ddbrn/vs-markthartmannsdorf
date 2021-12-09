@@ -250,6 +250,111 @@ public class StartController {
 
     @FXML
     public void onEditTeacher() {
+        int index = teacherList.getSelectionModel().getSelectedIndex();
+        Teacher teacher = teacherList.getSelectionModel().getSelectedItem();
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("teacher-dialog.fxml"));
+            DialogPane teacherDialog = fxmlLoader.load();
+
+            List<Subject> subjects = Arrays.asList(Subject.values());
+
+            TeacherController teacherController = fxmlLoader.getController();
+            teacherController.setSubjects(subjects);
+
+            teacherController.setFirstnameText(teacher.getFirstname());
+            teacherController.setSurnameText(teacher.getSurname());
+            teacherController.setAbbreviationText(teacher.getAbbreviation());
+            teacherController.setAssignedSubjects(teacher.getSubjects());
+
+            String firstname = "";
+            String surname = "";
+            String abbreviation = "";
+            List<Subject> assignedSubjects = new ArrayList<>();
+            boolean alreadyContainsAbbreviation = false;
+
+            do {
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(teacherDialog);
+                dialog.setTitle("Lehrer bearbeiten");
+
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
+                if(clickedButton.get() == ButtonType.APPLY){
+                    firstname = teacherController.getFirstname().getText();
+                    surname = teacherController.getSurname().getText();
+                    abbreviation = teacherController.getAbbreviation().getText();
+                    assignedSubjects = teacherController.getAssignedSubjects();
+                    String finalAbbreviation = abbreviation.toLowerCase();
+
+                    alreadyContainsAbbreviation = teachers.stream().anyMatch(t -> {
+                        if(teacher.getAbbreviation().toLowerCase().equals(finalAbbreviation)){
+                            return false;
+                        }else if(t.getAbbreviation().toLowerCase().equals(finalAbbreviation)){
+                            return true;
+                        }
+                        return false;
+                    });
+
+                    if (!(firstname.isEmpty() || surname.isEmpty() || abbreviation.isEmpty() || assignedSubjects.isEmpty() || alreadyContainsAbbreviation)) {
+                        teacher.setFirstname(firstname);
+                        teacher.setSurname(surname);
+                        teacher.setAbbreviation(abbreviation);
+                        teacher.setSubjects(assignedSubjects);
+
+                        teachers.remove(index);
+                        teachers.add(index, teacher);
+                    } else {
+                        checkTeacherInput(teacherController, firstname, surname, abbreviation, alreadyContainsAbbreviation, assignedSubjects);
+                    }
+                }
+                else if (clickedButton.get() == ButtonType.CANCEL){
+                    break;
+                }
+            } while (firstname.isEmpty() || surname.isEmpty() || abbreviation.isEmpty() || assignedSubjects.isEmpty() || alreadyContainsAbbreviation);
+        } catch (IOException exception) {
+            System.out.println("Datei nicht gefunden");
+        }
+
+        teacherList.setItems(teachers);
+    }
+
+    private void checkTeacherInput(TeacherController teacherController, String firstname, String surname,
+                                   String abbreviation, boolean alreadyContainsAbbreviation,
+                                   List<Subject> assignedSubjects) {
+        if (firstname.isEmpty()) {
+            teacherController.setFirstnameVisibility(true);
+        } else {
+            teacherController.setFirstnameVisibility(false);
+            teacherController.setFirstnameText(firstname);
+        }
+
+        if (surname.isEmpty()) {
+            teacherController.setSurnameVisibility(true);
+        } else {
+            teacherController.setSurnameVisibility(false);
+            teacherController.setSurnameText(surname);
+        }
+        if (abbreviation.isEmpty()) {
+            teacherController.setAbbreviationVisibility(true);
+        } else {
+            teacherController.setAbbreviationVisibility(false);
+            teacherController.setAbbreviationText(abbreviation);
+        }
+        if (assignedSubjects.isEmpty()) {
+            teacherController.setAssignedSubjectsVisibility(true);
+        } else {
+            teacherController.setAssignedSubjectsVisibility(false);
+            teacherController.setAssignedSubjects(assignedSubjects);
+        }
+        if (alreadyContainsAbbreviation) {
+            teacherController.setAbbreviationVisibility(true);
+            teacherController.setAbbreviationLabelText("Dieses Kürzel gibt es bereits!");
+        }
+    }
+
+    @FXML
+    protected void onChangeClass() {
         int index = classList.getSelectionModel().getSelectedIndex();
 
         try {
