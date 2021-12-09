@@ -102,6 +102,11 @@ public class TeacherController {
 
     public void setAssignedSubjects(List<Subject> subjects){
         ObservableList<Subject> os = FXCollections.observableArrayList(subjects);
+
+        olAvailableSubjects.removeAll(subjects);
+        availableSubjects.setItems(olAvailableSubjects);
+
+        olAssignedSubjects.addAll(subjects);
         assignedSubjects.setItems(os);
     }
     public void setAbbreviationLabelText(String text){

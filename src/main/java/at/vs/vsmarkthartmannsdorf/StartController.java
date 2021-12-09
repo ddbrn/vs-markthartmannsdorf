@@ -240,21 +240,12 @@ public class StartController {
         classList.setItems(this.classes);
     }
 
-    public void setTimetableList(List<Timetable> timetables) {
-        this.timetables = FXCollections.observableArrayList(timetables);
-        timetableList.setItems(this.timetables);
-    }
-
     public List<Teacher> getTeacher() {
         return teachers.stream().toList();
     }
 
     public List<SchoolClass> getClasses() {
         return classes.stream().toList();
-    }
-
-    public List<Timetable> getTimetables() {
-        return timetables.stream().toList();
     }
 
     @FXML
