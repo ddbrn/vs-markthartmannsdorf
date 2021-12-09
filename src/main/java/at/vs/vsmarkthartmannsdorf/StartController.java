@@ -250,6 +250,74 @@ public class StartController {
 
     @FXML
     public void onEditTeacher() {
-        // Edit
+        int index = classList.getSelectionModel().getSelectedIndex();
+
+        try {
+            FXMLLoader classLoader = new FXMLLoader();
+            classLoader.setLocation(getClass().getResource("class-dialog.fxml"));
+
+            DialogPane classPane = classLoader.load();
+            ClassController classController = classLoader.getController();
+
+            SchoolClass schoolClass = classes.get(index);
+            String oldClassName = classes.get(index).getClassname();
+            Teacher oldTeacher = classes.get(index).getTeacher();
+            boolean classExists = false;
+
+            String newClassname = "";
+            Teacher newTeacher = null;
+            classController.setTeachers(teachers);
+            classController.setSelectedTeacher(oldTeacher);
+            classController.setClassName(oldClassName);
+
+            do {
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(classPane);
+                dialog.setTitle("Klasse ändern");
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
+
+                if (clickedButton.get() == ButtonType.APPLY) {
+                    newClassname = classController.getClassName().getText();
+                    newTeacher = classController.getTeachers().getValue();
+
+                    String finalClassName = newClassname;
+                    classExists = classes.stream().anyMatch(schoolClass1 -> schoolClass1.getClassname().equals(finalClassName));
+
+
+                    if (!newClassname.isEmpty() && newTeacher != null && !classExists) {
+                        schoolClass.setClassname(classController.getClassName().getText());
+                        schoolClass.setTeacher(classController.getTeachers().getValue());
+
+                        classList.setItems(classes);
+                        classList.refresh();
+                    }else{
+                        if(newClassname.isEmpty()){
+                            classController.getClassLabel().setVisible(true);
+                            classController.getClassLabel().setText("Klassenname darf nicht leer sein!");
+                        } else {
+                            classController.getClassName().setText(newClassname);
+                            classController.getClassLabel().setVisible(false);
+                        }
+                        if(newTeacher == null){
+                            classController.getTeacherLabel().setVisible(true);
+                        }else{
+                            classController.getTeachers().setValue(newTeacher);
+                            classController.getTeacherLabel().setVisible(false);
+                        }
+                        if(classExists){
+                            classController.getClassLabel().setVisible(true);
+                            classController.getClassLabel().setText("Klassenname existiert bereits!");
+                        }
+                    }
+
+                }
+                if(clickedButton.get() == ButtonType.CANCEL){
+                    break;
+                }
+
+            } while (newClassname.isEmpty() || newTeacher == null || classExists);
+        } catch (Exception e) {
+
+        }
     }
 }
