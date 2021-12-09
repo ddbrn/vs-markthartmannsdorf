@@ -147,6 +147,7 @@ public class StartController {
                     } else {
                         if (className.isEmpty()) {
                             classController.getClassLabel().setVisible(true);
+                            classController.getClassLabel().setText("Klassenname darf nicht leer sein!");
                         } else {
                             classController.getClassName().setText(className);
                             classController.getClassLabel().setVisible(false);
