@@ -101,7 +101,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Klasse-Hinzufügen.png" />
+                                                <Image url="@../../../Images/Klasse-Hinzufügen.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -116,7 +116,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Klasse-entfernen.png" />
+                                                <Image url="@../../../Images/Klasse-entfernen.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -125,7 +125,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Change.png" />
+                                                <Image url="@../../../Images/Change.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -159,7 +159,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Lehrer-hinzufügemn.png" />
+                                                <Image url="@../../../Images/Lehrer-hinzufügemn.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -174,7 +174,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Person-entfernen.png" />
+                                                <Image url="@../../../Images/Person-entfernen.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -183,7 +183,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Change.png" />
+                                                <Image url="@../../../Images/Change.png" />
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
