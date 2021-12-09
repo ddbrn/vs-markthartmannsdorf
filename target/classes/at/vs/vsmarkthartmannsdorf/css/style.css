@@ -1,5 +1,5 @@
 .menu-bar {
-    -fx-background-color: #226464;
+    -fx-background-color: #317591;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }
@@ -43,4 +43,3 @@
     -fx-background-color: gray;
     -fx-background-radius: 0px 10px 10px 0px;
 }
-

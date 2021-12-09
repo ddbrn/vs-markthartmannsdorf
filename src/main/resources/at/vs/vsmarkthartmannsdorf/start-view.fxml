@@ -8,6 +8,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -44,9 +46,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1">
+      <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1">
         <tabs>
-            <Tab text="Stundenplan">
+            <Tab style="-fx-background-color: linear-gradient(to right,  #e06321, #ff8e53);" text="Stundenplan">
                 <content>
                     <BorderPane prefHeight="200.0" prefWidth="200.0">
                         <left>
@@ -54,7 +56,7 @@
                                 <top>
                                     <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Button mnemonicParsing="false" onAction="#onChangeTimetable" text="+">
+                                            <Button mnemonicParsing="false" onAction="#onChangeTimetable" style="-fx-background-color: #317591;" text="+">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
@@ -62,7 +64,7 @@
                                                     <Insets bottom="2.0" top="2.0" />
                                                 </HBox.margin>
                                             </Button>
-                                            <Button id="deleteContent" mnemonicParsing="false" onAction="#deleteContent" text="-">
+                                            <Button id="deleteContent" mnemonicParsing="false" onAction="#deleteContent" style="-fx-background-color: #317591;" text="-">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
@@ -81,31 +83,53 @@
                     </BorderPane>
                 </content>
             </Tab>
-          <Tab text="Klassen">
+          <Tab style="-fx-background-color: linear-gradient(to right,  #e06321, #ff8e53);" text="Klassen">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css">
                      <left>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <top>
                               <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button id="addClass" mnemonicParsing="false" onAction="#onAddClass" text="+">
+                                    <Button id="addClass" mnemonicParsing="false" onAction="#onAddClass" style="-fx-background-color: #317591;">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets bottom="2.0" top="2.0" />
                                        </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Klasse-Hinzufügen.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                     </Button>
-                                    <Button id="removeClass" mnemonicParsing="false" onAction="#onRemoveClass" text="-">
+                                    <Button id="removeClass" mnemonicParsing="false" onAction="#onRemoveClass" style="-fx-background-color: #317591;">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets bottom="2.0" top="2.0" />
                                        </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Klasse-entfernen.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#onChangeClass" text="edit" />
+                                    <Button mnemonicParsing="false" onAction="#onChangeClass" style="-fx-background-color: #317591;">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Change.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
                                  </children>
                               </HBox>
                            </top>
@@ -117,31 +141,52 @@
                   </BorderPane>
                </content>
           </Tab>
-          <Tab text="Lehrer">
+          <Tab style="-fx-background-color: linear-gradient(to right,  #e06321, #ff8e53);" text="Lehrer">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css">
                      <left>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <top>
                               <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#onAddTeacher" text="+">
+                                    <Button mnemonicParsing="false" onAction="#onAddTeacher" style="-fx-background-color: #317591;">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets bottom="2.0" top="2.0" />
                                        </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Lehrer-hinzufügemn.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                     </Button>
-                                    <Button id="removeTeacher" mnemonicParsing="false" onAction="#onRemoveTeacher" text="-">
+                                    <Button id="removeTeacher" mnemonicParsing="false" onAction="#onRemoveTeacher" style="-fx-background-color: #317591;">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                        <HBox.margin>
                                           <Insets bottom="2.0" top="2.0" />
                                        </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Person-entfernen.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#onEditTeacher" text="edit" />
+                                    <Button mnemonicParsing="false" onAction="#onEditTeacher" style="-fx-background-color: #317591;">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Change.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children>
                               </HBox>
                            </top>
