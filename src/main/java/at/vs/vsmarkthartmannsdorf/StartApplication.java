@@ -28,6 +28,7 @@ public class StartApplication extends Application {
         controller = fxmlLoader.getController();
         controller.setTeachers(IOAccess.readTeacherFiles());
         controller.setClasses(IOAccess.readClassFiles());
+        //controller.setTimetableList(IOAccess.readTimetableFiles());
     }
 
     @Override
@@ -36,6 +37,7 @@ public class StartApplication extends Application {
 
         IOAccess.storeTeacherFiles(controller.getTeacher());
         IOAccess.storeClassFiles(controller.getClasses());
+        //IOAccess.storeTimetableFiles(controller.getTimetables());
     }
 
     public static void main(String[] args) {

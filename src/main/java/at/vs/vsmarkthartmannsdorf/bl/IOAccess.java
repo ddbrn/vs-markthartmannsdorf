@@ -12,15 +12,18 @@ import java.util.List;
 
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.data.Timetable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 // 25.11.2021 Simon: create "storeClassFiles", "readClassFiles" Functions
 // 02.12.2021 Simon: fixed JSON /read and /write
 // 04.12.2021 Simon: add "storeTeacherFiles", "readTeacherFiles" Functions
+// 09.12.2021 Simon: add "storeTimetableFiles", "readTimetableFiles" Functions
 public class IOAccess {
 
     private static File FILE_CLASS = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","class.json").toFile();
     private static File FILE_TEACHER = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","teacher.json").toFile();
+    private static File FILE_TIMETABLE = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","timetable.json").toFile();
 
     public static synchronized boolean storeClassFiles(List<SchoolClass> schoolClassList) {
         try {
@@ -108,6 +111,50 @@ public class IOAccess {
             e.printStackTrace();
         }
         return teacherList;
+    }
+
+    public static synchronized boolean storeTimetableFiles(List<Timetable> timetableList) {
+        try {
+
+            ObjectMapper om = new ObjectMapper();
+            String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(timetableList);
+
+            FileWriter fileWriter = new FileWriter(IOAccess.FILE_TIMETABLE.getAbsolutePath());
+            fileWriter.write(jsonStr);
+            fileWriter.close();
+            System.out.println("FileWrite wrote in \"" + IOAccess.FILE_TIMETABLE.getName() + "\".");
+
+            return true; //successfully wrote data
+
+        } catch (IOException e) {
+            System.out.println("Failed to write in the File: \"" + IOAccess.FILE_TIMETABLE.getName() + "\".");
+            e.printStackTrace();
+            return false; //not successfully wrote data
+        }
+    }
+
+    public static synchronized List<Timetable> readTimetableFiles() {
+        List<Timetable> timetableList = new ArrayList<>();
+        if (!new File(FILE_TIMETABLE.getAbsolutePath()).exists()) {
+            return new ArrayList<>();
+        }
+        try  {
+            String result = Files.readString(Paths.get(FILE_TIMETABLE.getAbsolutePath()));
+
+            if (result.isEmpty()) {
+                return new ArrayList<>();
+            }
+
+            ObjectMapper om = new ObjectMapper();
+            Timetable[] timetables = om.readValue(result, Timetable[].class);
+
+            timetableList = Arrays.asList(timetables);
+            System.out.println("FileWrite read in \"" + IOAccess.FILE_TIMETABLE.getName() + "\".");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return timetableList;
     }
 
 }
