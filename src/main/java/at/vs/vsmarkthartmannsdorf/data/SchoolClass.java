@@ -14,7 +14,7 @@ public class SchoolClass {
 
     @Override
     public String toString() {
-        return String.format("%s, %s", classname.toUpperCase(), teacher.toString());
+        return String.format("%s, %s", classname.toUpperCase(), teacher.getAbbreviation());
     }
 
 }

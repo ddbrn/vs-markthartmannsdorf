@@ -43,4 +43,10 @@ public class ClassController {
     public Label getClassExists() {
         return classExists;
     }
+    public void setSelectedTeacher(Teacher teacher){
+        teachers.setValue(teacher);
+    }
+    public void setClassName(String name){
+        className.setText(name);
+    }
 }
