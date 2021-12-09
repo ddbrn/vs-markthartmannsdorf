@@ -19,10 +19,12 @@ public class StartController {
     public ListView<Teacher> teacherList;
     public ListView<SchoolClass> classList;
     public ListView<Timetable> timetableList;
+    public ListView<Subject> timetableSubjectsList;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
+    private ObservableList<Subject> timetableSubjects = FXCollections.observableArrayList();
 
     @FXML
     protected void onAddTeacher() {
@@ -189,6 +191,7 @@ public class StartController {
 
     @FXML
     protected void onChangeTimetable() {
+
         if (timetableList.getSelectionModel().isEmpty()) {
             System.out.println("Keine Klasse ausgewählt bzw. keine erstellt");
         } else {
@@ -204,6 +207,7 @@ public class StartController {
 
                 Dialog<ButtonType> dialog = new Dialog<>();
                 dialog.setDialogPane(timeTableDialog);
+
                 dialog.setTitle("Stundenplan bearbeiten");
                 Optional<ButtonType> clickedButton = dialog.showAndWait();
                 if (clickedButton.get() == ButtonType.APPLY) {
@@ -213,9 +217,12 @@ public class StartController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            for (int i = 0; i < timetables.size(); i++) {
-                System.out.println(timetables.get(i).getteachersubjects());
-            }
+            List<Subject> usedSubjects = timetables.get(timetableList.getSelectionModel().getSelectedIndex())
+                    .getteachersubjects();
+            System.out.println("Alle verfügbaren Fächer von Timetable " +
+                    timetableList.getSelectionModel().getSelectedIndex()+1 + ":" + usedSubjects);
+          //  timetableSubjectsList.setItems((ObservableList<Subject>) usedSubjects); Liste links / Alle verfügbaren Fächer anzeigen lassen
+
         }
     }
 
