@@ -1,9 +1,25 @@
 [ {
-  "classname" : "1",
+  "classname" : "AHIF21",
   "teacher" : {
-    "firstname" : "A",
-    "surname" : "A",
-    "abbreviation" : "A",
+    "firstname" : "David",
+    "surname" : "Brannan",
+    "abbreviation" : "DB",
+    "subjects" : [ "Deutsch" ]
+  }
+}, {
+  "classname" : "AHIF20",
+  "teacher" : {
+    "firstname" : "Simon",
+    "surname" : "Schöggler",
+    "abbreviation" : "SS",
+    "subjects" : [ "Mathematik" ]
+  }
+}, {
+  "classname" : "AHIF19",
+  "teacher" : {
+    "firstname" : "Simon",
+    "surname" : "Schöggler",
+    "abbreviation" : "SS",
     "subjects" : [ "Mathematik" ]
   }
 } ]

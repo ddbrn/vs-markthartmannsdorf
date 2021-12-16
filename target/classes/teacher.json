@@ -1,16 +1,11 @@
 [ {
-  "firstname" : "A",
-  "surname" : "A",
-  "abbreviation" : "A",
+  "firstname" : "Simon",
+  "surname" : "Schöggler",
+  "abbreviation" : "SS",
   "subjects" : [ "Mathematik" ]
 }, {
-  "firstname" : "B",
-  "surname" : "B",
-  "abbreviation" : "B",
-  "subjects" : [ "Mathematik", "Sozialkunde", "Sachkunde" ]
-}, {
-  "firstname" : "Z",
-  "surname" : "Z",
-  "abbreviation" : "Z",
-  "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde" ]
+  "firstname" : "David",
+  "surname" : "Brannan",
+  "abbreviation" : "DN",
+  "subjects" : [ "Deutsch" ]
 } ]
