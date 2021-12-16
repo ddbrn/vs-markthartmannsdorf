@@ -80,6 +80,13 @@
                                 </center>
                             </BorderPane>
                         </left>
+                        <right>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <center>
+                                    <ListView fx:id="timetableSubjects" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                </center>
+                            </BorderPane>
+                        </right>
                     </BorderPane>
                 </content>
             </Tab>

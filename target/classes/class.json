@@ -1,0 +1,9 @@
+[ {
+  "classname" : "1",
+  "teacher" : {
+    "firstname" : "A",
+    "surname" : "A",
+    "abbreviation" : "A",
+    "subjects" : [ "Mathematik" ]
+  }
+} ]
