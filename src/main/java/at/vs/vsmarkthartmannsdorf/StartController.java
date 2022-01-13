@@ -19,12 +19,12 @@ public class StartController {
     public ListView<Teacher> teacherList;
     public ListView<SchoolClass> classList;
     public ListView<Timetable> timetableList;
-    public ListView<Subject> timetableSubjectsList;
+    public ListView<Subject> timetableSubjects;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
-    private ObservableList<Subject> timetableSubjects = FXCollections.observableArrayList();
+    private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
 
     @FXML
     protected void onAddTeacher() {

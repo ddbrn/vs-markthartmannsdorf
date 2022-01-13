@@ -48,7 +48,7 @@
       </MenuBar>
       <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1">
         <tabs>
-            <Tab style="-fx-background-color: linear-gradient(to right,  #e06321, #ff8e53);" text="Stundenplan">
+            <Tab style="-fx-background-color: linear-gradient(to right,  #ff9659, #ff8e53);" text="Stundenplan">
                 <content>
                     <BorderPane prefHeight="200.0" prefWidth="200.0">
                         <left>
@@ -56,22 +56,48 @@
                                 <top>
                                     <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Button mnemonicParsing="false" onAction="#onChangeTimetable" style="-fx-background-color: #317591;" text="+">
+                                            <Button mnemonicParsing="false" onAction="#onChangeTimetable" style="-fx-background-color: #317591;">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
                                                 <HBox.margin>
                                                     <Insets bottom="2.0" top="2.0" />
                                                 </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Images/Stundenplan-hinzufügen.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                             </Button>
-                                            <Button id="deleteContent" mnemonicParsing="false" onAction="#deleteContent" style="-fx-background-color: #317591;" text="-">
+                                            <Button id="deleteContent" mnemonicParsing="false" onAction="#deleteContent" style="-fx-background-color: #317591;">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
                                                 <HBox.margin>
                                                     <Insets bottom="2.0" top="2.0" />
                                                 </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Images/Stundenplan-entfernen.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                             </Button>
+                                    <Button id="deleteContent" mnemonicParsing="false" onAction="#deleteContent" style="-fx-background-color: #317591;">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Images/Change.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
                                         </children>
                                     </HBox>
                                 </top>
@@ -90,7 +116,7 @@
                     </BorderPane>
                 </content>
             </Tab>
-          <Tab style="-fx-background-color: linear-gradient(to right,  #e06321, #ff8e53);" text="Klassen">
+          <Tab style="-fx-background-color: linear-gradient(to right,  #ff9659, #ff8e53);" text="Klassen">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css">
                      <left>
@@ -148,7 +174,7 @@
                   </BorderPane>
                </content>
           </Tab>
-          <Tab style="-fx-background-color: linear-gradient(to right,  #e06321, #ff8e53);" text="Lehrer">
+          <Tab style="-fx-background-color: linear-gradient(to right,  #ff9659, #ff8e53);" text="Lehrer">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css">
                      <left>
@@ -166,7 +192,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Lehrer-hinzufügemn.png" />
+                                                <Image url="@../../../Images/Lehrer-hinzufügen.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
