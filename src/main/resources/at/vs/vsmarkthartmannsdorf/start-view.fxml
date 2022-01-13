@@ -231,7 +231,11 @@
                   </BorderPane>
                </content>
           </Tab>
+            <Tab style="-fx-background-color: linear-gradient(to right,  #e06321, #ff8e53);" text="Abwesenheiten">
+                <content>
 
+                </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

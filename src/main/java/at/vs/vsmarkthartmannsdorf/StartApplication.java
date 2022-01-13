@@ -1,17 +1,14 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class StartApplication extends Application {
 
