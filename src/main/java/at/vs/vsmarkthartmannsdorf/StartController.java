@@ -8,23 +8,27 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
-public class StartController {
+public class StartController implements Initializable {
 
     @FXML
     public ListView<Teacher> teacherList;
     public ListView<SchoolClass> classList;
     public ListView<Timetable> timetableList;
     public ListView<Subject> timetableSubjects;
+    public ListView<Teacher> absenceList;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
     private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
+
 
     @FXML
     protected void onAddTeacher() {
@@ -434,5 +438,15 @@ public class StartController {
         } catch (Exception e) {
 
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // absenceList.setItems(teachers);
+
+        // ObservableList<Teacher> t = FXCollections.observableArrayList();
+        // t.add(new Teacher("Simon", "Schäggler", "HH", Arrays.asList(Subject.Englisch)));
+        // absenceList.setItems(t);
+        // absenceList.setCellFactory(new TeacherAbsenceFactory());
     }
 }
