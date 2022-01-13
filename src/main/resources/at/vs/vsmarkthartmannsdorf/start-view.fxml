@@ -44,6 +44,15 @@
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/Drucken.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
         </menus>
       </MenuBar>
       <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1">
