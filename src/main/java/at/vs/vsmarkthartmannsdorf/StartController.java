@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class StartController implements Initializable {
+public class StartController {
 
     @FXML
     public ListView<Teacher> teacherList;
@@ -107,6 +107,7 @@ public class StartController implements Initializable {
         }
 
         teacherList.setItems(teachers);
+        loadAbsence();
     }
 
     @FXML
@@ -117,6 +118,7 @@ public class StartController implements Initializable {
             teachers.remove(index);
             teacherList.setItems(teachers);
         }
+        loadAbsence();
     }
 
     @FXML
@@ -442,9 +444,8 @@ public class StartController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public void loadAbsence() {
+        teacherAbsenceList.clear();
         for (Teacher teacher : teachers) {
             teacherAbsenceList.add(new TeacherAbsence(teacher, false));
         }
@@ -455,12 +456,12 @@ public class StartController implements Initializable {
             for (int i = 0; i < teacherAbsenceList.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("teacherabsence.fxml"));
-                HBox hBox = fxmlLoader.load();
+                GridPane gp = fxmlLoader.load();
 
                 TeacherAbsenceController teacherAbsenceController = fxmlLoader.getController();
                 teacherAbsenceController.setData(teacherAbsenceList.get(i));
 
-                teacherAbsence.add(hBox, column, row++);
+                teacherAbsence.add(gp, column, row++);
                 teacherAbsence.setMinWidth(Region.USE_COMPUTED_SIZE);
                 teacherAbsence.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 teacherAbsence.setMaxWidth(Region.USE_PREF_SIZE);
@@ -468,8 +469,6 @@ public class StartController implements Initializable {
                 teacherAbsence.setMinHeight(Region.USE_COMPUTED_SIZE);
                 teacherAbsence.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 teacherAbsence.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(hBox, new Insets(10));
             }
         }catch (Exception e){
             e.printStackTrace();
