@@ -1,4 +1,4 @@
-package at.vs.vsmarkthartmannsdorf;
+package at.vs.vsmarkthartmannsdorf.controller;
 
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import javafx.beans.Observable;

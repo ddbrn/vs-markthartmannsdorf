@@ -1,8 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
-import at.vs.vsmarkthartmannsdorf.data.Teacher;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import at.vs.vsmarkthartmannsdorf.controller.StartController;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
