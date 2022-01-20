@@ -44,11 +44,20 @@
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/Drucken.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
         </menus>
       </MenuBar>
       <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1">
         <tabs>
-            <Tab style="-fx-background-color: linear-gradient(to right,  #ff9659, #ff8e53);" text="Stundenplan">
+            <Tab style="-fx-background-color: linear-gradient(to right,  #3d8d6c, #3d8d6c);" text="Stundenplan">
                 <content>
                     <BorderPane prefHeight="200.0" prefWidth="200.0">
                         <left>
@@ -116,7 +125,7 @@
                     </BorderPane>
                 </content>
             </Tab>
-          <Tab style="-fx-background-color: linear-gradient(to right,  #ff9659, #ff8e53);" text="Klassen">
+          <Tab style="-fx-background-color: linear-gradient(to right,  #3d8d6c, #3d8d6c);" text="Klassen">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css">
                      <left>
@@ -174,7 +183,7 @@
                   </BorderPane>
                </content>
           </Tab>
-          <Tab style="-fx-background-color: linear-gradient(to right,  #ff9659, #ff8e53);" text="Lehrer">
+          <Tab style="-fx-background-color: linear-gradient(to right,  #3d8d6c, #3d8d6c);" text="Lehrer">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css">
                      <left>
@@ -231,7 +240,7 @@
                   </BorderPane>
                </content>
           </Tab>
-            <Tab style="-fx-background-color: linear-gradient(to right,  #e06321, #ff8e53);" text="Abwesenheiten">
+            <Tab style="-fx-background-color: linear-gradient(to right,  #3d8d6c, #3d8d6c);" text="Abwesenheiten">
                 <content>
                     
                 </content>

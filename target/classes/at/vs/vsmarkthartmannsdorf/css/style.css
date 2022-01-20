@@ -41,6 +41,7 @@
 
 .list-view {
     -fx-background-color: gray;
+    -fx-border-color: white;
 }
 .tab {
     -fx-background-insets: 0px 3px 0px 3px;
