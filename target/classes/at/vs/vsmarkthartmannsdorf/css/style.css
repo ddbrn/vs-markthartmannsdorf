@@ -1,5 +1,5 @@
 .menu-bar {
-    -fx-background-color: #317591;
+    -fx-background-color: #215b74;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }
@@ -27,7 +27,7 @@
 
 
 .tab-pane .tab-label{
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 
@@ -36,10 +36,26 @@
 }
 
 .tab-pane .tab:selected .tab-label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .list-view {
     -fx-background-color: gray;
-    -fx-background-radius: 0px 10px 10px 0px;
+    -fx-border-color: white;
+}
+.tab {
+    -fx-background-insets: 0px 3px 0px 3px;
+  }
+  .list-view .list-cell:selection {
+      -fx-text-fill: white;
+  }
+.list-view .list-cell:even {
+-fx-background-color: #215b74;
+-fx-text-fill: white;
+-fx-font-size: 14px;
+}
+.list-view .list-cell:odd {
+-fx-background-color: #317591;
+-fx-text-fill: white;
+-fx-font-size: 14px;
 }
