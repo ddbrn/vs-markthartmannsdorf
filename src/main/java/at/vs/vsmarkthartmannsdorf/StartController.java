@@ -1,30 +1,36 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
-import at.vs.vsmarkthartmannsdorf.data.Subject;
-import at.vs.vsmarkthartmannsdorf.data.Teacher;
-import at.vs.vsmarkthartmannsdorf.data.Timetable;
+import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
-public class StartController {
+public class StartController implements Initializable {
 
     @FXML
     public ListView<Teacher> teacherList;
     public ListView<SchoolClass> classList;
     public ListView<Timetable> timetableList;
     public ListView<Subject> timetableSubjects;
+    public GridPane teacherAbsence;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
     private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
+
+    private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     @FXML
     protected void onAddTeacher() {
@@ -433,6 +439,40 @@ public class StartController {
             } while (newClassname.isEmpty() || newTeacher == null || classExists);
         } catch (Exception e) {
 
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        for (Teacher teacher : teachers) {
+            teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+        }
+
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < teacherAbsenceList.size(); i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("teacherabsence.fxml"));
+                HBox hBox = fxmlLoader.load();
+
+                TeacherAbsenceController teacherAbsenceController = fxmlLoader.getController();
+                teacherAbsenceController.setData(teacherAbsenceList.get(i));
+
+                teacherAbsence.add(hBox, column, row++);
+                teacherAbsence.setMinWidth(Region.USE_COMPUTED_SIZE);
+                teacherAbsence.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                teacherAbsence.setMaxWidth(Region.USE_PREF_SIZE);
+
+                teacherAbsence.setMinHeight(Region.USE_COMPUTED_SIZE);
+                teacherAbsence.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                teacherAbsence.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(hBox, new Insets(10));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

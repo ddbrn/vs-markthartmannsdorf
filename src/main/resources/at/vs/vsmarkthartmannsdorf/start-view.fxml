@@ -75,7 +75,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Stundenplan-hinzufügen.png" />
+                                                <Image url="@../../../Images/Add.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -90,7 +90,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Stundenplan-entfernen.png" />
+                                                <Image url="@../../../Images/Remove.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -143,7 +143,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Klasse-Hinzufügen.png" />
+                                                <Image url="@../../../Images/Add.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -158,7 +158,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Klasse-entfernen.png" />
+                                                <Image url="@../../../Images/Remove.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -201,7 +201,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Lehrer-hinzufügen.png" />
+                                                <Image url="@../../../Images/Add.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -216,7 +216,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Person-entfernen.png" />
+                                                <Image url="@../../../Images/Remove.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -244,6 +244,18 @@
                 <content>
                     
                 </content>
+               <content>
+                  <GridPane fx:id="teacherAbsence">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
             </Tab>
         </tabs>
       </TabPane>

@@ -42,19 +42,20 @@
 .list-view {
     -fx-background-color: gray;
 }
+.list-view  .list-cell{
+    -fx-text-fill: whitesmoke;
+}
 .tab {
     -fx-background-insets: 0px 3px 0px 3px;
   }
-  .list-view .list-cell:selection {
-      -fx-text-fill: white;
+  .list-view .list-cell:selected {
+      -fx-text-fill: red;
   }
 .list-view .list-cell:even {
 -fx-background-color: #215b74;
--fx-text-fill: white;
 -fx-font-size: 14px;
 }
 .list-view .list-cell:odd {
 -fx-background-color: #317591;
--fx-text-fill: white;
 -fx-font-size: 14px;
 }
