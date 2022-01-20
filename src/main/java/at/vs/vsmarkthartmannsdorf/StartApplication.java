@@ -1,6 +1,5 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.controller.StartController;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

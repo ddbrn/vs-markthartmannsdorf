@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<DialogPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.controller.TimetableController">
+<DialogPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimetableController">
     <buttonTypes>
         <ButtonType fx:constant="APPLY"/>
         <ButtonType fx:constant="CANCEL"/>

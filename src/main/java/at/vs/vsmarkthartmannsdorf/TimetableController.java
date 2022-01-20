@@ -1,4 +1,4 @@
-package at.vs.vsmarkthartmannsdorf.controller;
+package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;

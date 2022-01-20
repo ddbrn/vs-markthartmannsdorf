@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox fx:id="hBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherAbsenceCell">
+<HBox fx:id="hBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherAbsenceController">
    <children>
       <Label fx:id="teacherName" text="Lehrer" textAlignment="CENTER">
          <font>
@@ -17,12 +16,12 @@
             <Insets left="10.0" right="5.0" />
          </HBox.margin>
       </Label>
-      <Button fx:id="isPresent" mnemonicParsing="false" text="Anwesend">
+      <Button fx:id="isPresent" mnemonicParsing="false" onAction="#setIsPresent" text="Anwesend">
          <HBox.margin>
             <Insets left="5.0" right="5.0" />
          </HBox.margin>
       </Button>
-      <Button fx:id="isAbsent" mnemonicParsing="false" text="Abwesend">
+      <Button fx:id="isAbsent" mnemonicParsing="false" onAction="#setIsAbsent" text="Abwesend">
          <HBox.margin>
             <Insets left="5.0" right="5.0" />
          </HBox.margin>
