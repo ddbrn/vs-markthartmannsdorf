@@ -18,6 +18,8 @@ public class TeacherAbsenceController {
     private Button isPresent;
     @FXML
     private Button isAbsent;
+
+    private StartController parent;
     
 
     private TeacherAbsence teacherAbsence;
@@ -36,6 +38,8 @@ public class TeacherAbsenceController {
 
         isAbsent.setStyle(null);
         isPresent.setStyle("-fx-background-color: #008000");
+
+        parent.teacherChangedAbsentStatus(teacherAbsence);
     }
 
     public void setData(TeacherAbsence teacherAbsence){
@@ -43,5 +47,11 @@ public class TeacherAbsenceController {
 
         teacherName.setText(teacherAbsence.getTeacher().getSurname() + " " + teacherAbsence.getTeacher().getFirstname());
         isPresent.setStyle("-fx-background-color: #008000");
+
+        parent.teacherChangedAbsentStatus(teacherAbsence);
+    }
+
+    public void setStartController(StartController startController) {
+        this.parent = startController;
     }
 }

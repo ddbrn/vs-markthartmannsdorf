@@ -459,6 +459,7 @@ public class StartController {
                 GridPane gp = fxmlLoader.load();
 
                 TeacherAbsenceController teacherAbsenceController = fxmlLoader.getController();
+                teacherAbsenceController.setStartController(this);
                 teacherAbsenceController.setData(teacherAbsenceList.get(i));
 
                 teacherAbsence.add(gp, column, row++);
@@ -473,5 +474,12 @@ public class StartController {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void teacherChangedAbsentStatus(TeacherAbsence teacherAbsence){
+        teacherAbsenceList.stream().filter(t -> t.getTeacher()
+                .getAbbreviation() == teacherAbsence.getTeacher()
+                .getAbbreviation()).findFirst().get()
+                .setAbsent(teacherAbsence.isAbsent());
     }
 }
