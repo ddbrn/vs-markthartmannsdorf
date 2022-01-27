@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="971.0" styleClass="mainScene" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.MainController">
+   <left>
+      <VBox id="navBar" prefHeight="609.0" prefWidth="205.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox id="spacer" prefHeight="5.0" prefWidth="195.0" />
+            <HBox id="navItem" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="205.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@schedule.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Stundenplan" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" />
+               </padding></HBox>
+            <HBox id="navItem" alignment="CENTER_LEFT" layoutX="15.0" layoutY="15.0" prefHeight="39.0" prefWidth="205.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@lehrer.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Lehrer" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox id="navItem" alignment="CENTER_LEFT" layoutX="15.0" layoutY="164.0" prefHeight="39.0" prefWidth="205.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@vorlesung.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Klassen" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox id="spacer" layoutX="15.0" layoutY="110.0" prefHeight="5.0" prefWidth="195.0" />
+            <HBox id="navItem" alignment="CENTER_LEFT" layoutX="15.0" layoutY="208.0" prefHeight="39.0" prefWidth="205.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@x.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Abwesenheiten" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="100.0" />
+         </padding>
+      </VBox>
+   </left>
+</BorderPane>
