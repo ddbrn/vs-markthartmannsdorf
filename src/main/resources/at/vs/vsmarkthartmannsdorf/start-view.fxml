@@ -102,7 +102,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Change.png" />
+                                                <Image url="@../../../Images/Zahnrad.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -167,7 +167,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Change.png" />
+                                                <Image url="@../../../Images/Zahnrad.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -225,7 +225,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Change.png" />
+                                                <Image url="@../../../Images/Zahnrad.png" />
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
