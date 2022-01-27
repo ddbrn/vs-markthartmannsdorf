@@ -22,6 +22,7 @@ public class StartApplication extends Application {
         controller = fxmlLoader.getController();
         controller.setTeachers(IOAccess.readTeacherFiles());
         controller.setClasses(IOAccess.readClassFiles());
+        controller.loadAbsence();
         //controller.setTimetableList(IOAccess.readTimetableFiles());
     }
 
