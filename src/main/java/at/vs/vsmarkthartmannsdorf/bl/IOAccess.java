@@ -135,6 +135,7 @@ public class IOAccess {
 
     public static synchronized List<Timetable> readTimetableFiles() {
         List<Timetable> timetableList = new ArrayList<>();
+
         if (!new File(FILE_TIMETABLE.getAbsolutePath()).exists()) {
             return new ArrayList<>();
         }

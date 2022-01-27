@@ -5,6 +5,8 @@ module at.vs.vsmarkthartmannsdorf {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
     requires com.fasterxml.jackson.databind;
     requires lombok;
 
