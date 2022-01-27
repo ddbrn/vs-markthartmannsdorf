@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +24,10 @@ public class StartApplication extends Application {
         controller.setTeachers(IOAccess.readTeacherFiles());
         controller.setClasses(IOAccess.readClassFiles());
         controller.loadAbsence();
+
+        IOAccess_Excel.setStage(stage);
+
+
         //controller.setTimetableList(IOAccess.readTimetableFiles());
     }
 
@@ -33,6 +38,8 @@ public class StartApplication extends Application {
         IOAccess.storeTeacherFiles(controller.getTeacher());
         IOAccess.storeClassFiles(controller.getClasses());
         //IOAccess.storeTimetableFiles(controller.getTimetables());
+
+        IOAccess_Excel.createExcelFile(controller.getTeacher());
     }
 
     public static void main(String[] args) {
