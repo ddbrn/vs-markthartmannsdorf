@@ -59,3 +59,10 @@
 -fx-background-color: #317591;
 -fx-font-size: 14px;
 }
+
+.absenceItem {
+    -fx-background-size: 1200 900;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+    -fx-background-color: #ebe6e6;
+}
