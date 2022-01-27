@@ -28,7 +28,7 @@ public class TeacherAbsenceController {
 
     @FXML
     private void setIsAbsent() {
-        pane.setStyle("-fx-background-color: #ebe6e6");
+        pane.setStyle("-fx-background-color: #dde2eb");
         teacherAbsence.setAbsent(isAbsent.isSelected() ? true : false);
         if (!isAbsent.isSelected()){
             pane.setStyle("-fx-background-color: #ff0000");

@@ -1,0 +1,30 @@
+.mainScene #navBar {
+    -fx-background-color: #3c71c7;
+    -fx-border-radius: 30;
+    -fx-background-radius: 0 10 10 0;
+}
+
+.mainScene #navBar #navItem{
+    -fx-background-color: #3c71c7;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.mainScene #navBar #navItem:hover{
+    -fx-background-color: #2e74e6;
+}
+
+.mainScene #spacer{
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.teacherView .list-view {
+    -fx-control-inner-background: #59b7ff;
+    -fx-background-color: #59b7ff;
+}
+
+.teacherView #buttons{
+    -fx-background-color: black;
+}
