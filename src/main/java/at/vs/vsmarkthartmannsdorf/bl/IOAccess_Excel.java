@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf.bl;
 
+import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -31,7 +32,7 @@ public class IOAccess_Excel {
         IOAccess_Excel.stage = stage;
     }
 
-    public static void createExcelFile(List<Teacher> teacherList) {
+    public static void createExcelFile(List<Teacher> teacherList, List<SchoolClass> schoolClassList) {
         File selectedDirectory = directoryChooser.showDialog(stage);
 
         if (selectedDirectory == null) {
@@ -43,7 +44,7 @@ public class IOAccess_Excel {
         XSSFSheet sheet = wb.createSheet("Lehrer");
 
         String[] header = {
-                "Vorname", "Nachname", "Kürzel"
+                "Vorname", "Nachname", "Kürzel", "Fächer"
         };
 
         int rowCount = 0;
@@ -67,9 +68,37 @@ public class IOAccess_Excel {
             cell = row.createCell(columCount++);
             cell.setCellValue(teacher.getAbbreviation());
 
-            cell = row.createCell(columCount++);
+            cell = row.createCell(columCount);
             cell.setCellValue(teacher.getSubjectsForExcel());
         }
+
+
+        sheet = wb.createSheet("Klassen");
+
+        String[] headerClass = {
+                "Klassen Name", "Klassenvorstand"
+        };
+
+        rowCount = 0;
+        columCount = 0;
+
+        row = sheet.createRow(rowCount++);
+        for (String head: headerClass) {
+            XSSFCell cell = row.createCell(columCount++);
+            cell.setCellValue(head);
+        }
+
+        for (SchoolClass schoolClass:schoolClassList) {
+            row = sheet.createRow(rowCount++);
+            columCount = 0;
+            XSSFCell cell = row.createCell(columCount++);
+            cell.setCellValue(schoolClass.getClassname());
+
+            cell = row.createCell(columCount);
+            cell.setCellValue(schoolClass.getFormattedTeacher());
+
+        }
+
 
         try (FileOutputStream outputStream = new FileOutputStream(selectedDirectory.getAbsolutePath() + "\\vs-markthartmannsdorf-data.xlsx")) {
             wb.write(outputStream);

@@ -39,7 +39,7 @@ public class StartApplication extends Application {
         IOAccess.storeClassFiles(controller.getClasses());
         //IOAccess.storeTimetableFiles(controller.getTimetables());
 
-        IOAccess_Excel.createExcelFile(controller.getTeacher());
+        IOAccess_Excel.createExcelFile(controller.getTeacher(), controller.getClasses());
     }
 
     public static void main(String[] args) {
