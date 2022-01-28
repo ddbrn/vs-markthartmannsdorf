@@ -16,6 +16,16 @@ public class Teacher {
     private String abbreviation;
     private List<Subject> subjects;
 
+    public String getSubjectsForExcel () {
+        String sub = "";
+
+        for (Subject subject:subjects) {
+            sub += subject.name() + ";";
+        }
+
+        return sub.substring(0, sub.length() - 1);
+    }
+
     @Override
     public String toString() {
         return String.format("%s %s (%s)", surname.toUpperCase(), firstname, abbreviation.toUpperCase());

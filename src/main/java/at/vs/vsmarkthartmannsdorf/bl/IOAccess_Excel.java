@@ -63,6 +63,9 @@ public class IOAccess_Excel {
 
             cell = row.createCell(columCount++);
             cell.setCellValue(teacher.getAbbreviation());
+
+            cell = row.createCell(columCount++);
+            cell.setCellValue(teacher.getSubjectsForExcel());
         }
 
 
