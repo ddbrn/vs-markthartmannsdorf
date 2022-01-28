@@ -1,3 +1,7 @@
+.mainScene {
+    -fx-background-color: #eeeee4;
+}
+
 .mainScene #navBar {
     -fx-background-color: #3c71c7;
     -fx-border-radius: 30;
@@ -21,8 +25,8 @@
 }
 
 .teacherView .list-view {
-    -fx-control-inner-background: #eee8e8;
-    -fx-background-color: #eee8e8;
+    -fx-control-inner-background: #FFFFFF;
+    -fx-background-color: #FFFFFF;
 
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
@@ -32,4 +36,14 @@
     -fx-background-color: black;
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
+}
+
+.teacherEdit {
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+    -fx-background-color: #FFFFFF;
+}
+
+.teacherEditItem #teacherViewHeader{
+    -fx-background-color: black;
 }

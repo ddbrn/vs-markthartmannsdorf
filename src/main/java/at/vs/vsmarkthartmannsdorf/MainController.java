@@ -1,6 +1,8 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.data.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,15 +15,24 @@ import javafx.scene.layout.VBox;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable{
 
     @FXML
-    BorderPane main;
+    public BorderPane main;
 
-    private List<Teacher> teacherList;
+
+    private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
+    private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
+    private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
+    private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
+    private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
+
+    private TeacherViewController teacherViewController;
+    private BorderPane teacherView;
 
     @Override
     @FXML
@@ -29,27 +40,38 @@ public class MainController implements Initializable{
         try{
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("demo/teacher.fxml"));
-            BorderPane borderPane = fxmlLoader.load();
-
-            GridPane gridPane = new GridPane();
-            borderPane.setCenter(gridPane);
-
-            // fxmlLoader.setLocation(getClass().getResource("absenceitem.fxml"));
-            // VBox vBox = fxmlLoader.load();
-
-            main.setCenter(borderPane);
-            main.setBottom(null);
-            main.setRight(null);
-
-
-
+            teacherView = fxmlLoader.load();
+            teacherViewController = fxmlLoader.getController();
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
     @FXML
+    public void onClickTeacher(){
+        main.setCenter(teacherView);
+        main.setBottom(null);
+        main.setRight(null);
+    }
+
+
+    @FXML
     public void importAsExcel(){
 
+    }
+
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = FXCollections.observableArrayList(teachers);
+        teacherViewController.setItems(this.teachers);
+    }
+
+    public void setClasses(List<SchoolClass> classes) {
+        this.classes = FXCollections.observableArrayList(classes);
+        // classList.setItems(this.classes);
+    }
+
+    public BorderPane getMain() {
+        return main;
     }
 }

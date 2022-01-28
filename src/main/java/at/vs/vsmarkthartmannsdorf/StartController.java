@@ -27,7 +27,6 @@ public class StartController {
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
     private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
-
     private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     @FXML
@@ -36,6 +35,7 @@ public class StartController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("teacher-dialog.fxml"));
             DialogPane teacherDialog = fxmlLoader.load();
+
 
             List<Subject> subjects = Arrays.asList(Subject.values());
 
