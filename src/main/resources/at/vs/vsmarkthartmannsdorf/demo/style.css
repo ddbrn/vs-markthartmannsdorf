@@ -21,10 +21,15 @@
 }
 
 .teacherView .list-view {
-    -fx-control-inner-background: #59b7ff;
-    -fx-background-color: #59b7ff;
+    -fx-control-inner-background: #eee8e8;
+    -fx-background-color: #eee8e8;
+
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
 }
 
 .teacherView #buttons{
     -fx-background-color: black;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
 }

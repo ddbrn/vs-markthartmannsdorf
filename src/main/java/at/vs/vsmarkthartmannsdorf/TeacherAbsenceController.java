@@ -1,19 +1,10 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.data.TeacherAbsence;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class TeacherAbsenceController {
     @FXML
