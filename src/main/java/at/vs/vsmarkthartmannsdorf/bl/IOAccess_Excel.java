@@ -71,10 +71,6 @@ public class IOAccess_Excel {
             cell.setCellValue(teacher.getSubjectsForExcel());
         }
 
-
-
-
-
         try (FileOutputStream outputStream = new FileOutputStream(selectedDirectory.getAbsolutePath() + "\\vs-markthartmannsdorf-data.xlsx")) {
             wb.write(outputStream);
         } catch (IOException e) {
