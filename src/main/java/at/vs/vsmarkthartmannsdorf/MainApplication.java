@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,5 +14,8 @@ public class MainApplication extends Application {
         stage.setTitle("Stundenplaner");
         stage.setScene(scene);
         stage.show();
+
+
+        IOAccess_Excel.setStage(stage);
     }
 }
