@@ -33,7 +33,10 @@ public class IOAccess_Excel {
 
     public static void createExcelFile(List<Teacher> teacherList) {
         File selectedDirectory = directoryChooser.showDialog(stage);
-        File file = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "test.xlsx").toFile();
+
+        if (selectedDirectory == null) {
+            return;
+        }
 
         XSSFWorkbook wb = new XSSFWorkbook();
 
