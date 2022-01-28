@@ -11,6 +11,10 @@ public class SchoolClass {
     private String classname;
     private Teacher teacher;
 
+    public String getFormattedTeacher() {
+        return teacher.getFirstname() + " " + teacher.getSurname();
+    }
+
 
     @Override
     public String toString() {
