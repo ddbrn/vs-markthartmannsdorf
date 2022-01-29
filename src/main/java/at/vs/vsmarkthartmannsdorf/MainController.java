@@ -42,6 +42,7 @@ public class MainController implements Initializable{
             fxmlLoader.setLocation(getClass().getResource("demo/teacher.fxml"));
             teacherView = fxmlLoader.load();
             teacherViewController = fxmlLoader.getController();
+            teacherViewController.setParent(this);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -73,5 +74,9 @@ public class MainController implements Initializable{
 
     public BorderPane getMain() {
         return main;
+    }
+
+    public List<Teacher> getTeacher() {
+        return teachers;
     }
 }

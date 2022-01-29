@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,16 +16,6 @@ public class Teacher {
     private String surname;
     private String abbreviation;
     private List<Subject> subjects;
-
-    public String getSubjectsForExcel () {
-        String sub = "";
-
-        for (Subject subject:subjects) {
-            sub += subject.name() + ";";
-        }
-
-        return sub.substring(0, sub.length() - 1);
-    }
 
     @Override
     public String toString() {

@@ -1,21 +1,27 @@
 .mainScene {
-    -fx-background-color: #eeeee4;
+    -fx-background-color: #ebebeb;
+}
+
+.mainScene #header {
+    -fx-background-color: #ffffff;
 }
 
 .mainScene #navBar {
-    -fx-background-color: #3c71c7;
-    -fx-border-radius: 30;
-    -fx-background-radius: 0 10 10 0;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
 }
 
 .mainScene #navBar #navItem{
-    -fx-background-color: #3c71c7;
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
 }
 
+.mainScene #navBar #navItem .label{
+    -fx-text-fill: black;
+}
+
 .mainScene #navBar #navItem:hover{
-    -fx-background-color: #2e74e6;
+    -fx-background-color: #518ef0;
 }
 
 .mainScene #spacer{
@@ -26,8 +32,15 @@
 
 .teacherView .list-view {
     -fx-control-inner-background: #FFFFFF;
-    -fx-background-color: #FFFFFF;
+}
 
+.teacherView #rightContainer {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
+
+.teacherView .list-view .list-cell:selected {
+    -fx-background-color: #518ef0;
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
 }
@@ -38,12 +51,51 @@
     -fx-background-radius: 10 10 10 10;
 }
 
-.teacherEdit {
+
+.teacherEditView {
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
     -fx-background-color: #FFFFFF;
+
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
 }
 
-.teacherEditItem #teacherViewHeader{
-    -fx-background-color: black;
+.teacherEditView #teacherEditViewButtons {
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.teacherEditView #teacherEditViewButtons:hover {
+    -fx-background-color: #3f7fe8;
+}
+
+.teacherEditView #inputLabels {
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.teacherEditView #subjectButtons {
+    -fx-background-color: #d0d0d0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.teacherEditView #teacherFormListView{
+    -fx-background-color: #d0d0d0;
+    -fx-control-inner-background: #d0d0d0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
+.teacherEditView #teacherFormListView .list-cell:selected{
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }

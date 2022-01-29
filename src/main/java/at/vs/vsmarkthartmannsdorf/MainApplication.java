@@ -20,5 +20,19 @@ public class MainApplication extends Application {
 
         controller = fxmlLoader.getController();
         controller.setTeachers(IOAccess.readTeacherFiles());
+        controller.setClasses(IOAccess.readClassFiles());
+        // controller.loadAbsence();
+        // controller.setTeachers(IOAccess.readTeacherFiles());
+    }
+
+    @Override
+    public void stop() throws Exception {
+        System.out.println("CLOSED WINDOW");
+
+        IOAccess.storeTeacherFiles(controller.getTeacher());
+        // IOAccess.storeClassFiles(controller.getClasses());
+        // IOAccess.storeTimetableFiles(controller.getTimetables());
+
+        //IOAccess_Excel.createExcelFile(controller.getTeacher(), controller.getClasses());
     }
 }
