@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +24,8 @@ public class MainApplication extends Application {
         controller.setClasses(IOAccess.readClassFiles());
         // controller.loadAbsence();
         // controller.setTeachers(IOAccess.readTeacherFiles());
+
+        IOAccess_Excel.setStage(stage);
     }
 
     @Override

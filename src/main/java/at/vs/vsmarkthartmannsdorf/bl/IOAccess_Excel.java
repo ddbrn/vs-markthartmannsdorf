@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf.bl;
 
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
+import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -69,7 +70,11 @@ public class IOAccess_Excel {
             cell.setCellValue(teacher.getAbbreviation());
 
             cell = row.createCell(columCount);
-            // cell.setCellValue(teacher.getSubjectsForExcel());
+            StringBuilder subjects = new StringBuilder();
+            for (Subject subject:teacher.getSubjects()) {
+                subjects.append(subject).append(";");
+            }
+            cell.setCellValue(subjects.substring(0, subjects.length() - 1));
         }
 
 

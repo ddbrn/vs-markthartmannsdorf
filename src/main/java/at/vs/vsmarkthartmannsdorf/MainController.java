@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,7 +59,7 @@ public class MainController implements Initializable{
 
     @FXML
     public void importAsExcel(){
-
+        IOAccess_Excel.createExcelFile(teachers.stream().toList(), classes.stream().toList());
     }
 
 
