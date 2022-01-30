@@ -40,7 +40,7 @@
                     </VBox>
                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                         <children>
-                            <Label text="Zugewiesene Fächer" />
+                            <Label text="Zugewiesene Lehrer" />
                             <ListView fx:id="assignedTeacher" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         </children>
                     </VBox>

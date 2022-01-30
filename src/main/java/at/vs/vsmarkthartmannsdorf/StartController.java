@@ -8,13 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class StartController {
+public class StartController implements Initializable{
 
     @FXML
     public ListView<Teacher> teacherList;
@@ -28,6 +29,40 @@ public class StartController {
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
     private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
     private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
+
+    @FXML
+    private TableView timeTableView;
+    private TableColumn colTime;
+    private TableColumn colMonday;
+    private TableColumn colTuesday;
+    private TableColumn colWednesday;
+    private TableColumn colThursday;
+    private TableColumn colFriday;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+         colTime = new TableColumn("");
+         colMonday = new TableColumn("Monday");
+         colTuesday = new TableColumn("Tuesday");
+         colWednesday = new TableColumn("Wednesday");
+         colThursday = new TableColumn("Thursday");
+         colFriday = new TableColumn("Friday");
+        timeTableView.getColumns().addAll(colTime,colMonday, colTuesday,
+                colWednesday, colThursday, colFriday);
+
+        // List of Content
+        final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
+                new TimetableDay("1", "07:00", "", "","", "", "")
+        );
+
+        colTime.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("time"));
+        colMonday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("monday"));
+        colTuesday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("tuesday"));
+        colWednesday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("wednesday"));
+        colThursday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("thursday"));
+        colFriday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("friday"));
+        timeTableView.setItems(data);
+    }
 
     @FXML
     protected void onAddTeacher() {
@@ -223,10 +258,6 @@ public class StartController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            List<Subject> usedSubjects = timetables.get(timetableList.getSelectionModel().getSelectedIndex())
-                    .getteachersubjects();
-            System.out.println("Alle verfügbaren Fächer von Timetable " +
-                    timetableList.getSelectionModel().getSelectedIndex()+1 + ":" + usedSubjects);
           //  timetableSubjectsList.setItems((ObservableList<Subject>) usedSubjects); Liste links / Alle verfügbaren Fächer anzeigen lassen
 
         }
@@ -479,4 +510,6 @@ public class StartController {
                 .getAbbreviation()).findFirst().get()
                 .setAbsent(teacherAbsence.isAbsent());
     }
+
+
 }
