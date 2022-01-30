@@ -22,17 +22,16 @@ public class SchoolClass {
        System.out.println(timeTable.get(1).getId() + " " + timeTable.get(4).getTime());
 
     }
-    private void AddTimeTableDefault(){
-        int j = 7;
-        for(int i=0; i<=13;i++){
+    private void AddTimeTableDefault(){//Parameter Amount of HOurs per Day
+        int j = 6;
+        for(int i=7; i<=13;i++){
+            j++;
             if(j >=10) {
                 timeTable.add(new TimetableDay(String.valueOf(i), String.valueOf(j) + ":00",
                         "", "", "", "", ""));
-                j++;
             }else {
                 timeTable.add(new TimetableDay(String.valueOf(i), "0" + String.valueOf(j) + ":00",
                         "", "", "", "", ""));
-                j++;
             }
         }
     }

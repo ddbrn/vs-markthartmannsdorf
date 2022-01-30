@@ -65,6 +65,7 @@ public class StartController implements Initializable{
     }
 
     public void OnClicked() {
+        //TimeTableChange
         System.out.println(timetableList.getItems().get(timetableList.getSelectionModel()
                 .getSelectedIndex()).getClassname().getTimeTable());
 

@@ -66,7 +66,7 @@
                                 <top>
                                     <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Button mnemonicParsing="false" onAction="#onChangeTimetable" style="-fx-background-color: #317591;">
+                                            <Button fx:id="BtnAddSubjects" mnemonicParsing="false" onAction="#onChangeTimetable" style="-fx-background-color: #317591;">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
@@ -74,14 +74,14 @@
                                                     <Insets bottom="2.0" top="2.0" />
                                                 </HBox.margin>
                                        <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="BtnAddSubject" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@Images/Add.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                             </Button>
-                                            <Button id="deleteContent" mnemonicParsing="false" onAction="#deleteContent" style="-fx-background-color: #317591;">
+                                            <Button id="deleteContent" fx:id="BtnDeleteSubject" mnemonicParsing="false" onAction="#deleteContent" style="-fx-background-color: #317591;">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
@@ -89,7 +89,7 @@
                                                     <Insets bottom="2.0" top="2.0" />
                                                 </HBox.margin>
                                        <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="BtnDeleteSubjects" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@Images/Remove.png" />
                                              </image>
@@ -101,7 +101,7 @@
                                           <Font size="14.0" />
                                        </font>
                                        <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="BtnChangeTimetable" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@Images/Zahnrad.png" />
                                              </image>
