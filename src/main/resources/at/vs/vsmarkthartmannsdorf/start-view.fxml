@@ -112,7 +112,7 @@
                                     </HBox>
                                 </top>
                                 <center>
-                                    <ListView fx:id="timetableList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                    <ListView fx:id="timetableList" onMouseClicked="#OnClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                                 </center>
                             </BorderPane>
                         </left>

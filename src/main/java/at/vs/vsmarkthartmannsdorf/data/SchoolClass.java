@@ -37,6 +37,10 @@ public class SchoolClass {
         }
     }
 
+    public List<TimetableDay> getTimeTable() {
+        return timeTable;
+    }
+
     public String getFormattedTeacher() {
         return teacher.getFirstname() + " " + teacher.getSurname();
     }

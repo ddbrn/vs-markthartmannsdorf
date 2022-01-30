@@ -16,8 +16,14 @@ public class Timetable {
     SchoolClass classname;
     List<Teacher> tlist;
 
+
+
     public Timetable(SchoolClass classname) {
         this.classname = classname;
+    }
+
+    public SchoolClass getClassname() {
+        return classname;
     }
 
     public void setContent(List<Teacher> tlist) {

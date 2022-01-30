@@ -52,7 +52,7 @@ public class StartController implements Initializable{
 
         // List of Content
         final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
-                new TimetableDay("1", "07:00", "", "","", "", "")
+                new TimetableDay("", "", "", "","", "", "")
         );
 
         colTime.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("time"));
@@ -62,6 +62,14 @@ public class StartController implements Initializable{
         colThursday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("thursday"));
         colFriday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("friday"));
         timeTableView.setItems(data);
+    }
+
+    public void OnClicked() {
+        System.out.println(timetableList.getItems().get(timetableList.getSelectionModel()
+                .getSelectedIndex()).getClassname().getTimeTable());
+
+        timeTableView.setItems(FXCollections.observableArrayList(timetableList.getItems().
+                get(timetableList.getSelectionModel().getSelectedIndex()).getClassname().getTimeTable()));
     }
 
     @FXML
