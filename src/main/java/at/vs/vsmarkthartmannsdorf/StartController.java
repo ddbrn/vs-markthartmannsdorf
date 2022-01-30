@@ -8,9 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +27,6 @@ public class StartController {
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
     private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
-
     private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     @FXML
@@ -38,6 +35,7 @@ public class StartController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("teacher-dialog.fxml"));
             DialogPane teacherDialog = fxmlLoader.load();
+
 
             List<Subject> subjects = Arrays.asList(Subject.values());
 
@@ -455,21 +453,20 @@ public class StartController {
         try {
             for (int i = 0; i < teacherAbsenceList.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("teacherabsence.fxml"));
-                GridPane gp = fxmlLoader.load();
+                fxmlLoader.setLocation(getClass().getResource("absenceitem.fxml"));
+                VBox vBox = fxmlLoader.load();
 
                 TeacherAbsenceController teacherAbsenceController = fxmlLoader.getController();
                 teacherAbsenceController.setStartController(this);
                 teacherAbsenceController.setData(teacherAbsenceList.get(i));
 
-                teacherAbsence.add(gp, column, row++);
-                teacherAbsence.setMinWidth(Region.USE_COMPUTED_SIZE);
-                teacherAbsence.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                teacherAbsence.setMaxWidth(Region.USE_PREF_SIZE);
+                if (column == 5) {
+                    column = 0;
+                    row++;
+                }
 
-                teacherAbsence.setMinHeight(Region.USE_COMPUTED_SIZE);
-                teacherAbsence.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                teacherAbsence.setMaxHeight(Region.USE_PREF_SIZE);
+                teacherAbsence.add(vBox, column++, row);
+                GridPane.setMargin(vBox, new Insets(5));
             }
         }catch (Exception e){
             e.printStackTrace();

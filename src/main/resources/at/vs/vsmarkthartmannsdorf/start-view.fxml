@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.StartController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.StartController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -48,7 +48,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Images/Drucken.png" />
+                        <Image url="@Images/Drucken.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -75,7 +75,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Add.png" />
+                                                <Image url="@Images/Add.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -90,7 +90,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Remove.png" />
+                                                <Image url="@Images/Remove.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -102,7 +102,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Zahnrad.png" />
+                                                <Image url="@Images/Zahnrad.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -143,7 +143,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Add.png" />
+                                                <Image url="@Images/Add.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -158,7 +158,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Remove.png" />
+                                                <Image url="@Images/Remove.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -167,7 +167,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Zahnrad.png" />
+                                                <Image url="@Images/Zahnrad.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -201,7 +201,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Add.png" />
+                                                <Image url="@Images/Add.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -216,7 +216,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Remove.png" />
+                                                <Image url="@Images/Remove.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -225,7 +225,7 @@
                                        <graphic>
                                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../Images/Zahnrad.png" />
+                                                <Image url="@Images/Zahnrad.png" />
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
@@ -242,7 +242,7 @@
           </Tab>
             <Tab style="-fx-background-color: linear-gradient(to right,  #3d8d6c, #3d8d6c);" text="Abwesenheiten">
                <content>
-                  <GridPane fx:id="teacherAbsence">
+                  <GridPane fx:id="teacherAbsence" hgap="1.0" vgap="1.0">
                   </GridPane>
                </content>
             </Tab>
