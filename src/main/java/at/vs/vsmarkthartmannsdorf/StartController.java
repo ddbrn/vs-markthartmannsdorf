@@ -27,7 +27,6 @@ public class StartController implements Initializable{
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
-    private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
     private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     @FXML
@@ -71,6 +70,37 @@ public class StartController implements Initializable{
 
         timeTableView.setItems(FXCollections.observableArrayList(timetableList.getItems().
                 get(timetableList.getSelectionModel().getSelectedIndex()).getClassname().getTimeTable()));
+    }
+    @FXML
+    protected void AddSubjects(){
+        System.out.println(classList.getItems().get(0).getTimeTable().get(2).getMonday() + "sdomai");
+        classList.getItems().get(0).getTimeTable().get(2).ChangeHour("monday", Subject.Mathematik.toString());
+
+
+        try {
+        FXMLLoader TableLoader = new FXMLLoader();
+        TableLoader.setLocation(getClass().getResource("timetableaddsubject-dialog.fxml"));
+        DialogPane timeTableDialog = TableLoader.load();
+
+
+        TimeTableDayController timetableController = TableLoader.getController();
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(timeTableDialog);
+
+        Optional<ButtonType> clickedButton = dialog.showAndWait();
+        dialog.setTitle("Fach hinzufügen");
+
+            if (clickedButton.get() == ButtonType.APPLY) {
+
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @FXML
@@ -233,6 +263,8 @@ public class StartController implements Initializable{
         int index = classList.getSelectionModel().getSelectedIndex();
 
         if (index != -1) {
+            timetables.remove(index);
+            timetableList.setItems(timetables);
             classes.remove(index);
             classList.setItems(classes);
         }
@@ -271,6 +303,7 @@ public class StartController implements Initializable{
 
         }
     }
+
 
     @FXML
     protected void deleteContent() {

@@ -21,6 +21,21 @@ public class TimetableDay {
         this.friday = new SimpleStringProperty(friday);
     }
 
+    public void ChangeHour(String day,String subject ){
+        SimpleStringProperty changeday = new SimpleStringProperty(day);
+        if (monday.equals(changeday)) {
+            monday.set(subject);
+        } else if (tuesday.equals(changeday)) {
+            tuesday.set(subject);
+        } else if (wednesday.equals(changeday)) {
+            wednesday.set(subject);
+        } else if (thursday.equals(changeday)) {
+            thursday.set(subject);
+        } else if (friday.equals(changeday)) {
+            friday.set(subject);
+        }
+    }
+
     public String getMonday() {
         return monday.get();
     }
