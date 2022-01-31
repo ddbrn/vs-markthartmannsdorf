@@ -19,17 +19,18 @@ public class SchoolClass {
         this.classname = classname;
         this.teacher = teacher;
         AddTimeTableDefault();
-       System.out.println(timeTable.get(1).getId() + " " + timeTable.get(4).getTime());
+        System.out.println(timeTable.get(1).getId() + " " + timeTable.get(4).getTime());
 
     }
-    private void AddTimeTableDefault(){//Parameter Amount of HOurs per Day
+
+    private void AddTimeTableDefault() {//Parameter Amount of HOurs per Day
         int j = 6;
-        for(int i=7; i<=13;i++){
+        for (int i = 7; i <= 13; i++) {
             j++;
-            if(j >=10) {
+            if (j >= 10) {
                 timeTable.add(new TimetableDay(String.valueOf(i), String.valueOf(j) + ":00",
                         "", "", "", "", ""));
-            }else {
+            } else {
                 timeTable.add(new TimetableDay(String.valueOf(i), "0" + String.valueOf(j) + ":00",
                         "", "", "", "", ""));
             }

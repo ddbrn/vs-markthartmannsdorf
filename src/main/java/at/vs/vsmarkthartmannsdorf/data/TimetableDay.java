@@ -1,15 +1,20 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
 import javafx.beans.property.SimpleStringProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class TimetableDay {
-    private SimpleStringProperty id;
-    private SimpleStringProperty time;
-    private SimpleStringProperty monday;
-    private SimpleStringProperty tuesday;
-    private SimpleStringProperty wednesday;
-    private SimpleStringProperty thursday;
-    private SimpleStringProperty friday;
+    private SimpleStringProperty id = new SimpleStringProperty();
+    private SimpleStringProperty time= new SimpleStringProperty();
+    private SimpleStringProperty monday= new SimpleStringProperty();
+    private SimpleStringProperty tuesday= new SimpleStringProperty();
+    private SimpleStringProperty wednesday= new SimpleStringProperty();
+    private SimpleStringProperty thursday= new SimpleStringProperty();
+    private SimpleStringProperty friday= new SimpleStringProperty();
 
     public TimetableDay(String id, String time, String monday, String tuesday, String wednesday, String thursday, String friday) {
         this.id = new SimpleStringProperty(id);
@@ -38,10 +43,6 @@ public class TimetableDay {
 
     public String getMonday() {
         return monday.get();
-    }
-
-    public SimpleStringProperty mondayProperty() {
-        return monday;
     }
 
     public void setMonday(String monday) {
