@@ -78,7 +78,7 @@ public class TeacherFormController implements Initializable {
     public void submit(){
         info.setVisible(false);
         if(!(firstname.getText().isEmpty() && surname.getText().isEmpty() && abbreviation.getText().isEmpty() && olAssignedSubjects.size() == 0)){
-            if(!(parent.getTeachers().stream().anyMatch(teacher -> teacher.getAbbreviation().equalsIgnoreCase(abbreviation.getText())))){
+            if(parent.getTeachers().stream().noneMatch(teacher -> teacher.getAbbreviation().equalsIgnoreCase(abbreviation.getText()))){
                parent.submitForm(firstname.getText(), surname.getText(), abbreviation.getText(), olAssignedSubjects);
             }else{
                 info.setText("Dieses Kürzel gibt es bereits");

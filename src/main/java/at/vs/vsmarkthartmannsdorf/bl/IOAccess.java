@@ -19,11 +19,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 // 02.12.2021 Simon: fixed JSON /read and /write
 // 04.12.2021 Simon: add "storeTeacherFiles", "readTeacherFiles" Functions
 // 09.12.2021 Simon: add "storeTimetableFiles", "readTimetableFiles" Functions
+
+//TODO: IOAccess.class.getClassLoader().getResourceAsStream("");
 public class IOAccess {
 
     private static File FILE_CLASS = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","class.json").toFile();
     private static File FILE_TEACHER = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","teacher.json").toFile();
     private static File FILE_TIMETABLE = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","timetable.json").toFile();
+
 
     public static synchronized boolean storeClassFiles(List<SchoolClass> schoolClassList) {
         try {
