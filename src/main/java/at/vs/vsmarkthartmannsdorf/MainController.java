@@ -9,14 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.DialogPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -24,7 +22,7 @@ public class MainController implements Initializable{
 
     @FXML
     public BorderPane main;
-
+    public HBox teacherBox, timetableBox, classBox, absenceBox;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
@@ -54,6 +52,15 @@ public class MainController implements Initializable{
         main.setCenter(teacherView);
         main.setBottom(null);
         main.setRight(null);
+
+        teacherBox.setStyle("-fx-background-color: #518ef0;\n" +
+                "    -fx-border-radius: 30;\n" +
+                "    -fx-background-radius: 10 10 10 10;");
+
+    }
+
+    @FXML
+    public void onClickTimetable(){
     }
 
 
