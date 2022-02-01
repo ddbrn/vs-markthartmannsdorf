@@ -24,6 +24,8 @@ public class MainController implements Initializable{
     public BorderPane main;
     public HBox teacherBox, timetableBox, classBox, absenceBox;
 
+    private List<HBox> navbar = Arrays.asList(teacherBox, timetableBox, classBox, absenceBox);
+
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
@@ -32,6 +34,7 @@ public class MainController implements Initializable{
 
     private TeacherViewController teacherViewController;
     private BorderPane teacherView;
+    private GridPane absenceView;
 
     @Override
     @FXML
@@ -42,6 +45,8 @@ public class MainController implements Initializable{
             teacherView = fxmlLoader.load();
             teacherViewController = fxmlLoader.getController();
             teacherViewController.setParent(this);
+
+            absenceView = new GridPane();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -49,6 +54,8 @@ public class MainController implements Initializable{
 
     @FXML
     public void onClickTeacher(){
+        setHighlightedNav(teacherBox);
+
         main.setCenter(teacherView);
         main.setBottom(null);
         main.setRight(null);
@@ -61,6 +68,58 @@ public class MainController implements Initializable{
 
     @FXML
     public void onClickTimetable(){
+
+    }
+
+    @FXML
+    public void onClickAbsence(){
+        setHighlightedNav(absenceBox);
+
+        teacherAbsenceList.clear();
+        for (Teacher teacher : teachers) {
+            teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+        }
+
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < teacherAbsenceList.size(); i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("absenceitem.fxml"));
+                VBox vBox = fxmlLoader.load();
+
+                TeacherAbsenceController teacherAbsenceController = fxmlLoader.getController();
+                teacherAbsenceController.setStartController(this);
+                teacherAbsenceController.setData(teacherAbsenceList.get(i));
+
+                if (column == 5) {
+                    column = 0;
+                    row++;
+                }
+
+                absenceView.add(vBox, column++, row);
+                GridPane.setMargin(vBox, new Insets(5));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        main.setCenter(null);
+        main.setCenter(absenceView);
+    }
+
+    public void setHighlightedNav(HBox hBox){
+        List<HBox> navbar = Arrays.asList(timetableBox, teacherBox, absenceBox, classBox);
+        navbar.forEach(hBox1 -> hBox1.setStyle(null));
+        hBox.setStyle("-fx-background-color: #518ef0;\n" +
+                "    -fx-border-radius: 30;\n" +
+                "    -fx-background-radius: 10 10 10 10;");
+    }
+
+    public void teacherChangedAbsentStatus(TeacherAbsence teacherAbsence){
+        teacherAbsenceList.stream().filter(t -> t.getTeacher()
+                        .getAbbreviation() == teacherAbsence.getTeacher()
+                        .getAbbreviation()).findFirst().get()
+                .setAbsent(teacherAbsence.isAbsent());
     }
 
 
@@ -68,7 +127,6 @@ public class MainController implements Initializable{
     public void importAsExcel(){
         IOAccess_Excel.createExcelFile(teachers.stream().toList(), classes.stream().toList());
     }
-
 
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = FXCollections.observableArrayList(teachers);
@@ -87,4 +145,5 @@ public class MainController implements Initializable{
     public List<Teacher> getTeacher() {
         return teachers;
     }
+
 }
