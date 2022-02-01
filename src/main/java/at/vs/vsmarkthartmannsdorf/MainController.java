@@ -48,7 +48,7 @@ public class MainController implements Initializable{
             teacherViewController.setParent(this);
 
 
-            // Create Absence View
+            // Create AbsenceView
             absenceView = new GridPane();
         }catch(Exception e){
             e.printStackTrace();
@@ -94,20 +94,14 @@ public class MainController implements Initializable{
     public void onClickAbsence(){
         setHighlightedNav(absenceBox);
 
-        teacherAbsenceList.clear();
-        for (Teacher teacher : teachers) {
-            teacherAbsenceList.add(new TeacherAbsence(teacher, false));
-        }
-
         int column = 0;
         int row = 1;
         try {
             for (int i = 0; i < teacherAbsenceList.size(); i++){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("absenceitem.fxml"));
-                VBox vBox = fxmlLoader.load();
+                FXMLLoader fxmlAbsenceLoader = fxmlLoad("demo/absenceitem.fxml");
+                HBox hBox = fxmlAbsenceLoader.load();
 
-                TeacherAbsenceController teacherAbsenceController = fxmlLoader.getController();
+                TeacherAbsenceController teacherAbsenceController = fxmlAbsenceLoader.getController();
                 teacherAbsenceController.setStartController(this);
                 teacherAbsenceController.setData(teacherAbsenceList.get(i));
 
@@ -116,8 +110,8 @@ public class MainController implements Initializable{
                     row++;
                 }
 
-                absenceView.add(vBox, column++, row);
-                GridPane.setMargin(vBox, new Insets(5));
+                absenceView.add(hBox, column++, row);
+                GridPane.setMargin(hBox, new Insets(5));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -151,6 +145,13 @@ public class MainController implements Initializable{
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = FXCollections.observableArrayList(teachers);
         teacherViewController.setItems(this.teachers);
+        loadAbsence();
+    }
+
+    public void addTeacher(Teacher teacher){
+        teachers.add(teacher);
+        teacherViewController.setItems(teachers);
+        teacherAbsenceList.add(new TeacherAbsence(teacher, false));
     }
 
     public void setClasses(List<SchoolClass> classes) {
@@ -166,4 +167,10 @@ public class MainController implements Initializable{
         return teachers;
     }
 
+
+    public void loadAbsence(){
+        for (Teacher teacher : teachers) {
+            teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+        }
+    }
 }
