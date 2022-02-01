@@ -79,11 +79,6 @@ public class MainController implements Initializable{
         main.setCenter(timetableView);
         main.setBottom(null);
         main.setRight(null);
-
-        timetableView.setStyle("-fx-background-color: #518ef0;\n" +
-                "    -fx-border-radius: 30;\n" +
-                "    -fx-background-radius: 10 10 10 10;");
-
     }
 
     @FXML
