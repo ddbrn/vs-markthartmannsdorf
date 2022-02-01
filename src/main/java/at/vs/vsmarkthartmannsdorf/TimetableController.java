@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import javafx.collections.FXCollections;
@@ -14,43 +15,42 @@ import java.util.stream.Collectors;
 public class TimetableController {
 //
 
-    public ListView<Teacher> availableTeacher, assignedTeacher;
-    private ObservableList<Teacher> olAvailableTeacher,olAssignedTeacher;
+    public ListView<Subject> availableSubjects, assignedSubjects;
+    private ObservableList<Subject> olAvailableSubjects,olAssignedSubjects;
 
-    public void setTeacher(List<Teacher> TeacherAvailable){
-        olAvailableTeacher = FXCollections.observableArrayList(TeacherAvailable);
-        olAssignedTeacher = FXCollections.observableArrayList();
+    public void setSubjects(List<Subject> subjectsAvailable){
+        olAvailableSubjects = FXCollections.observableArrayList(subjectsAvailable);
+        olAssignedSubjects = FXCollections.observableArrayList();
 
-        availableTeacher.setItems(olAvailableTeacher);
-        assignedTeacher.setItems(olAssignedTeacher);
+        availableSubjects.setItems(olAvailableSubjects);
+        assignedSubjects.setItems(olAssignedSubjects);
     }
     @FXML
-    public void addTeacher(){
-         Teacher teacher = availableTeacher.getSelectionModel().getSelectedItem();
+    public void addSubject(){
+        Subject subject = availableSubjects.getSelectionModel().getSelectedItem();
 
-        if (teacher != null){
-            olAvailableTeacher.remove(teacher);
-            olAssignedTeacher.add(teacher);
+        if (subject != null){
+            olAvailableSubjects.remove(subject);
+            olAssignedSubjects.add(subject);
         }
 
-        availableTeacher.setItems(olAvailableTeacher);
-        assignedTeacher.setItems(olAssignedTeacher);
+        availableSubjects.setItems(olAvailableSubjects);
+        assignedSubjects.setItems(olAssignedSubjects);
     }
 
     @FXML
-    public void removeTeacher(){
-        Teacher teacher = assignedTeacher.getSelectionModel().getSelectedItem();
+    public void removeSubject(){
+        Subject subject = assignedSubjects.getSelectionModel().getSelectedItem();
 
-        if (teacher != null){
-            olAssignedTeacher.remove(teacher);
-            olAvailableTeacher.add(teacher);
+        if (subject != null){
+            olAssignedSubjects.remove(subject);
+            olAvailableSubjects.add(subject);
         }
 
-        availableTeacher.setItems(olAvailableTeacher);
-        assignedTeacher.setItems(olAssignedTeacher);
+        availableSubjects.setItems(olAvailableSubjects);
+        assignedSubjects.setItems(olAssignedSubjects);
     }
-
-    public List<Teacher> getAssignedTeacher() {
-        return olAssignedTeacher.stream().collect(Collectors.toList());
+    public List<Subject> getAssignedSubjects(){
+        return olAssignedSubjects.stream().collect(Collectors.toList());
     }
 }

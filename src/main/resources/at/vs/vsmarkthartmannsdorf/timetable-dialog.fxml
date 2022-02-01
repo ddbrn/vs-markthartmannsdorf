@@ -21,17 +21,17 @@
                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                         <children>
                             <Label alignment="TOP_LEFT" text="Verfügbare Lehrer" />
-                            <ListView fx:id="availableTeacher" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                            <ListView fx:id="availableSubjects" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         </children>
                     </VBox>
                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                            <Button mnemonicParsing="false" onAction="#addTeacher" text="&gt;">
+                            <Button mnemonicParsing="false" onAction="#addSubject" text="&gt;">
                                 <VBox.margin>
                                     <Insets bottom="5.0" />
                                 </VBox.margin>
                             </Button>
-                            <Button mnemonicParsing="false" onAction="#removeTeacher" text="&lt;">
+                            <Button mnemonicParsing="false" onAction="#removeSubject" text="&lt;">
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin>
@@ -41,7 +41,7 @@
                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                         <children>
                             <Label text="Zugewiesene Lehrer" />
-                            <ListView fx:id="assignedTeacher" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                            <ListView fx:id="assignedSubjects" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         </children>
                     </VBox>
                 </children>

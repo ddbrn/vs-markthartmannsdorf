@@ -72,11 +72,10 @@ public class TeacherViewController implements Initializable {
 
     public void submitForm(String firstname, String lastname, String abbrevation, ObservableList<Subject> subjects){
         Teacher teacher = new Teacher(firstname, lastname, abbrevation.toUpperCase(), subjects);
-        teachers.add(teacher);
         teacherList.setItems(teachers);
 
         dismountForm();
-        parent.setTeachers(teachers);
+        parent.addTeacher(teacher);
     }
 
     public ObservableList<Teacher> getTeachers() {

@@ -63,8 +63,6 @@
 .absenceItem {
     -fx-background-size: 1200 900;
     -fx-background-radius: 18 18 18 18;
-    -fx-border-radius: 9 9 9 9;
-    -fx-border-color: #cad1de;
     -fx-border-width: 3;
     -fx-background-color: #ffffff;
     -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);

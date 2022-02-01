@@ -13,29 +13,25 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Timetable {
-    SchoolClass classname;
-    List<Teacher> tlist;
+    private List<TimetableDay> timeTable = new ArrayList<>();
 
-
-
-    public Timetable(SchoolClass classname) {
-        this.classname = classname;
+    public void AddTimeTableDefault() {//Parameter Amount of Hours per Day
+        int j = 7;
+        for (int i = 8; i <= 14; i++) {
+            j++;
+            if (j >= 10) {
+                timeTable.add(new TimetableDay(String.valueOf(i), String.valueOf(j) + ":00",
+                        Subject.Mathematik.toString(), "", "", Subject.Mathematik.toString(), ""));
+            } else {
+                timeTable.add(new TimetableDay(String.valueOf(i), "0" + String.valueOf(j) + ":00",
+                        Subject.Mathematik.toString(), "", "", "", ""));
+            }
+        }
+        //Output Data
+        System.out.println(timeTable.get(1).getId() + " " + timeTable.get(4).getTime());
     }
 
-    public SchoolClass getClassname() {
-        return classname;
-    }
-
-    public void setContent(List<Teacher> tlist) {
-        this.tlist = tlist;
-    }
-
-    public void deleteContent() {
-        tlist.clear();
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s, %s", classname.getClassname().toUpperCase(), classname.getTeacher().toString());
+    public List<TimetableDay> getTimeTableContent() {
+        return timeTable;
     }
 }
