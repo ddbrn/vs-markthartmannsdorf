@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TimetableDay {
     private SimpleStringProperty id = new SimpleStringProperty();
-    private SimpleStringProperty time= new SimpleStringProperty();
-    private SimpleStringProperty monday= new SimpleStringProperty();
-    private SimpleStringProperty tuesday= new SimpleStringProperty();
-    private SimpleStringProperty wednesday= new SimpleStringProperty();
-    private SimpleStringProperty thursday= new SimpleStringProperty();
-    private SimpleStringProperty friday= new SimpleStringProperty();
+    private SimpleStringProperty time = new SimpleStringProperty();
+    private SimpleStringProperty monday = new SimpleStringProperty();
+    private SimpleStringProperty tuesday = new SimpleStringProperty();
+    private SimpleStringProperty wednesday = new SimpleStringProperty();
+    private SimpleStringProperty thursday = new SimpleStringProperty();
+    private SimpleStringProperty friday = new SimpleStringProperty();
 
     public TimetableDay(String id, String time, String monday, String tuesday, String wednesday, String thursday, String friday) {
         this.id = new SimpleStringProperty(id);
@@ -26,7 +26,7 @@ public class TimetableDay {
         this.friday = new SimpleStringProperty(friday);
     }
 
-    public void ChangeHour(String day,String subject ){
+    public void ChangeHour(String day, String subject) {
         SimpleStringProperty changeday = new SimpleStringProperty(day);
         if (monday.equals(changeday)) {
             monday.set(subject);

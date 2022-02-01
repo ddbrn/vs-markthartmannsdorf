@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import at.vs.vsmarkthartmannsdorf.Main;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.data.Timetable;
@@ -25,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class IOAccess {
 
     private static File FILE_CLASS = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "class.json").toFile();
-    private static File FILE_TEACHER = new File(Objects.requireNonNull(IOAccess.class.getClassLoader().getResource("teacher.json")).getFile().replace("%20", " "));
+    private static File FILE_TEACHER = new File(Objects.requireNonNull(Main.class.getClassLoader().getResource("teacher.json")).getFile().replace("%20", " "));
     private static File FILE_TIMETABLE = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "timetable.json").toFile();
 
 
