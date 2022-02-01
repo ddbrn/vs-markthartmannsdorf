@@ -99,3 +99,6 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
+.table-view{
+    -fx-background-color: rgb(225, 225, 225);
+}
