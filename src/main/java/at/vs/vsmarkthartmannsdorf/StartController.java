@@ -100,8 +100,15 @@ public class StartController implements Initializable{
         dialog.setTitle("Fach hinzufügen");
 
             if (clickedButton.get() == ButtonType.APPLY) {
-               classList.getItems().get(classList.getSelectionModel().getSelectedIndex()+1).getTimetable()
-                     .getTimeTableContent().get(timetableController.getTxtHour()).ChangeHour(timetableController.getSelectedDay().toString(), timetableController.getSelectedSubject().toString());
+                try {
+                    System.out.println(timetableList.getSelectionModel().getSelectedIndex());
+                    System.out.println(timetableList.getItems().get(timetableList.getSelectionModel().getSelectedIndex()).toString());
+                    timetableList.getItems().get(timetableList.getSelectionModel().getSelectedIndex()).getTimetable()
+                            .getTimeTableContent().get(timetableController.getTxtHour()).ChangeHour(
+                                    timetableController.getSelectedDay().toString(), timetableController.getSelectedSubject().toString());
+                }catch (Exception e){
+                    System.out.println("Falscher Input oder zu hohe Stundenzahl");
+                }
             }
 
         } catch (IOException e) {

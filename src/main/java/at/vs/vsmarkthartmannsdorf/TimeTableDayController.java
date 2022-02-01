@@ -37,11 +37,6 @@ public class TimeTableDayController {
     }
 
     public Integer getTxtHour() {
-        try {
-            return Integer.parseInt(txtHour.getText())-1;
-        }catch (Exception e){
-            System.out.println("Falscher Input(Stunde)");
-        }
-    return null;
+        return Integer.parseInt(txtHour.getText())-1;
     }
 }

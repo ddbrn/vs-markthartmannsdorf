@@ -16,8 +16,8 @@ public class Timetable {
     private List<TimetableDay> timeTable = new ArrayList<>();
 
     public void AddTimeTableDefault() {//Parameter Amount of Hours per Day
-        int j = 6;
-        for (int i = 7; i <= 13; i++) {
+        int j = 7;
+        for (int i = 8; i <= 14; i++) {
             j++;
             if (j >= 10) {
                 timeTable.add(new TimetableDay(String.valueOf(i), String.valueOf(j) + ":00",
