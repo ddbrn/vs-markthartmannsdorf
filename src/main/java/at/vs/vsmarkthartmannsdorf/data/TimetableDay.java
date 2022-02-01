@@ -24,23 +24,23 @@ public class TimetableDay {
     public void ChangeHour(String day,String subject ){
         System.out.println(day);
         System.out.println(subject);
-        if (day.equals("monday")) {
+        if (day.equals(Day.Montag.toString())) {
             monday.setValue(subject);
             System.out.println("Day Found ," + monday);
 
-        } else if (day.equals("tuesday")) {
+        } else if (day.equals(Day.Dienstag.toString())) {
             tuesday.setValue(subject);
             System.out.println("Day Found ," + tuesday);
 
-        } else if (day.equals("wednesday")) {
+        } else if (day.equals(Day.Mittwoch.toString())) {
             wednesday.setValue(subject);
             System.out.println("Day Found ," + wednesday);
 
-        } else if (day.equals("thursday")) {
+        } else if (day.equals(Day.Donnerstag.toString())) {
             thursday.setValue(subject);
             System.out.println("Day Found ," + thursday);
 
-        } else if (day.equals("friday")) {
+        } else if (day.equals(Day.Freitag.toString())) {
             friday.setValue(subject);
             System.out.println("Day Found ," + friday);
         }

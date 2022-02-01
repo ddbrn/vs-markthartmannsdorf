@@ -74,7 +74,7 @@ public class StartController implements Initializable{
     protected void AddSubjects(){
         //******
         System.out.println(classList.getItems().get(0).getTimetable().getTimeTableContent().get(2).getMonday() + "sdomai");
-        classList.getItems().get(0).getTimetable().getTimeTableContent().get(2).ChangeHour("monday", Subject.Englisch.toString());
+        // !!!!!classList.getItems().get(0).getTimetable().getTimeTableContent().get(2).ChangeHour("monday", Subject.Englisch.toString());
         /*classList.getItems().get(0).getTimeTable().get(2).ChangeHour("monday", Subject.Mathematik.toString());
         timeTableView.setItems(FXCollections.observableArrayList(timetableList.getItems().
                 get(timetableList.getSelectionModel().getSelectedIndex()).getClassname().getTimeTable()));
@@ -85,8 +85,13 @@ public class StartController implements Initializable{
         TableLoader.setLocation(getClass().getResource("timetableaddsubject-dialog.fxml"));
         DialogPane timeTableDialog = TableLoader.load();
 
-
+        List<Day> days = Arrays.asList(Day.values());
+        List<Subject> subjects = Arrays.asList(Subject.values());
         TimeTableDayController timetableController = TableLoader.getController();
+
+
+        timetableController.setDays(days);
+        timetableController.setAvailableSubjects(subjects);
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(timeTableDialog);
@@ -95,8 +100,8 @@ public class StartController implements Initializable{
         dialog.setTitle("Fach hinzufügen");
 
             if (clickedButton.get() == ButtonType.APPLY) {
-
-
+               classList.getItems().get(classList.getSelectionModel().getSelectedIndex()+1).getTimetable()
+                     .getTimeTableContent().get(timetableController.getTxtHour()).ChangeHour(timetableController.getSelectedDay().toString(), timetableController.getSelectedSubject().toString());
             }
 
         } catch (IOException e) {
@@ -284,8 +289,10 @@ public class StartController implements Initializable{
                 TableLoader.setLocation(getClass().getResource("timetable-dialog.fxml"));
                 DialogPane timeTableDialog = TableLoader.load();
 
+                List<Subject> subjects = Arrays.asList(Subject.values());
+
                 TimetableController timetableController = TableLoader.getController();
-                timetableController.setTeacher(teachers);
+                timetableController.setSubjects(subjects);
 
                 Dialog<ButtonType> dialog = new Dialog<>();
                 dialog.setDialogPane(timeTableDialog);

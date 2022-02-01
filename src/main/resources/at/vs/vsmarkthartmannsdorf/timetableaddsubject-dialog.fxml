@@ -17,12 +17,12 @@
    <content>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ComboBox fx:id="cosenDay" layoutX="14.0" layoutY="30.0" prefWidth="150.0" />
+            <ComboBox fx:id="combofDay" layoutX="14.0" layoutY="30.0" prefWidth="150.0" />
             <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wochentag" />
             <Text layoutX="175.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schulstunde" />
-            <ComboBox fx:id="cosenSubject" layoutX="336.0" layoutY="30.0" prefWidth="150.0" />
+            <ComboBox fx:id="combofSubject" layoutX="336.0" layoutY="30.0" prefWidth="150.0" />
             <Text layoutX="336.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fach" />
-            <TextField fx:id="chosenHour" layoutX="175.0" layoutY="30.0" />
+            <TextField fx:id="txtHour" layoutX="175.0" layoutY="30.0" />
          </children>
       </AnchorPane>
    </content>

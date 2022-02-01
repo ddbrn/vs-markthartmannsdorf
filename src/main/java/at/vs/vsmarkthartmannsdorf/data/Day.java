@@ -1,5 +1,5 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
 public enum Day {
-   Monday, Tuesday, Wednesday, Thursday, Friday;
+   Montag, Dienstag, Mittwoch, Donnerstag, Freitag;
 }

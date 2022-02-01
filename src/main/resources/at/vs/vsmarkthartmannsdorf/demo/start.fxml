@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,7 +13,7 @@
 
 <BorderPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="mainScene" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.MainController">
    <left>
-      <VBox id="navBar" fx:id="navbar" prefHeight="609.0" prefWidth="205.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox id="navBar" prefHeight="609.0" prefWidth="205.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Separator prefWidth="200.0" />
             <HBox id="navItem" fx:id="timetableBox" alignment="CENTER_LEFT" onMouseClicked="#onClickTimetable" prefHeight="39.0" prefWidth="205.0" spacing="10.0">
@@ -141,4 +142,7 @@
          </padding>
       </HBox>
    </top>
+   <center>
+      <TableView fx:id="timeTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
