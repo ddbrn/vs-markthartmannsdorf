@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
@@ -23,14 +24,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 //TODO: IOAccess.class.getClassLoader().getResourceAsStream("");
 public class IOAccess {
 
-    private static File FILE_CLASS = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","class.json").toFile();
-    private static File FILE_TEACHER = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","teacher.json").toFile();
-    private static File FILE_TIMETABLE = Paths.get(System.getProperty("user.dir"), "src", "main", "resources","timetable.json").toFile();
+    private static File FILE_CLASS = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "class.json").toFile();
+    private static File FILE_TEACHER = new File(Objects.requireNonNull(IOAccess.class.getClassLoader().getResource("teacher.json")).getFile().replace("%20", " "));
+    private static File FILE_TIMETABLE = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "timetable.json").toFile();
 
 
     public static synchronized boolean storeClassFiles(List<SchoolClass> schoolClassList) {
         try {
-
             ObjectMapper om = new ObjectMapper();
             String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(schoolClassList);
 
@@ -53,7 +53,7 @@ public class IOAccess {
         if (!new File(FILE_CLASS.getAbsolutePath()).exists()) {
             return new ArrayList<>();
         }
-        try  {
+        try {
             String result = Files.readString(Paths.get(FILE_CLASS.getAbsolutePath()));
 
             if (result.isEmpty()) {
@@ -74,7 +74,6 @@ public class IOAccess {
 
     public static synchronized boolean storeTeacherFiles(List<Teacher> teacherList) {
         try {
-
             ObjectMapper om = new ObjectMapper();
             String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(teacherList);
 
@@ -97,7 +96,7 @@ public class IOAccess {
         if (!new File(FILE_TEACHER.getAbsolutePath()).exists()) {
             return new ArrayList<>();
         }
-        try  {
+        try {
             String result = Files.readString(Paths.get(FILE_TEACHER.getAbsolutePath()));
 
             if (result.isEmpty()) {
@@ -142,7 +141,7 @@ public class IOAccess {
         if (!new File(FILE_TIMETABLE.getAbsolutePath()).exists()) {
             return new ArrayList<>();
         }
-        try  {
+        try {
             String result = Files.readString(Paths.get(FILE_TIMETABLE.getAbsolutePath()));
 
             if (result.isEmpty()) {
