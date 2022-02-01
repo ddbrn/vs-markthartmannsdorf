@@ -530,7 +530,7 @@ public class StartController implements Initializable{
                 VBox vBox = fxmlLoader.load();
 
                 TeacherAbsenceController teacherAbsenceController = fxmlLoader.getController();
-                teacherAbsenceController.setStartController(this);
+                // teacherAbsenceController.setStartController(this);
                 teacherAbsenceController.setData(teacherAbsenceList.get(i));
 
                 if (column == 5) {

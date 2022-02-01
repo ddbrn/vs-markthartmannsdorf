@@ -14,7 +14,7 @@ public class TeacherAbsenceController {
     @FXML
     private VBox pane;
 
-    private StartController parent;
+    private MainController parent;
     private TeacherAbsence teacherAbsence;
 
     @FXML
@@ -34,7 +34,7 @@ public class TeacherAbsenceController {
         // isPresent.setStyle("-fx-background-color: #008000");
     }
 
-    public void setStartController(StartController startController) {
-        this.parent = startController;
+    public void setStartController(MainController mainController) {
+        this.parent = mainController;
     }
 }
