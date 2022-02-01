@@ -23,12 +23,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 // 09.12.2021 Simon: add "storeTimetableFiles", "readTimetableFiles" Functions
 
 //TODO: IOAccess.class.getClassLoader().getResourceAsStream("");
+//TODO: Fix Problem with storage in JAR
 public class IOAccess {
 
-    private static File FILE_CLASS = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "class.json").toFile();
+    private static File FILE_CLASS = new File(Objects.requireNonNull(Main.class.getClassLoader().getResource("class.json")).getFile().replace("%20", " "));
     private static File FILE_TEACHER = new File(Objects.requireNonNull(Main.class.getClassLoader().getResource("teacher.json")).getFile().replace("%20", " "));
     private static File FILE_TIMETABLE = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "timetable.json").toFile();
 
+
+    public static synchronized void loadFiles () {
+
+    }
 
     public static synchronized boolean storeClassFiles(List<SchoolClass> schoolClassList) {
         try {
