@@ -195,6 +195,10 @@ public class MainController implements Initializable{
         return teachers;
     }
 
+    public List<SchoolClass> getClasses() {
+        return classes;
+    }
+
 
     public void loadAbsence(){
         for (Teacher teacher : teachers) {
