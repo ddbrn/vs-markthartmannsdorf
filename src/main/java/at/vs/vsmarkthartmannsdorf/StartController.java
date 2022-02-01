@@ -20,13 +20,12 @@ public class StartController implements Initializable{
     @FXML
     public ListView<Teacher> teacherList;
     public ListView<SchoolClass> classList;
-    public ListView<Timetable> timetableList;
+    public ListView<SchoolClass> timetableList;
     public ListView<Subject> timetableSubjects;
     public GridPane teacherAbsence;
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
-    private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
     private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     @FXML
@@ -66,17 +65,21 @@ public class StartController implements Initializable{
     public void OnClicked() {
         //TimeTableChange
         System.out.println(timetableList.getItems().get(timetableList.getSelectionModel()
-                .getSelectedIndex()).getClassname().getTimeTable());
+                .getSelectedIndex()).getTimetable().getTimeTableContent());
 
         timeTableView.setItems(FXCollections.observableArrayList(timetableList.getItems().
-                get(timetableList.getSelectionModel().getSelectedIndex()).getClassname().getTimeTable()));
+                get(timetableList.getSelectionModel().getSelectedIndex()).getTimetable().getTimeTableContent()));
     }
     @FXML
     protected void AddSubjects(){
-        System.out.println(classList.getItems().get(0).getTimeTable().get(2).getMonday() + "sdomai");
-        classList.getItems().get(0).getTimeTable().get(2).ChangeHour("monday", Subject.Mathematik.toString());
+        //******
+        System.out.println(classList.getItems().get(0).getTimetable().getTimeTableContent().get(2).getMonday() + "sdomai");
+        classList.getItems().get(0).getTimetable().getTimeTableContent().get(2).ChangeHour("monday", Subject.Englisch.toString());
+        /*classList.getItems().get(0).getTimeTable().get(2).ChangeHour("monday", Subject.Mathematik.toString());
+        timeTableView.setItems(FXCollections.observableArrayList(timetableList.getItems().
+                get(timetableList.getSelectionModel().getSelectedIndex()).getClassname().getTimeTable()));
 
-
+            */
         try {
         FXMLLoader TableLoader = new FXMLLoader();
         TableLoader.setLocation(getClass().getResource("timetableaddsubject-dialog.fxml"));
@@ -224,8 +227,6 @@ public class StartController implements Initializable{
                             && teacher != null && !classExists) {
                         classes.add(new SchoolClass(classController.getClassName().getText(),
                                 classController.getTeachers().getValue()));
-                        timetables.add(new Timetable(new SchoolClass(classController.getClassName().getText(),
-                                classController.getTeachers().getValue())));
                     } else {
                         if (className.isEmpty()) {
                             classController.getClassLabel().setVisible(true);
@@ -255,7 +256,7 @@ public class StartController implements Initializable{
             e.printStackTrace();
         }
         classList.setItems(classes);
-        timetableList.setItems(timetables);
+        timetableList.setItems(classes);
     }
 
     @FXML
@@ -263,9 +264,8 @@ public class StartController implements Initializable{
         int index = classList.getSelectionModel().getSelectedIndex();
 
         if (index != -1) {
-            timetables.remove(index);
-            timetableList.setItems(timetables);
             classes.remove(index);
+            timetableList.setItems(classes);
             classList.setItems(classes);
         }
 
@@ -293,7 +293,7 @@ public class StartController implements Initializable{
                 dialog.setTitle("Stundenplan bearbeiten");
                 Optional<ButtonType> clickedButton = dialog.showAndWait();
                 if (clickedButton.get() == ButtonType.APPLY) {
-                    timetables.get(timetableList.getSelectionModel().getSelectedIndex()).setContent(timetableController.getAssignedTeacher());
+                    //classes.get(timetableList.getSelectionModel().getSelectedIndex()).setContent(timetableController.getAssignedTeacher());
                     System.out.println("Timetable wurde erstellt");
                 }
             } catch (Exception e) {
@@ -305,18 +305,6 @@ public class StartController implements Initializable{
     }
 
 
-    @FXML
-    protected void deleteContent() {
-        int index = timetableList.getSelectionModel().getSelectedIndex();
-        try {
-            timetables.get(index).deleteContent();
-            System.out.println(timetables.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = FXCollections.observableArrayList(teachers);
         teacherList.setItems(this.teachers);
@@ -325,6 +313,7 @@ public class StartController implements Initializable{
     public void setClasses(List<SchoolClass> classes) {
         this.classes = FXCollections.observableArrayList(classes);
         classList.setItems(this.classes);
+        timetableList.setItems(this.classes);
     }
 
     public List<Teacher> getTeacher() {
@@ -483,6 +472,7 @@ public class StartController implements Initializable{
                         schoolClass.setTeacher(classController.getTeachers().getValue());
 
                         classList.setItems(classes);
+                        timetableList.setItems(classes);
                         classList.refresh();
                     }else{
                         if(newClassname.isEmpty()){

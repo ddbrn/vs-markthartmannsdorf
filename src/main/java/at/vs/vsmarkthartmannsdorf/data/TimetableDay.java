@@ -1,20 +1,15 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
 import javafx.beans.property.SimpleStringProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 public class TimetableDay {
-    private SimpleStringProperty id = new SimpleStringProperty();
-    private SimpleStringProperty time = new SimpleStringProperty();
-    private SimpleStringProperty monday = new SimpleStringProperty();
-    private SimpleStringProperty tuesday = new SimpleStringProperty();
-    private SimpleStringProperty wednesday = new SimpleStringProperty();
-    private SimpleStringProperty thursday = new SimpleStringProperty();
-    private SimpleStringProperty friday = new SimpleStringProperty();
+    private SimpleStringProperty id;
+    private SimpleStringProperty time;
+    private SimpleStringProperty monday;
+    private SimpleStringProperty tuesday;
+    private SimpleStringProperty wednesday;
+    private SimpleStringProperty thursday;
+    private SimpleStringProperty friday;
 
     public TimetableDay(String id, String time, String monday, String tuesday, String wednesday, String thursday, String friday) {
         this.id = new SimpleStringProperty(id);
@@ -26,23 +21,41 @@ public class TimetableDay {
         this.friday = new SimpleStringProperty(friday);
     }
 
-    public void ChangeHour(String day, String subject) {
-        SimpleStringProperty changeday = new SimpleStringProperty(day);
-        if (monday.equals(changeday)) {
-            monday.set(subject);
-        } else if (tuesday.equals(changeday)) {
-            tuesday.set(subject);
-        } else if (wednesday.equals(changeday)) {
-            wednesday.set(subject);
-        } else if (thursday.equals(changeday)) {
-            thursday.set(subject);
-        } else if (friday.equals(changeday)) {
-            friday.set(subject);
+    public void ChangeHour(String day,String subject ){
+        System.out.println(day);
+        System.out.println(subject);
+        if (day.equals("monday")) {
+            monday.setValue(subject);
+            System.out.println("Day Found ," + monday);
+
+        } else if (day.equals("tuesday")) {
+            tuesday.setValue(subject);
+            System.out.println("Day Found ," + tuesday);
+
+        } else if (day.equals("wednesday")) {
+            wednesday.setValue(subject);
+            System.out.println("Day Found ," + wednesday);
+
+        } else if (day.equals("thursday")) {
+            thursday.setValue(subject);
+            System.out.println("Day Found ," + thursday);
+
+        } else if (day.equals("friday")) {
+            friday.setValue(subject);
+            System.out.println("Day Found ," + friday);
+        }
+        else{
+            //Output
+            System.out.println("No Day Found ," + monday);
         }
     }
 
     public String getMonday() {
         return monday.get();
+    }
+
+    public SimpleStringProperty mondayProperty() {
+        return monday;
     }
 
     public void setMonday(String monday) {

@@ -11,35 +11,21 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+
 public class SchoolClass {
     private String classname;
     private Teacher teacher;
-    private List<TimetableDay> timeTable = new ArrayList<>();
+    private Timetable timetable = new Timetable();
 
     public SchoolClass(String classname, Teacher teacher) {
         this.classname = classname;
         this.teacher = teacher;
-        AddTimeTableDefault();
-        System.out.println(timeTable.get(1).getId() + " " + timeTable.get(4).getTime());
-
+        timetable.AddTimeTableDefault();
     }
 
-    private void AddTimeTableDefault() {//Parameter Amount of HOurs per Day
-        int j = 6;
-        for (int i = 7; i <= 13; i++) {
-            j++;
-            if (j >= 10) {
-                timeTable.add(new TimetableDay(String.valueOf(i), String.valueOf(j) + ":00",
-                        "", "", "", Subject.Mathematik.toString(), ""));
-            } else {
-                timeTable.add(new TimetableDay(String.valueOf(i), "0" + String.valueOf(j) + ":00",
-                        "", "", "", "", ""));
-            }
-        }
-    }
 
-    public List<TimetableDay> getTimeTable() {
-        return timeTable;
+    public Timetable getTimetable() {
+        return timetable;
     }
 
     @JsonIgnore

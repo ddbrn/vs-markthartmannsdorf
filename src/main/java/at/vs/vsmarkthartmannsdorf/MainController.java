@@ -24,6 +24,7 @@ public class MainController implements Initializable{
     public BorderPane main;
     public HBox teacherBox, timetableBox, classBox, absenceBox;
 
+    @FXML
     private List<HBox> navbar = Arrays.asList(teacherBox, timetableBox, classBox, absenceBox);
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
@@ -34,6 +35,7 @@ public class MainController implements Initializable{
 
     private TeacherViewController teacherViewController;
     private BorderPane teacherView;
+    private BorderPane timetabeView;
     private GridPane absenceView;
 
     @Override
@@ -68,6 +70,15 @@ public class MainController implements Initializable{
 
     @FXML
     public void onClickTimetable(){
+        setHighlightedNav(timetableBox);
+
+        main.setCenter(timetabeView);
+        main.setBottom(null);
+        main.setRight(null);
+
+        timetabeView.setStyle("-fx-background-color: #518ef0;\n" +
+                "    -fx-border-radius: 30;\n" +
+                "    -fx-background-radius: 10 10 10 10;");
 
     }
 
