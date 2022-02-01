@@ -38,8 +38,17 @@
     -fx-background-color: #FFFFFF;
     -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
 }
+.classView #rightContainer {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
 
 .teacherView .list-view .list-cell:selected{
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+.classView .list-view .list-cell:selected{
     -fx-background-color: #518ef0;
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
@@ -50,15 +59,32 @@
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
 }
+.classView .list-view .list-cell:focused{
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+
 
 .teacherView #buttons{
     -fx-background-color: black;
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
 }
-
+.classView #buttons{
+    -fx-background-color: black;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
 
 .teacherEditView {
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+    -fx-background-color: #FFFFFF;
+
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
+.classEditView {
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
     -fx-background-color: #FFFFFF;
@@ -71,12 +97,24 @@
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
 }
+.classEditView #classEditViewButtons {
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
 
 .teacherEditView #teacherEditViewButtons:hover {
     -fx-background-color: #3f7fe8;
 }
 
+.classEditView #teacherEditViewButtons:hover {
+    -fx-background-color: #3f7fe8;
+}
 .teacherEditView #inputLabels {
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+.classEditView #inputLabels {
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
 }

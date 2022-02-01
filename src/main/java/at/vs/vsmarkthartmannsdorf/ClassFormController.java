@@ -35,7 +35,8 @@ public class ClassFormController implements Initializable {
 
     public void setParent(ClassViewController parent) {
         this.parent = parent;
-        teachers.setAll(this.parent.getParent().getTeacher());
+        teachers.addAll(this.parent.getParent().getTeacher());
+        classTeacher.setItems(teachers);
     }
     @FXML
     public void cancelClasses(){

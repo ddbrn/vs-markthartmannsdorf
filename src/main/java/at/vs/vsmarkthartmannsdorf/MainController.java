@@ -33,7 +33,9 @@ public class MainController implements Initializable{
     private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     private TeacherViewController teacherViewController;
+    private ClassViewController classViewController;
     private BorderPane teacherView;
+    private BorderPane classView;
     private BorderPane timetableView;
     private GridPane absenceView;
 
@@ -46,6 +48,14 @@ public class MainController implements Initializable{
             teacherView = teacherLoader.load();
             teacherViewController = teacherLoader.getController();
             teacherViewController.setParent(this);
+
+
+            //Load ClassView
+            FXMLLoader classLoader = fxmlLoad("demo/class.fxml");
+            classView = classLoader.load();
+            classViewController = classLoader.getController();
+            classViewController.setParent(this);
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -67,6 +77,17 @@ public class MainController implements Initializable{
         main.setRight(null);
 
         teacherBox.setStyle("-fx-background-color: #518ef0;\n" +
+                "    -fx-border-radius: 30;\n" +
+                "    -fx-background-radius: 10 10 10 10;");
+
+    }
+    @FXML
+    public void onClickClasses(){
+        main.setCenter(classView);
+        main.setBottom(null);
+        main.setRight(null);
+
+        classBox.setStyle("-fx-background-color: #518ef0;\n" +
                 "    -fx-border-radius: 30;\n" +
                 "    -fx-background-radius: 10 10 10 10;");
 
@@ -124,11 +145,10 @@ public class MainController implements Initializable{
 
     public void teacherChangedAbsentStatus(TeacherAbsence teacherAbsence){
         teacherAbsenceList.stream().filter(t -> t.getTeacher()
-                        .getAbbreviation() == teacherAbsence.getTeacher()
-                        .getAbbreviation()).findFirst().get()
+                .getAbbreviation() == teacherAbsence.getTeacher()
+                .getAbbreviation()).findFirst().get()
                 .setAbsent(teacherAbsence.isAbsent());
     }
-
 
     @FXML
     public void importAsExcel(){
@@ -155,8 +175,17 @@ public class MainController implements Initializable{
 
     public void setClasses(List<SchoolClass> classes) {
         this.classes = FXCollections.observableArrayList(classes);
-        // classList.setItems(this.classes);
+        classViewController.setItems(this.classes);
     }
+    public void addClasses(SchoolClass klasse){
+        classes.add(klasse);
+        classViewController.setItems(classes);
+    }
+    public void removeClasses(SchoolClass klasse){
+        classes.remove(klasse);
+        classViewController.setItems(classes);
+    }
+
 
     public BorderPane getMain() {
         return main;

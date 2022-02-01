@@ -62,7 +62,7 @@ public class ClassViewController implements Initializable {
         ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
         System.out.println(classes);
         for (int i = indices.size() - 1; i >= 0; i--){
-            classes.remove(classes.get(indices.get(i)));
+            parent.removeClasses(classes.get(indices.get(i)));
         }
         classList.setItems(classes);
     }
@@ -72,11 +72,10 @@ public class ClassViewController implements Initializable {
 
     public void submitForm(String classname, Teacher teacher){
         SchoolClass schoolClass = new SchoolClass(classname, teacher);
-        classes.add(schoolClass);
-        classList.setItems(classes);
 
         dismountForm();
-        parent.setClasses(classes);
+        parent.addClasses(schoolClass);
+        classList.setItems(classes);
     }
 
     public ObservableList<SchoolClass> getClasses() {
