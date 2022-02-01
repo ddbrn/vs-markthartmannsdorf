@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class SchoolClass {
             j++;
             if (j >= 10) {
                 timeTable.add(new TimetableDay(String.valueOf(i), String.valueOf(j) + ":00",
-                        "", "", "", "", ""));
+                        "", "", "", Subject.Mathematik.toString(), ""));
             } else {
                 timeTable.add(new TimetableDay(String.valueOf(i), "0" + String.valueOf(j) + ":00",
                         "", "", "", "", ""));
@@ -41,6 +42,7 @@ public class SchoolClass {
         return timeTable;
     }
 
+    @JsonIgnore
     public String getFormattedTeacher() {
         return teacher.getFirstname() + " " + teacher.getSurname();
     }
