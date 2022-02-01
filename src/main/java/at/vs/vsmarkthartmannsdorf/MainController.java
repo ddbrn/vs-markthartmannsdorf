@@ -8,10 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.DialogPane;
 import javafx.scene.layout.*;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,6 @@ public class MainController implements Initializable{
     public BorderPane main;
     public HBox teacherBox, timetableBox, classBox, absenceBox;
 
-    @FXML
     private List<HBox> navbar = Arrays.asList(teacherBox, timetableBox, classBox, absenceBox);
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
@@ -35,23 +34,32 @@ public class MainController implements Initializable{
 
     private TeacherViewController teacherViewController;
     private BorderPane teacherView;
-    private BorderPane timetabeView;
+    private BorderPane timetableView;
     private GridPane absenceView;
 
     @Override
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("demo/teacher.fxml"));
-            teacherView = fxmlLoader.load();
-            teacherViewController = fxmlLoader.getController();
+            // Load TeacherView
+            FXMLLoader teacherLoader = fxmlLoad("demo/teacher.fxml");
+            teacherView = teacherLoader.load();
+            teacherViewController = teacherLoader.getController();
             teacherViewController.setParent(this);
 
+
+            // Create Absence View
             absenceView = new GridPane();
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    // Method to load fxml
+    public FXMLLoader fxmlLoad(String location) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(location));
+        return fxmlLoader;
     }
 
     @FXML
@@ -72,11 +80,11 @@ public class MainController implements Initializable{
     public void onClickTimetable(){
         setHighlightedNav(timetableBox);
 
-        main.setCenter(timetabeView);
+        main.setCenter(timetableView);
         main.setBottom(null);
         main.setRight(null);
 
-        timetabeView.setStyle("-fx-background-color: #518ef0;\n" +
+        timetableView.setStyle("-fx-background-color: #518ef0;\n" +
                 "    -fx-border-radius: 30;\n" +
                 "    -fx-background-radius: 10 10 10 10;");
 
@@ -118,6 +126,7 @@ public class MainController implements Initializable{
         main.setCenter(absenceView);
     }
 
+    // used to highlight selected field in navbar
     public void setHighlightedNav(HBox hBox){
         List<HBox> navbar = Arrays.asList(timetableBox, teacherBox, absenceBox, classBox);
         navbar.forEach(hBox1 -> hBox1.setStyle(null));
