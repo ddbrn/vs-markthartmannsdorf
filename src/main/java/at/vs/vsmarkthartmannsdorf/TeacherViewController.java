@@ -2,6 +2,7 @@ package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,8 +62,9 @@ public class TeacherViewController implements Initializable {
         ObservableList<Integer> indices = teacherList.getSelectionModel().getSelectedIndices();
         System.out.println(teachers);
         for (int i = indices.size() - 1; i >= 0; i--){
-            teachers.remove(teachers.get(indices.get(i)));
+            parent.removeTeacher(teachers.get(indices.get(i)));
         }
+
         teacherList.setItems(teachers);
     }
 
@@ -72,10 +74,10 @@ public class TeacherViewController implements Initializable {
 
     public void submitForm(String firstname, String lastname, String abbrevation, ObservableList<Subject> subjects){
         Teacher teacher = new Teacher(firstname, lastname, abbrevation.toUpperCase(), subjects);
-        teacherList.setItems(teachers);
 
         dismountForm();
         parent.addTeacher(teacher);
+        teacherList.setItems(teachers);
     }
 
     public ObservableList<Teacher> getTeachers() {

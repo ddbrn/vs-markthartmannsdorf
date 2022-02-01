@@ -46,10 +46,6 @@ public class MainController implements Initializable{
             teacherView = teacherLoader.load();
             teacherViewController = teacherLoader.getController();
             teacherViewController.setParent(this);
-
-
-            // Create AbsenceView
-            absenceView = new GridPane();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -83,16 +79,13 @@ public class MainController implements Initializable{
         main.setCenter(timetableView);
         main.setBottom(null);
         main.setRight(null);
-
-        timetableView.setStyle("-fx-background-color: #518ef0;\n" +
-                "    -fx-border-radius: 30;\n" +
-                "    -fx-background-radius: 10 10 10 10;");
-
     }
 
     @FXML
     public void onClickAbsence(){
         setHighlightedNav(absenceBox);
+
+        absenceView = new GridPane();
 
         int column = 0;
         int row = 1;
@@ -152,6 +145,12 @@ public class MainController implements Initializable{
         teachers.add(teacher);
         teacherViewController.setItems(teachers);
         teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+    }
+
+    public void removeTeacher(Teacher teacher){
+        teachers.remove(teacher);
+        teacherViewController.setItems(teachers);
+        teacherAbsenceList.removeIf(teacherAbsence -> teacherAbsence.getTeacher().equals(teacher));
     }
 
     public void setClasses(List<SchoolClass> classes) {
