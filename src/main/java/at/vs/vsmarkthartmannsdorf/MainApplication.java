@@ -32,7 +32,7 @@ public class MainApplication extends Application {
         System.out.println("CLOSED WINDOW");
 
         IOAccess.storeTeacherFiles(controller.getTeacher());
-        // IOAccess.storeClassFiles(controller.getClasses());
+        IOAccess.storeClassFiles(controller.getClasses());
         // IOAccess.storeTimetableFiles(controller.getTimetables());
 
         //IOAccess_Excel.createExcelFile(controller.getTeacher(), controller.getClasses());
