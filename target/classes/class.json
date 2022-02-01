@@ -1,5 +1,5 @@
 [ {
-  "classname" : "1",
+  "classname" : "2",
   "teacher" : {
     "firstname" : "1",
     "surname" : "1",
@@ -18,9 +18,9 @@
     }, {
       "id" : "9",
       "time" : "09:00",
-      "monday" : "Musik",
+      "monday" : "Mathematik",
       "tuesday" : "",
-      "wednesday" : "Sport",
+      "wednesday" : "",
       "thursday" : "",
       "friday" : ""
     }, {
@@ -30,12 +30,12 @@
       "tuesday" : "",
       "wednesday" : "",
       "thursday" : "Mathematik",
-      "friday" : ""
+      "friday" : "Sachkunde"
     }, {
       "id" : "11",
       "time" : "11:00",
       "monday" : "Mathematik",
-      "tuesday" : "Mathematik",
+      "tuesday" : "",
       "wednesday" : "",
       "thursday" : "Mathematik",
       "friday" : ""
@@ -53,7 +53,63 @@
       "monday" : "Mathematik",
       "tuesday" : "",
       "wednesday" : "",
+      "thursday" : "Sport",
+      "friday" : ""
+    }, {
+      "id" : "14",
+      "time" : "14:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
       "thursday" : "Mathematik",
+      "friday" : ""
+    }, {
+      "id" : "8",
+      "time" : "08:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "",
+      "friday" : ""
+    }, {
+      "id" : "9",
+      "time" : "09:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "",
+      "friday" : ""
+    }, {
+      "id" : "10",
+      "time" : "10:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "Mathematik",
+      "friday" : "Sachkunde"
+    }, {
+      "id" : "11",
+      "time" : "11:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "Mathematik",
+      "friday" : ""
+    }, {
+      "id" : "12",
+      "time" : "12:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "Mathematik",
+      "friday" : ""
+    }, {
+      "id" : "13",
+      "time" : "13:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "Sport",
       "friday" : ""
     }, {
       "id" : "14",
@@ -75,9 +131,9 @@
     }, {
       "id" : "9",
       "time" : "09:00",
-      "monday" : "Musik",
+      "monday" : "Mathematik",
       "tuesday" : "",
-      "wednesday" : "Sport",
+      "wednesday" : "",
       "thursday" : "",
       "friday" : ""
     }, {
@@ -87,12 +143,12 @@
       "tuesday" : "",
       "wednesday" : "",
       "thursday" : "Mathematik",
-      "friday" : ""
+      "friday" : "Sachkunde"
     }, {
       "id" : "11",
       "time" : "11:00",
       "monday" : "Mathematik",
-      "tuesday" : "Mathematik",
+      "tuesday" : "",
       "wednesday" : "",
       "thursday" : "Mathematik",
       "friday" : ""
@@ -110,7 +166,63 @@
       "monday" : "Mathematik",
       "tuesday" : "",
       "wednesday" : "",
+      "thursday" : "Sport",
+      "friday" : ""
+    }, {
+      "id" : "14",
+      "time" : "14:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
       "thursday" : "Mathematik",
+      "friday" : ""
+    }, {
+      "id" : "8",
+      "time" : "08:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "",
+      "friday" : ""
+    }, {
+      "id" : "9",
+      "time" : "09:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "",
+      "friday" : ""
+    }, {
+      "id" : "10",
+      "time" : "10:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "Mathematik",
+      "friday" : "Sachkunde"
+    }, {
+      "id" : "11",
+      "time" : "11:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "Mathematik",
+      "friday" : ""
+    }, {
+      "id" : "12",
+      "time" : "12:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "Mathematik",
+      "friday" : ""
+    }, {
+      "id" : "13",
+      "time" : "13:00",
+      "monday" : "Mathematik",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "Sport",
       "friday" : ""
     }, {
       "id" : "14",
