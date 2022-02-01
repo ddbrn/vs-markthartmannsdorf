@@ -27,8 +27,6 @@ public class Timetable {
                         Subject.Mathematik.toString(), "", "", "", ""));
             }
         }
-        //Output Data
-        System.out.println(timeTable.get(1).getId() + " " + timeTable.get(4).getTime());
     }
 
     public List<TimetableDay> getTimeTableContent() {

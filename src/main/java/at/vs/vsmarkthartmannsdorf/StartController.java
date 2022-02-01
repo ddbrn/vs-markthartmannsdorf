@@ -72,14 +72,7 @@ public class StartController implements Initializable{
     }
     @FXML
     protected void AddSubjects(){
-        //******
-        System.out.println(classList.getItems().get(0).getTimetable().getTimeTableContent().get(2).getMonday() + "sdomai");
-        // !!!!!classList.getItems().get(0).getTimetable().getTimeTableContent().get(2).ChangeHour("monday", Subject.Englisch.toString());
-        /*classList.getItems().get(0).getTimeTable().get(2).ChangeHour("monday", Subject.Mathematik.toString());
-        timeTableView.setItems(FXCollections.observableArrayList(timetableList.getItems().
-                get(timetableList.getSelectionModel().getSelectedIndex()).getClassname().getTimeTable()));
-
-            */
+        //Add Subjects to Timetable
         try {
         FXMLLoader TableLoader = new FXMLLoader();
         TableLoader.setLocation(getClass().getResource("timetableaddsubject-dialog.fxml"));
