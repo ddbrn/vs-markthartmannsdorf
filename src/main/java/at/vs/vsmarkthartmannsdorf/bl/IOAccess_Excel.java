@@ -11,17 +11,15 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.List;
 
 public class IOAccess_Excel {
@@ -51,10 +49,16 @@ public class IOAccess_Excel {
         int rowCount = 0;
         int columCount = 0;
 
+        CellStyle style = wb.createCellStyle();
+        Font font = wb.createFont();
+        font.setBold(true);
+        style.setFont(font);
+
         XSSFRow row = sheet.createRow(rowCount++);
         for (String head: header) {
             XSSFCell cell = row.createCell(columCount++);
             cell.setCellValue(head);
+            cell.setCellStyle(style);
         }
 
         for (Teacher teacher:teacherList) {
@@ -82,7 +86,7 @@ public class IOAccess_Excel {
 
 
         String[] headerClass = {
-                "Klassen Name", "Klassenvorstand"
+                "Name", "Klassenvorstand"
         };
 
         rowCount = 0;
@@ -92,6 +96,7 @@ public class IOAccess_Excel {
         for (String head: headerClass) {
             XSSFCell cell = row.createCell(columCount++);
             cell.setCellValue(head);
+            cell.setCellStyle(style);
         }
 
         for (SchoolClass schoolClass:schoolClassList) {
@@ -103,6 +108,21 @@ public class IOAccess_Excel {
             cell = row.createCell(columCount);
             cell.setCellValue(schoolClass.getFormattedTeacher());
 
+        }
+
+        int numberOfSheets = wb.getNumberOfSheets();
+
+        for (int i = 0; i < numberOfSheets; i++) {
+            Sheet sheetS = wb.getSheetAt(i);
+            if (sheetS.getPhysicalNumberOfRows() > 0) {
+                Row rowS = sheetS.getRow(sheetS.getFirstRowNum());
+                Iterator< Cell > cellIterator = rowS.cellIterator();
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    int columnIndex = cell.getColumnIndex();
+                    sheetS.autoSizeColumn(columnIndex);
+                }
+            }
         }
 
 
