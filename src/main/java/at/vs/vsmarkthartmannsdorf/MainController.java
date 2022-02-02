@@ -75,21 +75,14 @@ public class MainController implements Initializable{
         main.setCenter(teacherView);
         main.setBottom(null);
         main.setRight(null);
-
-        teacherBox.setStyle("-fx-background-color: #518ef0;\n" +
-                "    -fx-border-radius: 30;\n" +
-                "    -fx-background-radius: 10 10 10 10;");
-
     }
     @FXML
     public void onClickClasses(){
+        setHighlightedNav(classBox);
+
         main.setCenter(classView);
         main.setBottom(null);
         main.setRight(null);
-
-        classBox.setStyle("-fx-background-color: #518ef0;\n" +
-                "    -fx-border-radius: 30;\n" +
-                "    -fx-background-radius: 10 10 10 10;");
 
     }
 
