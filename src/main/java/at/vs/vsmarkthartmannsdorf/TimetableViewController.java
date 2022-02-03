@@ -83,7 +83,7 @@ public class TimetableViewController implements Initializable {
         if (((VBox) root.getCenter()).getChildren().size() == 0){
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("timetable-dialog.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("timetableaddsubject-dialog.fxml"));
                 VBox vBox = fxmlLoader.load();
                 ((TimetableViewController) fxmlLoader.getController()).setParent(this);
                 ((TableView) root.getCenter()).getItems().add(vBox);
