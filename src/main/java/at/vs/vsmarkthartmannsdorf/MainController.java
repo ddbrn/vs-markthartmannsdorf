@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 
 
@@ -34,10 +37,13 @@ public class MainController implements Initializable{
 
     private TeacherViewController teacherViewController;
     private ClassViewController classViewController;
+    private TimetableViewController timetableViewController;
     private BorderPane teacherView;
     private BorderPane classView;
     private BorderPane timetableView;
     private GridPane absenceView;
+
+
 
     @Override
     @FXML
@@ -55,6 +61,14 @@ public class MainController implements Initializable{
             classView = classLoader.load();
             classViewController = classLoader.getController();
             classViewController.setParent(this);
+
+            //Load TimetableView
+            FXMLLoader timetableLoader = fxmlLoad("demo/timetable.fxml");
+            timetableView = timetableLoader.load();
+            timetableViewController = timetableLoader.getController();
+            timetableViewController.setParent(this);
+
+
 
         }catch(Exception e){
             e.printStackTrace();
