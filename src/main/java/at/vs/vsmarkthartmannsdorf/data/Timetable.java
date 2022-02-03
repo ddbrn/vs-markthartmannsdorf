@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.util.EnumValues;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class Timetable {
         }
     }
 
+    @JsonIgnore
     public List<TimetableDay> getTimeTableContent() {
         return timeTable;
     }
