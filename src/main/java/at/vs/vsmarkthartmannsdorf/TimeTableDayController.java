@@ -19,7 +19,7 @@ public class TimeTableDayController {
 
 
     public void setDays(List<Day> days) {
-         Days = FXCollections.observableArrayList(days);
+        Days = FXCollections.observableArrayList(days);
         combofDay.setItems(Days);
     }
     public Day getSelectedDay(){

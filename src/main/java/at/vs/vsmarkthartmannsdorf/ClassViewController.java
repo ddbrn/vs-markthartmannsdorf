@@ -85,4 +85,5 @@ public class ClassViewController implements Initializable {
     public MainController getParent() {
         return parent;
     }
+
 }
