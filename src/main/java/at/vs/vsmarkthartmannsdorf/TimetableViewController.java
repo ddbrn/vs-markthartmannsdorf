@@ -80,17 +80,16 @@ public class TimetableViewController implements Initializable {
 
     @FXML
     protected void addSubject(){
-        if (((VBox) root.getCenter()).getChildren().size() == 0){
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("timetableaddsubject-dialog.fxml"));
                 VBox vBox = fxmlLoader.load();
-                ((TimetableViewController) fxmlLoader.getController()).setParent(this);
-                ((TableView) root.getCenter()).getItems().add(vBox);
+                // ((TimeTableFormController) fxmlLoader.getController()).setParent(this);
+                ((VBox) root.getCenter()).getChildren().clear();
+                ((VBox) root.getCenter()).getChildren().add(vBox);
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }
     }
 
     private void setParent(TimetableViewController timetableViewController) {
