@@ -42,6 +42,10 @@
     -fx-background-color: #FFFFFF;
     -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
 }
+.timetableView #rightContainer {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
 
 .teacherView .list-view .list-cell:selected{
     -fx-background-color: #518ef0;
@@ -49,6 +53,11 @@
     -fx-background-radius: 10 10 10 10;
 }
 .classView .list-view .list-cell:selected{
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+.timetableView .list-view .list-cell:selected{
     -fx-background-color: #518ef0;
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
@@ -64,6 +73,11 @@
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
 }
+.timetableView .list-view .list-cell:focused{
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
 
 
 .teacherView #buttons{
@@ -72,6 +86,11 @@
     -fx-background-radius: 10 10 10 10;
 }
 .classView #buttons{
+    -fx-background-color: black;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+.timetableView #buttons{
     -fx-background-color: black;
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
