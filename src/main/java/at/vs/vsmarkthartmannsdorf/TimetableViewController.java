@@ -23,6 +23,7 @@ public class TimetableViewController implements Initializable {
     @FXML
     public ListView<SchoolClass> timeTableList;
 
+
     @FXML
     public BorderPane root;
 
@@ -54,7 +55,6 @@ public class TimetableViewController implements Initializable {
         final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
                 new TimetableDay("", "", "", "","", "", "")
         );
-
         colTime.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("time"));
         colMonday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("monday"));
         colTuesday.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("tuesday"));
@@ -90,6 +90,11 @@ public class TimetableViewController implements Initializable {
     }
 
     private void setParent(TimetableViewController timetableViewController) {
+    }
+@FXML
+    public void ClickedList(){
+    timeTableView.setItems(FXCollections.observableArrayList(timeTableList.getItems().
+            get(timeTableList.getSelectionModel().getSelectedIndex()).getTimetable().getTimeTableContent()));
     }
 
     public void dismountForm(){
