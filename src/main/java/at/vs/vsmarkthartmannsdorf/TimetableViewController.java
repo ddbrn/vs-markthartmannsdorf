@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class TimetableViewController implements Initializable {
     @FXML
-    public ListView<SchoolClass> timetableList;
+    public ListView<SchoolClass> timetableList = new ListView<>();
 
     @FXML
     public BorderPane root;

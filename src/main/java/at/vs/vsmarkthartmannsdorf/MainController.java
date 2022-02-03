@@ -107,6 +107,8 @@ public class MainController implements Initializable{
         main.setCenter(timetableView);
         main.setBottom(null);
         main.setRight(null);
+
+        timetableViewController.setItems(classes);
     }
 
     @FXML
