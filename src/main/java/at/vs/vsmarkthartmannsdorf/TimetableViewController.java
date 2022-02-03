@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class TimetableViewController implements Initializable {
     @FXML
-    public ListView<SchoolClass> timetableList = new ListView<>();
+    public ListView<SchoolClass> timeTableList;
 
     @FXML
     public BorderPane root;
@@ -70,8 +70,8 @@ public class TimetableViewController implements Initializable {
     }
 
     public void setItems(ObservableList<SchoolClass> classes){
-        timetableList.setItems(classes);
-        this.classes = timetableList.getItems();
+        timeTableList.setItems(classes);
+        this.classes = timeTableList.getItems();
     }
 
     @FXML
@@ -101,7 +101,7 @@ public class TimetableViewController implements Initializable {
 
         dismountForm();
         parent.addClasses(schoolClass);
-        timetableList.setItems(classes);
+        timeTableList.setItems(classes);
     }
 
     public ObservableList<SchoolClass> getClasses() {

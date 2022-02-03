@@ -24,7 +24,7 @@
                         <Rectangle2D />
                      </viewport>
                   </ImageView>
-                  <ImageView id="buttons" fx:id="OnChangeTImetTable" fitHeight="22.0" fitWidth="35.0" layoutX="73.0" layoutY="15.0" onMouseClicked="#onChangeTimeTable" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="buttons" fx:id="OnChangeTimetTable" fitHeight="22.0" fitWidth="35.0" layoutX="73.0" layoutY="15.0" onMouseClicked="#onChangeTimeTable" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@remove-user.png" />
                      </image>
