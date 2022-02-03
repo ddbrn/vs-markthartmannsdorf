@@ -74,6 +74,14 @@ public class MainController implements Initializable {
         }
     }
 
+    public void resetTableView(){
+
+    }
+
+    public TimetableViewController getTimetableViewController() {
+        return timetableViewController;
+    }
+
     // Method to load fxml
     public FXMLLoader fxmlLoad(String location) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();

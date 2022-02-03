@@ -40,6 +40,10 @@ public class TimetableViewController implements Initializable {
     private TableColumn colThursday;
     private TableColumn colFriday;
 
+    public TableView getTimeTableView() {
+        return timeTableView;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colTime = new TableColumn("");

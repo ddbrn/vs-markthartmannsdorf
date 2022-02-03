@@ -3,6 +3,8 @@ package at.vs.vsmarkthartmannsdorf;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.data.TimetableDay;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,6 +69,10 @@ public class ClassViewController implements Initializable {
             parent.removeClasses(classes.get(indices.get(i)));
         }
         classList.setItems(classes);
+        final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
+                new TimetableDay("", "", "", "","", "", "")
+        );
+       parent.getTimetableViewController().getTimeTableView().setItems(data);
     }
     public void dismountForm(){
         ((VBox) root.getCenter()).getChildren().clear();
