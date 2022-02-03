@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,7 +41,6 @@ public class TimetableViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         colTime = new TableColumn("");
         colMonday = new TableColumn("Monday");
         colTuesday = new TableColumn("Tuesday");
@@ -90,15 +88,11 @@ public class TimetableViewController implements Initializable {
             }
         }
     }
-    @FXML
-    protected void removeSubject() {
-
-    }
 
     private void setParent(TimetableViewController timetableViewController) {
     }
 
-    /*public void dismountForm(){
+    public void dismountForm(){
         ((VBox) root.getCenter()).getChildren().clear();
     }
 
@@ -107,8 +101,8 @@ public class TimetableViewController implements Initializable {
 
         dismountForm();
         parent.addClasses(schoolClass);
-        timetableList.setItems(classes);
-    }*/
+        timeTableList.setItems(classes);
+    }
 
     public ObservableList<SchoolClass> getClasses() {
         return classes;
