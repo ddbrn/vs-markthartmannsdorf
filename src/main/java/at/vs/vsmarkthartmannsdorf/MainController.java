@@ -43,12 +43,13 @@ public class MainController implements Initializable {
     private BorderPane timetableView;
     private GridPane absenceView;
 
-
+    private boolean classesOpened = false;
 
     @Override
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+
             // Load TeacherView
             FXMLLoader teacherLoader = fxmlLoad("demo/teacher.fxml");
             teacherView = teacherLoader.load();
@@ -96,6 +97,12 @@ public class MainController implements Initializable {
         main.setCenter(classView);
         main.setBottom(null);
         main.setRight(null);
+        if(classesOpened){
+            classViewController.dismountForm();
+            classViewController.addClass();
+        }else{
+            classViewController.dismountForm();
+        }
 
     }
 
@@ -107,7 +114,6 @@ public class MainController implements Initializable {
         main.setBottom(null);
         main.setRight(null);
 
-        timetableViewController.setItems(classes);
     }
 
     @FXML
@@ -173,6 +179,7 @@ public class MainController implements Initializable {
         teachers.add(teacher);
         teacherViewController.setItems(teachers);
         teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+
     }
 
     public void removeTeacher(Teacher teacher) {
@@ -217,5 +224,9 @@ public class MainController implements Initializable {
         for (Teacher teacher : teachers) {
             teacherAbsenceList.add(new TeacherAbsence(teacher, false));
         }
+    }
+
+    public void setClassesOpened(boolean classesOpened) {
+        this.classesOpened = classesOpened;
     }
 }
