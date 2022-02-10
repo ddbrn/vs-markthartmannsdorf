@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -130,6 +132,9 @@ public class MainController implements Initializable {
 
         absenceView = new GridPane();
 
+        // FlowPane fp = new FlowPane();
+        // fp.setOrientation(Orientation.VERTICAL);
+
         int column = 0;
         int row = 1;
         try {
@@ -146,6 +151,7 @@ public class MainController implements Initializable {
                     row++;
                 }
 
+                // fp.getChildren().add(hBox);
                 absenceView.add(hBox, column++, row);
                 GridPane.setMargin(hBox, new Insets(5));
             }
@@ -153,6 +159,11 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         main.setCenter(null);
+
+        // ScrollPane sp = new ScrollPane();
+        // sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        // sp.setContent(fp);
+
         main.setCenter(absenceView);
     }
 

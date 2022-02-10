@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +20,7 @@ public class TeacherFormController implements Initializable {
     private ObservableList<Subject> olAssignedSubjects;
 
     private TeacherViewController parent;
+    private boolean isEdit;
 
     public TeacherFormController() {
         this.olAvailableSubjects = FXCollections.observableArrayList();;
@@ -88,5 +86,9 @@ public class TeacherFormController implements Initializable {
             info.setText("Bitte füllen Sie alle Felder aus!");
             info.setVisible(true);
         }
+    }
+
+    public void setStatus(boolean isEdit){
+        this.isEdit = isEdit;
     }
 }
