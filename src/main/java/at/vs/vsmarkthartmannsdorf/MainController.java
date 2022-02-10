@@ -178,8 +178,13 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void importAsExcel() {
+    public void exportAsExcel() {
         IOAccess_Excel.createExcelFile(teachers.stream().toList(), classes.stream().toList());
+    }
+
+    @FXML
+    public void importAsExcel() {
+
     }
 
     public void setTeachers(List<Teacher> teachers) {
