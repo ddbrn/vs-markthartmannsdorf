@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -26,17 +27,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 //TODO: Fix Problem with storage in JAR
 public class IOAccess {
 
-    private static File FILE_CLASS = new File(Objects.requireNonNull(Main.class.getClassLoader().getResource("class.json")).getFile().replace("%20", " "));
-    private static File FILE_TEACHER = new File(Objects.requireNonNull(Main.class.getClassLoader().getResource("teacher.json")).getFile().replace("%20", " "));
-    private static File FILE_TIMETABLE = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "timetable.json").toFile();
+    private static final File FILE_CLASS = Paths.get("", "data", "class.json").toFile();
+    private static final File FILE_TEACHER = Paths.get("", "data", "teacher.json").toFile();
+    private static final File FILE_TIMETABLE = Paths.get("", "data", "timetable.json").toFile();
 
-
-    public static synchronized void loadFiles () {
-
-    }
 
     public static synchronized boolean storeClassFiles(List<SchoolClass> schoolClassList) {
         try {
+            FILE_CLASS.getParentFile().mkdirs();
             ObjectMapper om = new ObjectMapper();
             String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(schoolClassList);
 
@@ -60,7 +58,7 @@ public class IOAccess {
             return new ArrayList<>();
         }
         try {
-            String result = Files.readString(Paths.get(FILE_CLASS.getAbsolutePath()));
+            String result = Files.readString(Paths.get(FILE_CLASS.getAbsolutePath()), StandardCharsets.UTF_8);
 
             if (result.isEmpty()) {
                 return new ArrayList<>();
@@ -80,6 +78,9 @@ public class IOAccess {
 
     public static synchronized boolean storeTeacherFiles(List<Teacher> teacherList) {
         try {
+            FILE_TEACHER.getParentFile().mkdirs();
+
+
             ObjectMapper om = new ObjectMapper();
             String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(teacherList);
 
@@ -103,7 +104,7 @@ public class IOAccess {
             return new ArrayList<>();
         }
         try {
-            String result = Files.readString(Paths.get(FILE_TEACHER.getAbsolutePath()));
+            String result = Files.readString(Paths.get(FILE_TEACHER.getAbsolutePath()), StandardCharsets.UTF_8);
 
             if (result.isEmpty()) {
                 return new ArrayList<>();
@@ -123,6 +124,7 @@ public class IOAccess {
 
     public static synchronized boolean storeTimetableFiles(List<Timetable> timetableList) {
         try {
+            FILE_TIMETABLE.getParentFile().mkdirs();
 
             ObjectMapper om = new ObjectMapper();
             String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(timetableList);
@@ -148,7 +150,7 @@ public class IOAccess {
             return new ArrayList<>();
         }
         try {
-            String result = Files.readString(Paths.get(FILE_TIMETABLE.getAbsolutePath()));
+            String result = Files.readString(Paths.get(FILE_TIMETABLE.getAbsolutePath()), StandardCharsets.UTF_8);
 
             if (result.isEmpty()) {
                 return new ArrayList<>();
