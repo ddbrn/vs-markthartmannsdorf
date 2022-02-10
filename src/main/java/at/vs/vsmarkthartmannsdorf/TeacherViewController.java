@@ -84,6 +84,7 @@ public class TeacherViewController implements Initializable {
     @FXML
     public void editTeacher(){
         if(teacherList.getSelectionModel().getSelectedIndices().size() != 0){
+            dismountForm();
             try {
                 FXMLLoader fxmlLoader = parent.fxmlLoad("demo/teacher-form.fxml");
                 VBox vBox = fxmlLoader.load();
