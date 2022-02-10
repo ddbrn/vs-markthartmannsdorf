@@ -24,7 +24,7 @@ import java.util.List;
 
 public class IOAccess_Excel {
 
-    private static DirectoryChooser directoryChooser = new DirectoryChooser();
+    private static final DirectoryChooser directoryChooser = new DirectoryChooser();
     private static Stage stage;
 
     public static void setStage(Stage stage) {
@@ -32,6 +32,7 @@ public class IOAccess_Excel {
     }
 
     public static void createExcelFile(List<Teacher> teacherList, List<SchoolClass> schoolClassList) {
+        directoryChooser.setInitialDirectory(new File("."));
         File selectedDirectory = directoryChooser.showDialog(stage);
 
         if (selectedDirectory == null) {
