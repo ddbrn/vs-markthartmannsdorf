@@ -120,7 +120,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@importExcel.png" />
+                        <Image url="@icons/importExcel.png" />
                      </image>
                   </ImageView>
                   <Label text="Excel importieren" textFill="WHITE">
