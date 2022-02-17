@@ -19,7 +19,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@schedule.png" />
+                        <Image url="@icons/schedule.png" />
                      </image>
                   </ImageView>
                   <Label text="Stundenplan" textFill="WHITE">
@@ -38,7 +38,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@lehrer.png" />
+                        <Image url="@icons/lehrer.png" />
                      </image>
                   </ImageView>
                   <Label text="Lehrer" textFill="WHITE">
@@ -58,7 +58,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@vorlesung.png" />
+                        <Image url="@icons/vorlesung.png" />
                      </image>
                   </ImageView>
                   <Label text="Klassen" textFill="WHITE">
@@ -79,7 +79,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@x.png" />
+                        <Image url="@icons/x.png" />
                      </image>
                   </ImageView>
                   <Label text="Abwesenheiten" textFill="WHITE">
@@ -100,7 +100,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@excel.png" />
+                        <Image url="@icons/excel.png" />
                      </image>
                   </ImageView>
                   <Label text="Excel exportieren" textFill="WHITE">
@@ -120,7 +120,7 @@
                <children>
                   <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@importExcel.png" />
+                        <Image url="@icons/importExcel.png" />
                      </image>
                   </ImageView>
                   <Label text="Excel importieren" textFill="WHITE">
@@ -136,6 +136,35 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
+            <Separator prefWidth="200.0" />
+            <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <Separator prefWidth="200.0" />
+                  <HBox id="navItem" fx:id="settingsBox" alignment="CENTER_LEFT" onMouseClicked="#onSettings" prefHeight="39.0" prefWidth="205.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/settings.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Einstellungen" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </VBox>
          </children>
          <opaqueInsets>
             <Insets />

@@ -38,7 +38,7 @@ public class IOAccess {
             ObjectMapper om = new ObjectMapper();
             String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(schoolClassList);
 
-            FileWriter fileWriter = new FileWriter(IOAccess.FILE_CLASS.getAbsolutePath());
+            FileWriter fileWriter = new FileWriter(IOAccess.FILE_CLASS.getAbsolutePath(), StandardCharsets.UTF_8);
             fileWriter.write(jsonStr);
             fileWriter.close();
             System.out.println("FileWrite wrote in \"" + IOAccess.FILE_CLASS.getName() + "\".");
@@ -84,7 +84,7 @@ public class IOAccess {
             ObjectMapper om = new ObjectMapper();
             String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(teacherList);
 
-            FileWriter fileWriter = new FileWriter(IOAccess.FILE_TEACHER.getAbsolutePath());
+            FileWriter fileWriter = new FileWriter(IOAccess.FILE_TEACHER.getAbsolutePath(), StandardCharsets.UTF_8);
             fileWriter.write(jsonStr);
             fileWriter.close();
             System.out.println("FileWrite wrote in \"" + IOAccess.FILE_TEACHER.getName() + "\".");
@@ -129,7 +129,7 @@ public class IOAccess {
             ObjectMapper om = new ObjectMapper();
             String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(timetableList);
 
-            FileWriter fileWriter = new FileWriter(IOAccess.FILE_TIMETABLE.getAbsolutePath());
+            FileWriter fileWriter = new FileWriter(IOAccess.FILE_TIMETABLE.getAbsolutePath(), StandardCharsets.UTF_8);
             fileWriter.write(jsonStr);
             fileWriter.close();
             System.out.println("FileWrite wrote in \"" + IOAccess.FILE_TIMETABLE.getName() + "\".");

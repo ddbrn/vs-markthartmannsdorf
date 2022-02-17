@@ -1,6 +1,6 @@
 [ {
   "firstname" : "Simon",
-  "surname" : "Balls",
-  "abbreviation" : "SB",
-  "subjects" : [ "Deutsch" ]
+  "surname" : "Schöggler",
+  "abbreviation" : "SGR",
+  "subjects" : [ "Mathematik", "Englisch", "Deutsch" ]
 } ]
