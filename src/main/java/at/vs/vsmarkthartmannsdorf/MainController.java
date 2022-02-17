@@ -27,7 +27,7 @@ public class MainController implements Initializable {
 
     @FXML
     public BorderPane main;
-    public HBox teacherBox, timetableBox, classBox, absenceBox, settingsBox;
+    public HBox teacherBox, timetableBox, classBox, absenceBox, settingsBox, excelImportBox, excelExportBox;
 
     private List<HBox> navbar = Arrays.asList(teacherBox, timetableBox, classBox, absenceBox);
 
@@ -169,7 +169,8 @@ public class MainController implements Initializable {
 
     // used to highlight selected field in navbar
     public void setHighlightedNav(HBox hBox) {
-        List<HBox> navbar = Arrays.asList(timetableBox, teacherBox, absenceBox, classBox);
+        List<HBox> navbar = Arrays.asList(timetableBox, teacherBox, absenceBox, classBox,
+                settingsBox, excelImportBox, excelExportBox);
         navbar.forEach(hBox1 -> hBox1.setStyle(null));
         hBox.setStyle("-fx-background-color: #518ef0;\n" +
                 "    -fx-border-radius: 30;\n" +
@@ -190,6 +191,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void importFromExcel() {
+        setHighlightedNav(excelExportBox);
         setTeachers(IOAccess_Excel.readFromExcelFile());
     }
 
