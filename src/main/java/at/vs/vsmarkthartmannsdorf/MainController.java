@@ -40,10 +40,12 @@ public class MainController implements Initializable {
     private TeacherViewController teacherViewController;
     private ClassViewController classViewController;
     private TimetableViewController timetableViewController;
+    private SettingsController settingsController;
     private BorderPane teacherView;
     private BorderPane classView;
     private BorderPane timetableView;
     private GridPane absenceView;
+    private BorderPane settingsView;
 
     private boolean classesOpened = false;
 
@@ -71,6 +73,10 @@ public class MainController implements Initializable {
             timetableViewController = timetableLoader.getController();
             timetableViewController.setParent(this);
 
+            // Load SettingsView
+            FXMLLoader settingsLoader = fxmlLoad("demo/settings.fxml");
+            settingsView = settingsLoader.load();
+            settingsController = settingsLoader.getController();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,13 +197,17 @@ public class MainController implements Initializable {
 
     @FXML
     public void importFromExcel() {
-        setHighlightedNav(excelExportBox);
+        setHighlightedNav(excelImportBox);
         setTeachers(IOAccess_Excel.readFromExcelFile());
     }
 
     @FXML
     public void onSettings(){
         setHighlightedNav(settingsBox);
+
+        main.setCenter(settingsView);
+        main.setBottom(null);
+        main.setRight(null);
     }
 
     public void setTeachers(List<Teacher> teachers) {

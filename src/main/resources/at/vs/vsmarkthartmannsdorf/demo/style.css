@@ -173,3 +173,15 @@
 .teacherView .buttonGroup #buttons:hover {
     -fx-effect: dropShadow(one-pass-box, rgb(192, 191, 191), 5, 0, 0, 10);
 }
+
+.settingsView {
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+    -fx-background-color: #FFFFFF;
+
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
+
+.settingsView #header{
+    -fx-background-color: #dedcdc;
+}
