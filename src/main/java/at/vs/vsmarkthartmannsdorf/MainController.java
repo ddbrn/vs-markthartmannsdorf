@@ -190,7 +190,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void importFromExcel() {
-
+        setTeachers(IOAccess_Excel.readFromExcelFile());
     }
 
     @FXML

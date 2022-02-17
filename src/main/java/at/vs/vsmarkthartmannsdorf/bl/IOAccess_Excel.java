@@ -14,17 +14,16 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class IOAccess_Excel {
 
     private static final DirectoryChooser directoryChooser = new DirectoryChooser();
+    private static final FileChooser fileChooser = new FileChooser();
+
     private static Stage stage;
 
     public static void setStage(Stage stage) {
@@ -133,5 +132,54 @@ public class IOAccess_Excel {
             e.printStackTrace();
         }
 
+    }
+
+    public static List<Teacher> readFromExcelFile () {
+        List<Teacher> teacherList = new ArrayList<>();
+        try
+        {
+            FileInputStream file = new FileInputStream(fileChooser.showOpenDialog(stage));
+
+            //Create Workbook instance holding reference to .xlsx file
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+            //Get first/desired sheet from the workbook
+            XSSFSheet sheet = workbook.getSheetAt(0);
+
+            //Iterate through each rows one by one
+            Iterator<Row> rowIterator = sheet.iterator();
+            rowIterator.next();
+
+            while (rowIterator.hasNext())
+            {
+                Row row = rowIterator.next();
+                //For each row, iterate through all the columns
+                Iterator<Cell> cellIterator = row.cellIterator();
+
+
+                Cell[] cells = new Cell[4];
+                int index = 0;
+                while (cellIterator.hasNext())
+                {
+                    cells[index++] = cellIterator.next();
+                    //Check the cell type and format accordingly
+                }
+                Teacher teacher =
+                        new Teacher(cells[0].getStringCellValue(),
+                                cells[1].getStringCellValue(),
+                                cells[2].getStringCellValue().toUpperCase(),
+                                Arrays.stream(cells[3]
+                                        .getStringCellValue()
+                                        .split(";"))
+                                        .map(Subject::valueOf).collect(Collectors.toList()));
+                teacherList.add(teacher);
+            }
+            file.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return teacherList;
     }
 }
