@@ -46,12 +46,14 @@ public class ClassViewController implements Initializable {
 
     @FXML
     protected void addClass(){
+        parent.setClassesOpened(true);
         if (((VBox) root.getCenter()).getChildren().size() == 0){
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("demo/class-form.fxml"));
                 VBox vBox = fxmlLoader.load();
                 ((ClassFormController) fxmlLoader.getController()).setParent(this);
+                ((ClassFormController) fxmlLoader.getController()).refreshItems();
                 ((VBox) root.getCenter()).getChildren().add(vBox);
             }catch (Exception e){
                 e.printStackTrace();

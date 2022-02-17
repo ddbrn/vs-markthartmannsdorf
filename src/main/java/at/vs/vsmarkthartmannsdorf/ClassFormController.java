@@ -26,6 +26,7 @@ public class ClassFormController implements Initializable {
 
     public ClassFormController() {
         this.teachers = FXCollections.observableArrayList();
+
     }
 
     @Override
@@ -35,11 +36,11 @@ public class ClassFormController implements Initializable {
 
     public void setParent(ClassViewController parent) {
         this.parent = parent;
-        teachers.addAll(parent.getParent().getTeacher());
-        classTeacher.setItems(teachers);
+        refreshItems();
     }
     @FXML
     public void cancelClasses(){
+        parent.getParent().setClassesOpened(false);
         parent.dismountForm();
     }
 
@@ -58,6 +59,11 @@ public class ClassFormController implements Initializable {
             info.setVisible(true);
         }
 
+    }
+    public void refreshItems(){
+        this.teachers = FXCollections.observableArrayList();
+        teachers.addAll(parent.getParent().getTeacher());
+        classTeacher.setItems(teachers);
     }
 
 }
