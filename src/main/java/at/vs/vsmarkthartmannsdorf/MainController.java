@@ -193,6 +193,11 @@ public class MainController implements Initializable {
 
     }
 
+    @FXML
+    public void onSettings(){
+
+    }
+
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = FXCollections.observableArrayList(teachers);
         teacherViewController.setItems(this.teachers);

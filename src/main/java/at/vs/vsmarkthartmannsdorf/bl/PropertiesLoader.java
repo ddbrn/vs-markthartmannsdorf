@@ -52,12 +52,12 @@ public class PropertiesLoader {
         }
     }
 
-    /*public static void main(String[] args) {
+    /* public static void main(String[] args) {
         System.out.println(PROPERTY_FILE.getAbsolutePath());
         PropertiesLoader.getInstance().addProperty(PropertyName.export_folder, "C:/");
         PropertiesLoader.getInstance().addProperty(PropertyName.theme, "dark");
         PropertiesLoader.getInstance().addProperty(PropertyName.export_folder, "C:/");
         PropertiesLoader.getInstance().saveProperties();
         System.out.println(PropertiesLoader.getInstance().properties);
-    }*/
+    } */
 }
