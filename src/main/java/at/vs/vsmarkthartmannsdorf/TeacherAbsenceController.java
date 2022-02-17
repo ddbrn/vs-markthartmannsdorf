@@ -36,10 +36,10 @@ public class TeacherAbsenceController implements Initializable {
     private void setIsAbsent() {
         if (!isAbsent){
             isAbsent = true;
-            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/cancel.png"))));
+            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
             container.setStyle("-fx-background-color: #b4aeae");
         }else{
-            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/checked.png"))));
+            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
             isAbsent = false;
             container.setStyle("-fx-background-color: #ffffff");
         }
@@ -54,10 +54,10 @@ public class TeacherAbsenceController implements Initializable {
         lbSurname.setText(teacherAbsence.getTeacher().getSurname());
         if(teacherAbsence.isAbsent()){
             isAbsent = true;
-            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/cancel.png"))));
+            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
             container.setStyle("-fx-background-color: #b4aeae");
         }else{
-            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/checked.png"))));
+            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
             isAbsent = false;
         }
     }
