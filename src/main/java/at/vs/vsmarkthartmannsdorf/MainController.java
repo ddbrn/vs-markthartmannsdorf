@@ -189,7 +189,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void importAsExcel() {
+    public void importFromExcel() {
 
     }
 
