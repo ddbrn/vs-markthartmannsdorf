@@ -18,7 +18,7 @@
                <children>
                   <ImageView id="buttons" fx:id="OnAddSubject" fitHeight="22.0" fitWidth="35.0" onMouseClicked="#addSubject" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@add-user.png" />
+                        <Image url="@icons/add-user.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
@@ -26,7 +26,7 @@
                   </ImageView>
                   <ImageView id="buttons" fx:id="OnChangeTImetTable" fitHeight="22.0" fitWidth="35.0" layoutX="73.0" layoutY="15.0" onMouseClicked="#onChangeTimeTable" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@remove-user.png" />
+                        <Image url="@icons/remove-user.png" />
                      </image>
                   </ImageView>
                </children>

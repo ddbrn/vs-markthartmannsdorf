@@ -13,7 +13,7 @@
                <children>
                   <ImageView id="buttons" fx:id="ivAdd" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#addTeacher" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@add-user.png" />
+                        <Image url="@icons/add-user.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
@@ -21,12 +21,12 @@
                   </ImageView>
                   <ImageView id="buttons" fx:id="ivRemove" fitHeight="25.0" fitWidth="25.0" layoutX="73.0" layoutY="15.0" onMouseClicked="#removeTeacher" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@remove-user.png" />
+                        <Image url="@icons/remove-user.png" />
                      </image>
                   </ImageView>
                   <ImageView id="buttons" fx:id="ivEdit" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#editTeacher" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@pencil.png" />
+                        <Image url="@icons/pencil.png" />
                      </image>
                   </ImageView>
                </children>

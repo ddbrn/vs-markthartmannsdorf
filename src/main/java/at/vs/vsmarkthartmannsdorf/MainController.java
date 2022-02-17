@@ -27,7 +27,7 @@ public class MainController implements Initializable {
 
     @FXML
     public BorderPane main;
-    public HBox teacherBox, timetableBox, classBox, absenceBox;
+    public HBox teacherBox, timetableBox, classBox, absenceBox, settingsBox;
 
     private List<HBox> navbar = Arrays.asList(teacherBox, timetableBox, classBox, absenceBox);
 
@@ -195,7 +195,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void onSettings(){
-
+        setHighlightedNav(settingsBox);
     }
 
     public void setTeachers(List<Teacher> teachers) {
