@@ -1,1 +1,52 @@
-[ ]
+[ {
+  "classname" : "4AHIF",
+  "teacher" : {
+    "firstname" : "Simon",
+    "surname" : "Schöggler",
+    "abbreviation" : "SGR",
+    "subjects" : [ "Mathematik", "Englisch", "Deutsch" ]
+  },
+  "timetable" : {
+    "timeTable" : [ {
+      "id" : "8",
+      "time" : "08:00",
+      "monday" : "Mathematik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Englisch",
+      "thursday" : "Sachkunde",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "09:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "10:00",
+      "monday" : "Musik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Musik",
+      "thursday" : "Sachkunde",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "11:00",
+      "monday" : "Deutsch",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Sachkunde",
+      "thursday" : "Deutsch",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "12:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : ""
+    } ]
+  }
+} ]

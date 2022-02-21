@@ -8,11 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 
 
@@ -191,8 +186,8 @@ public class MainController implements Initializable {
 
     @FXML
     public void importFromExcel() {
-        setHighlightedNav(excelExportBox);
-        setTeachers(IOAccess_Excel.readFromExcelFile());
+        setTeachers(IOAccess_Excel.readFromExcelFileTeacher());
+        //setClasses(IOAccess_Excel.readFromExcelFileClass());
     }
 
     @FXML
