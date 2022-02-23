@@ -95,6 +95,10 @@ public class IOAccess_Excel {
 
             sheet = wb.createSheet("Klassen");
 
+            lastCol = 5;
+
+            sheet.addMergedRegion(new CellRangeAddress(firstRow, lastRow, firstCol, lastCol));
+
 
             String[] headerClass = {
                     "Name", "Klassenvorstand"
@@ -157,7 +161,6 @@ public class IOAccess_Excel {
             }
 
 
-
             wb.write(outputStream);
         } catch (IOException e) {
             e.printStackTrace();
@@ -165,12 +168,15 @@ public class IOAccess_Excel {
 
     }
 
+    private static File file;
+
+    public static void loadFile() {
+        file = fileChooser.showOpenDialog(stage).getAbsoluteFile();
+    }
+
     public static List<Teacher> readFromExcelFileTeacher() {
         List<Teacher> teacherList = new ArrayList<>();
         try {
-            FileInputStream file = new FileInputStream(fileChooser.showOpenDialog(stage));
-
-
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -204,19 +210,16 @@ public class IOAccess_Excel {
                 teacherList.add(teacher);
                 System.out.println(teacher);
             }
-            file.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return teacherList;
     }
 
-    public static List<SchoolClass> readFromExcelFileClass() {
+    public static List<SchoolClass> readFromExcelFileClass(List<Teacher> teacherList) {
         List<SchoolClass> classList = new ArrayList<>();
 
         try {
-            FileInputStream file = new FileInputStream(fileChooser.showOpenDialog(stage));
-
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
@@ -240,12 +243,16 @@ public class IOAccess_Excel {
                     //Check the cell type and format accordingly
                 }
                 SchoolClass schoolClass =
-                        new SchoolClass();
+                        new SchoolClass(
+                                cells[0].getStringCellValue(),
+                                teacherList
+                                        .stream()
+                                        .filter(teacher -> (teacher.getFirstname() + " " + teacher.getSurname() + " (" + teacher.getAbbreviation() + ")").equals(cells[1].getStringCellValue()))
+                                        .findFirst().get());
 
                 classList.add(schoolClass);
                 System.out.println(schoolClass);
             }
-            file.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
