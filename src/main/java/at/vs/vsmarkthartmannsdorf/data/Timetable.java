@@ -43,6 +43,7 @@ public class Timetable {
         timeTable.add(new TimetableDay(String.valueOf(9),  "12:00",
                 Subject.Sachkunde.toString(), Subject.Mathematik.toString(), Subject.Musik.toString(), Subject.Deutsch.toString(), ""));
 
+
     }
 
 

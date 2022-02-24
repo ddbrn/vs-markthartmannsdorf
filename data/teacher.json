@@ -13,4 +13,14 @@
   "surname" : "Reinprecht",
   "abbreviation" : "RPT",
   "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport" ]
+}, {
+  "firstname" : "Marcel",
+  "surname" : "Schmidl",
+  "abbreviation" : "SML",
+  "subjects" : [ "Musik", "Sachkunde", "Sozialkunde" ]
+}, {
+  "firstname" : "Bene",
+  "surname" : "Renger",
+  "abbreviation" : "RNR",
+  "subjects" : [ "Mathematik", "Sachkunde" ]
 } ]
