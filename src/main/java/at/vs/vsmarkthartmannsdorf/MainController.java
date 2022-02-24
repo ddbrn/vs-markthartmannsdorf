@@ -187,10 +187,13 @@ public class MainController implements Initializable {
     @FXML
     public void importFromExcel() {
 
-        IOAccess_Excel.loadFile();
+        try {
+            IOAccess_Excel.loadFile();
 
-        setTeachers(IOAccess_Excel.readFromExcelFileTeacher());
-        List<SchoolClass> schoolClasses = IOAccess_Excel.readFromExcelFileClass(getTeacher());
+            setTeachers(IOAccess_Excel.readFromExcelFileTeacher());
+            List<SchoolClass> schoolClasses = IOAccess_Excel.readFromExcelFileClass(getTeacher());
+        }catch (NullPointerException e) {
+        }
     }
 
     @FXML

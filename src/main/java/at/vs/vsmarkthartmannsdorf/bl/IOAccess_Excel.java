@@ -170,11 +170,16 @@ public class IOAccess_Excel {
 
     private static File file;
 
-    public static void loadFile() {
-        file = fileChooser.showOpenDialog(stage).getAbsoluteFile();
+    public static void loadFile() throws NullPointerException {
+        try {
+            file = fileChooser.showOpenDialog(stage).getAbsoluteFile();
+        } catch (NullPointerException e) {
+            throw new NullPointerException();
+        }
     }
 
     public static List<Teacher> readFromExcelFileTeacher() {
+
         List<Teacher> teacherList = new ArrayList<>();
         try {
             //Create Workbook instance holding reference to .xlsx file
