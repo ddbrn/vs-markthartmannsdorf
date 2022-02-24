@@ -25,7 +25,7 @@ public class TimetableDay {
         this.friday = new SimpleStringProperty(friday);
     }
 
-    public void ChangeHour(String day,String subject ){
+    public void ChangeHour(String day, String subject) {
         System.out.println(day);
         System.out.println(subject);
         if (day.equals(Day.Montag.toString())) {
@@ -47,8 +47,7 @@ public class TimetableDay {
         } else if (day.equals(Day.Freitag.toString())) {
             friday.setValue(subject);
             System.out.println("Day Found ," + friday);
-        }
-        else{
+        } else {
             //Output
             System.out.println("No Day Found ," + monday);
         }

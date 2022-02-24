@@ -202,8 +202,8 @@ public class MainController implements Initializable {
             IOAccess_Excel.loadFile();
 
             setTeachers(IOAccess_Excel.readFromExcelFileTeacher());
-            List<SchoolClass> schoolClasses = IOAccess_Excel.readFromExcelFileClass(getTeacher());
-        }catch (NullPointerException e) {
+            setClasses(IOAccess_Excel.readFromExcelFileClass(getTeacher(), getClasses()));
+        }catch (NullPointerException ignored) {
         }
     }
 

@@ -141,7 +141,7 @@ public class IOAccess_Excel {
                 }
 
                 final FileInputStream stream =
-                        new FileInputStream(Main.class.getClassLoader().getResource("Logo_Volksschule_MH.jpg").getFile().replace("%20", " "));
+                        new FileInputStream(Objects.requireNonNull(Main.class.getClassLoader().getResource("Logo_Volksschule_MH.jpg")).getFile().replace("%20", " "));
                 final CreationHelper helper = wb.getCreationHelper();
                 Drawing<XSSFShape> drawing = sheetS.createDrawingPatriarch();
 
@@ -190,7 +190,7 @@ public class IOAccess_Excel {
 
             //Iterate through each rows one by one
             Iterator<Row> rowIterator = sheet.iterator();
-            rowIterator.next();
+            skipImage(rowIterator);
 
             while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
@@ -215,15 +215,14 @@ public class IOAccess_Excel {
                 teacherList.add(teacher);
                 System.out.println(teacher);
             }
+            workbook.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return teacherList;
     }
 
-    public static List<SchoolClass> readFromExcelFileClass(List<Teacher> teacherList) {
-        List<SchoolClass> classList = new ArrayList<>();
-
+    public static List<SchoolClass> readFromExcelFileClass(List<Teacher> teacherList, List<SchoolClass> schoolClassList) {
         try {
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -233,7 +232,7 @@ public class IOAccess_Excel {
 
             //Iterate through each rows one by one
             Iterator<Row> rowIterator = sheet.iterator();
-            rowIterator.next();
+            skipImage(rowIterator);
 
             while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
@@ -241,7 +240,7 @@ public class IOAccess_Excel {
                 Iterator<Cell> cellIterator = row.cellIterator();
 
 
-                Cell[] cells = new Cell[4];
+                Cell[] cells = new Cell[2];
                 int index = 0;
                 while (cellIterator.hasNext()) {
                     cells[index++] = cellIterator.next();
@@ -255,13 +254,32 @@ public class IOAccess_Excel {
                                         .filter(teacher -> (teacher.getFirstname() + " " + teacher.getSurname() + " (" + teacher.getAbbreviation() + ")").equals(cells[1].getStringCellValue()))
                                         .findFirst().get());
 
-                classList.add(schoolClass);
+
+                if (!schoolClassList.contains(schoolClass)) {
+                    schoolClassList.add(schoolClass);
+                }
+
                 System.out.println(schoolClass);
             }
+
+            workbook.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return classList;
+
+        return schoolClassList;
+    }
+
+
+    private static void skipImage (Iterator<Row> rowIterator) {
+        rowIterator.next();
+        rowIterator.next();
+        rowIterator.next();
+        rowIterator.next();
+        rowIterator.next();
+        rowIterator.next();
+        rowIterator.next();
     }
 }
+

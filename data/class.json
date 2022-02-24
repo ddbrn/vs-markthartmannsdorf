@@ -49,4 +49,208 @@
       "friday" : ""
     } ]
   }
+}, {
+  "classname" : "3AHIF",
+  "teacher" : {
+    "firstname" : "David",
+    "surname" : "Brannan",
+    "abbreviation" : "BRN",
+    "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik" ]
+  },
+  "timetable" : {
+    "timeTable" : [ {
+      "id" : "8",
+      "time" : "08:00",
+      "monday" : "Mathematik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Englisch",
+      "thursday" : "Sachkunde",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "09:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "10:00",
+      "monday" : "Musik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Musik",
+      "thursday" : "Sachkunde",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "11:00",
+      "monday" : "Deutsch",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Sachkunde",
+      "thursday" : "Deutsch",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "12:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : ""
+    } ]
+  }
+}, {
+  "classname" : "2AHIF",
+  "teacher" : {
+    "firstname" : "Manuel",
+    "surname" : "Reinprecht",
+    "abbreviation" : "RPT",
+    "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport" ]
+  },
+  "timetable" : {
+    "timeTable" : [ {
+      "id" : "8",
+      "time" : "08:00",
+      "monday" : "Mathematik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Englisch",
+      "thursday" : "Sachkunde",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "09:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "10:00",
+      "monday" : "Musik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Musik",
+      "thursday" : "Sachkunde",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "11:00",
+      "monday" : "Deutsch",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Sachkunde",
+      "thursday" : "Deutsch",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "12:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : ""
+    } ]
+  }
+}, {
+  "classname" : "1AHIF",
+  "teacher" : {
+    "firstname" : "Marcel",
+    "surname" : "Schmidl",
+    "abbreviation" : "SML",
+    "subjects" : [ "Musik", "Sachkunde", "Sozialkunde" ]
+  },
+  "timetable" : {
+    "timeTable" : [ {
+      "id" : "8",
+      "time" : "08:00",
+      "monday" : "Mathematik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Englisch",
+      "thursday" : "Sachkunde",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "09:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "10:00",
+      "monday" : "Musik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Musik",
+      "thursday" : "Sachkunde",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "11:00",
+      "monday" : "Deutsch",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Sachkunde",
+      "thursday" : "Deutsch",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "12:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : ""
+    } ]
+  }
+}, {
+  "classname" : "1BHIF",
+  "teacher" : {
+    "firstname" : "Bene",
+    "surname" : "Renger",
+    "abbreviation" : "RNR",
+    "subjects" : [ "Mathematik", "Sachkunde" ]
+  },
+  "timetable" : {
+    "timeTable" : [ {
+      "id" : "8",
+      "time" : "08:00",
+      "monday" : "Mathematik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Englisch",
+      "thursday" : "Sachkunde",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "09:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : "Musik"
+    }, {
+      "id" : "9",
+      "time" : "10:00",
+      "monday" : "Musik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Musik",
+      "thursday" : "Sachkunde",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "11:00",
+      "monday" : "Deutsch",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Sachkunde",
+      "thursday" : "Deutsch",
+      "friday" : "Mathematik"
+    }, {
+      "id" : "9",
+      "time" : "12:00",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : ""
+    } ]
+  }
 } ]

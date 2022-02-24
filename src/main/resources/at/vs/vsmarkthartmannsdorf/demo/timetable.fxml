@@ -50,7 +50,7 @@
             <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
          </BorderPane.margin>
          <children>
-            <TableView fx:id="timeTableView" prefHeight="560.0" prefWidth="592.0">
+            <TableView fx:id="timeTableView" prefHeight="560.0" >
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy></TableView>
