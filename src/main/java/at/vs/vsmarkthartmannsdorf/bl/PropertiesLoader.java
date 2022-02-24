@@ -42,6 +42,7 @@ public class PropertiesLoader {
 
     public void addProperty(PropertyName propertyName, String property){
         properties.setProperty(propertyName.toString(), property);
+        saveProperties();
     }
 
     public void saveProperties(){
@@ -50,6 +51,10 @@ public class PropertiesLoader {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public Properties getProperties(){
+        return properties;
     }
 
     /* public static void main(String[] args) {

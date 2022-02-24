@@ -24,7 +24,6 @@ public class StartApplication extends Application {
         controller.setTeachers(IOAccess.readTeacherFiles());
         controller.setClasses(IOAccess.readClassFiles());
         controller.loadAbsence();
-
         IOAccess_Excel.setStage(stage);
 
 

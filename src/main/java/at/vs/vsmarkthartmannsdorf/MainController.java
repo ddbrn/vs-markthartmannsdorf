@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 
 import java.io.IOException;
@@ -48,6 +49,7 @@ public class MainController implements Initializable {
     private BorderPane settingsView;
 
     private boolean classesOpened = false;
+    private Stage stage;
 
     @Override
     @FXML
@@ -207,8 +209,13 @@ public class MainController implements Initializable {
         }
     }
 
+    public void setStage(Stage stage){
+        this.stage = stage;
+    }
+
     @FXML
     public void onSettings(){
+        settingsController.setStage(stage);
         setHighlightedNav(settingsBox);
 
         main.setCenter(settingsView);
