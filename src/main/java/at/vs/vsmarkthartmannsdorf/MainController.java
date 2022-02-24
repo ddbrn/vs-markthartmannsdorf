@@ -197,8 +197,11 @@ public class MainController implements Initializable {
 
     @FXML
     public void importFromExcel() {
-        setHighlightedNav(excelImportBox);
-        setTeachers(IOAccess_Excel.readFromExcelFile());
+
+        IOAccess_Excel.loadFile();
+
+        setTeachers(IOAccess_Excel.readFromExcelFileTeacher());
+        List<SchoolClass> schoolClasses = IOAccess_Excel.readFromExcelFileClass(getTeacher());
     }
 
     @FXML

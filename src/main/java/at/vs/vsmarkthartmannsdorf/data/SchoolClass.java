@@ -30,7 +30,7 @@ public class SchoolClass {
 
     @JsonIgnore
     public String getFormattedTeacher() {
-        return teacher.getFirstname() + " " + teacher.getSurname();
+        return teacher.getFirstname() + " " + teacher.getSurname() + " (" + teacher.getAbbreviation() + ")";
     }
 
 
