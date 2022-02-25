@@ -40,8 +40,8 @@ public class PropertiesLoader {
         // properties.setProperty(PropertyName.theme.toString(), "hell");
     }
 
-    public void addProperty(PropertyName propertyName, String property){
-        properties.setProperty(propertyName.toString(), property);
+    public void addProperty(String propertyName, String property){
+        properties.setProperty(propertyName, property);
         saveProperties();
     }
 

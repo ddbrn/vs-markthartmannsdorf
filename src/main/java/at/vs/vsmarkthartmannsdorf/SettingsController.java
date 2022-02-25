@@ -4,13 +4,16 @@ import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.PropertyName;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import javafx.application.Application;
+import javafx.beans.property.Property;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import lombok.Data;
@@ -32,11 +35,33 @@ public class SettingsController implements Initializable {
         tfDirectory.setText(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.export_folder.toString()));
 
         for (Subject subject: Subject.values()){
-            HBox hbox = new HBox();
+            HBox hBox = new HBox();
 
-            hbox.getChildren().add(new Label(subject.name()));
-            hbox.getChildren().add(new ColorPicker());
-            vbProperties.getChildren().add(hbox);
+            GridPane gridPane = new GridPane();
+
+            gridPane.setAlignment(Pos.CENTER);
+            gridPane.add(new Label(subject.name()), 0, 0);
+
+            // Initialize ColorPicker
+            ColorPicker colorPicker = new ColorPicker();
+            String property = PropertiesLoader.getInstance().getProperties().getProperty(subject.name());
+            if (property != null){
+                colorPicker.setValue(Color.valueOf(property));
+            }
+            colorPicker.setOnAction(actionEvent -> changedColor(colorPicker, subject));
+
+            gridPane.add(colorPicker, 1, 0);
+
+
+            hBox.prefWidthProperty().bind(vbProperties.widthProperty());
+            gridPane.prefWidthProperty().bind(hBox.widthProperty());
+            ColumnConstraints columnConstraints = new ColumnConstraints();
+            columnConstraints.setPercentWidth(50);
+            gridPane.getColumnConstraints().add(columnConstraints);
+            hBox.getChildren().add(gridPane);
+
+
+            vbProperties.getChildren().add(hBox);
         }
     }
 
@@ -47,9 +72,12 @@ public class SettingsController implements Initializable {
 
         if (dir != null){
             tfDirectory.setText(dir.toString());
-            PropertiesLoader.getInstance().addProperty(PropertyName.export_folder, dir.toString());
+            PropertiesLoader.getInstance().addProperty(PropertyName.export_folder.name(), dir.toString());
         }
     }
 
 
+    public void changedColor(ColorPicker colorPicker, Subject subject){
+        PropertiesLoader.getInstance().addProperty(subject.name(), colorPicker.getValue().toString());
+    }
 }
