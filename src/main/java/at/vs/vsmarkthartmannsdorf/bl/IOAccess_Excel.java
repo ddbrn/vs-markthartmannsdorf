@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf.bl;
 
 import at.vs.vsmarkthartmannsdorf.Main;
+import at.vs.vsmarkthartmannsdorf.data.PropertyName;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
@@ -17,10 +18,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class IOAccess_Excel {
-
-    private static final DirectoryChooser directoryChooser = new DirectoryChooser();
-    private static final FileChooser fileChooser = new FileChooser();
-
     private static Stage stage;
 
     public static void setStage(Stage stage) {
@@ -28,7 +25,8 @@ public class IOAccess_Excel {
     }
 
     public static void createExcelFile(List<Teacher> teacherList, List<SchoolClass> schoolClassList) {
-        directoryChooser.setInitialDirectory(new File("."));
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setInitialDirectory(new File(PropertiesLoader.getInstance().getProperties().get(PropertyName.export_folder.name()).toString()));
         File selectedDirectory = directoryChooser.showDialog(stage);
 
         if (selectedDirectory == null) {
@@ -170,11 +168,14 @@ public class IOAccess_Excel {
 
     private static File file;
 
-    public static void loadFile() throws NullPointerException {
+    public static boolean loadFile() {
         try {
-            file = fileChooser.showOpenDialog(stage).getAbsoluteFile();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setInitialDirectory(new File(PropertiesLoader.getInstance().getProperties().get(PropertyName.export_folder.name()).toString()));
+            file = fileChooser.showOpenDialog(stage);
+            return file != null;
         } catch (NullPointerException e) {
-            throw new NullPointerException();
+            return false;
         }
     }
 
@@ -273,12 +274,6 @@ public class IOAccess_Excel {
 
 
     private static void skipImage (Iterator<Row> rowIterator) {
-        rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
         rowIterator.next();
     }
 }

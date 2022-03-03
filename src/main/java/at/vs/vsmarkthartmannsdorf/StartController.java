@@ -75,12 +75,12 @@ public class StartController implements Initializable{
         //Add Subjects to Timetable
         try {
         FXMLLoader TableLoader = new FXMLLoader();
-        TableLoader.setLocation(getClass().getResource("timetableaddsubject-dialog.fxml"));
+        TableLoader.setLocation(getClass().getResource("timetableaddsubject-form.fxml"));
         DialogPane timeTableDialog = TableLoader.load();
 
         List<Day> days = Arrays.asList(Day.values());
         List<Subject> subjects = Arrays.asList(Subject.values());
-        TimeTableDayController timetableController = TableLoader.getController();
+        TimeTableFormController timetableController = TableLoader.getController();
 
 
         timetableController.setDays(days);

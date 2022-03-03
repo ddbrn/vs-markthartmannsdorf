@@ -10,16 +10,22 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class TimeTableFormController implements Initializable {
-    public ComboBox<Day> combofDay;
-    public ComboBox<Subject> combofSubject;
+    public ComboBox<Day> combofDay = new ComboBox<Day>();
+    public ComboBox<Subject> combofSubject = new ComboBox<Subject>();
     public TextField txtHour;
     private ObservableList<Day> Days;
     private ObservableList<Subject> AvailableSubjects;
 
+
+    public TimeTableFormController() {
+        setDays(Arrays.asList(Day.values()));
+        setAvailableSubjects(Arrays.asList(Subject.values()));
+    }
 
 
     public void setDays(List<Day> days) {

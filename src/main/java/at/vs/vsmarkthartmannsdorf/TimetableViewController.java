@@ -117,7 +117,7 @@ public class TimetableViewController implements Initializable {
     protected void addSubject() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("timetableaddsubject-dialog.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("demo/timetableaddsubject-form.fxml"));
             VBox vBox = fxmlLoader.load();
             // ((TimeTableFormController) fxmlLoader.getController()).setParent(this);
             ((VBox) root.getCenter()).getChildren().clear();
