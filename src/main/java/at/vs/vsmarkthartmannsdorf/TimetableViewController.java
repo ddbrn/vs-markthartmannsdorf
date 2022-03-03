@@ -1,8 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
-import at.vs.vsmarkthartmannsdorf.data.Teacher;
-import at.vs.vsmarkthartmannsdorf.data.TimetableDay;
+import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TimetableViewController implements Initializable {
@@ -95,8 +95,6 @@ public class TimetableViewController implements Initializable {
 
 
         timeTableView.setItems(data);
-
-
         /*timeTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);*/
 
 
@@ -106,6 +104,11 @@ public class TimetableViewController implements Initializable {
 
     public void setParent(MainController parent) {
         this.parent = parent;
+
+        TimeTableFormController controller = new TimeTableFormController();
+        controller.setDays(Arrays.asList(Day.values()));
+        controller.setAvailableSubjects(Arrays.asList(Subject.values()));
+
     }
 
     public void setItems(ObservableList<SchoolClass> classes) {

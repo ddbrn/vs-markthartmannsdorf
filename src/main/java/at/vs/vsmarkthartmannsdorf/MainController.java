@@ -74,6 +74,7 @@ public class MainController implements Initializable {
             FXMLLoader settingsLoader = fxmlLoad("demo/settings.fxml");
             settingsView = settingsLoader.load();
             settingsController = settingsLoader.getController();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

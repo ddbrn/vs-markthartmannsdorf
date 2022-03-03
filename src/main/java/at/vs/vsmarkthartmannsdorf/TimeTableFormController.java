@@ -15,14 +15,23 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TimeTableFormController implements Initializable {
-    public ComboBox<Day> combofDay = new ComboBox<Day>();
-    public ComboBox<Subject> combofSubject = new ComboBox<Subject>();
+
+    @FXML
+    public ComboBox<Day> combofDay = new ComboBox<>();
+    public ComboBox<Subject> combofSubject = new ComboBox<>();
     public TextField txtHour;
+
     private ObservableList<Day> Days;
     private ObservableList<Subject> AvailableSubjects;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setDays(Arrays.asList(Day.values()));
+        setAvailableSubjects(Arrays.asList(Subject.values()));
+    }
 
     public TimeTableFormController() {
+        System.out.println(Day.values());
         setDays(Arrays.asList(Day.values()));
         setAvailableSubjects(Arrays.asList(Subject.values()));
     }
@@ -48,10 +57,5 @@ public class TimeTableFormController implements Initializable {
 
     public Integer getTxtHour() {
         return Integer.parseInt(txtHour.getText())-1;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }
