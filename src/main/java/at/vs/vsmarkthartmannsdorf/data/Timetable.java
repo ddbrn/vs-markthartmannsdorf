@@ -28,19 +28,19 @@ public class Timetable {
                         Subject.Mathematik.toString(), "", "", "", ""));
             }
         }*/
-        timeTable.add(new TimetableDay(String.valueOf(8),  "08:00",
+        timeTable.add(new TimetableDay(1,  "08:00",
                 Subject.Mathematik.toString(), Subject.Deutsch.toString(), Subject.Englisch.toString(), Subject.Sachkunde.toString(), Subject.Musik.toString()));
 
-        timeTable.add(new TimetableDay(String.valueOf(9),  "09:00",
+        timeTable.add(new TimetableDay(2,  "09:00",
                 Subject.Sachkunde.toString(), Subject.Mathematik.toString(), Subject.Musik.toString(), Subject.Deutsch.toString(), Subject.Musik.toString()));
 
-        timeTable.add(new TimetableDay(String.valueOf(9),  "10:00",
+        timeTable.add(new TimetableDay(3,  "10:00",
                 Subject.Musik.toString(), Subject.Deutsch.toString(), Subject.Musik.toString(), Subject.Sachkunde.toString(), Subject.Mathematik.toString()));
 
-        timeTable.add(new TimetableDay(String.valueOf(9),  "11:00",
+        timeTable.add(new TimetableDay(4,  "11:00",
                 Subject.Deutsch.toString(), Subject.Deutsch.toString(), Subject.Sachkunde.toString(), Subject.Deutsch.toString(), Subject.Mathematik.toString()));
 
-        timeTable.add(new TimetableDay(String.valueOf(9),  "12:00",
+        timeTable.add(new TimetableDay(5,  "12:00",
                 Subject.Sachkunde.toString(), Subject.Mathematik.toString(), Subject.Musik.toString(), Subject.Deutsch.toString(), ""));
 
 

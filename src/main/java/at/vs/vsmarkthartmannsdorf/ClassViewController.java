@@ -70,7 +70,7 @@ public class ClassViewController implements Initializable {
         }
         classList.setItems(classes);
         final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
-                new TimetableDay("", "", "", "","", "", "")
+                new TimetableDay(0, "", "", "","", "", "")
         );
        parent.getTimetableViewController().getTimeTableView().setItems(data);
     }

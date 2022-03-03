@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class TimetableDay {
-    private SimpleStringProperty id = new SimpleStringProperty();
+    private SimpleIntegerProperty id = new SimpleIntegerProperty();
     private SimpleStringProperty time = new SimpleStringProperty();
     private SimpleStringProperty monday = new SimpleStringProperty();
     private SimpleStringProperty tuesday = new SimpleStringProperty();
@@ -15,8 +16,8 @@ public class TimetableDay {
     private SimpleStringProperty thursday = new SimpleStringProperty();
     private SimpleStringProperty friday = new SimpleStringProperty();
 
-    public TimetableDay(String id, String time, String monday, String tuesday, String wednesday, String thursday, String friday) {
-        this.id = new SimpleStringProperty(id);
+    public TimetableDay(int id, String time, String monday, String tuesday, String wednesday, String thursday, String friday) {
+        this.id = new SimpleIntegerProperty(id);
         this.time = new SimpleStringProperty(time);
         this.monday = new SimpleStringProperty(monday);
         this.tuesday = new SimpleStringProperty(tuesday);
@@ -125,15 +126,15 @@ public class TimetableDay {
         this.time.set(time);
     }
 
-    public String getId() {
+    public int getId() {
         return id.get();
     }
 
-    public SimpleStringProperty idProperty() {
+    public SimpleIntegerProperty idProperty() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id.set(id);
     }
 }

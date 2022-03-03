@@ -50,7 +50,7 @@ public class StartController implements Initializable{
 
         // List of Content
         final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
-                new TimetableDay("", "", "", "","", "", "")
+                new TimetableDay(0, "", "", "","", "", "")
         );
 
         colTime.setCellValueFactory(new PropertyValueFactory<TimetableDay, String>("time"));
