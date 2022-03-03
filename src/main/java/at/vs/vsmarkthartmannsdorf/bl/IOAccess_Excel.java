@@ -275,12 +275,6 @@ public class IOAccess_Excel {
 
     private static void skipImage (Iterator<Row> rowIterator) {
         rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
-        rowIterator.next();
     }
 }
 

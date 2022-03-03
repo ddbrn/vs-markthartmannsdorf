@@ -1,1 +1,11 @@
-[ ]
+[ {
+  "firstname" : "Simon",
+  "surname" : "Schöggler",
+  "abbreviation" : "SGR",
+  "subjects" : [ "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde" ]
+}, {
+  "firstname" : "David",
+  "surname" : "Brannan",
+  "abbreviation" : "BRN",
+  "subjects" : [ "Mathematik" ]
+} ]

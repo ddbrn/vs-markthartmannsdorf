@@ -195,6 +195,8 @@ public class MainController implements Initializable {
     @FXML
     public void exportAsExcel() {
         IOAccess_Excel.createExcelFile(teachers.stream().toList(), classes.stream().toList());
+
+        classes.forEach(schoolClass -> System.out.println(schoolClass.getTimetable()));
     }
 
     @FXML
