@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.layout.VBox?>
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="519.0" prefWidth="551.0" styleClass="teacherEditView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimeTableFormController">
+
+<AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ComboBox fx:id="combofDay" layoutX="14.0" layoutY="30.0" prefWidth="150.0" />
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wochentag" />
+            <Text layoutX="175.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schulstunde" />
+            <ComboBox fx:id="combofSubject" layoutX="336.0" layoutY="30.0" prefWidth="150.0" />
+            <Text layoutX="336.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fach" />
+            <TextField fx:id="txtHour" layoutX="175.0" layoutY="30.0" />
+            <Button layoutX="534.0" layoutY="161.0" mnemonicParsing="false" text="Übernehmen" />
+            <Button layoutX="461.0" layoutY="161.0" mnemonicParsing="false" text="Ablehnen" />
+            
+         </children>
+      </AnchorPane>
+</VBox>
