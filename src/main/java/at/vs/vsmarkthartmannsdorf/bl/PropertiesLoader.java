@@ -1,7 +1,9 @@
 package at.vs.vsmarkthartmannsdorf.bl;
 
 import at.vs.vsmarkthartmannsdorf.data.PropertyName;
+import at.vs.vsmarkthartmannsdorf.data.Subject;
 import javafx.beans.property.Property;
+import javafx.scene.paint.Color;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -12,6 +14,7 @@ public class PropertiesLoader {
     private Properties properties;
 
     private static final File PROPERTY_FILE = Paths.get("", "data", "config.properties").toFile();
+    private final Color baseColor = Color.TRANSPARENT;
 
     public static PropertiesLoader getInstance(){
         if (instance == null){
@@ -35,9 +38,12 @@ public class PropertiesLoader {
         }catch(Exception e){
             e.printStackTrace();
         }
+        checkExportPath();
 
-        // properties.setProperty(PropertyName.export_folder.toString(), "C:/");
-        // properties.setProperty(PropertyName.theme.toString(), "hell");
+        for (Subject subject: Subject.values()){
+            properties.setProperty(subject.name(), baseColor.toString());
+        }
+        saveProperties();
     }
 
     public void addProperty(String propertyName, String property){
@@ -53,7 +59,15 @@ public class PropertiesLoader {
         }
     }
 
+    public void checkExportPath(){
+        File file = new File(properties.getProperty(PropertyName.export_folder.name()));
+        if (!file.exists()){
+            properties.setProperty(PropertyName.export_folder.name(), "C:/");
+        }
+    }
+
     public Properties getProperties(){
+        checkExportPath();
         return properties;
     }
 
