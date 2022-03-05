@@ -37,27 +37,30 @@ public class TeacherAbsenceController implements Initializable {
 
     @FXML
     private void setIsAbsent() {
-        if (!isAbsent){
+        if (!isAbsent) {
             isAbsent = true;
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("demo/absence-dialog.fxml"));
                 DialogPane absenceDialog = fxmlLoader.load();
 
-                do {
-                    Dialog<ButtonType> dialog = new Dialog<>();
-                    dialog.setDialogPane(absenceDialog);
-                    dialog.setTitle("Abwesenheit");
+                TeacherAbsenceFormController teacherAbsenceFormController = fxmlLoader.getController();
+                teacherAbsenceFormController.setTeacher(teacherAbsence);
 
-                    Optional<ButtonType> clickedButton = dialog.showAndWait();
-                } while(true);
+
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.setDialogPane(absenceDialog);
+                dialog.setTitle("Abwesenheit");
+
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
+                if (clickedButton.get() == ButtonType.APPLY){
+                    iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
+                    container.setStyle("-fx-background-color: #b4aeae");
+                }
             } catch (IOException exception) {
                 System.out.println("Datei nicht gefunden");
             }
-
-            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
-            container.setStyle("-fx-background-color: #b4aeae");
-        }else{
+        } else {
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
             isAbsent = false;
             container.setStyle("-fx-background-color: #ffffff");
@@ -72,11 +75,11 @@ public class TeacherAbsenceController implements Initializable {
 
         lbFirstname.setText(teacherAbsence.getTeacher().getFirstname());
         lbSurname.setText(teacherAbsence.getTeacher().getSurname());
-        if(teacherAbsence.isAbsent()){
+        if (teacherAbsence.isAbsent()) {
             isAbsent = true;
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
             container.setStyle("-fx-background-color: #b4aeae");
-        }else{
+        } else {
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
             isAbsent = false;
         }

@@ -8,7 +8,7 @@
   },
   "timetable" : {
     "timeTable" : [ {
-      "id" : "8",
+      "id" : 8,
       "time" : "08:00",
       "monday" : "Mathematik",
       "tuesday" : "Deutsch",
@@ -16,7 +16,7 @@
       "thursday" : "Sachkunde",
       "friday" : "Musik"
     }, {
-      "id" : "9",
+      "id" : 9,
       "time" : "09:00",
       "monday" : "Sachkunde",
       "tuesday" : "Mathematik",
@@ -24,7 +24,7 @@
       "thursday" : "Deutsch",
       "friday" : "Musik"
     }, {
-      "id" : "9",
+      "id" : 9,
       "time" : "10:00",
       "monday" : "Musik",
       "tuesday" : "Deutsch",
@@ -32,7 +32,7 @@
       "thursday" : "Sachkunde",
       "friday" : "Mathematik"
     }, {
-      "id" : "9",
+      "id" : 9,
       "time" : "11:00",
       "monday" : "Deutsch",
       "tuesday" : "Deutsch",
@@ -40,7 +40,7 @@
       "thursday" : "Deutsch",
       "friday" : "Mathematik"
     }, {
-      "id" : "9",
+      "id" : 9,
       "time" : "12:00",
       "monday" : "Sachkunde",
       "tuesday" : "Mathematik",
@@ -59,7 +59,7 @@
   },
   "timetable" : {
     "timeTable" : [ {
-      "id" : "8",
+      "id" : 8,
       "time" : "08:00",
       "monday" : "Mathematik",
       "tuesday" : "Deutsch",
@@ -67,7 +67,7 @@
       "thursday" : "Sachkunde",
       "friday" : "Musik"
     }, {
-      "id" : "9",
+      "id" : 9,
       "time" : "09:00",
       "monday" : "Sachkunde",
       "tuesday" : "Mathematik",
@@ -75,7 +75,7 @@
       "thursday" : "Deutsch",
       "friday" : "Musik"
     }, {
-      "id" : "9",
+      "id" : 9,
       "time" : "10:00",
       "monday" : "Musik",
       "tuesday" : "Deutsch",
@@ -83,7 +83,7 @@
       "thursday" : "Sachkunde",
       "friday" : "Mathematik"
     }, {
-      "id" : "9",
+      "id" : 9,
       "time" : "11:00",
       "monday" : "Deutsch",
       "tuesday" : "Deutsch",
@@ -91,7 +91,7 @@
       "thursday" : "Deutsch",
       "friday" : "Mathematik"
     }, {
-      "id" : "9",
+      "id" : 9,
       "time" : "12:00",
       "monday" : "Sachkunde",
       "tuesday" : "Mathematik",

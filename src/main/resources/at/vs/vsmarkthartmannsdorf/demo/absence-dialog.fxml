@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane prefHeight="410.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherAbsenceFormController">
+<DialogPane prefHeight="410.0" prefWidth="600.0" styleClass="absenceDialog" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherAbsenceFormController">
    <buttonTypes>
       <ButtonType fx:constant="APPLY" />
       <ButtonType fx:constant="CANCEL" />
@@ -33,14 +33,21 @@
             <Label text="Abwesenheitsgrund" GridPane.rowIndex="1" />
             <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Abwesenheitszeitraum" />
-            <DatePicker maxWidth="1.7976931348623157E308" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Von" />
+                  <DatePicker fx:id="dPFrom" />
+                  <Label text="Bis" />
+                  <DatePicker fx:id="dPTo" />
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </content>
    <header>
-      <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="600.0">
+      <HBox id="header" alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="600.0">
          <children>
-            <Label text="Label">
+            <Label fx:id="lblName" text="Label">
                <font>
                   <Font size="15.0" />
                </font>

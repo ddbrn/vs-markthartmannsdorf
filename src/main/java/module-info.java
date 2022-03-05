@@ -6,9 +6,9 @@ module at.vs.vsmarkthartmannsdorf {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires org.apache.poi.poi;
-    requires org.apache.poi.ooxml;
     requires com.fasterxml.jackson.databind;
     requires lombok;
+    requires org.apache.poi.ooxml;
 
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;
     exports at.vs.vsmarkthartmannsdorf;
