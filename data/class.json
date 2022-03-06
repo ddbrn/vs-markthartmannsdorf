@@ -4,7 +4,7 @@
     "firstname" : "Simon",
     "surname" : "Schöggler",
     "abbreviation" : "SGR",
-    "subjects" : [ "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde" ]
+    "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde" ]
   },
   "timetable" : {
     "timeTable" : [ {
@@ -53,9 +53,9 @@
   "classname" : "4BHIF",
   "teacher" : {
     "firstname" : "David",
-    "surname" : "Brannan",
+    "surname" : "BRANNAN",
     "abbreviation" : "BRN",
-    "subjects" : [ "Mathematik" ]
+    "subjects" : [ "Mathematik", "Englisch" ]
   },
   "timetable" : {
     "timeTable" : [ {

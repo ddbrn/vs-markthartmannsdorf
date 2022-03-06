@@ -5,6 +5,11 @@ import at.vs.vsmarkthartmannsdorf.data.PropertyName;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -47,7 +52,7 @@ public class IOAccess_Excel {
             int firstCol = 0;
             int lastCol = 3;
 
-            sheet.addMergedRegion(new CellRangeAddress(firstRow, lastRow, firstCol, lastCol));
+            //sheet.addMergedRegion(new CellRangeAddress(firstRow, lastRow, firstCol, lastCol));
 
 
             String[] header = {
@@ -96,7 +101,7 @@ public class IOAccess_Excel {
 
             lastCol = 5;
 
-            sheet.addMergedRegion(new CellRangeAddress(firstRow, lastRow, firstCol, lastCol));
+            //sheet.addMergedRegion(new CellRangeAddress(firstRow, lastRow, firstCol, lastCol));
 
 
             String[] headerClass = {
@@ -311,7 +316,7 @@ public class IOAccess_Excel {
                 int firstColC = 0;
                 int lastColC = 4;
 
-                sheetClasses.addMergedRegion(new CellRangeAddress(firstRowC, lastRowC, firstColC, lastColC));
+                //sheetClasses.addMergedRegion(new CellRangeAddress(firstRowC, lastRowC, firstColC, lastColC));
             });
 
             int numberOfSheets = wb.getNumberOfSheets();
@@ -372,9 +377,10 @@ public class IOAccess_Excel {
     public static List<Teacher> readFromExcelFileTeacher() {
 
         List<Teacher> teacherList = new ArrayList<>();
+        XSSFWorkbook workbook = null;
         try {
             //Create Workbook instance holding reference to .xlsx file
-            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            workbook = new XSSFWorkbook(file);
 
             //Get first/desired sheet from the workbook
             XSSFSheet sheet = workbook.getSheetAt(0);
@@ -395,6 +401,10 @@ public class IOAccess_Excel {
                     cells[index++] = cellIterator.next();
                     //Check the cell type and format accordingly
                 }
+
+               Arrays.stream(cells).forEach(System.out::println);
+
+
                 Teacher teacher =
                         new Teacher(cells[0].getStringCellValue(),
                                 cells[1].getStringCellValue(),
@@ -405,12 +415,50 @@ public class IOAccess_Excel {
                                         .map(Subject::valueOf).collect(Collectors.toList()));
                 teacherList.add(teacher);
                 System.out.println(teacher);
+
             }
             workbook.close();
+
+            return teacherList;
         } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            String exceptionText = sw.toString();
+
             e.printStackTrace();
+            System.out.println("FEHLERHAFTE LEHER EINGABE");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("vs-martkhartmannsdorf | FEHLER");
+            alert.setHeaderText("Es ist ein Fehler beim Importieren passiert");
+            alert.setContentText("Es wurde eine fehlerhafte Eingabe im Excel Sheet getätigt, überprüfen Sie den Reiter \"Teacher\".");
+
+            Label label = new Label("The exception stacktrace was:");
+
+            TextArea textArea = new TextArea(exceptionText);
+            textArea.setEditable(false);
+            textArea.setWrapText(true);
+
+            textArea.setMaxWidth(Double.MAX_VALUE);
+            textArea.setMaxHeight(Double.MAX_VALUE);
+            GridPane.setVgrow(textArea, Priority.ALWAYS);
+            GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+            GridPane expContent = new GridPane();
+            expContent.setMaxWidth(Double.MAX_VALUE);
+            expContent.add(label, 0, 0);
+            expContent.add(textArea, 0, 1);
+
+            alert.getDialogPane().setExpandableContent(expContent);
+            alert.showAndWait();
+
+            try {
+                workbook.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
-        return teacherList;
+        return null;
     }
 
     public static List<SchoolClass> readFromExcelFileClass(List<Teacher> teacherList, List<SchoolClass> schoolClassList) {
