@@ -122,7 +122,7 @@ public class TimetableViewController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("demo/timetableaddsubject-form.fxml"));
             VBox vBox = fxmlLoader.load();
-            // ((TimeTableFormController) fxmlLoader.getController()).setParent(this);
+            ((TimeTableFormController) fxmlLoader.getController()).setParent(this);
             ((VBox) root.getCenter()).getChildren().clear();
             ((VBox) root.getCenter()).getChildren().add(vBox);
         } catch (Exception e) {
@@ -147,7 +147,7 @@ public class TimetableViewController implements Initializable {
         SchoolClass schoolClass = new SchoolClass(classname, teacher);
 
         dismountForm();
-        parent.addClasses(schoolClass);
+
         timeTableList.setItems(classes);
     }
 

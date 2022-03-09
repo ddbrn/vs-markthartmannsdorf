@@ -19,8 +19,8 @@
             <ComboBox fx:id="combofSubject" layoutX="336.0" layoutY="30.0" prefWidth="150.0" />
             <Text layoutX="336.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fach" />
             <TextField fx:id="txtHour" layoutX="175.0" layoutY="30.0" />
-            <Button layoutX="534.0" layoutY="161.0" mnemonicParsing="false" text="Übernehmen" />
-            <Button layoutX="461.0" layoutY="161.0" mnemonicParsing="false" text="Ablehnen" />
+            <Button id="timetableEditViewButtons" fx:id="btnCancel" onAction="#cancelTimetable" layoutX="534.0" layoutY="161.0" mnemonicParsing="false" text="Ablehnen" />
+            <Button id="timetableEditViewButtons" fx:id="btnSubmit" onAction="#submitTimetable" layoutX="461.0" layoutY="161.0" mnemonicParsing="false" text="übernehmen" />
             
          </children>
       </AnchorPane>

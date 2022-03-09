@@ -20,6 +20,7 @@ public class TimeTableFormController implements Initializable {
     public ComboBox<Day> combofDay = new ComboBox<>();
     public ComboBox<Subject> combofSubject = new ComboBox<>();
     public TextField txtHour;
+    private TimetableViewController parent;
 
     private ObservableList<Day> Days;
     private ObservableList<Subject> AvailableSubjects;
@@ -35,7 +36,23 @@ public class TimeTableFormController implements Initializable {
         setDays(Arrays.asList(Day.values()));
         setAvailableSubjects(Arrays.asList(Subject.values()));
     }
+    @FXML
+    public void cancelTimetable(){
+        parent.getParent().setClassesOpened(false);
+        parent.dismountForm();
+    }
+    @FXML
+    public void submitTimetable(){
+        if(!(txtHour.getText().isEmpty() || combofDay.getItems().isEmpty())){
+            System.out.println("ja");
+        }else{
+            System.out.println("Alle Felder ausfüllen");
+        }
 
+    }
+    public void setParent(TimetableViewController parent) {
+        this.parent = parent;
+    }
 
     public void setDays(List<Day> days) {
         Days = FXCollections.observableArrayList(days);
