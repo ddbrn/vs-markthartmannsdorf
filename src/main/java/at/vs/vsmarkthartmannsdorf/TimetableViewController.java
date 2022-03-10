@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -34,12 +35,14 @@ public class TimetableViewController implements Initializable {
 
     @FXML
     private TableView timeTableView;
+    private int selectedListElement;
     private TableColumn colTime;
     private TableColumn colMonday;
     private TableColumn colTuesday;
     private TableColumn colWednesday;
     private TableColumn colThursday;
     private TableColumn colFriday;
+    private BorderPane borderPane;
 
     public TableView getTimeTableView() {
         return timeTableView;
@@ -130,17 +133,26 @@ public class TimetableViewController implements Initializable {
         }
     }
 
-    private void setParent(TimetableViewController timetableViewController) {
+    public int getSelectedListElement() {
+        return selectedListElement;
     }
-
+    public SchoolClass getSchoolClass(){
+        System.out.println(timeTableList.getItems().get(timeTableList.getSelectionModel().getSelectedIndex()).getClassname());
+        return timeTableList.getItems().get(timeTableList.getSelectionModel().getSelectedIndex());
+    }
     @FXML
-    public void ClickedList() {
+    public void clickedList() {
+        selectedListElement = timeTableList.getSelectionModel().getSelectedIndex();
         timeTableView.setItems(FXCollections.observableArrayList(timeTableList.getItems().
                 get(timeTableList.getSelectionModel().getSelectedIndex()).getTimetable().getTimeTableContent()));
+
+        dismountForm();
+        ((VBox) root.getCenter()).getChildren().add(timeTableView);
     }
 
     public void dismountForm() {
         ((VBox) root.getCenter()).getChildren().clear();
+
     }
 
     public void submitForm(String classname, Teacher teacher) {

@@ -44,7 +44,8 @@ public class TimeTableFormController implements Initializable {
     @FXML
     public void submitTimetable(){
         if(!(txtHour.getText().isEmpty() || combofDay.getItems().isEmpty())){
-            System.out.println("ja");
+            parent.getSchoolClass().getTimetable().getTimeTableContent().get(getTxtHour()).ChangeHour(getSelectedDay().toString(), getSelectedSubject().toString());
+          //  System.out.println(parent.getSchoolClass(0).getTimetable().getTimeTableContent().get(0).getTuesday());
         }else{
             System.out.println("Alle Felder ausfüllen");
         }
@@ -59,11 +60,11 @@ public class TimeTableFormController implements Initializable {
         combofDay.setItems(Days);
     }
     public Day getSelectedDay(){
-        System.out.println(combofDay.getItems().get(combofDay.getSelectionModel().getSelectedIndex()));
+        System.out.println("Gewählter Tag:" + combofDay.getItems().get(combofDay.getSelectionModel().getSelectedIndex()));
         return combofDay.getItems().get(combofDay.getSelectionModel().getSelectedIndex());
     }
     public Subject getSelectedSubject(){
-        System.out.println(combofSubject.getItems().get(combofSubject.getSelectionModel().getSelectedIndex()));
+        System.out.println("Neues Fach:" + combofSubject.getItems().get(combofSubject.getSelectionModel().getSelectedIndex()));
         return combofSubject.getItems().get(combofSubject.getSelectionModel().getSelectedIndex());
     }
 

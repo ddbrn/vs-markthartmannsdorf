@@ -34,7 +34,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <ListView id="teacherList" fx:id="timeTableList" onMouseClicked="#ClickedList" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
+            <ListView id="teacherList" fx:id="timeTableList" onMouseClicked="#clickedList" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding></ListView>

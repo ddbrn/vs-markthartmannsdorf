@@ -15,7 +15,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -164,7 +163,7 @@ public class IOAccess_Excel {
                 cellH.setCellValue("Freitag");
                 cellH.setCellStyle(styleH);
 
-                schoolClass.getTimetable().getTimeTable().forEach(timetableDay -> {
+                schoolClass.getTimetable().getTimetableDays().forEach(timetableDay -> {
 
                     XSSFRow rowClasses = sheetClasses.createRow(rowCountClasses[0]++);
                     XSSFCell cell = rowClasses.createCell(0);

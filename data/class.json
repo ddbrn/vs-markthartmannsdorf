@@ -1,5 +1,5 @@
 [ {
-  "classname" : "4AHIF",
+  "classname" : "1",
   "teacher" : {
     "firstname" : "Simon",
     "surname" : "Schöggler",
@@ -7,12 +7,12 @@
     "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde" ]
   },
   "timetable" : {
-    "timeTable" : [ {
+    "timetableDays" : [ {
       "id" : 1,
       "time" : "08:00",
       "monday" : "Mathematik",
       "tuesday" : "Deutsch",
-      "wednesday" : "Englisch",
+      "wednesday" : "Sozialkunde",
       "thursday" : "Sachkunde",
       "friday" : "Musik"
     }, {
@@ -28,7 +28,7 @@
       "time" : "10:00",
       "monday" : "Musik",
       "tuesday" : "Deutsch",
-      "wednesday" : "Musik",
+      "wednesday" : "Mathematik",
       "thursday" : "Sachkunde",
       "friday" : "Mathematik"
     }, {
@@ -42,62 +42,11 @@
     }, {
       "id" : 5,
       "time" : "12:00",
-      "monday" : "Sachkunde",
+      "monday" : "Sport",
       "tuesday" : "Mathematik",
       "wednesday" : "Musik",
       "thursday" : "Deutsch",
-      "friday" : ""
-    } ]
-  }
-}, {
-  "classname" : "4BHIF",
-  "teacher" : {
-    "firstname" : "David",
-    "surname" : "BRANNAN",
-    "abbreviation" : "BRN",
-    "subjects" : [ "Mathematik", "Englisch" ]
-  },
-  "timetable" : {
-    "timeTable" : [ {
-      "id" : 1,
-      "time" : "08:00",
-      "monday" : "Mathematik",
-      "tuesday" : "Deutsch",
-      "wednesday" : "Englisch",
-      "thursday" : "Sachkunde",
-      "friday" : "Musik"
-    }, {
-      "id" : 2,
-      "time" : "09:00",
-      "monday" : "Sachkunde",
-      "tuesday" : "Mathematik",
-      "wednesday" : "Musik",
-      "thursday" : "Deutsch",
-      "friday" : "Musik"
-    }, {
-      "id" : 3,
-      "time" : "10:00",
-      "monday" : "Musik",
-      "tuesday" : "Deutsch",
-      "wednesday" : "Musik",
-      "thursday" : "Sachkunde",
-      "friday" : "Mathematik"
-    }, {
-      "id" : 4,
-      "time" : "11:00",
-      "monday" : "Deutsch",
-      "tuesday" : "Deutsch",
-      "wednesday" : "Sachkunde",
-      "thursday" : "Deutsch",
-      "friday" : "Mathematik"
-    }, {
-      "id" : 5,
-      "time" : "12:00",
-      "monday" : "Sachkunde",
-      "tuesday" : "Mathematik",
-      "wednesday" : "Musik",
-      "thursday" : "Deutsch",
-      "friday" : ""
+      "friday" : "Deutsch"
     } ]
   }
 } ]
