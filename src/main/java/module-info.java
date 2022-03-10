@@ -13,4 +13,5 @@ module at.vs.vsmarkthartmannsdorf {
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;
     exports at.vs.vsmarkthartmannsdorf;
     exports at.vs.vsmarkthartmannsdorf.data;
+    opens at.vs.vsmarkthartmannsdorf.old to javafx.fxml;
 }
