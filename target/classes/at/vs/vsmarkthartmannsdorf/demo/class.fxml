@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="classView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.ClassViewController">
+   <right>
+      <VBox id="rightContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="553.0" prefWidth="197.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="100.0" spacing="20.0">
+               <children>
+                  <ImageView id="buttons" fitHeight="22.0" fitWidth="35.0" onMouseClicked="#addClass" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/add-user.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <ImageView id="buttons" fitHeight="22.0" fitWidth="35.0" layoutX="73.0" layoutY="15.0" onMouseClicked="#removeClass" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/remove-user.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <ListView id="classList" fx:id="classList" pickOnBounds="false" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </ListView>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+   <center>
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

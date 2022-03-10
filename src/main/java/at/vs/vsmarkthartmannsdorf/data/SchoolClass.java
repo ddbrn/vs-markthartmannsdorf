@@ -17,6 +17,7 @@ public class SchoolClass {
     private Teacher teacher;
     private Timetable timetable = new Timetable();
 
+
     public SchoolClass(String classname, Teacher teacher) {
         this.classname = classname;
         this.teacher = teacher;
