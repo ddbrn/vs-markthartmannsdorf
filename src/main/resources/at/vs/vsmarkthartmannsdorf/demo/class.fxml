@@ -33,7 +33,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <ListView id="classList" fx:id="classList" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
+            <ListView id="classList" fx:id="classList" pickOnBounds="false" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
