@@ -143,10 +143,13 @@ public class TimetableViewController implements Initializable {
     @FXML
     public void clickedList() {
         selectedListElement = timeTableList.getSelectionModel().getSelectedIndex();
+        dismountForm();
+        updateList();
+    }
+    @FXML
+    public void updateList(){
         timeTableView.setItems(FXCollections.observableArrayList(timeTableList.getItems().
                 get(timeTableList.getSelectionModel().getSelectedIndex()).getTimetable().getTimeTableContent()));
-
-        dismountForm();
         ((VBox) root.getCenter()).getChildren().add(timeTableView);
     }
 

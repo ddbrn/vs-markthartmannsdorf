@@ -10,7 +10,7 @@
     "timetableDays" : [ {
       "id" : 1,
       "time" : "08:00",
-      "monday" : "Mathematik",
+      "monday" : "Englisch",
       "tuesday" : "Deutsch",
       "wednesday" : "Sozialkunde",
       "thursday" : "Sachkunde",
@@ -29,7 +29,7 @@
       "monday" : "Musik",
       "tuesday" : "Deutsch",
       "wednesday" : "Mathematik",
-      "thursday" : "Sachkunde",
+      "thursday" : "Mathematik",
       "friday" : "Mathematik"
     }, {
       "id" : 4,
