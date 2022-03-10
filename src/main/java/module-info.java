@@ -9,6 +9,7 @@ module at.vs.vsmarkthartmannsdorf {
     requires com.fasterxml.jackson.databind;
     requires lombok;
     requires org.apache.poi.ooxml;
+    requires itextpdf;
 
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;
     exports at.vs.vsmarkthartmannsdorf;

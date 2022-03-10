@@ -1,7 +1,9 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
 import at.vs.vsmarkthartmannsdorf.data.*;
+import com.itextpdf.text.DocumentException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -79,7 +82,8 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-    public void resetTableView(){
+
+    public void resetTableView() {
 
     }
 
@@ -110,10 +114,10 @@ public class MainController implements Initializable {
         main.setCenter(classView);
         main.setBottom(null);
         main.setRight(null);
-        if(classesOpened){
+        if (classesOpened) {
             classViewController.dismountForm();
             classViewController.addClass();
-        }else{
+        } else {
             classViewController.dismountForm();
         }
 
@@ -195,6 +199,24 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    public void exportAsPDF() throws DocumentException, IOException {
+        FXMLLoader classPDF = fxmlLoad("demo/pdf-dialog.fxml");
+        DialogPane pane = classPDF.load();
+        PDFController controller = classPDF.getController();
+
+        controller.setClasses(classes);
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(pane);
+
+        Optional<ButtonType> clickedButton = dialog.showAndWait();
+        if (clickedButton.get() == ButtonType.OK) {
+            System.out.println(controller.classes.getValue());
+            IOAccess_PDF.createPDF(controller.classes.getValue());
+        }
+    }
+
+    @FXML
     public void importFromExcel() {
 
         try {
@@ -206,16 +228,16 @@ public class MainController implements Initializable {
                     setClasses(IOAccess_Excel.readFromExcelFileClass(getTeacher(), getClasses()));
                 }
             }
-        }catch (NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
         }
     }
 
-    public void setStage(Stage stage){
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 
     @FXML
-    public void onSettings(){
+    public void onSettings() {
         settingsController.setStage(stage);
         setHighlightedNav(settingsBox);
 

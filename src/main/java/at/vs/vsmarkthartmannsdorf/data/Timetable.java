@@ -46,7 +46,6 @@ public class Timetable {
 
 
     }
-
     @JsonIgnore
     public List<TimetableDay> getTimeTableContent() {
         return timetableDays;
