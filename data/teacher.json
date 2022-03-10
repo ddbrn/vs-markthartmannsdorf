@@ -13,4 +13,9 @@
   "surname" : "REINPRECHT",
   "abbreviation" : "RPT",
   "subjects" : [ "Mathematik" ]
+}, {
+  "firstname" : "Marcel",
+  "surname" : "SCHMIDL",
+  "abbreviation" : "SML",
+  "subjects" : [ "Sport" ]
 } ]

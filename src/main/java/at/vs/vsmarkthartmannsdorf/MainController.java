@@ -226,6 +226,11 @@ public class MainController implements Initializable {
                     setTeachers(teacherList);
 
                     setClasses(IOAccess_Excel.readFromExcelFileClass(getTeacher(), getClasses()));
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("vs-martkhartmannsdorf | IMPORTIERT");
+                    alert.setHeaderText("Es wurde erfolgreich Importiert!");
+                    alert.showAndWait();
                 }
             }
         } catch (NullPointerException ignored) {

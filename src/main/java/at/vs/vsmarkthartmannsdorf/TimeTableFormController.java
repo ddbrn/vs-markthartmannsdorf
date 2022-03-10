@@ -45,6 +45,8 @@ public class TimeTableFormController implements Initializable {
     public void submitTimetable(){
         if(!(txtHour.getText().isEmpty() || combofDay.getItems().isEmpty())){
             parent.getSchoolClass().getTimetable().getTimeTableContent().get(getTxtHour()).ChangeHour(getSelectedDay().toString(), getSelectedSubject().toString());
+            parent.dismountForm();
+            parent.updateList();
           //  System.out.println(parent.getSchoolClass(0).getTimetable().getTimeTableContent().get(0).getTuesday());
         }else{
             System.out.println("Alle Felder ausfüllen");

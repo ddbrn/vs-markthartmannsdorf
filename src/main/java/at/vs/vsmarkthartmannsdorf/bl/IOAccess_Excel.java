@@ -429,8 +429,8 @@ public class IOAccess_Excel {
             System.out.println("FEHLERHAFTE LEHER EINGABE");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("vs-martkhartmannsdorf | FEHLER");
-            alert.setHeaderText("Es ist ein Fehler beim Importieren passiert");
-            alert.setContentText("Es wurde eine fehlerhafte Eingabe im Excel Sheet getätigt, überprüfen Sie den Reiter \"Teacher\".");
+            alert.setHeaderText("Es ist ein Fehler beim Importieren passiert!");
+            alert.setContentText("Es wurde eine fehlerhafte Eingabe im Excel Sheet getätigt, überprüfen Sie den Reiter \"Lehrer\".");
 
             Label label = new Label("The exception stacktrace was:");
 
@@ -493,7 +493,7 @@ public class IOAccess_Excel {
                                         .findFirst().get());
 
 
-                if (!schoolClassList.contains(schoolClass)) {
+                if (schoolClassList.stream().noneMatch(schoolClass1 -> schoolClass1.getClassname().equals(schoolClass.getClassname()))) {
                     schoolClassList.add(schoolClass);
                 }
 

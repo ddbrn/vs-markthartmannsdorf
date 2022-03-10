@@ -190,3 +190,10 @@
 .absenceDialog #header{
     -fx-background-color: #dedcdc;
 }
+
+.list-cell:filled:hover {
+    -fx-background-color: #518ef0;
+    -fx-text-fill: white;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
