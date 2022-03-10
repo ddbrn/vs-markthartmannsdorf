@@ -26,20 +26,23 @@ public class Timetable {
                         Subject.Mathematik.toString(), "", "", "", ""));
             }
         }*/
-        timetableDays.add(new TimetableDay(1,  "08:00",
+        timetableDays.add(new TimetableDay(1,  "07:45 - 08:35",
                 Subject.Mathematik.toString(), Subject.Deutsch.toString(), Subject.Englisch.toString(), Subject.Sachkunde.toString(), Subject.Musik.toString()));
 
-        timetableDays.add(new TimetableDay(2,  "09:00",
+        timetableDays.add(new TimetableDay(2,  "08:40 - 09:30",
                 Subject.Sachkunde.toString(), Subject.Mathematik.toString(), Subject.Musik.toString(), Subject.Deutsch.toString(), Subject.Musik.toString()));
 
-        timetableDays.add(new TimetableDay(3,  "10:00",
+        timetableDays.add(new TimetableDay(3,  "09:50 - 10:40",
                 Subject.Musik.toString(), Subject.Deutsch.toString(), Subject.Musik.toString(), Subject.Sachkunde.toString(), Subject.Mathematik.toString()));
 
-        timetableDays.add(new TimetableDay(4,  "11:00",
+        timetableDays.add(new TimetableDay(4,  "10:45 - 11:35",
                 Subject.Deutsch.toString(), Subject.Deutsch.toString(), Subject.Sachkunde.toString(), Subject.Deutsch.toString(), Subject.Mathematik.toString()));
 
-        timetableDays.add(new TimetableDay(5,  "12:00",
+        timetableDays.add(new TimetableDay(5,  "11:45 - 12:35",
                 Subject.Sachkunde.toString(), Subject.Mathematik.toString(), Subject.Musik.toString(), Subject.Deutsch.toString(), ""));
+
+        timetableDays.add(new TimetableDay(6,  "12:45 - 13:35",
+              "", "", "","", ""));
 
 
     }
@@ -48,4 +51,5 @@ public class Timetable {
     public List<TimetableDay> getTimeTableContent() {
         return timetableDays;
     }
+
 }
