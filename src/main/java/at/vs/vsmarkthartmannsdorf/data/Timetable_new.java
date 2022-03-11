@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
+import at.vs.vsmarkthartmannsdorf.SettingsController;
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +22,7 @@ public class Timetable_new {
         subjects = new HashMap<>();
         for (Day day: Day.values()) {
             ArrayList<TeacherSubject> subjectsPerDay = new ArrayList<>();
-            for (int i = 0; i < Integer.parseInt(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name())); i++){
+            for (int i = 0; i < SettingsController.MAX_STUNDEN; i++){
                 subjectsPerDay.add(new TeacherSubject(null, null));
             }
             subjects.put(day, subjectsPerDay);

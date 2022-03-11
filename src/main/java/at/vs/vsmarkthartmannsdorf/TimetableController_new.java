@@ -38,11 +38,11 @@ public class TimetableController_new implements Initializable {
         visibleTimetable = null;
     }
 
-    public void load(){
+    public void load() {
         ((VBox) root.getCenter()).getChildren().clear();
 
-        visibleTimetable = SchoolDB.getInstance().getTimetables().get(0);
-        ((VBox) root.getCenter()).getChildren().add(buildTimetable(visibleTimetable));
+        // visibleTimetable = SchoolDB.getInstance().getTimetables().get(0);
+        // ((VBox) root.getCenter()).getChildren().add(buildTimetable(visibleTimetable));
     }
 
     public GridPane buildTimetable(Timetable_new timetable) {
@@ -74,7 +74,7 @@ public class TimetableController_new implements Initializable {
                 VBox vBox = new VBox();
 
                 Color color = null;
-                if (teacherSubject.getSubject() != null){
+                if (teacherSubject.getSubject() != null) {
                     String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(teacherSubject.getSubject().name());
                     color = Color.valueOf(colorHex);
 
@@ -89,8 +89,8 @@ public class TimetableController_new implements Initializable {
                 lblTeacher = teacherSubject.getTeacher() == null ? new Label(" ") : new Label(teacherSubject.getTeacher().getAbbreviation());
                 lblSubject = teacherSubject.getSubject() == null ? new Label(" ") : new Label(teacherSubject.getSubject().name());
 
-                if (color != null){
-                    if (color.getBrightness() < 0.9){
+                if (color != null) {
+                    if (color.getBrightness() < 0.9) {
                         lblTeacher.setStyle("-fx-text-fill: white");
                         lblSubject.setStyle("-fx-text-fill: white");
                     }
@@ -100,20 +100,7 @@ public class TimetableController_new implements Initializable {
                 vBox.getChildren().add(lblTeacher);
 
                 vBox.setOnMouseClicked(mouseEvent -> {
-                    System.out.println("Klick");
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("demo/absence-dialog.fxml"));
-                    DialogPane absenceDialog = null;
-                    try {
-                        absenceDialog = fxmlLoader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
 
-                    Dialog<ButtonType> dialog = new Dialog<>();
-                    dialog.setDialogPane(absenceDialog);
-                    dialog.setTitle("Abwesenheit");
-                    dialog.showAndWait();
                 });
 
                 timeTableView.add(vBox, column, row);
