@@ -48,7 +48,7 @@ public class ClassFormController implements Initializable {
     public void submitClasses(){
         info.setVisible(false);
         if(!(classname.getText().isEmpty() || classTeacher.getValue() == null)){
-            if(parent.getClasses().stream().noneMatch(klasse -> klasse.getClassname().equalsIgnoreCase(classname.getText()))){
+            if(SchoolDB.getInstance().getSchoolClasses().stream().noneMatch(klasse -> klasse.getClassname().equalsIgnoreCase(classname.getText()))){
                 parent.submitForm(classname.getText(), classTeacher.getValue());
             }else{
                 info.setText("Dieses Klasse existiert bereits!");

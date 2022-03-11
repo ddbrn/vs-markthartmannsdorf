@@ -4,6 +4,7 @@ import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.data.TimetableDay;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -63,7 +64,9 @@ public class ClassViewController implements Initializable {
 
     @FXML
     protected void removeClass(){
-        ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
+        SchoolDB.getInstance().removeSchoolClass(classList.getSelectionModel().getSelectedIndices());
+        classList.setItems(SchoolDB.getInstance().getSchoolClasses());
+        /*ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
         System.out.println(classes);
         for (int i = indices.size() - 1; i >= 0; i--){
             parent.removeClasses(classes.get(indices.get(i)));
@@ -71,7 +74,7 @@ public class ClassViewController implements Initializable {
         classList.setItems(classes);
         final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
                 new TimetableDay(0, "", "", "","", "", "")
-        );
+        );*/
        // parent.getTimetableViewController().getTimeTableView().setItems(data);
     }
     public void dismountForm(){
@@ -82,12 +85,8 @@ public class ClassViewController implements Initializable {
         SchoolClass schoolClass = new SchoolClass(classname, teacher);
 
         dismountForm();
-        parent.addClasses(schoolClass);
-        classList.setItems(classes);
-    }
-
-    public ObservableList<SchoolClass> getClasses() {
-        return classes;
+        SchoolDB.getInstance().addSchoolClass(schoolClass);
+        classList.setItems(SchoolDB.getInstance().getSchoolClasses());
     }
 
     public MainController getParent() {

@@ -262,21 +262,8 @@ public class MainController implements Initializable {
     }
 
     public void setClasses(List<SchoolClass> classes) {
-        this.classes = FXCollections.observableArrayList(classes);
-        classViewController.setItems(this.classes);
+        SchoolDB.getInstance().setSchoolClasses(classes);
         // timetableViewController.setItems(this.classes);
-    }
-
-    public void addClasses(SchoolClass klasse) {
-        classes.add(klasse);
-        classViewController.setItems(classes);
-        // timetableViewController.setItems(classes);
-    }
-
-    public void removeClasses(SchoolClass klasse) {
-        classes.remove(klasse);
-        classViewController.setItems(classes);
-        // timetableViewController.setItems(classes);
     }
 
 

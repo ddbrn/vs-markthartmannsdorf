@@ -60,6 +60,13 @@ public class SchoolDB {
         addTimetable(new Timetable_new(schoolClass));
     }
 
+    public void removeSchoolClass(ObservableList<Integer> indices){
+        for (int i = indices.size() - 1; i >= 0; i--){
+            timetables.remove(new Timetable_new(schoolClasses.get(i)));
+            schoolClasses.remove(i);
+        }
+    }
+
     private void addTimetable(Timetable_new timetable_new){
         timetables.add(timetable_new);
     }
@@ -83,4 +90,9 @@ public class SchoolDB {
     public void removeTeacher(Teacher teacher){
         teachers.remove(teacher);
     }
+
+    public void setSchoolClasses(List<SchoolClass> schoolClasses) {
+        this.schoolClasses.setAll(schoolClasses);
+    }
+
 }
