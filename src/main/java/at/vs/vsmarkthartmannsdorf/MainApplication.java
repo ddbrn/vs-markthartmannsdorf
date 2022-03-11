@@ -24,7 +24,6 @@ public class MainApplication extends Application {
 
         controller = fxmlLoader.getController();
         controller.setTeachers(IOAccess.readTeacherFiles());
-
         controller.setClasses(IOAccess.readClassFiles());
         controller.setStage(stage);
         // controller.setTeachers(IOAccess.readTeacherFiles());
@@ -38,7 +37,7 @@ public class MainApplication extends Application {
         System.out.println("CLOSED WINDOW");
 
         IOAccess.storeTeacherFiles(SchoolDB.getInstance().getTeachers());
-        IOAccess.storeClassFiles(controller.getClasses());
+        IOAccess.storeClassFiles(SchoolDB.getInstance().getSchoolClasses());
         // IOAccess.storeTimetableFiles(controller.getTimetables());
 
         //IOAccess_Excel.createExcelFile(controller.getTeacher(), controller.getClasses());

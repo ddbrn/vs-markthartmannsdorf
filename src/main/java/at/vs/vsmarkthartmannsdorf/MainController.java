@@ -281,7 +281,7 @@ public class MainController implements Initializable {
 
 
     public void loadAbsence() {
-        for (Teacher teacher : teachers) {
+        for (Teacher teacher : SchoolDB.getInstance().getTeachers()) {
             teacherAbsenceList.add(new TeacherAbsence(teacher, false));
         }
     }
