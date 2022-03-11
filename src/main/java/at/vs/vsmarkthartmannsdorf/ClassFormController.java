@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,7 +27,6 @@ public class ClassFormController implements Initializable {
 
     public ClassFormController() {
         this.teachers = FXCollections.observableArrayList();
-
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ClassFormController implements Initializable {
     }
     public void refreshItems(){
         this.teachers = FXCollections.observableArrayList();
-        teachers.addAll(parent.getParent().getTeacher());
+        teachers.addAll(SchoolDB.getInstance().getTeachers());
         classTeacher.setItems(teachers);
     }
 

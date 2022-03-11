@@ -1,20 +1,22 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.*;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -99,9 +101,6 @@ public class TimetableViewController implements Initializable {
 
         timeTableView.setItems(data);
         /*timeTableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);*/
-
-
-        System.out.println(timeTableView.getColumns().size());
 
     }
 

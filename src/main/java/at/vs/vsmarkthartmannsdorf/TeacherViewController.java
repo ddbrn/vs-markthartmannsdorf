@@ -2,6 +2,7 @@ package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,21 +36,16 @@ public class TeacherViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         teacherList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        teacherList.getSelectionModel().selectFirst();
 
         // Tooltip on Hover bei ImageViewButtons
         Tooltip.install(ivAdd, new Tooltip("hinzufügen"));
         Tooltip.install(ivRemove, new Tooltip("entfernen"));
-        Tooltip.install(ivEdit, new Tooltip("bearbeiten"));
+
+        teacherList.setItems(SchoolDB.getInstance().getTeachers());
     }
 
     public void setParent(MainController parent) {
         this.parent = parent;
-    }
-
-    public void setItems(ObservableList<Teacher> teachers) {
-        teacherList.setItems(teachers);
-        this.teachers = teacherList.getItems();
     }
 
     @FXML
@@ -75,10 +71,10 @@ public class TeacherViewController implements Initializable {
         ObservableList<Integer> indices = teacherList.getSelectionModel().getSelectedIndices();
         System.out.println(teachers);
         for (int i = indices.size() - 1; i >= 0; i--) {
-            parent.removeTeacher(teachers.get(indices.get(i)));
+            SchoolDB.getInstance().removeTeacher(teacherList.getItems().get(i));
         }
 
-        teacherList.setItems(teachers);
+        updateTeacher();
     }
 
     @FXML
@@ -104,11 +100,16 @@ public class TeacherViewController implements Initializable {
         Teacher teacher = new Teacher(firstname, lastname, abbrevation.toUpperCase(), subjects);
 
         dismountForm();
-        parent.addTeacher(teacher);
-        teacherList.setItems(teachers);
+
+        SchoolDB.getInstance().addTeacher(teacher);
+        updateTeacher();
     }
 
     public ObservableList<Teacher> getTeachers() {
         return teachers;
+    }
+
+    public void updateTeacher(){
+        teacherList.setItems(SchoolDB.getInstance().getTeachers());
     }
 }
