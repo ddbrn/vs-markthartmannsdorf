@@ -1,21 +1,6 @@
 [ {
-  "firstname" : "Simon",
-  "surname" : "Schöggler",
-  "abbreviation" : "SGR",
-  "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde" ]
-}, {
-  "firstname" : "David",
-  "surname" : "BRANNAN",
-  "abbreviation" : "BRN",
-  "subjects" : [ "Mathematik", "Englisch" ]
-}, {
-  "firstname" : "Manuel",
-  "surname" : "REINPRECHT",
-  "abbreviation" : "RPT",
-  "subjects" : [ "Mathematik" ]
-}, {
-  "firstname" : "Marcel",
-  "surname" : "SCHMIDL",
-  "abbreviation" : "SML",
-  "subjects" : [ "Sport" ]
+  "firstname" : "2",
+  "surname" : "2",
+  "abbreviation" : "2",
+  "subjects" : [ "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde" ]
 } ]

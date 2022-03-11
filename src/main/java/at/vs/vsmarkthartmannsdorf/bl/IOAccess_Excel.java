@@ -389,7 +389,7 @@ public class IOAccess_Excel {
             //Get first/desired sheet from the workbook
             XSSFSheet sheet = workbook.getSheetAt(0);
 
-            //Iterate through each rows one by one
+            //Iterate through each row's one by one
             Iterator<Row> rowIterator = sheet.iterator();
             skipImage(rowIterator);
 
