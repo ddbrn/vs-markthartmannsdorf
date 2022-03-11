@@ -43,6 +43,10 @@ public class PropertiesLoader {
             }
         }
 
+        if (properties.getProperty(PropertyName.max_stunden.name()) == null){
+            properties.setProperty(PropertyName.max_stunden.name(), "6");
+        }
+
         saveProperties();
     }
 

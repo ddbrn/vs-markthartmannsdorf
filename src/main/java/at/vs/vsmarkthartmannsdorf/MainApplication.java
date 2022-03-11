@@ -4,6 +4,7 @@ import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ public class MainApplication extends Application {
 
         controller = fxmlLoader.getController();
         controller.setTeachers(IOAccess.readTeacherFiles());
+
         controller.setClasses(IOAccess.readClassFiles());
         controller.setStage(stage);
         // controller.setTeachers(IOAccess.readTeacherFiles());
@@ -35,7 +37,7 @@ public class MainApplication extends Application {
     public void stop() throws Exception {
         System.out.println("CLOSED WINDOW");
 
-        IOAccess.storeTeacherFiles(controller.getTeacher());
+        IOAccess.storeTeacherFiles(SchoolDB.getInstance().getTeachers());
         IOAccess.storeClassFiles(controller.getClasses());
         // IOAccess.storeTimetableFiles(controller.getTimetables());
 

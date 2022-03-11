@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Subject;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -76,8 +77,8 @@ public class TeacherFormController implements Initializable {
     public void submit(){
         info.setVisible(false);
         if(!(firstname.getText().isEmpty() || surname.getText().isEmpty() || abbreviation.getText().isEmpty() || olAssignedSubjects.size() == 0)){
-            if(parent.getTeachers().stream().noneMatch(teacher -> teacher.getAbbreviation().equalsIgnoreCase(abbreviation.getText()))){
-               parent.submitForm(firstname.getText(), surname.getText().toUpperCase(), abbreviation.getText(), olAssignedSubjects);
+            if(SchoolDB.getInstance().getTeachers().stream().noneMatch(teacher -> teacher.getAbbreviation().equalsIgnoreCase(abbreviation.getText()))){
+               parent.submitForm(firstname.getText(), surname.getText(), abbreviation.getText(), olAssignedSubjects);
             }else{
                 info.setText("Dieses Kürzel gibt es bereits");
                 info.setVisible(true);

@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TimetableController {
-//
 
     public ListView<Subject> availableSubjects, assignedSubjects;
     private ObservableList<Subject> olAvailableSubjects,olAssignedSubjects;

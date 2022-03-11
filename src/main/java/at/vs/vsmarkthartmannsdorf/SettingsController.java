@@ -5,11 +5,14 @@ import at.vs.vsmarkthartmannsdorf.data.PropertyName;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import javafx.application.Application;
 import javafx.beans.property.Property;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
@@ -29,6 +32,9 @@ public class SettingsController implements Initializable {
     @FXML
     public TextField tfDirectory;
     public VBox vbProperties;
+    public ComboBox cbHours;
+
+    private ObservableList<Integer> olHours = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,6 +69,12 @@ public class SettingsController implements Initializable {
 
             vbProperties.getChildren().add(hBox);
         }
+
+        for (int i = 1; i <= 10; i++){
+            olHours.add(i);
+        }
+        cbHours.setItems(olHours);
+        cbHours.getSelectionModel().select(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name()));
     }
 
     @FXML
@@ -79,5 +91,11 @@ public class SettingsController implements Initializable {
 
     public void changedColor(ColorPicker colorPicker, Subject subject){
         PropertiesLoader.getInstance().addProperty(subject.name(), colorPicker.getValue().toString());
+    }
+
+    @FXML
+    public void onSelectHours(){
+       int selectedItem = (Integer) cbHours.getSelectionModel().getSelectedItem();
+       PropertiesLoader.getInstance().addProperty(PropertyName.max_stunden.name(), selectedItem + "");
     }
 }

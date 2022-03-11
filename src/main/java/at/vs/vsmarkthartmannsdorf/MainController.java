@@ -4,6 +4,7 @@ import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import com.itextpdf.text.DocumentException;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -68,10 +69,10 @@ public class MainController implements Initializable {
             classViewController.setParent(this);
 
             //Load TimetableView
-            FXMLLoader timetableLoader = fxmlLoad("demo/timetable.fxml");
+            FXMLLoader timetableLoader = fxmlLoad("demo/timetable-form_new.fxml");
             timetableView = timetableLoader.load();
             timetableViewController = timetableLoader.getController();
-            timetableViewController.setParent(this);
+            // timetableViewController.setParent(this);
 
             // Load SettingsView
             FXMLLoader settingsLoader = fxmlLoad("demo/settings.fxml");
@@ -82,12 +83,11 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    public void resetTableView() {
+    public void resetTableView(){
 
     }
 
-    public TimetableViewController getTimetableViewController() {
+    /*public TimetableViewController getTimetableViewController() {
         return timetableViewController;
     }
 
@@ -101,6 +101,8 @@ public class MainController implements Initializable {
     @FXML
     public void onClickTeacher() {
         setHighlightedNav(teacherBox);
+
+        teacherViewController.updateTeacher();
 
         main.setCenter(teacherView);
         main.setBottom(null);
@@ -126,6 +128,9 @@ public class MainController implements Initializable {
     @FXML
     public void onClickTimetable() {
         setHighlightedNav(timetableBox);
+
+
+        timetableViewController.load();
 
         main.setCenter(timetableView);
         main.setBottom(null);
@@ -252,40 +257,26 @@ public class MainController implements Initializable {
     }
 
     public void setTeachers(List<Teacher> teachers) {
-        this.teachers = FXCollections.observableArrayList(teachers);
-        teacherViewController.setItems(this.teachers);
+        SchoolDB.getInstance().setTeacher(teachers);
         loadAbsence();
-    }
-
-    public void addTeacher(Teacher teacher) {
-        teachers.add(teacher);
-        teacherViewController.setItems(teachers);
-        teacherAbsenceList.add(new TeacherAbsence(teacher, false));
-
-    }
-
-    public void removeTeacher(Teacher teacher) {
-        teachers.remove(teacher);
-        teacherViewController.setItems(teachers);
-        teacherAbsenceList.removeIf(teacherAbsence -> teacherAbsence.getTeacher().equals(teacher));
     }
 
     public void setClasses(List<SchoolClass> classes) {
         this.classes = FXCollections.observableArrayList(classes);
         classViewController.setItems(this.classes);
-        timetableViewController.setItems(this.classes);
+        // timetableViewController.setItems(this.classes);
     }
 
     public void addClasses(SchoolClass klasse) {
         classes.add(klasse);
         classViewController.setItems(classes);
-        timetableViewController.setItems(classes);
+        // timetableViewController.setItems(classes);
     }
 
     public void removeClasses(SchoolClass klasse) {
         classes.remove(klasse);
         classViewController.setItems(classes);
-        timetableViewController.setItems(classes);
+        // timetableViewController.setItems(classes);
     }
 
 

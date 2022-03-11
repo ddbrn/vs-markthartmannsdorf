@@ -72,7 +72,7 @@ public class ClassViewController implements Initializable {
         final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
                 new TimetableDay(0, "", "", "","", "", "")
         );
-       parent.getTimetableViewController().getTimeTableView().setItems(data);
+       // parent.getTimetableViewController().getTimeTableView().setItems(data);
     }
     public void dismountForm(){
         ((VBox) root.getCenter()).getChildren().clear();
