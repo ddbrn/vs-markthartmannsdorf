@@ -263,6 +263,7 @@ public class MainController implements Initializable {
 
     public void setClasses(List<SchoolClass> classes) {
         SchoolDB.getInstance().setSchoolClasses(classes);
+        classViewController.setItems(SchoolDB.getInstance().getSchoolClasses());
         // timetableViewController.setItems(this.classes);
     }
 
