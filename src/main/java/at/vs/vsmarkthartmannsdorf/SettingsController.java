@@ -34,6 +34,8 @@ public class SettingsController implements Initializable {
     public VBox vbProperties;
     public ComboBox cbHours;
 
+    public static final int MAX_STUNDEN = 9;
+
     private ObservableList<Integer> olHours = FXCollections.observableArrayList();
 
     @Override
@@ -70,7 +72,7 @@ public class SettingsController implements Initializable {
             vbProperties.getChildren().add(hBox);
         }
 
-        for (int i = 1; i <= 10; i++){
+        for (int i = 1; i <= MAX_STUNDEN; i++){
             olHours.add(i);
         }
         cbHours.setItems(olHours);
