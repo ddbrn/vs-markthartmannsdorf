@@ -39,7 +39,7 @@ public class MainController implements Initializable {
 
     private TeacherViewController teacherViewController;
     private ClassViewController classViewController;
-    private TimetableViewController timetableViewController;
+    private TimetableController_new timetableViewController;
     private SettingsController settingsController;
     private BorderPane teacherView;
     private BorderPane classView;
@@ -89,7 +89,7 @@ public class MainController implements Initializable {
 
     /*public TimetableViewController getTimetableViewController() {
         return timetableViewController;
-    }
+    }*/
 
     // Method to load fxml
     public FXMLLoader fxmlLoad(String location) throws IOException {

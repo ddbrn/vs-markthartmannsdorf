@@ -197,3 +197,15 @@
     -fx-border-radius: 30;
     -fx-background-radius: 10 10 10 10;
 }
+
+.timetableView {
+    -fx-background-color: #ebebeb;
+}
+
+.timetableView #timetable {
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-background-radius: 10 10 10 10;
+
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
