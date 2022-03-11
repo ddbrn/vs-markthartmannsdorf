@@ -8,9 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -67,19 +65,45 @@ public class TeacherViewController implements Initializable {
 
     @FXML
     public void removeTeacher() {
-        dismountForm();
         ObservableList<Integer> indices = teacherList.getSelectionModel().getSelectedIndices();
-        System.out.println(teachers);
-        for (int i = indices.size() - 1; i >= 0; i--) {
-            SchoolDB.getInstance().removeTeacher(teacherList.getItems().get(i));
+        boolean singular = false;
+
+        if (indices.size() == 0) {
+            return;
+        } else if (indices.size() == 1) {
+            singular = true;
         }
 
-        updateTeacher();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("vs-martkhartmannsdorf | LÖSCHEN");
+        if (singular) {
+            alert.setHeaderText("Wollen Sie den Lehrer löschen");
+        } else {
+            alert.setHeaderText("Wollen Sie die Lehrer löschen");
+        }
+        alert.setContentText("Löschen?");
+        ButtonType okButton = new ButtonType("Ja", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("Nein", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.showAndWait().ifPresent(type -> {
+            if (type.getButtonData().equals(ButtonBar.ButtonData.YES)) {
+
+                dismountForm();
+                System.out.println(teachers);
+
+                indices.forEach(i -> {
+                    SchoolDB.getInstance().removeTeacher(teacherList.getItems().get(i));
+                });
+
+                updateTeacher();
+            }
+        });
+
     }
 
     @FXML
-    public void editTeacher(){
-        if(teacherList.getSelectionModel().getSelectedIndices().size() != 0){
+    public void editTeacher() {
+        if (teacherList.getSelectionModel().getSelectedIndices().size() != 0) {
             dismountForm();
             try {
                 FXMLLoader fxmlLoader = parent.fxmlLoad("demo/teacher-form.fxml");
@@ -109,7 +133,7 @@ public class TeacherViewController implements Initializable {
         return teachers;
     }
 
-    public void updateTeacher(){
+    public void updateTeacher() {
         teacherList.setItems(SchoolDB.getInstance().getTeachers());
     }
 }
