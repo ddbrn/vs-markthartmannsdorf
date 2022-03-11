@@ -14,15 +14,17 @@ import java.util.List;
 public class Timetable_new {
     private SchoolClass schoolClass;
     private HashMap<Day, List<TeacherSubject>> subjects;
+    private int max_hours;
 
 
-    public Timetable_new(SchoolClass schoolClass) {
+    public Timetable_new(SchoolClass schoolClass, int max_hours) {
         this.schoolClass = schoolClass;
+        this.max_hours = max_hours;
 
         subjects = new HashMap<>();
         for (Day day: Day.values()) {
             ArrayList<TeacherSubject> subjectsPerDay = new ArrayList<>();
-            for (int i = 0; i < SettingsController.MAX_STUNDEN; i++){
+            for (int i = 0; i < max_hours; i++){
                 subjectsPerDay.add(new TeacherSubject(null, null));
             }
             subjects.put(day, subjectsPerDay);

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="timetableView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimetableController_new">
+<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="timetableView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimetableController_new">
    <right>
       <VBox id="rightContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="553.0" prefWidth="197.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,13 +40,25 @@
       </VBox>
    </right>
    <center>
-      <VBox id="timetable" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+      <BorderPane id="timetable" BorderPane.alignment="TOP_RIGHT">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
+         <center>
+            <VBox alignment="TOP_CENTER">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </center>
+         <top>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="TOP_LEFT">
+               <children>
+                  <Label text="Stundenanzahl" />
+                  <ChoiceBox fx:id="cbHours" prefWidth="150.0" />
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
    </center>
 </BorderPane>

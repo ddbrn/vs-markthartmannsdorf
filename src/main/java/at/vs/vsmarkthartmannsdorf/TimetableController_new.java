@@ -5,6 +5,7 @@ import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -29,17 +30,27 @@ public class TimetableController_new implements Initializable {
     @FXML
     public ListView<Timetable_new> lvTimetables;
     public BorderPane root;
+    public ChoiceBox<Integer> cbHours;
 
     private Timetable_new visibleTimetable;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ((BorderPane) root.getCenter()).getTop().setVisible(false);
+
         lvTimetables.setItems(SchoolDB.getInstance().getTimetables());
         visibleTimetable = null;
+
+        ObservableList<Integer> olHours = FXCollections.observableArrayList();
+        for (int i = 1; i <= Integer.parseInt(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name())); i++){
+            olHours.add(i);
+        }
+        cbHours.setItems(olHours);
     }
 
     public void load() {
-        ((VBox) root.getCenter()).getChildren().clear();
+        ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().clear();
+        ((BorderPane) root.getCenter()).getTop().setVisible(false);
 
         // visibleTimetable = SchoolDB.getInstance().getTimetables().get(0);
         // ((VBox) root.getCenter()).getChildren().add(buildTimetable(visibleTimetable));
@@ -123,12 +134,13 @@ public class TimetableController_new implements Initializable {
 
     @FXML
     public void onSelectClass() {
-        ((VBox) root.getCenter()).getChildren().clear();
+        ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().clear();
+        ((BorderPane) root.getCenter()).getTop().setVisible(true);
 
         visibleTimetable = lvTimetables.getSelectionModel().getSelectedItem();
         visibleTimetable.addSubject(Day.Dienstag, 1, new TeacherSubject(SchoolDB.getInstance().getTeachers().get(0), Subject.Deutsch));
 
-        ((VBox) root.getCenter()).getChildren().add(buildTimetable(visibleTimetable));
+        ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().add(buildTimetable(visibleTimetable));
     }
 
     public void addStyle(GridPane timetableView) {

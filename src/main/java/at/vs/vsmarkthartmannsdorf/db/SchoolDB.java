@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf.db;
 
+import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +24,8 @@ public class SchoolDB {
 
         addTeacher(new Teacher("Simon", "Schoeggler", "SS", new ArrayList<>()));
         addSchoolClass(new SchoolClass("4AHIF", teachers.get(0)));
-        timetables.add(new Timetable_new(schoolClasses.get(0)));
+        timetables.add(new Timetable_new(schoolClasses.get(0),
+                Integer.parseInt(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name()))));
 
         for (Teacher teacher: teachers){
             for (Subject subject: teacher.getSubjects()){
@@ -57,12 +59,14 @@ public class SchoolDB {
     public void addSchoolClass(SchoolClass schoolClass){
         schoolClasses.add(schoolClass);
 
-        addTimetable(new Timetable_new(schoolClass));
+        addTimetable(new Timetable_new(schoolClass,
+                Integer.parseInt(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name()))));
     }
 
     public void removeSchoolClass(ObservableList<Integer> indices){
         for (int i = indices.size() - 1; i >= 0; i--){
-            timetables.remove(new Timetable_new(schoolClasses.get(i)));
+            int finalI = i;
+            timetables.remove(getTimetables().stream().filter(timetable_new -> timetable_new.getSchoolClass() == getSchoolClasses().get(finalI)).findFirst());
             schoolClasses.remove(i);
         }
     }
