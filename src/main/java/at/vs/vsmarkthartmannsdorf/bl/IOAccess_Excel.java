@@ -354,6 +354,11 @@ public class IOAccess_Excel {
             }
 
             wb.write(outputStream);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("vs-martkhartmannsdorf | EXPORTIERT");
+            alert.setHeaderText("Es wurde erfolgreich unter\"" + selectedDirectory.getAbsolutePath() + "\\vs-markthartmannsdorf-data.xlsx" + "\" gespeichert!");
+            alert.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
