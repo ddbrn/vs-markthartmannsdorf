@@ -10,17 +10,16 @@ import java.util.List;
 public class Timetable_new {
     private SchoolClass schoolClass;
     private HashMap<Day, HashMap<Integer, TeacherSubject>> subjects;
-    private int maxHours;
+    public static final int MAX_HOURS = 8;
 
 
-    public Timetable_new(SchoolClass schoolClass, int max_hours) {
+    public Timetable_new(SchoolClass schoolClass) {
         this.schoolClass = schoolClass;
-        this.maxHours = max_hours;
 
         subjects = new HashMap<>();
         for (Day day: Day.values()) {
             HashMap<Integer, TeacherSubject> subjectsPerDay = new HashMap<>();
-            for (int i = 0; i < max_hours; i++){
+            for (int i = 0; i < MAX_HOURS; i++){
                 subjectsPerDay.put(i + 1, new TeacherSubject(null, null));
             }
             subjects.put(day, subjectsPerDay);

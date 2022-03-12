@@ -56,8 +56,7 @@ public class SchoolDB {
     public void addSchoolClass(SchoolClass schoolClass){
         schoolClasses.add(schoolClass);
 
-        addTimetable(new Timetable_new(schoolClass,
-                Integer.parseInt(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name()))));
+        addTimetable(new Timetable_new(schoolClass));
     }
 
     public void removeSchoolClass(ObservableList<Integer> indices){
@@ -99,20 +98,28 @@ public class SchoolDB {
         }
     }
 
-    public void updateTimetable(Timetable_new timetable_new, int maxHours){
-        SchoolDB.getInstance().getTimetables().get(timetables.indexOf(timetable_new)).setMaxHours(maxHours);
-    }
-
     public Optional<Timetable_new> findTimetableByClass(SchoolClass schoolClass){
         return timetables.stream().filter(timetable_new -> timetable_new.getSchoolClass().equals(schoolClass)).findFirst();
     }
 
     public void addSubject(Day day, int hour, TeacherSubject teacherSubject, Timetable_new timetable){
-        SchoolDB.getInstance().getTimetables().get(SchoolDB.getInstance().getTimetables().indexOf(timetable)).addSubject(day, hour, teacherSubject);
+        getTimetables().get(getTimetables().indexOf(timetable)).addSubject(day, hour, teacherSubject);
     }
 
     public List<TeacherSubject> getTeacherBySubject(Subject subject){
         return SchoolDB.getInstance().getTeacherSubjects().stream().filter(teacherSubject ->
                 teacherSubject.getSubject() == subject).collect(Collectors.toList());
+    }
+
+    public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable_new timetable){
+        TeacherSubject sourceTeacherSubject = timetable.getSubjects().get(sourceDay).get(sourceHour);
+        TeacherSubject targetTeacherSubject = timetable.getSubjects().get(targetDay).get(targetHour);
+
+        timetables.stream()
+                .filter(timetable_new -> timetable_new.getSchoolClass()
+                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherSubject);
+        timetables.stream()
+                .filter(timetable_new -> timetable_new.getSchoolClass()
+                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherSubject);
     }
 }

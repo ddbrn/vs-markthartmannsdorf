@@ -3,25 +3,29 @@ package at.vs.vsmarkthartmannsdorf;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TimetableController_new implements Initializable {
 
     @FXML
     public ListView<Timetable_new> lvTimetables;
     public BorderPane root;
-    public ComboBox<Integer> cbHours;
+    public Label lblInfo;
 
     private boolean isEdit;
     private Timetable_new visibleTimetable;
@@ -33,38 +37,31 @@ public class TimetableController_new implements Initializable {
         lvTimetables.setItems(SchoolDB.getInstance().getTimetables());
         visibleTimetable = null;
 
-        ObservableList<Integer> olHours = FXCollections.observableArrayList();
-        for (int i = 1; i <= Integer.parseInt(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name())); i++) {
-            olHours.add(i);
-        }
-        cbHours.setItems(olHours);
-
         isEdit = false;
+
+        lblInfo.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
     }
 
     public void load() {
+        isEdit = false;
+
         ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().clear();
         ((BorderPane) root.getCenter()).getTop().setVisible(false);
 
         lvTimetables.setItems(SchoolDB.getInstance().getTimetables());
-
-        // visibleTimetable = SchoolDB.getInstance().getTimetables().get(0);
-        // ((VBox) root.getCenter()).getChildren().add(buildTimetable(visibleTimetable));
     }
 
     public GridPane buildTimetable(Timetable_new timetable) {
-        cbHours.getSelectionModel().select((Integer) visibleTimetable.getMaxHours());
-
-        GridPane timeTableView = new GridPane();
+        AtomicReference<GridPane> timeTableView = new AtomicReference<>(new GridPane());
 
         int column = 1;
         int row = 1;
 
-        for (int i = 1; i <= visibleTimetable.getMaxHours(); i++) {
-            timeTableView.add(new Label(i + ""), 0, i);
+        for (int i = 1; i <= Timetable_new.MAX_HOURS; i++) {
+            timeTableView.get().add(new Label(i + ""), 0, i);
         }
         for (Day day : Day.values()) {
-            timeTableView.add(new Label(day.name()), column, 0);
+            timeTableView.get().add(new Label(day.name()), column, 0);
             column++;
         }
 
@@ -75,9 +72,9 @@ public class TimetableController_new implements Initializable {
             if (column == Day.values().length + 1) {
                 column = 1;
             }
-            for (int i = 1; i <= visibleTimetable.getMaxHours(); i++) {
+            for (int i = 1; i <= Timetable_new.MAX_HOURS; i++) {
                 TeacherSubject teacherSubject = visibleTimetable.getSubjects().get(day).get(i);
-                if (row == visibleTimetable.getMaxHours() + 1) {
+                if (row == Timetable_new.MAX_HOURS + 1) {
                     row = 1;
                 }
 
@@ -100,7 +97,7 @@ public class TimetableController_new implements Initializable {
                 lblSubject = teacherSubject.getSubject() == null ? new Label(" ") : new Label(teacherSubject.getSubject().name());
 
                 if (color != null) {
-                    if (color.getBrightness() < 0.9) {
+                    if (color.getBrightness() < 0.5) {
                         lblTeacher.setStyle("-fx-text-fill: white");
                         lblSubject.setStyle("-fx-text-fill: white");
                     }
@@ -109,25 +106,86 @@ public class TimetableController_new implements Initializable {
                 vBox.getChildren().add(lblSubject);
                 vBox.getChildren().add(lblTeacher);
 
-                int finalRow = row;
-                vBox.setOnMouseClicked(mouseEvent -> {
-                    if (isEdit) {
-                        System.out.println("Day " + day + " Row " + finalRow);
-                        addSubject(day, finalRow, SchoolDB.getInstance().getTeacherSubjects().get(0));
-                    }
+                vBox.setOnDragDetected(mouseDragEvent -> {
+                    Dragboard db = vBox.startDragAndDrop(TransferMode.ANY);
+                    ClipboardContent clipboardContent = new ClipboardContent();
+
+                    int sourceColumnIndex = GridPane.getColumnIndex(vBox);
+                    int sourceRowIndex = GridPane.getRowIndex(vBox);
+                    String content = String.format("%d,%d", sourceColumnIndex, sourceRowIndex);
+
+                    clipboardContent.putString(content);
+                    db.setContent(clipboardContent);
+                    mouseDragEvent.consume();
                 });
 
-                timeTableView.add(vBox, column, row);
+                vBox.setOnDragOver(dragEvent -> {
+                    if (dragEvent.getGestureSource() != vBox &&
+                            dragEvent.getDragboard().hasString()){
+                        dragEvent.acceptTransferModes(TransferMode.MOVE);
+                    }
+
+                    dragEvent.consume();
+                });
+
+                vBox.setOnDragDropped(dragEvent -> {
+                    Dragboard db = dragEvent.getDragboard();
+                    boolean success = false;
+
+                    if (db.hasString()){
+                        String split[] = db.getString().split(",");
+                        int source_column = Integer.parseInt(split[0]);
+                        int source_row = Integer.parseInt(split[1]);
+
+                        Node sourceNode = getNodeByRowColumnIndex(source_row, source_column, timeTableView.get());
+                        switchNodes(sourceNode, vBox, timeTableView.get());
+                        success = true;
+                    }
+                    dragEvent.setDropCompleted(success);
+                    dragEvent.consume();
+                });
+
+                timeTableView.get().add(vBox, column, row);
                 row++;
             }
             column++;
         }
 
-        timeTableView.setGridLinesVisible(true);
+        timeTableView.get().setGridLinesVisible(true);
+        addStyle(timeTableView.get());
+        return timeTableView.get();
+    }
 
-        addStyle(timeTableView);
+    private void switchNodes(Node source, Node target, GridPane pane){
+        int sourceColumnIndex = GridPane.getColumnIndex(source);
+        int sourceRowIndex = GridPane.getRowIndex(source);
+        int targetColumnIndex = GridPane.getColumnIndex(target);
+        int targetRowIndex = GridPane.getRowIndex(target);
 
-        return timeTableView;
+        pane.getChildren().removeAll(source, target);
+
+        pane.add(source, targetColumnIndex, targetRowIndex);
+        pane.add(target, sourceColumnIndex, sourceRowIndex);
+
+        SchoolDB.getInstance().switchLessons(Day.values()[sourceColumnIndex - 1],
+                Day.values()[targetColumnIndex - 1],
+                sourceRowIndex, targetRowIndex, visibleTimetable);
+        reload();
+        setContent();
+    }
+
+    public Node getNodeByRowColumnIndex(int row, int column, GridPane gridPane){
+        Node result = null;
+        ObservableList<Node> childrens = gridPane.getChildren();
+
+        for (Node node: childrens){
+            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column){
+                result = node;
+                break;
+            }
+        }
+
+        return result;
     }
 
     public void addSubject(Day day, int hour, TeacherSubject teacherSubject) {
@@ -139,6 +197,9 @@ public class TimetableController_new implements Initializable {
     @FXML
     public void onSelectClass() {
         visibleTimetable = lvTimetables.getSelectionModel().getSelectedItem();
+        lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
+
+        visibleTimetable.addSubject(Day.Montag, 1, SchoolDB.getInstance().getTeacherSubjects().get(0));
         setContent();
     }
 
@@ -171,16 +232,6 @@ public class TimetableController_new implements Initializable {
         GridPane.setVgrow(timetableView, Priority.ALWAYS);
     }
 
-    @FXML
-    public void onChangeHours() {
-        int selectedHours = cbHours.getSelectionModel().getSelectedIndex() + 1;
-        if (selectedHours != visibleTimetable.getMaxHours()) {
-            SchoolDB.getInstance().updateTimetable(visibleTimetable, selectedHours);
-            reload(); // Loads new changed timetable from SchoolDB
-            setContent();
-        }
-    }
-
     public void setContent() {
         ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().clear();
         ((BorderPane) root.getCenter()).getTop().setVisible(true);
@@ -196,55 +247,18 @@ public class TimetableController_new implements Initializable {
     public void onEditTimetable() {
         if (isEdit == true) {
             isEdit = false;
+
+            lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
             setContent();
         } else {
             isEdit = true;
+            lblInfo.setText("Bearbeitungsmodus | " + visibleTimetable.getSchoolClass().getClassname());
         }
 
         if (isEdit) {
-            HBox hBox = new HBox();
+            System.out.println("Edit");
 
-            hBox.setBorder(new Border(new BorderStroke(Color.BLACK,
-                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-            VBox subjects = new VBox();
-            subjects.getChildren().add(new Label("Fächer"));
-
-            VBox teachers = new VBox();
-
-            ToggleGroup subjectGroup = new ToggleGroup();
-            ToggleGroup teacherGroup = new ToggleGroup();
-            for (Subject subject : Subject.values()) {
-                RadioButton radioButton = new RadioButton(subject.name());
-                radioButton.setToggleGroup(subjectGroup);
-
-                radioButton.setOnAction(actionEvent -> {
-                    teachers.getChildren().clear();
-                    teachers.getChildren().add(new Label("Lehrer"));
-                    for (TeacherSubject teacherSubject: SchoolDB.getInstance().getTeacherBySubject(subject)){
-                        RadioButton radioButton1 = new RadioButton(teacherSubject.getTeacher().getSurname() + " " +
-                                teacherSubject.getTeacher().getFirstname());
-                        radioButton1.setToggleGroup(teacherGroup);
-                        teachers.getChildren().add(radioButton1);
-                    }
-                });
-
-                subjects.getChildren().add(radioButton);
-            }
-
-            hBox.setPadding(new Insets(10, 10, 10, 10));
-            subjects.setPadding(new Insets(10, 10, 10, 10));
-            teachers.setPadding(new Insets(10, 10, 10, 10));
-
-            subjects.setSpacing(10);
-
-            HBox.setHgrow(hBox, Priority.ALWAYS);
-            HBox.setHgrow(subjects, Priority.ALWAYS);
-            HBox.setHgrow(teachers, Priority.ALWAYS);
-
-            hBox.getChildren().add(subjects);
-            hBox.getChildren().add(teachers);
-            ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().add(hBox);
         }
     }
 }

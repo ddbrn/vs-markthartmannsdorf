@@ -1,13 +1,8 @@
 [ {
   "firstname" : "Simon",
   "surname" : "SCHÖGGLER",
-  "abbreviation" : "SGR",
-  "subjects" : [ "Mathematik", "Sozialkunde" ]
-}, {
-  "firstname" : "Marcel",
-  "surname" : "SCHMIDL",
   "abbreviation" : "SML",
-  "subjects" : [ "Mathematik", "Deutsch", "Religion" ]
+  "subjects" : [ "Mathematik", "Religion", "Chor" ]
 }, {
   "firstname" : "David",
   "surname" : "BRANNAN",

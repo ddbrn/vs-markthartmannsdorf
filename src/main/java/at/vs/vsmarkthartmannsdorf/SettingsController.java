@@ -32,7 +32,6 @@ public class SettingsController implements Initializable {
     @FXML
     public TextField tfDirectory;
     public VBox vbProperties;
-    public ComboBox cbHours;
 
     public static final int MAX_STUNDEN = 9;
 
@@ -71,12 +70,6 @@ public class SettingsController implements Initializable {
 
             vbProperties.getChildren().add(hBox);
         }
-
-        for (int i = 1; i <= MAX_STUNDEN; i++){
-            olHours.add(i);
-        }
-        cbHours.setItems(olHours);
-        cbHours.getSelectionModel().select(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name()));
     }
 
     @FXML
@@ -93,11 +86,5 @@ public class SettingsController implements Initializable {
 
     public void changedColor(ColorPicker colorPicker, Subject subject){
         PropertiesLoader.getInstance().addProperty(subject.name(), colorPicker.getValue().toString());
-    }
-
-    @FXML
-    public void onSelectHours(){
-       int selectedItem = (Integer) cbHours.getSelectionModel().getSelectedItem();
-       PropertiesLoader.getInstance().addProperty(PropertyName.max_stunden.name(), selectedItem + "");
     }
 }
