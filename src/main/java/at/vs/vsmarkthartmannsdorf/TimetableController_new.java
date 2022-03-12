@@ -10,6 +10,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -107,42 +108,49 @@ public class TimetableController_new implements Initializable {
                 vBox.getChildren().add(lblTeacher);
 
                 vBox.setOnDragDetected(mouseDragEvent -> {
-                    Dragboard db = vBox.startDragAndDrop(TransferMode.ANY);
-                    ClipboardContent clipboardContent = new ClipboardContent();
+                    if (isEdit){
+                        Dragboard db = vBox.startDragAndDrop(TransferMode.ANY);
+                        db.setDragView(vBox.snapshot(null, null), mouseDragEvent.getX(), mouseDragEvent.getY());
+                        ClipboardContent clipboardContent = new ClipboardContent();
 
-                    int sourceColumnIndex = GridPane.getColumnIndex(vBox);
-                    int sourceRowIndex = GridPane.getRowIndex(vBox);
-                    String content = String.format("%d,%d", sourceColumnIndex, sourceRowIndex);
+                        int sourceColumnIndex = GridPane.getColumnIndex(vBox);
+                        int sourceRowIndex = GridPane.getRowIndex(vBox);
+                        String content = String.format("%d,%d", sourceColumnIndex, sourceRowIndex);
 
-                    clipboardContent.putString(content);
-                    db.setContent(clipboardContent);
-                    mouseDragEvent.consume();
+                        clipboardContent.putString(content);
+                        db.setContent(clipboardContent);
+                        mouseDragEvent.consume();
+                    }
                 });
 
                 vBox.setOnDragOver(dragEvent -> {
-                    if (dragEvent.getGestureSource() != vBox &&
-                            dragEvent.getDragboard().hasString()){
-                        dragEvent.acceptTransferModes(TransferMode.MOVE);
-                    }
+                    if (isEdit){
+                        if (dragEvent.getGestureSource() != vBox &&
+                                dragEvent.getDragboard().hasString()){
+                            dragEvent.acceptTransferModes(TransferMode.MOVE);
+                        }
 
-                    dragEvent.consume();
+                        dragEvent.consume();
+                    }
                 });
 
                 vBox.setOnDragDropped(dragEvent -> {
-                    Dragboard db = dragEvent.getDragboard();
-                    boolean success = false;
+                    if (isEdit){
+                        Dragboard db = dragEvent.getDragboard();
+                        boolean success = false;
 
-                    if (db.hasString()){
-                        String split[] = db.getString().split(",");
-                        int source_column = Integer.parseInt(split[0]);
-                        int source_row = Integer.parseInt(split[1]);
+                        if (db.hasString()){
+                            String split[] = db.getString().split(",");
+                            int source_column = Integer.parseInt(split[0]);
+                            int source_row = Integer.parseInt(split[1]);
 
-                        Node sourceNode = getNodeByRowColumnIndex(source_row, source_column, timeTableView.get());
-                        switchNodes(sourceNode, vBox, timeTableView.get());
-                        success = true;
+                            Node sourceNode = getNodeByRowColumnIndex(source_row, source_column, timeTableView.get());
+                            switchNodes(sourceNode, vBox, timeTableView.get());
+                            success = true;
+                        }
+                        dragEvent.setDropCompleted(success);
+                        dragEvent.consume();
                     }
-                    dragEvent.setDropCompleted(success);
-                    dragEvent.consume();
                 });
 
                 timeTableView.get().add(vBox, column, row);
@@ -240,7 +248,10 @@ public class TimetableController_new implements Initializable {
 
     public void reload() {
         SchoolClass schoolClass = visibleTimetable.getSchoolClass();
-        visibleTimetable = SchoolDB.getInstance().findTimetableByClass(schoolClass).get();
+        Optional<Timetable_new> timetable = SchoolDB.getInstance().findTimetableByClass(schoolClass);
+        if (timetable.isPresent()){
+            visibleTimetable = timetable.get();
+        }
     }
 
     @FXML
