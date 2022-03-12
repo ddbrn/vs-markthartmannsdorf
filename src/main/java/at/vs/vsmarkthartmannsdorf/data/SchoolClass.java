@@ -15,18 +15,11 @@ import java.util.List;
 public class SchoolClass {
     private String classname;
     private Teacher teacher;
-    private Timetable timetable = new Timetable();
 
 
     public SchoolClass(String classname, Teacher teacher) {
         this.classname = classname;
         this.teacher = teacher;
-        timetable.AddTimeTableDefault();
-    }
-
-
-    public Timetable getTimetable() {
-        return timetable;
     }
 
     @JsonIgnore

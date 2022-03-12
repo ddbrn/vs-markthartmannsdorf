@@ -1,11 +1,9 @@
 package at.vs.vsmarkthartmannsdorf.db;
 
-import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,7 +13,7 @@ public class SchoolDB {
 
     private ObservableList<Teacher> teachers;
     private ObservableList<SchoolClass> schoolClasses;
-    private ObservableList<Timetable_new> timetables;
+    private ObservableList<Timetable> timetables;
     private ObservableList<TeacherSubject> teacherSubjects;
 
     private SchoolDB (){
@@ -56,19 +54,19 @@ public class SchoolDB {
     public void addSchoolClass(SchoolClass schoolClass){
         schoolClasses.add(schoolClass);
 
-        addTimetable(new Timetable_new(schoolClass));
+        addTimetable(new Timetable(schoolClass));
     }
 
     public void removeSchoolClass(ObservableList<Integer> indices){
         for (int i = indices.size() - 1; i >= 0; i--){
             int finalI = i;
-            timetables.remove(getTimetables().stream().filter(timetable_new -> timetable_new.getSchoolClass() == getSchoolClasses().get(finalI)).findFirst());
+            timetables.remove(getTimetables().stream().filter(timetable -> timetable.getSchoolClass() == getSchoolClasses().get(finalI)).findFirst());
             schoolClasses.remove(i);
         }
     }
 
-    private void addTimetable(Timetable_new timetable_new){
-        timetables.add(timetable_new);
+    private void addTimetable(Timetable timetable){
+        timetables.add(timetable);
     }
 
     public ObservableList<Teacher> getTeachers() {
@@ -79,7 +77,7 @@ public class SchoolDB {
         return schoolClasses;
     }
 
-    public ObservableList<Timetable_new> getTimetables() {
+    public ObservableList<Timetable> getTimetables() {
         return timetables;
     }
 
@@ -98,11 +96,11 @@ public class SchoolDB {
         }
     }
 
-    public Optional<Timetable_new> findTimetableByClass(SchoolClass schoolClass){
-        return timetables.stream().filter(timetable_new -> timetable_new.getSchoolClass().equals(schoolClass)).findFirst();
+    public Optional<Timetable> findTimetableByClass(SchoolClass schoolClass){
+        return timetables.stream().filter(timetable -> timetable.getSchoolClass().equals(schoolClass)).findFirst();
     }
 
-    public void addSubject(Day day, int hour, TeacherSubject teacherSubject, Timetable_new timetable){
+    public void addSubject(Day day, int hour, TeacherSubject teacherSubject, Timetable timetable){
         getTimetables().get(getTimetables().indexOf(timetable)).addSubject(day, hour, teacherSubject);
     }
 
@@ -111,7 +109,7 @@ public class SchoolDB {
                 teacherSubject.getSubject() == subject).collect(Collectors.toList());
     }
 
-    public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable_new timetable){
+    public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable timetable){
         TeacherSubject sourceTeacherSubject = timetable.getSubjects().get(sourceDay).get(sourceHour);
         TeacherSubject targetTeacherSubject = timetable.getSubjects().get(targetDay).get(targetHour);
 

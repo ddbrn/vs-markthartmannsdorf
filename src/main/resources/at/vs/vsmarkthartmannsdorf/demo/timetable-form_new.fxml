@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="timetableView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimetableController_new">
+<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="timetableView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimetableController">
    <right>
       <VBox id="rightContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="553.0" prefWidth="197.0" BorderPane.alignment="CENTER">
          <children>

@@ -36,7 +36,7 @@ public class MainController implements Initializable {
 
     private TeacherViewController teacherViewController;
     private ClassViewController classViewController;
-    private TimetableController_new timetableViewController;
+    private TimetableController timetableViewController;
     private SettingsController settingsController;
     private BorderPane teacherView;
     private BorderPane classView;
