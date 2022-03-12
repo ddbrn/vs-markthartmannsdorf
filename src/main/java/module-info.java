@@ -10,6 +10,7 @@ module at.vs.vsmarkthartmannsdorf {
     requires lombok;
     requires org.apache.poi.ooxml;
     requires itextpdf;
+    requires org.apache.commons.lang3;
 
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;
     exports at.vs.vsmarkthartmannsdorf;

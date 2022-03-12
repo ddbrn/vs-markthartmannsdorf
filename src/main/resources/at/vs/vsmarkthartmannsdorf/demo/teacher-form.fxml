@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="519.0" prefWidth="551.0" styleClass="teacherEditView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherFormController">
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="519.0" prefWidth="551.0" styleClass="teacherEditView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherFormController">
    <children>
       <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="511.0" stylesheets="@style.css" vgap="5.0" VBox.vgrow="ALWAYS">
         <columnConstraints>
@@ -17,7 +23,7 @@
           <RowConstraints maxHeight="139.8000244140625" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="150.9999755859375" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="165.2" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="227.8" minHeight="10.0" prefHeight="168.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="227.8" minHeight="10.0" vgrow="ALWAYS" />
             <RowConstraints maxHeight="227.8" minHeight="0.0" prefHeight="2.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="227.8" minHeight="0.0" prefHeight="14.0" vgrow="SOMETIMES" />
         </rowConstraints>
@@ -51,14 +57,14 @@
                   </Button>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
+            <VBox fx:id="teacherVBox" alignment="TOP_CENTER" prefWidth="100.0" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
                <children>
                   <Label alignment="CENTER" text="Fächer">
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
                      </font>
                   </Label>
-                  <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="161.0" prefWidth="471.0" VBox.vgrow="ALWAYS">
+<!--                  <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="161.0" prefWidth="471.0" VBox.vgrow="ALWAYS">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="171.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="133.0" />
@@ -90,7 +96,7 @@
                            </GridPane.margin>
                         </Button>
                      </children>
-                  </GridPane>
+                  </GridPane>-->
                </children>
             </VBox>
             <Label fx:id="info" text="Label" textFill="RED" GridPane.columnSpan="3" GridPane.rowIndex="4" />

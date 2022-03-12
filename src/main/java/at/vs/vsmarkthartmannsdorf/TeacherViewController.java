@@ -12,11 +12,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+@Data
 public class TeacherViewController implements Initializable {
     @FXML
     public ListView<Teacher> teacherList;
@@ -27,6 +30,8 @@ public class TeacherViewController implements Initializable {
     public MainController parent;
 
     private ObservableList<Teacher> teachers;
+
+    private boolean isEdit;
 
     @FXML
     public ImageView ivAdd, ivRemove, ivEdit;
@@ -48,6 +53,7 @@ public class TeacherViewController implements Initializable {
 
     @FXML
     public void addTeacher() {
+        isEdit = false;
         dismountForm();
         if (((VBox) root.getCenter()).getChildren().size() == 0) {
             try {
@@ -103,13 +109,19 @@ public class TeacherViewController implements Initializable {
 
     @FXML
     public void editTeacher() {
-        if (teacherList.getSelectionModel().getSelectedIndices().size() != 0) {
+        isEdit = true;
+        if (teacherList.getSelectionModel().getSelectedIndices().size() == 1) {
             dismountForm();
             try {
                 FXMLLoader fxmlLoader = parent.fxmlLoad("demo/teacher-form.fxml");
                 VBox vBox = fxmlLoader.load();
-                ((TeacherFormController) fxmlLoader.getController()).setParent(this);
+                TeacherFormController controller =  fxmlLoader.getController();
+                controller.setParent(this);
+
                 ((VBox) root.getCenter()).getChildren().add(vBox);
+
+                Teacher teacher = teacherList.getSelectionModel().getSelectedItem();
+                controller.setItemsIfEdited(teacher);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -120,8 +132,8 @@ public class TeacherViewController implements Initializable {
         ((VBox) root.getCenter()).getChildren().clear();
     }
 
-    public void submitForm(String firstname, String lastname, String abbrevation, ObservableList<Subject> subjects) {
-        Teacher teacher = new Teacher(firstname, lastname, abbrevation.toUpperCase(), subjects);
+    public void submitForm(String firstname, String lastname, String abbrevation, List<Subject> subjects) {
+        Teacher teacher = new Teacher(StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
 
         dismountForm();
 
@@ -135,5 +147,18 @@ public class TeacherViewController implements Initializable {
 
     public void updateTeacher() {
         teacherList.setItems(SchoolDB.getInstance().getTeachers());
+    }
+
+    public void editTeacher (Teacher oldTeacher, String firstname, String lastname, String abbrevation, List<Subject> subjects) {
+        Teacher teacher = new Teacher(StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
+        dismountForm();
+        int index = SchoolDB.getInstance().getTeachers().indexOf(oldTeacher);
+
+        SchoolDB.getInstance().getTeachers().set(index, teacher);
+
+        SchoolDB.getInstance().getTeachers().remove(oldTeacher);
+
+        updateTeacher();
+
     }
 }

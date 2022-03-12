@@ -63,6 +63,23 @@
     -fx-background-radius: 10 10 10 10;
 }
 
+/*.teacherView .list-view .list-cell:focused{
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+.classView .list-view .list-cell:focused{
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}
+.timetableView .list-view .list-cell:focused{
+    -fx-background-color: #518ef0;
+    -fx-border-radius: 30;
+    -fx-background-radius: 10 10 10 10;
+}*/
+
+
 .teacherView #buttons{
     -fx-background-color: black;
     -fx-border-radius: 30;
@@ -191,4 +208,26 @@
     -fx-background-radius: 10 10 10 10;
 
     -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
+
+check-box .box {
+
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:3px;
+
+}
+
+.check-box:selected .mark {
+
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+
+    -fx-background-color: #12c44d;
+}
+
+.check-box > .box {
+    -fx-background-color: red;
 }
