@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class SchoolDB {
     private static SchoolDB instance;
@@ -21,11 +23,6 @@ public class SchoolDB {
         schoolClasses = FXCollections.observableArrayList();
         timetables = FXCollections.observableArrayList();
         teacherSubjects = FXCollections.observableArrayList();
-
-        addTeacher(new Teacher("Simon", "Schoeggler", "SS", new ArrayList<>()));
-        addSchoolClass(new SchoolClass("4AHIF", teachers.get(0)));
-        timetables.add(new Timetable_new(schoolClasses.get(0),
-                Integer.parseInt(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name()))));
 
         for (Teacher teacher: teachers){
             for (Subject subject: teacher.getSubjects()){
@@ -96,7 +93,26 @@ public class SchoolDB {
     }
 
     public void setSchoolClasses(List<SchoolClass> schoolClasses) {
-        this.schoolClasses.setAll(schoolClasses);
+        this.schoolClasses = FXCollections.observableArrayList();
+        for (SchoolClass schoolClass: schoolClasses){
+            addSchoolClass(schoolClass);
+        }
     }
 
+    public void updateTimetable(Timetable_new timetable_new, int maxHours){
+        SchoolDB.getInstance().getTimetables().get(timetables.indexOf(timetable_new)).setMaxHours(maxHours);
+    }
+
+    public Optional<Timetable_new> findTimetableByClass(SchoolClass schoolClass){
+        return timetables.stream().filter(timetable_new -> timetable_new.getSchoolClass().equals(schoolClass)).findFirst();
+    }
+
+    public void addSubject(Day day, int hour, TeacherSubject teacherSubject, Timetable_new timetable){
+        SchoolDB.getInstance().getTimetables().get(SchoolDB.getInstance().getTimetables().indexOf(timetable)).addSubject(day, hour, teacherSubject);
+    }
+
+    public List<TeacherSubject> getTeacherBySubject(Subject subject){
+        return SchoolDB.getInstance().getTeacherSubjects().stream().filter(teacherSubject ->
+                teacherSubject.getSubject() == subject).collect(Collectors.toList());
+    }
 }
