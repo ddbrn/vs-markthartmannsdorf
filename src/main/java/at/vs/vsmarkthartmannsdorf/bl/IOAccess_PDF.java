@@ -1,9 +1,7 @@
 package at.vs.vsmarkthartmannsdorf.bl;
 
-import at.vs.vsmarkthartmannsdorf.data.PropertyName;
-import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
-import at.vs.vsmarkthartmannsdorf.data.Subject;
-import at.vs.vsmarkthartmannsdorf.data.TimetableDay;
+import at.vs.vsmarkthartmannsdorf.data.*;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -44,10 +42,10 @@ public class IOAccess_PDF {
 
         document.open();
 
-        System.out.println(schoolClass.getTimetable().getTimeTableContent().size());
+        // System.out.println(schoolClass.getTimetable().getTimeTableContent().size());
         PdfPTable table = new PdfPTable(6);
         addTableHeader(table);
-        addRows(table);
+        // addRows(table);
 
         document.add(table);
         document.close();
@@ -65,6 +63,7 @@ public class IOAccess_PDF {
                 });
     }
 
+    /*
     private static void addRows(PdfPTable table) {
         for (TimetableDay timetableDay : schoolClass.getTimetable().getTimeTableContent()) {
             table.addCell(timetableDay.getTime());
@@ -157,5 +156,5 @@ public class IOAccess_PDF {
                 }
             }
         }
-    }
+    } */
 }

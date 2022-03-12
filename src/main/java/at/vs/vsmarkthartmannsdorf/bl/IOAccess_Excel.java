@@ -23,13 +23,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class IOAccess_Excel {
-    private static Stage stage;
+    /*private static Stage stage;
 
     public static void setStage(Stage stage) {
         IOAccess_Excel.stage = stage;
     }
 
     public static void createExcelFile(List<Teacher> teacherList, List<SchoolClass> schoolClassList) {
+
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setInitialDirectory(new File(PropertiesLoader.getInstance().getProperties().get(PropertyName.export_folder.name()).toString()));
         File selectedDirectory = directoryChooser.showDialog(stage);
@@ -515,6 +516,6 @@ public class IOAccess_Excel {
 
     private static void skipImage(Iterator<Row> rowIterator) {
         rowIterator.next();
-    }
+    }*/
 }
 

@@ -195,9 +195,11 @@ public class MainController implements Initializable {
 
     @FXML
     public void exportAsExcel() {
-        IOAccess_Excel.createExcelFile(teachers.stream().toList(), classes.stream().toList());
+        // IOAccess_Excel.createExcelFile(teachers.stream().toList(), classes.stream().toList());
 
-        classes.forEach(schoolClass -> System.out.println(schoolClass.getTimetable()));
+        classes.forEach(schoolClass ->
+                System.out.println(SchoolDB.getInstance().getSchoolClasses().stream().filter(schoolClass1 ->
+                        schoolClass1.equals(schoolClass)).findFirst().get()));
     }
 
     @FXML
@@ -220,7 +222,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void importFromExcel() {
-
+/*
         try {
             if (IOAccess_Excel.loadFile()) {
                 List<Teacher> teacherList = IOAccess_Excel.readFromExcelFileTeacher();
@@ -236,7 +238,7 @@ public class MainController implements Initializable {
                 }
             }
         } catch (NullPointerException ignored) {
-        }
+        }*/
     }
 
     public void setStage(Stage stage) {
