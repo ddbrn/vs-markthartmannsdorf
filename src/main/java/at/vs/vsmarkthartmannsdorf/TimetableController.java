@@ -26,6 +26,7 @@ public class TimetableController implements Initializable {
     public ListView<Timetable> lvTimetables;
     public BorderPane root;
     public Label lblInfo;
+    public VBox vBSubjects;
 
     private boolean isEdit;
     private Timetable visibleTimetable;
@@ -40,6 +41,8 @@ public class TimetableController implements Initializable {
         isEdit = false;
 
         lblInfo.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
+
+        vBSubjects.setVisible(false);
     }
 
     public void load() {
@@ -257,18 +260,19 @@ public class TimetableController implements Initializable {
     public void onEditTimetable() {
         if (isEdit == true) {
             isEdit = false;
-
+            vBSubjects.setVisible(false);
             lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
             setContent();
         } else {
             isEdit = true;
+            vBSubjects.setVisible(true);
             lblInfo.setText("Bearbeitungsmodus | " + visibleTimetable.getSchoolClass().getClassname());
         }
 
         if (isEdit) {
             System.out.println("Edit");
 
-
+            vBSubjects.getChildren().add(new Label("Fächer"));
         }
     }
 }
