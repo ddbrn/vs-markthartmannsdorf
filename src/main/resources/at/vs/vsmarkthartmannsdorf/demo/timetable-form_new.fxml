@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="timetableView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimetableController_new">
+<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="timetableView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TimetableController_new">
    <right>
       <VBox id="rightContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="553.0" prefWidth="197.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="100.0" spacing="20.0">
-               <children>
-                  <ImageView id="buttons" fx:id="OnAddSubject" fitHeight="22.0" fitWidth="35.0" onMouseClicked="#addSubject" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/add-user.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-                  <ImageView id="buttons" fitHeight="22.0" fitWidth="35.0" layoutX="73.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/remove-user.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
             <ListView id="teacherList" fx:id="lvTimetables" onMouseClicked="#onSelectClass" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -55,7 +39,8 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="TOP_LEFT">
                <children>
                   <Label text="Stundenanzahl" />
-                  <ChoiceBox fx:id="cbHours" prefWidth="150.0" />
+                  <ComboBox fx:id="cbHours" onAction="#onChangeHours" prefWidth="150.0" />
+                  <Button mnemonicParsing="false" onAction="#onEditTimetable" text="Stundenplan bearbeiten" />
                </children>
             </HBox>
          </top>

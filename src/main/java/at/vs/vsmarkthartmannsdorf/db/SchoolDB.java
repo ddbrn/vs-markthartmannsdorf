@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class SchoolDB {
     private static SchoolDB instance;
@@ -97,4 +99,20 @@ public class SchoolDB {
         }
     }
 
+    public void updateTimetable(Timetable_new timetable_new, int maxHours){
+        SchoolDB.getInstance().getTimetables().get(timetables.indexOf(timetable_new)).setMaxHours(maxHours);
+    }
+
+    public Optional<Timetable_new> findTimetableByClass(SchoolClass schoolClass){
+        return timetables.stream().filter(timetable_new -> timetable_new.getSchoolClass().equals(schoolClass)).findFirst();
+    }
+
+    public void addSubject(Day day, int hour, TeacherSubject teacherSubject, Timetable_new timetable){
+        SchoolDB.getInstance().getTimetables().get(SchoolDB.getInstance().getTimetables().indexOf(timetable)).addSubject(day, hour, teacherSubject);
+    }
+
+    public List<TeacherSubject> getTeacherBySubject(Subject subject){
+        return SchoolDB.getInstance().getTeacherSubjects().stream().filter(teacherSubject ->
+                teacherSubject.getSubject() == subject).collect(Collectors.toList());
+    }
 }
