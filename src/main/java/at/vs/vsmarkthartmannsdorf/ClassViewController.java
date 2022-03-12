@@ -3,7 +3,6 @@ package at.vs.vsmarkthartmannsdorf;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
-import at.vs.vsmarkthartmannsdorf.data.TimetableDay;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

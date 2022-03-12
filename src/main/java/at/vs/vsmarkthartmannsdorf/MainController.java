@@ -66,7 +66,7 @@ public class MainController implements Initializable {
             classViewController.setParent(this);
 
             //Load TimetableView
-            FXMLLoader timetableLoader = fxmlLoad("demo/timetable-form_new.fxml");
+            FXMLLoader timetableLoader = fxmlLoad("demo/timetable.fxml");
             timetableView = timetableLoader.load();
             timetableViewController = timetableLoader.getController();
             // timetableViewController.setParent(this);
