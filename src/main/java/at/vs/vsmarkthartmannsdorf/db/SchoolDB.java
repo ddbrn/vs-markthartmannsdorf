@@ -22,11 +22,6 @@ public class SchoolDB {
         timetables = FXCollections.observableArrayList();
         teacherSubjects = FXCollections.observableArrayList();
 
-        addTeacher(new Teacher("Simon", "Schoeggler", "SS", new ArrayList<>()));
-        addSchoolClass(new SchoolClass("4AHIF", teachers.get(0)));
-        timetables.add(new Timetable_new(schoolClasses.get(0),
-                Integer.parseInt(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.max_stunden.name()))));
-
         for (Teacher teacher: teachers){
             for (Subject subject: teacher.getSubjects()){
                 teacherSubjects.add(new TeacherSubject(teacher, subject));
@@ -96,7 +91,10 @@ public class SchoolDB {
     }
 
     public void setSchoolClasses(List<SchoolClass> schoolClasses) {
-        this.schoolClasses.setAll(schoolClasses);
+        this.schoolClasses = FXCollections.observableArrayList();
+        for (SchoolClass schoolClass: schoolClasses){
+            addSchoolClass(schoolClass);
+        }
     }
 
 }

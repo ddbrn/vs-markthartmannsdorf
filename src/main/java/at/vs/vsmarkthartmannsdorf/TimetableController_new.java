@@ -48,9 +48,11 @@ public class TimetableController_new implements Initializable {
         cbHours.setItems(olHours);
     }
 
-    public void load() {
+    public void reload() {
         ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().clear();
         ((BorderPane) root.getCenter()).getTop().setVisible(false);
+
+        lvTimetables.setItems(SchoolDB.getInstance().getTimetables());
 
         // visibleTimetable = SchoolDB.getInstance().getTimetables().get(0);
         // ((VBox) root.getCenter()).getChildren().add(buildTimetable(visibleTimetable));
@@ -138,7 +140,7 @@ public class TimetableController_new implements Initializable {
         ((BorderPane) root.getCenter()).getTop().setVisible(true);
 
         visibleTimetable = lvTimetables.getSelectionModel().getSelectedItem();
-        visibleTimetable.addSubject(Day.Dienstag, 1, new TeacherSubject(SchoolDB.getInstance().getTeachers().get(0), Subject.Deutsch));
+        // visibleTimetable.addSubject(Day.Dienstag, 1, new TeacherSubject(SchoolDB.getInstance().getTeachers().get(0), Subject.Deutsch));
 
         ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().add(buildTimetable(visibleTimetable));
     }

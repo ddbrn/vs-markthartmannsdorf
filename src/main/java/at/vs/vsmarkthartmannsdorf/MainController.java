@@ -130,7 +130,7 @@ public class MainController implements Initializable {
         setHighlightedNav(timetableBox);
 
 
-        timetableViewController.load();
+        timetableViewController.reload();
 
         main.setCenter(timetableView);
         main.setBottom(null);
