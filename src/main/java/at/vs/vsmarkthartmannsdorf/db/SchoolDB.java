@@ -4,6 +4,7 @@ import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -101,7 +102,7 @@ public class SchoolDB {
     }
 
     public void addSubject(Day day, int hour, TeacherSubject teacherSubject, Timetable timetable){
-        getTimetables().get(getTimetables().indexOf(timetable)).addSubject(day, hour, teacherSubject);
+        getTimetables().get(getTimetables().indexOf(timetable)).addSubject(day, hour, new Lesson(teacherSubject.getSubject(), Arrays.asList(teacherSubject)));
     }
 
     public List<TeacherSubject> getTeacherBySubject(Subject subject){
@@ -110,14 +111,14 @@ public class SchoolDB {
     }
 
     public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable timetable){
-        TeacherSubject sourceTeacherSubject = timetable.getSubjects().get(sourceDay).get(sourceHour);
-        TeacherSubject targetTeacherSubject = timetable.getSubjects().get(targetDay).get(targetHour);
+        Lesson sourceTeacherLesson = timetable.getSubjects().get(sourceDay).get(sourceHour);
+        Lesson targetTeacherLesson = timetable.getSubjects().get(targetDay).get(targetHour);
 
         timetables.stream()
                 .filter(timetable_new -> timetable_new.getSchoolClass()
-                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherSubject);
+                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherLesson);
         timetables.stream()
                 .filter(timetable_new -> timetable_new.getSchoolClass()
-                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherSubject);
+                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherLesson);
     }
 }

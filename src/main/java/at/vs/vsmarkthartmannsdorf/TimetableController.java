@@ -70,13 +70,12 @@ public class TimetableController implements Initializable {
 
         column = 1;
 
-        HashMap<Day, HashMap<Integer, TeacherSubject>> subjects = timetable.getSubjects();
         for (Day day : Day.values()) {
             if (column == Day.values().length + 1) {
                 column = 1;
             }
             for (int i = 1; i <= Timetable.MAX_HOURS; i++) {
-                TeacherSubject teacherSubject = visibleTimetable.getSubjects().get(day).get(i);
+                Lesson lesson = visibleTimetable.getSubjects().get(day).get(i);
                 if (row == Timetable.MAX_HOURS + 1) {
                     row = 1;
                 }
@@ -84,8 +83,8 @@ public class TimetableController implements Initializable {
                 VBox vBox = new VBox();
 
                 Color color = null;
-                if (teacherSubject.getSubject() != null) {
-                    String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(teacherSubject.getSubject().name());
+                if (lesson.getSubject() != null) {
+                    String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(lesson.getSubject().name());
                     color = Color.valueOf(colorHex);
 
                     vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -94,13 +93,23 @@ public class TimetableController implements Initializable {
                 vBox.setPadding(new Insets(10, 10, 10, 10));
 
                 Label lblSubject;
-                Label lblTeacher;
+                Label lblTeacher = new Label("");;
 
-                lblTeacher = teacherSubject.getTeacher() == null ? new Label(" ") : new Label(teacherSubject.getTeacher().getAbbreviation());
-                lblSubject = teacherSubject.getSubject() == null ? new Label(" ") : new Label(teacherSubject.getSubject().name());
+                if (!lesson.getTeacher().isEmpty()){
+                    for (int k = 0; k < lesson.getTeacher().size(); k++){
+                        if (k == 0){
+                            lblTeacher.setText(lesson.getTeacher().get(k).getTeacher().getAbbreviation());
+                        }
+                        if (k != lesson.getTeacher().size() - 1){
+                            lblTeacher.setText(lblTeacher.getText() + " | " + lesson.getTeacher().get(k).getTeacher().getAbbreviation());
+                        }
+                    }
+                }
+
+                lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().name());
 
                 if (color != null) {
-                    if (color.getBrightness() < 0.5) {
+                    if (color.getBrightness() < 0) {
                         lblTeacher.setStyle("-fx-text-fill: white");
                         lblSubject.setStyle("-fx-text-fill: white");
                     }
@@ -209,7 +218,8 @@ public class TimetableController implements Initializable {
         visibleTimetable = lvTimetables.getSelectionModel().getSelectedItem();
         lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
 
-        visibleTimetable.addSubject(Day.Montag, 1, SchoolDB.getInstance().getTeacherSubjects().get(0));
+        visibleTimetable.addSubject(Day.Montag, 1,
+                new Lesson(Subject.Deutsch, Arrays.asList(SchoolDB.getInstance().getTeacherSubjects().get(0))));
         setContent();
     }
 
