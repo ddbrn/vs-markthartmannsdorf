@@ -193,12 +193,11 @@ public class TimetableController implements Initializable {
 
                 int finalRow1 = row;
                 vBox.setOnMouseClicked(mouseEvent -> {
-                    hbTeacher.getChildren().clear();
+                    hbTeacher = new HBox();
                     if (isEdit){
                         hbTeacher.setVisible(true);
                         GridPane teacherGrid = new GridPane();
                         List<TeacherSubject> availableTeacher = SchoolDB.getInstance().getTeacherBySubject(lesson.getSubject());
-                        System.out.println(availableTeacher);
                         int k = 0;
                         int j = 0;
                         for (TeacherSubject teacherSubject: availableTeacher){
@@ -227,7 +226,11 @@ public class TimetableController implements Initializable {
                             teacherGrid.add(cb, k, j++);
                         }
                         teacherGrid.setVgap(5);
+                        hbTeacher.getChildren().clear();
                         hbTeacher.getChildren().add(teacherGrid);
+                    }
+                    if (vbSidePanel.getChildren().size() == 2){
+                        vbSidePanel.getChildren().remove(1);
                     }
                     vbSidePanel.getChildren().add(hbTeacher);
                 });
