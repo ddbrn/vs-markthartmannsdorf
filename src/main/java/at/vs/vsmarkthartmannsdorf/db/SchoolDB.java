@@ -158,4 +158,11 @@ public class SchoolDB {
                 .getTeacher()
                 .contains(teacherSubject);
     }
+
+    public Timetable getTimetableFromClass(SchoolClass schoolClass){
+        return timetables.stream()
+                .filter(t -> t.getSchoolClass().equals(schoolClass))
+                .findFirst()
+                .get();
+    }
 }

@@ -5,6 +5,7 @@ import at.vs.vsmarkthartmannsdorf.data.PropertyName;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -23,7 +24,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class IOAccess_Excel {
-    /*private static Stage stage;
+    /* private static Stage stage;
 
     public static void setStage(Stage stage) {
         IOAccess_Excel.stage = stage;
@@ -163,6 +164,7 @@ public class IOAccess_Excel {
                 cellH = rowClassesH.createCell(5);
                 cellH.setCellValue("Freitag");
                 cellH.setCellStyle(styleH);
+
 
                 schoolClass.getTimetable().getTimetableDays().forEach(timetableDay -> {
 
@@ -516,6 +518,6 @@ public class IOAccess_Excel {
 
     private static void skipImage(Iterator<Row> rowIterator) {
         rowIterator.next();
-    }*/
+    } */
 }
 
