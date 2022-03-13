@@ -71,7 +71,10 @@ public class TimetableController implements Initializable {
         ((BorderPane) root.getCenter()).getTop().setVisible(false);
         vbSidePanel.setVisible(false);
 
+        List<Timetable> timetable = SchoolDB.getInstance().getTimetables();
+
         lvTimetables.setItems(SchoolDB.getInstance().getTimetables());
+        lvTimetables.refresh();
     }
 
     public GridPane buildTimetable() {

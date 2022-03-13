@@ -4,22 +4,6 @@
     "firstname" : "Simon",
     "surname" : "SCHÖGGLER",
     "abbreviation" : "SGR",
-    "subjects" : [ "Musik", "Sachkunde" ]
-  }
-}, {
-  "classname" : "1C",
-  "teacher" : {
-    "firstname" : "David",
-    "surname" : "BRANNAN",
-    "abbreviation" : "BRN",
-    "subjects" : [ "Musik", "Sachkunde" ]
-  }
-}, {
-  "classname" : "1D",
-  "teacher" : {
-    "firstname" : "David",
-    "surname" : "BRANNAN",
-    "abbreviation" : "BRN",
-    "subjects" : [ "Musik", "Sachkunde" ]
+    "subjects" : [ "Mathematik", "Musik" ]
   }
 } ]

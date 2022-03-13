@@ -28,7 +28,7 @@ public class MainApplication extends Application {
         controller.setStage(stage);
         // controller.setTeachers(IOAccess.readTeacherFiles());
 
-        // IOAccess_Excel.setStage(stage);
+        IOAccess_Excel.setStage(stage);
         IOAccess_PDF.setStage(stage);
         IOAccess.readTimetableFiles();
     }

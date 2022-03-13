@@ -1,10 +1,7 @@
 package at.vs.vsmarkthartmannsdorf.bl;
 
 import at.vs.vsmarkthartmannsdorf.Main;
-import at.vs.vsmarkthartmannsdorf.data.PropertyName;
-import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
-import at.vs.vsmarkthartmannsdorf.data.Subject;
-import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.data.*;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -21,10 +18,13 @@ import org.apache.poi.xssf.usermodel.*;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class IOAccess_Excel {
-    /* private static Stage stage;
+    private static Stage stage;
 
     public static void setStage(Stage stage) {
         IOAccess_Excel.stage = stage;
@@ -146,27 +146,71 @@ public class IOAccess_Excel {
                 cellH.setCellValue("");
 
                 cellH = rowClassesH.createCell(1);
-                cellH.setCellValue("Montag");
+                cellH.setCellValue(Day.Montag.name());
                 cellH.setCellStyle(styleH);
 
                 cellH = rowClassesH.createCell(2);
-                cellH.setCellValue("Dienstag");
+                cellH.setCellValue(Day.Dienstag.name());
                 cellH.setCellStyle(styleH);
 
                 cellH = rowClassesH.createCell(3);
-                cellH.setCellValue("Mittwoch");
+                cellH.setCellValue(Day.Mittwoch.name());
                 cellH.setCellStyle(styleH);
 
                 cellH = rowClassesH.createCell(4);
-                cellH.setCellValue("Donnerstag");
+                cellH.setCellValue(Day.Donnerstag.name());
                 cellH.setCellStyle(styleH);
 
                 cellH = rowClassesH.createCell(5);
-                cellH.setCellValue("Freitag");
+                cellH.setCellValue(Day.Freitag.name());
                 cellH.setCellStyle(styleH);
 
+                Timetable timetable = SchoolDB.getInstance().getTimetableFromClass(schoolClass);
 
-                schoolClass.getTimetable().getTimetableDays().forEach(timetableDay -> {
+
+                IntStream.range(1, 9).forEach(i -> {
+                    XSSFRow rowClasses = sheetClasses.createRow(rowCountClasses[0]++);
+                    AtomicReference<XSSFCell> cell = new AtomicReference<>(rowClasses.createCell(0));
+
+                    cell.get().setCellValue(i);
+
+                    AtomicReference<Color> color = new AtomicReference<>();
+
+                    AtomicInteger index = new AtomicInteger(1);
+
+                    Arrays.stream(Day.values()).forEach(day -> {
+                        cell.set(rowClasses.createCell(index.getAndIncrement()));
+                        Lesson lesson = timetable.getSubjects().get(day).get(i);
+                        if (!lesson.isEmptyLesson()) {
+                            cell.get().setCellValue(lesson.getSubject().name());
+
+                            color.set(Color.valueOf(
+                                    PropertiesLoader
+                                            .getInstance()
+                                            .getProperties()
+                                            .getProperty(lesson.getSubject().name())));
+
+                            byte[] rgb =
+                                    new byte[]{(byte) (color.get().getRed() * 127), (byte) (color.get().getGreen() * 127), (byte) (color.get().getBlue() * 127)};
+
+                            XSSFCellStyle styleC = wb.createCellStyle();
+
+                            //create XSSFColor
+                            XSSFColor xssfColor = new XSSFColor(rgb, new DefaultIndexedColorMap());
+                            //set fill color to cell style
+                            XSSFFont fontC = wb.createFont();
+                            fontC.setColor(xssfColor);
+                            styleC.setFont(fontC);
+                            //styleC.setFillForegroundColor(xssfColor);
+
+
+                            cell.get().setCellStyle(styleC);
+                        }
+                    });
+
+                });
+
+                /*schoolClass.getTimetable().getTimetableDays().forEach(timetableDay -> {
 
                     XSSFRow rowClasses = sheetClasses.createRow(rowCountClasses[0]++);
                     XSSFCell cell = rowClasses.createCell(0);
@@ -312,7 +356,7 @@ public class IOAccess_Excel {
 
                         cell.setCellStyle(styleC);
                     }
-                });
+                }); */
                 int firstRowC = 0;
                 int lastRowC = 5;
                 int firstColC = 0;
@@ -518,6 +562,6 @@ public class IOAccess_Excel {
 
     private static void skipImage(Iterator<Row> rowIterator) {
         rowIterator.next();
-    } */
+    }
 }
 
