@@ -3,8 +3,11 @@ package at.vs.vsmarkthartmannsdorf;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
@@ -19,10 +22,13 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import lombok.Data;
+import org.controlsfx.control.action.Action;
+import org.controlsfx.control.action.ActionUtils;
 import org.controlsfx.control.spreadsheet.Grid;
 
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.zip.InflaterInputStream;
@@ -173,9 +179,22 @@ public class TimetableController implements Initializable {
                             }else{
                                 Subject subject = Subject.valueOf(db.getString());
 
-                                addSubject(day, finalRow, new Lesson(subject, Arrays.asList(SchoolDB.getInstance().getTeacherSubjects().get(0))));
-                            }
+                                List<MenuItem> items = new ArrayList<>();
+                                for (TeacherSubject teacherSubject: SchoolDB.getInstance().getTeacherBySubject(subject)){
+                                    MenuItem menuItem = new MenuItem(teacherSubject.getTeacher().getAbbreviation());
+                                    menuItem.setOnAction(actionEvent -> {
+                                        addSubject(day, finalRow, new Lesson(subject, Arrays.asList(SchoolDB.getInstance()
+                                                .getTeacherSubjects()
+                                                .stream()
+                                                .filter(teacherSubject1 -> teacherSubject1.getTeacher().getAbbreviation().equals(menuItem.getText())).findFirst().get())));
+                                    });
+                                    items.add(menuItem);
+                                }
+                                ContextMenu contextMenu = new ContextMenu();
+                                contextMenu.getItems().addAll(items);
 
+                                contextMenu.show(timetableView, dragEvent.getScreenX(), dragEvent.getScreenY());
+                            }
                             success = true;
                         }
                         dragEvent.setDropCompleted(success);
