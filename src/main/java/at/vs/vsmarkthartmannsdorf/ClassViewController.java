@@ -10,15 +10,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ClassViewController implements Initializable {
 
@@ -68,13 +65,39 @@ public class ClassViewController implements Initializable {
     @FXML
     protected void removeClass(){
         ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
+        boolean singular = false;
 
-        indices.forEach(i -> {
-            SchoolDB.getInstance().removeSchoolClass(classList.getItems().get(i));
+        if (indices.size() == 0) {
+            return;
+        } else if (indices.size() == 1) {
+            singular = true;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("vs-martkhartmannsdorf | LÖSCHEN");
+        if (singular) {
+            alert.setHeaderText("Wollen Sie die Klasse löschen");
+        } else {
+            alert.setHeaderText("Wollen Sie die Klassen löschen");
+        }
+        alert.setContentText("Löschen?");
+        ButtonType okButton = new ButtonType("Ja", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("Nein", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.showAndWait().ifPresent(type -> {
+            if (type.getButtonData().equals(ButtonBar.ButtonData.YES)) {
+
+                indices.stream().sorted(Comparator.reverseOrder()).forEach(i -> {
+                    System.out.println(i);
+                    SchoolDB.getInstance().removeSchoolClass(classList.getItems().get(i));
+                });
+
+
+                classList.setItems(SchoolDB.getInstance().getSchoolClasses());
+            }
         });
 
 
-        classList.setItems(SchoolDB.getInstance().getSchoolClasses());
         /*ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
         System.out.println(classes);
         for (int i = indices.size() - 1; i >= 0; i--){

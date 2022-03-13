@@ -97,7 +97,7 @@ public class TeacherViewController implements Initializable {
                 dismountForm();
                 System.out.println(teachers);
 
-                indices.forEach(i -> {
+                indices.stream().sorted(Comparator.reverseOrder()).forEach(i -> {
                     SchoolDB.getInstance().removeTeacher(teacherList.getItems().get(i));
                 });
 
