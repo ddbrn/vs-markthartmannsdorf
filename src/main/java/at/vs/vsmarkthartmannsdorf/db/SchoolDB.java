@@ -59,12 +59,8 @@ public class SchoolDB {
         addTimetable(new Timetable_new(schoolClass));
     }
 
-    public void removeSchoolClass(ObservableList<Integer> indices){
-        for (int i = indices.size() - 1; i >= 0; i--){
-            int finalI = i;
-            timetables.remove(getTimetables().stream().filter(timetable_new -> timetable_new.getSchoolClass() == getSchoolClasses().get(finalI)).findFirst());
-            schoolClasses.remove(i);
-        }
+    public void removeSchoolClass(SchoolClass schoolClass){
+        schoolClasses.remove(schoolClass);
     }
 
     private void addTimetable(Timetable_new timetable_new){

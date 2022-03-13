@@ -113,6 +113,7 @@ public class MainController implements Initializable {
         main.setCenter(classView);
         main.setBottom(null);
         main.setRight(null);
+        classViewController.updateClasses();
         if (classesOpened) {
             classViewController.dismountForm();
             classViewController.addClass();

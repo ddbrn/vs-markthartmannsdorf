@@ -147,16 +147,22 @@ public class TeacherViewController implements Initializable {
 
     public void updateTeacher() {
         teacherList.setItems(SchoolDB.getInstance().getTeachers());
+        teacherList.refresh();
     }
 
     public void editTeacher (Teacher oldTeacher, String firstname, String lastname, String abbrevation, List<Subject> subjects) {
         Teacher teacher = new Teacher(StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
         dismountForm();
-        int index = SchoolDB.getInstance().getTeachers().indexOf(oldTeacher);
+       /* int index = SchoolDB.getInstance().getTeachers().indexOf(oldTeacher);
 
         SchoolDB.getInstance().getTeachers().set(index, teacher);
 
-        SchoolDB.getInstance().getTeachers().remove(oldTeacher);
+        SchoolDB.getInstance().getTeachers().remove(oldTeacher);*/
+
+        oldTeacher.setFirstname(teacher.getFirstname());
+        oldTeacher.setSurname(teacher.getSurname());
+        oldTeacher.setAbbreviation(teacher.getAbbreviation());
+        oldTeacher.setSubjects(teacher.getSubjects());
 
         updateTeacher();
 

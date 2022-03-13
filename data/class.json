@@ -1,10 +1,69 @@
 [ {
-  "classname" : "4AHIF",
+  "classname" : "2B",
   "teacher" : {
     "firstname" : "Simon",
-    "surname" : "Schöggler",
+    "surname" : "SCHÖGGLER",
     "abbreviation" : "SGR",
-    "subjects" : [ "Mathematik", "Musik" ]
+    "subjects" : [ "Mathematik", "Englisch", "Deutsch" ]
+  },
+  "timetable" : {
+    "timetableDays" : [ {
+      "id" : 1,
+      "time" : "07:45 - 08:35",
+      "monday" : "Mathematik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Englisch",
+      "thursday" : "Sachkunde",
+      "friday" : "Musik"
+    }, {
+      "id" : 2,
+      "time" : "08:40 - 09:30",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : "Musik"
+    }, {
+      "id" : 3,
+      "time" : "09:50 - 10:40",
+      "monday" : "Musik",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Musik",
+      "thursday" : "Sachkunde",
+      "friday" : "Mathematik"
+    }, {
+      "id" : 4,
+      "time" : "10:45 - 11:35",
+      "monday" : "Deutsch",
+      "tuesday" : "Deutsch",
+      "wednesday" : "Sachkunde",
+      "thursday" : "Deutsch",
+      "friday" : "Mathematik"
+    }, {
+      "id" : 5,
+      "time" : "11:45 - 12:35",
+      "monday" : "Sachkunde",
+      "tuesday" : "Mathematik",
+      "wednesday" : "Musik",
+      "thursday" : "Deutsch",
+      "friday" : ""
+    }, {
+      "id" : 6,
+      "time" : "12:45 - 13:35",
+      "monday" : "",
+      "tuesday" : "",
+      "wednesday" : "",
+      "thursday" : "",
+      "friday" : ""
+    } ]
+  }
+}, {
+  "classname" : "3D",
+  "teacher" : {
+    "firstname" : "David",
+    "surname" : "BRANNAN",
+    "abbreviation" : "BRN",
+    "subjects" : [ "Mathematik", "Deutsch" ]
   },
   "timetable" : {
     "timetableDays" : [ {

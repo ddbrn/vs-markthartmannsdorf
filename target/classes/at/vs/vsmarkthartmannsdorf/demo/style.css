@@ -210,6 +210,12 @@
     -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
 }
 
+.timetableView #hotbar {
+    -fx-background-color: #dedcdc;
+    -fx-background-radius: 10 10 10 10;
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 2, 0, 0, 2);
+}
+
 check-box .box {
 
     -fx-background-color: white;
