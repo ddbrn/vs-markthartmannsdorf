@@ -75,7 +75,7 @@
             </HBox>
          </top>
          <bottom>
-            <VBox fx:id="vBSubjects" prefHeight="139.0" prefWidth="583.0" BorderPane.alignment="CENTER" />
+            <HBox fx:id="hbSubjects" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </center>

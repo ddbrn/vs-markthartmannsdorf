@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.zip.InflaterInputStream;
 
 public class TimetableController implements Initializable {
 
@@ -26,7 +27,7 @@ public class TimetableController implements Initializable {
     public ListView<Timetable> lvTimetables;
     public BorderPane root;
     public Label lblInfo;
-    public VBox vBSubjects;
+    public HBox hbSubjects;
 
     private boolean isEdit;
     private Timetable visibleTimetable;
@@ -42,7 +43,7 @@ public class TimetableController implements Initializable {
 
         lblInfo.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
 
-        vBSubjects.setVisible(false);
+        hbSubjects.setVisible(false);
     }
 
     public void load() {
@@ -54,7 +55,7 @@ public class TimetableController implements Initializable {
         lvTimetables.setItems(SchoolDB.getInstance().getTimetables());
     }
 
-    public GridPane buildTimetable(Timetable timetable) {
+    public GridPane buildTimetable() {
         AtomicReference<GridPane> timeTableView = new AtomicReference<>(new GridPane());
 
         int column = 1;
@@ -207,8 +208,8 @@ public class TimetableController implements Initializable {
         return result;
     }
 
-    public void addSubject(Day day, int hour, TeacherSubject teacherSubject) {
-        SchoolDB.getInstance().addSubject(day, hour, teacherSubject, visibleTimetable);
+    public void addSubject(Day day, int hour, Lesson lesson) {
+        SchoolDB.getInstance().addSubject(day, hour, lesson, visibleTimetable);
         reload();
         setContent();
     }
@@ -255,7 +256,7 @@ public class TimetableController implements Initializable {
     public void setContent() {
         ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().clear();
         ((BorderPane) root.getCenter()).getTop().setVisible(true);
-        ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().add(buildTimetable(visibleTimetable));
+        ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().add(buildTimetable());
     }
 
     public void reload() {
@@ -270,19 +271,28 @@ public class TimetableController implements Initializable {
     public void onEditTimetable() {
         if (isEdit == true) {
             isEdit = false;
-            vBSubjects.setVisible(false);
+            hbSubjects.setVisible(false);
             lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
             setContent();
         } else {
             isEdit = true;
-            vBSubjects.setVisible(true);
+            hbSubjects.setVisible(true);
             lblInfo.setText("Bearbeitungsmodus | " + visibleTimetable.getSchoolClass().getClassname());
         }
 
         if (isEdit) {
             System.out.println("Edit");
+            hbSubjects.getChildren().clear();
 
-            vBSubjects.getChildren().add(new Label("Fächer"));
+            for (Subject subject: Subject.values()){
+                VBox vBox = new VBox();
+
+                vBox.getChildren().add(new Label(subject.name()));
+                vBox.setPadding(new Insets(10, 10, 10, 10));
+
+                hbSubjects.getChildren().add(vBox);
+            }
+
         }
     }
 }
