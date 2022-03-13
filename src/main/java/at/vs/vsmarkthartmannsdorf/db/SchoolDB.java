@@ -16,52 +16,56 @@ public class SchoolDB {
     private ObservableList<Timetable> timetables;
     private ObservableList<TeacherSubject> teacherSubjects;
 
-    private SchoolDB (){
+    private SchoolDB() {
         teachers = FXCollections.observableArrayList();
         schoolClasses = FXCollections.observableArrayList();
         timetables = FXCollections.observableArrayList();
         teacherSubjects = FXCollections.observableArrayList();
 
-        for (Teacher teacher: teachers){
-            for (Subject subject: teacher.getSubjects()){
+        for (Teacher teacher : teachers) {
+            for (Subject subject : teacher.getSubjects()) {
                 teacherSubjects.add(new TeacherSubject(teacher, subject));
             }
         }
     }
 
-    public static SchoolDB getInstance (){
-        if (instance == null){
+    public static SchoolDB getInstance() {
+        if (instance == null) {
             instance = new SchoolDB();
         }
         return instance;
     }
 
-    public void addTeacher(Teacher teacher){
+    public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
-        for (Subject subject: teacher.getSubjects()){
+        for (Subject subject : teacher.getSubjects()) {
             teacherSubjects.add(new TeacherSubject(teacher, subject));
         }
     }
 
-    public void setTeacher(List<Teacher> teachers){
+    public void setTeacher(List<Teacher> teachers) {
         this.teachers = FXCollections.observableArrayList();
         this.teacherSubjects = FXCollections.observableArrayList();
-        for (Teacher teacher: teachers){
+        for (Teacher teacher : teachers) {
             addTeacher(teacher);
         }
     }
 
-    public void addSchoolClass(SchoolClass schoolClass){
+    public void addSchoolClass(SchoolClass schoolClass) {
         schoolClasses.add(schoolClass);
 
         addTimetable(new Timetable(schoolClass));
     }
 
-    public void removeSchoolClass(SchoolClass schoolClass){
+    public void removeSchoolClass(SchoolClass schoolClass) {
         schoolClasses.remove(schoolClass);
+
+        Optional<Timetable> timetableToRemove =
+                timetables.stream().filter(timetable -> timetable.getSchoolClass().getClassname().equals(schoolClass.getClassname())).findFirst();
+        timetableToRemove.ifPresent(timetable -> timetables.remove(timetable));
     }
 
-    private void addTimetable(Timetable timetable){
+    private void addTimetable(Timetable timetable) {
         timetables.add(timetable);
     }
 
@@ -81,31 +85,31 @@ public class SchoolDB {
         return teacherSubjects;
     }
 
-    public void removeTeacher(Teacher teacher){
+    public void removeTeacher(Teacher teacher) {
         teachers.remove(teacher);
     }
 
     public void setSchoolClasses(List<SchoolClass> schoolClasses) {
         this.schoolClasses = FXCollections.observableArrayList();
-        for (SchoolClass schoolClass: schoolClasses){
+        for (SchoolClass schoolClass : schoolClasses) {
             addSchoolClass(schoolClass);
         }
     }
 
-    public Optional<Timetable> findTimetableByClass(SchoolClass schoolClass){
+    public Optional<Timetable> findTimetableByClass(SchoolClass schoolClass) {
         return timetables.stream().filter(timetable -> timetable.equals(schoolClass)).findFirst();
     }
 
-    public void addSubject(Day day, int hour, Lesson lesson, Timetable timetable){
+    public void addSubject(Day day, int hour, Lesson lesson, Timetable timetable) {
         getTimetables().get(getTimetables().indexOf(timetable)).addSubject(day, hour, lesson);
     }
 
-    public List<TeacherSubject> getTeacherBySubject(Subject subject){
+    public List<TeacherSubject> getTeacherBySubject(Subject subject) {
         return SchoolDB.getInstance().getTeacherSubjects().stream().filter(teacherSubject ->
                 teacherSubject.getSubject() == subject).collect(Collectors.toList());
     }
 
-    public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable timetable){
+    public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable timetable) {
         Lesson sourceTeacherLesson = timetable.getSubjects().get(sourceDay).get(sourceHour);
         Lesson targetTeacherLesson = timetable.getSubjects().get(targetDay).get(targetHour);
 

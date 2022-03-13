@@ -2,5 +2,10 @@
   "firstname" : "Simon",
   "surname" : "SCHÖGGLER",
   "abbreviation" : "SGR",
-  "subjects" : [ "Mathematik", "Englisch", "Deutsch" ]
+  "subjects" : [ "Musik", "Sachkunde" ]
+}, {
+  "firstname" : "David",
+  "surname" : "BRANNAN",
+  "abbreviation" : "BRN",
+  "subjects" : [ "Musik", "Sachkunde" ]
 } ]
