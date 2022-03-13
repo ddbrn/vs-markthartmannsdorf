@@ -300,9 +300,11 @@ public class TimetableController implements Initializable {
 
     @FXML
     public void onSelectClass() {
-        visibleTimetable = lvTimetables.getSelectionModel().getSelectedItem();
-        lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
-        setContent();
+        if (!lvTimetables.getSelectionModel().isEmpty()){
+            visibleTimetable = lvTimetables.getSelectionModel().getSelectedItem();
+            lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
+            setContent();
+        }
     }
 
     public void addStyle(GridPane timetableView) {
