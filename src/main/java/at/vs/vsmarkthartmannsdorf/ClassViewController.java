@@ -12,10 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import lombok.Data;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+@Data
 public class ClassViewController implements Initializable {
 
     @FXML
@@ -28,6 +31,8 @@ public class ClassViewController implements Initializable {
 
     private ObservableList<SchoolClass> classes;
 
+    private boolean isEdit;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         classList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -39,15 +44,18 @@ public class ClassViewController implements Initializable {
         this.parent = parent;
     }
 
-    public void setItems(ObservableList<SchoolClass> classes){
+    public void setItems(ObservableList<SchoolClass> classes) {
         classList.setItems(classes);
         this.classes = classList.getItems();
     }
 
+
     @FXML
-    protected void addClass(){
+    protected void addClass() {
+        isEdit = false;
         parent.setClassesOpened(true);
-        if (((VBox) root.getCenter()).getChildren().size() == 0){
+        dismountForm();
+        if (((VBox) root.getCenter()).getChildren().size() == 0) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("demo/class-form.fxml"));
@@ -55,14 +63,14 @@ public class ClassViewController implements Initializable {
                 ((ClassFormController) fxmlLoader.getController()).setParent(this);
                 ((ClassFormController) fxmlLoader.getController()).refreshItems();
                 ((VBox) root.getCenter()).getChildren().add(vBox);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
     @FXML
-    protected void removeClass(){
+    protected void removeClass() {
         ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
         boolean singular = false;
 
@@ -86,6 +94,7 @@ public class ClassViewController implements Initializable {
         alert.showAndWait().ifPresent(type -> {
             if (type.getButtonData().equals(ButtonBar.ButtonData.YES)) {
 
+                dismountForm();
                 indices.stream().sorted(Comparator.reverseOrder()).forEach(i -> {
                     System.out.println(i);
                     SchoolDB.getInstance().removeSchoolClass(classList.getItems().get(i));
@@ -106,13 +115,53 @@ public class ClassViewController implements Initializable {
         final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
                 new TimetableDay(0, "", "", "","", "", "")
         );*/
-       // parent.getTimetableViewController().getTimeTableView().setItems(data);
+        // parent.getTimetableViewController().getTimeTableView().setItems(data);
     }
-    public void dismountForm(){
+
+    @FXML
+    public void editClass() {
+        isEdit = true;
+        if (classList.getSelectionModel().getSelectedIndices().size() == 1) {
+            dismountForm();
+            try {
+                FXMLLoader fxmlLoader = parent.fxmlLoad("demo/class-form.fxml");
+                VBox vBox = fxmlLoader.load();
+
+                ClassFormController controller = fxmlLoader.getController();
+                controller.setParent(this);
+                controller.refreshItems();
+                ((VBox) root.getCenter()).getChildren().add(vBox);
+
+
+                SchoolClass schoolClass = classList.getSelectionModel().getSelectedItem();
+                controller.setItemsIfEdited(schoolClass);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("vs-martkhartmannsdorf | BEARBEITEN");
+            alert.setHeaderText("Bitte nur eine Klasse zum Bearbeiten auswählen!");
+            alert.showAndWait();
+        }
+
+    }
+
+    public void editClass (SchoolClass oldSchoolClass, String classname, Teacher teacher) {
+        SchoolClass schoolClass = new SchoolClass(classname, teacher);
+        dismountForm();
+
+        oldSchoolClass.setClassname(schoolClass.getClassname());
+        oldSchoolClass.setTeacher(schoolClass.getTeacher());
+
+        updateClasses();
+    }
+
+    public void dismountForm() {
         ((VBox) root.getCenter()).getChildren().clear();
     }
 
-    public void submitForm(String classname, Teacher teacher){
+    public void submitForm(String classname, Teacher teacher) {
         SchoolClass schoolClass = new SchoolClass(classname, teacher);
 
         dismountForm();
@@ -124,7 +173,7 @@ public class ClassViewController implements Initializable {
         return parent;
     }
 
-    public void updateClasses () {
+    public void updateClasses() {
         classList.setItems(SchoolDB.getInstance().getSchoolClasses());
         classList.refresh();
     }

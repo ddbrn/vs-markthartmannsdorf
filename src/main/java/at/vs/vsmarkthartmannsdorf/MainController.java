@@ -129,6 +129,7 @@ public class MainController implements Initializable {
 
 
         timetableViewController.load();
+        timetableViewController.getLvTimetables().refresh();
 
         main.setCenter(timetableView);
         main.setBottom(null);

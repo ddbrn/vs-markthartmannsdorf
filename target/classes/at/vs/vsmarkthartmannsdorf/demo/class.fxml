@@ -13,9 +13,9 @@
    <right>
       <VBox id="rightContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="553.0" prefWidth="197.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="100.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="100.0" spacing="20.0" styleClass="buttonGroup">
                <children>
-                  <ImageView id="buttons" fitHeight="22.0" fitWidth="35.0" onMouseClicked="#addClass" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="buttons" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#addClass" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/add-user.png" />
                      </image>
@@ -23,9 +23,14 @@
                         <Rectangle2D />
                      </viewport>
                   </ImageView>
-                  <ImageView id="buttons" fitHeight="22.0" fitWidth="35.0" layoutX="73.0" layoutY="15.0" onMouseClicked="#removeClass" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="buttons" fitHeight="25.0" fitWidth="25.0" layoutX="73.0" layoutY="15.0" onMouseClicked="#removeClass" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/remove-user.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="buttons" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#editClass" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/pencil.png" />
                      </image>
                   </ImageView>
                </children>

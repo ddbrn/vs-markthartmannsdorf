@@ -15,12 +15,14 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import lombok.Data;
 
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.zip.InflaterInputStream;
 
+@Data
 public class TimetableController implements Initializable {
 
     @FXML

@@ -28,6 +28,11 @@
                         <Image url="@icons/remove-user.png" />
                      </image>
                   </ImageView>
+                  <ImageView id="buttons" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#editClass" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/pencil.png" />
+                     </image>
+                  </ImageView>
                </children>
                <VBox.margin>
                   <Insets />

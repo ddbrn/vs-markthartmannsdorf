@@ -125,6 +125,11 @@ public class TeacherViewController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("vs-martkhartmannsdorf | BEARBEITEN");
+            alert.setHeaderText("Bitte nur einen Lehrer zum Bearbeiten auswählen!");
+            alert.showAndWait();
         }
     }
 

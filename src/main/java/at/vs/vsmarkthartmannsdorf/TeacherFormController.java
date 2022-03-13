@@ -27,9 +27,6 @@ public class TeacherFormController implements Initializable {
     public Label info;
     public VBox teacherVBox;
 
-    private ObservableList<Subject> olAvailableSubjects;
-    private ObservableList<Subject> olAssignedSubjects;
-
     private TeacherViewController parent;
 
     private List<CheckBox> cbs;
@@ -38,8 +35,6 @@ public class TeacherFormController implements Initializable {
     private Teacher oldTeacher;
 
     public TeacherFormController() {
-        this.olAvailableSubjects = FXCollections.observableArrayList();;
-        this.olAssignedSubjects = FXCollections.observableArrayList();;
     }
 
     @Override
@@ -115,32 +110,6 @@ public class TeacherFormController implements Initializable {
     }
 
     @FXML
-    public void addSubject(){
-        ObservableList<Integer> indices = availableSubjects.getSelectionModel().getSelectedIndices();
-        indices.forEach(i -> olAssignedSubjects.add(olAvailableSubjects.get(i)));
-
-        for(int i = indices.size() - 1; i > -1; i--){
-            olAvailableSubjects.remove(olAvailableSubjects.get(indices.get(i)));
-        }
-
-        assignedSubjects.setItems(olAssignedSubjects);
-        availableSubjects.setItems(olAvailableSubjects);
-    }
-
-    @FXML
-    public void removeSubject(){
-        ObservableList<Integer> indices = assignedSubjects.getSelectionModel().getSelectedIndices();
-        indices.forEach(i -> olAvailableSubjects.add(olAssignedSubjects.get(i)));
-
-        for(int i = indices.size() - 1; i > -1; i--){
-            olAssignedSubjects.remove(olAssignedSubjects.get(indices.get(i)));
-        }
-
-        assignedSubjects.setItems(olAssignedSubjects);
-        availableSubjects.setItems(olAvailableSubjects);
-    }
-
-    @FXML
     public void cancel(){
         parent.dismountForm();
     }
@@ -174,19 +143,6 @@ public class TeacherFormController implements Initializable {
             parent.updateTeacher();
             return;
         }
-
-
-        /*if(!(firstname.getText().isEmpty() || surname.getText().isEmpty() || abbreviation.getText().isEmpty() || olAssignedSubjects.size() == 0)){
-            if(SchoolDB.getInstance().getTeachers().stream().noneMatch(teacher -> teacher.getAbbreviation().equalsIgnoreCase(abbreviation.getText()))){
-               parent.submitForm(firstname.getText(), surname.getText(), abbreviation.getText(), olAssignedSubjects);
-            }else{
-                info.setText("Dieses Kürzel gibt es bereits");
-                info.setVisible(true);
-            }
-        }else{
-            info.setText("Bitte füllen Sie alle Felder aus!");
-            info.setVisible(true);
-        }*/
 
         if(!(firstname.getText().isEmpty() || surname.getText().isEmpty() || abbreviation.getText().isEmpty() || selectedSubjects.size() == 0)){
             if(SchoolDB.getInstance().getTeachers().stream().noneMatch(teacher -> teacher.getAbbreviation().equalsIgnoreCase(abbreviation.getText()))){
