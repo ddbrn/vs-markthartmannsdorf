@@ -75,7 +75,7 @@
             </HBox>
          </top>
          <left>
-            <HBox fx:id="hbSubjects" BorderPane.alignment="CENTER" />
+            <VBox fx:id="vbSidePanel" BorderPane.alignment="CENTER" />
          </left>
       </BorderPane>
    </center>

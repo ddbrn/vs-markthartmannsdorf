@@ -40,11 +40,14 @@ public class TimetableController implements Initializable {
     public ListView<Timetable> lvTimetables;
     public BorderPane root;
     public Label lblInfo;
-    public HBox hbSubjects;
+    public VBox vbSidePanel;
 
     private boolean isEdit;
     private Timetable visibleTimetable;
     private GridPane timetableView;
+    private HBox hbTeacher;
+    private HBox hbSubjects;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -56,16 +59,17 @@ public class TimetableController implements Initializable {
         isEdit = false;
 
         lblInfo.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
-
-        hbSubjects.setVisible(false);
+        vbSidePanel.setVisible(false);
         timetableView = null;
     }
 
     public void load() {
         isEdit = false;
+        vbSidePanel.getChildren().clear();
 
         ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().clear();
         ((BorderPane) root.getCenter()).getTop().setVisible(false);
+        vbSidePanel.setVisible(false);
 
         lvTimetables.setItems(SchoolDB.getInstance().getTimetables());
     }
@@ -110,17 +114,17 @@ public class TimetableController implements Initializable {
 
                 Label lblSubject;
                 Label lblTeacher = new Label("");
-                ;
 
                 if (!lesson.getTeacher().isEmpty()) {
+                    String teacher = "";
                     for (int k = 0; k < lesson.getTeacher().size(); k++) {
                         if (k == 0) {
-                            lblTeacher.setText(lesson.getTeacher().get(k).getTeacher().getAbbreviation());
-                        }
-                        if (k != lesson.getTeacher().size() - 1) {
-                            lblTeacher.setText(lblTeacher.getText() + " | " + lesson.getTeacher().get(k).getTeacher().getAbbreviation());
+                            teacher = lesson.getTeacher().get(k).getTeacher().getAbbreviation();
+                        }else{
+                            teacher += " | " + lesson.getTeacher().get(k).getTeacher().getAbbreviation();
                         }
                     }
+                    lblTeacher.setText(teacher);
                 }
 
                 lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().name());
@@ -178,28 +182,54 @@ public class TimetableController implements Initializable {
                                 switchNodes(sourceNode, vBox, timetableView);
                             }else{
                                 Subject subject = Subject.valueOf(db.getString());
-
-                                List<MenuItem> items = new ArrayList<>();
-                                for (TeacherSubject teacherSubject: SchoolDB.getInstance().getTeacherBySubject(subject)){
-                                    MenuItem menuItem = new MenuItem(teacherSubject.getTeacher().getAbbreviation());
-                                    menuItem.setOnAction(actionEvent -> {
-                                        addSubject(day, finalRow, new Lesson(subject, Arrays.asList(SchoolDB.getInstance()
-                                                .getTeacherSubjects()
-                                                .stream()
-                                                .filter(teacherSubject1 -> teacherSubject1.getTeacher().getAbbreviation().equals(menuItem.getText())).findFirst().get())));
-                                    });
-                                    items.add(menuItem);
-                                }
-                                ContextMenu contextMenu = new ContextMenu();
-                                contextMenu.getItems().addAll(items);
-
-                                contextMenu.show(timetableView, dragEvent.getScreenX(), dragEvent.getScreenY());
+                                addSubject(day, finalRow, new Lesson(subject, Arrays.asList()));
                             }
                             success = true;
                         }
                         dragEvent.setDropCompleted(success);
                         dragEvent.consume();
                     }
+                });
+
+                int finalRow1 = row;
+                vBox.setOnMouseClicked(mouseEvent -> {
+                    hbTeacher.getChildren().clear();
+                    if (isEdit){
+                        hbTeacher.setVisible(true);
+                        GridPane teacherGrid = new GridPane();
+                        List<TeacherSubject> availableTeacher = SchoolDB.getInstance().getTeacherBySubject(lesson.getSubject());
+                        System.out.println(availableTeacher);
+                        int k = 0;
+                        int j = 0;
+                        for (TeacherSubject teacherSubject: availableTeacher){
+                            if (k == (int) Math.ceil(availableTeacher.size() / 3.0)){
+                                j++;
+                                k = 0;
+                            }
+
+                            TeacherCheckbox cb = new TeacherCheckbox(teacherSubject);
+                            if (SchoolDB.getInstance().checkIfTeacherContainsInLesson(day, finalRow1, visibleTimetable, teacherSubject)){
+                                cb.setSelected(true);
+                            }else{
+                                cb.setSelected(false);
+                            }
+
+                            cb.setOnAction(actionEvent -> {
+                                if (cb.isSelected()){
+                                    SchoolDB.getInstance().addTeacherToLesson(day, finalRow1, visibleTimetable, cb.getTeacherSubject());
+                                }else{
+                                    SchoolDB.getInstance().removeTeacherFromLesson(day, finalRow, visibleTimetable, cb.getTeacherSubject());
+                                }
+                                reload();
+                                setContent();
+                            });
+                            cb.setAlignment(Pos.CENTER_LEFT);
+                            teacherGrid.add(cb, k, j++);
+                        }
+                        teacherGrid.setVgap(5);
+                        hbTeacher.getChildren().add(teacherGrid);
+                    }
+                    vbSidePanel.getChildren().add(hbTeacher);
                 });
 
                 timetableView.add(vBox, column, row);
@@ -262,9 +292,6 @@ public class TimetableController implements Initializable {
     public void onSelectClass() {
         visibleTimetable = lvTimetables.getSelectionModel().getSelectedItem();
         lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
-
-        visibleTimetable.addSubject(Day.Montag, 1,
-                new Lesson(Subject.Deutsch, Arrays.asList(SchoolDB.getInstance().getTeacherSubjects().get(0))));
         setContent();
     }
 
@@ -314,21 +341,22 @@ public class TimetableController implements Initializable {
 
     @FXML
     public void onEditTimetable() {
-        if (isEdit == true) {
+        vbSidePanel.getChildren().clear();
+        if (isEdit) {
             isEdit = false;
-            hbSubjects.setVisible(false);
+            vbSidePanel.setVisible(false);
+
             lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
-            hbSubjects.getChildren().clear();
             setContent();
         } else {
             isEdit = true;
-            hbSubjects.setVisible(true);
+            vbSidePanel.setVisible(true);
             lblInfo.setText("Bearbeitungsmodus | " + visibleTimetable.getSchoolClass().getClassname());
         }
 
         if (isEdit) {
-            System.out.println("Edit");
-            hbSubjects.getChildren().clear();
+            hbSubjects = new HBox();
+            hbTeacher = new HBox();
 
             GridPane subjects = new GridPane();
             hbSubjects.setPadding(new Insets(10, 10, 10, 10));
@@ -402,8 +430,6 @@ public class TimetableController implements Initializable {
                         reload();
                         setContent();
                     }
-
-                    //switchNodes(sourceNode, vBox, timeTableView.get());
                     success = true;
                 }
                 dragEvent.setDropCompleted(success);
@@ -411,7 +437,7 @@ public class TimetableController implements Initializable {
             });
 
             hbSubjects.getChildren().add(subjects);
-
+            vbSidePanel.getChildren().add(hbSubjects);
         }
     }
 }

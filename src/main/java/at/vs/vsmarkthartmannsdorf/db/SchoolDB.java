@@ -124,4 +124,38 @@ public class SchoolDB {
     public void removeSubject(Day day, int hour, Timetable timetable){
         timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass())).findFirst().get().removeSubject(day, hour);
     }
+
+    public void addTeacherToLesson(Day day, int hour, Timetable timetable, TeacherSubject teacherSubject){
+        if (!timetable.getSubjects().get(day).get(hour).getTeacher().contains(teacherSubject)) {
+            timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass()))
+                    .findFirst()
+                    .get()
+                    .getSubjects()
+                    .get(day)
+                    .get(hour)
+                    .addTeacher(teacherSubject);
+        }
+    }
+
+    public void removeTeacherFromLesson(Day day, int hour, Timetable timetable, TeacherSubject teacherSubject){
+        timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass()))
+                .findFirst()
+                .get()
+                .getSubjects()
+                .get(day)
+                .get(hour)
+                .removeTeacher(teacherSubject);
+    }
+
+    public boolean checkIfTeacherContainsInLesson(Day day, int hour, Timetable timetable, TeacherSubject teacherSubject){
+        return timetables.stream()
+                .filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass()))
+                .findFirst()
+                .get()
+                .getSubjects()
+                .get(day)
+                .get(hour)
+                .getTeacher()
+                .contains(teacherSubject);
+    }
 }
