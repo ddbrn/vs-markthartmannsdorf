@@ -34,4 +34,8 @@ public class Timetable {
     public String toString() {
         return schoolClass.getClassname();
     }
+
+    public void removeSubject(Day day, int hour){
+        subjects.get(day).put(hour, new Lesson());
+    }
 }

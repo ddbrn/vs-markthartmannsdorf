@@ -120,4 +120,8 @@ public class SchoolDB {
                 .filter(t -> t.getSchoolClass()
                         .equals(timetable.getSchoolClass())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherLesson);
     }
+
+    public void removeSubject(Day day, int hour, Timetable timetable){
+        timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass())).findFirst().get().removeSubject(day, hour);
+    }
 }

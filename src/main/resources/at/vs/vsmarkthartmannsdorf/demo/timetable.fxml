@@ -74,9 +74,9 @@
                </children>
             </HBox>
          </top>
-         <bottom>
+         <left>
             <HBox fx:id="hbSubjects" BorderPane.alignment="CENTER" />
-         </bottom>
+         </left>
       </BorderPane>
    </center>
 </BorderPane>
