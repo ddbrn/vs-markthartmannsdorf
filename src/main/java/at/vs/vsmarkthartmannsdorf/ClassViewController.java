@@ -15,6 +15,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ClassViewController implements Initializable {
@@ -33,6 +35,7 @@ public class ClassViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         classList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         classList.getSelectionModel().selectFirst();
+
     }
 
     public void setParent(MainController parent) {
@@ -63,7 +66,13 @@ public class ClassViewController implements Initializable {
 
     @FXML
     protected void removeClass(){
-        SchoolDB.getInstance().removeSchoolClass(classList.getSelectionModel().getSelectedIndices());
+        ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
+
+        indices.forEach(i -> {
+            SchoolDB.getInstance().removeSchoolClass(classList.getItems().get(i));
+        });
+
+
         classList.setItems(SchoolDB.getInstance().getSchoolClasses());
         /*ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
         System.out.println(classes);
@@ -90,6 +99,11 @@ public class ClassViewController implements Initializable {
 
     public MainController getParent() {
         return parent;
+    }
+
+    public void updateClasses () {
+        classList.setItems(SchoolDB.getInstance().getSchoolClasses());
+        classList.refresh();
     }
 
 }

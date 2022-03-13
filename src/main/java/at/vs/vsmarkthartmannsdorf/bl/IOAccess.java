@@ -7,15 +7,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import at.vs.vsmarkthartmannsdorf.Main;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.data.Timetable;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 // 25.11.2021 Simon: create "storeClassFiles", "readClassFiles" Functions
@@ -66,6 +64,15 @@ public class IOAccess {
 
             ObjectMapper om = new ObjectMapper();
             SchoolClass[] schoolClasses = om.readValue(result, SchoolClass[].class);
+
+
+
+           Arrays.stream(schoolClasses).forEach(schoolClass -> {
+               Optional<Teacher> teacherLink = SchoolDB.getInstance().getTeachers().stream().filter(teacher -> teacher.getAbbreviation().equals(schoolClass.getTeacher().getAbbreviation())).findFirst();
+
+               teacherLink.ifPresent(schoolClass::setTeacher);
+
+            });
 
             schoolClassList = Arrays.asList(schoolClasses);
             System.out.println("FileWrite read in \"" + IOAccess.FILE_CLASS.getName() + "\".");

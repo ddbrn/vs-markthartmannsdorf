@@ -1,10 +1,11 @@
 package at.vs.vsmarkthartmannsdorf.db;
 
+import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,7 +15,7 @@ public class SchoolDB {
 
     private ObservableList<Teacher> teachers;
     private ObservableList<SchoolClass> schoolClasses;
-    private ObservableList<Timetable> timetables;
+    private ObservableList<Timetable_new> timetables;
     private ObservableList<TeacherSubject> teacherSubjects;
 
     private SchoolDB (){
@@ -55,19 +56,15 @@ public class SchoolDB {
     public void addSchoolClass(SchoolClass schoolClass){
         schoolClasses.add(schoolClass);
 
-        addTimetable(new Timetable(schoolClass));
+        addTimetable(new Timetable_new(schoolClass));
     }
 
-    public void removeSchoolClass(ObservableList<Integer> indices){
-        for (int i = indices.size() - 1; i >= 0; i--){
-            int finalI = i;
-            timetables.remove(getTimetables().stream().filter(timetable -> timetable.getSchoolClass() == getSchoolClasses().get(finalI)).findFirst());
-            schoolClasses.remove(i);
-        }
+    public void removeSchoolClass(SchoolClass schoolClass){
+        schoolClasses.remove(schoolClass);
     }
 
-    private void addTimetable(Timetable timetable){
-        timetables.add(timetable);
+    private void addTimetable(Timetable_new timetable_new){
+        timetables.add(timetable_new);
     }
 
     public ObservableList<Teacher> getTeachers() {
@@ -78,7 +75,7 @@ public class SchoolDB {
         return schoolClasses;
     }
 
-    public ObservableList<Timetable> getTimetables() {
+    public ObservableList<Timetable_new> getTimetables() {
         return timetables;
     }
 
@@ -97,12 +94,12 @@ public class SchoolDB {
         }
     }
 
-    public Optional<Timetable> findTimetableByClass(SchoolClass schoolClass){
-        return timetables.stream().filter(timetable -> timetable.getSchoolClass().equals(schoolClass)).findFirst();
+    public Optional<Timetable_new> findTimetableByClass(SchoolClass schoolClass){
+        return timetables.stream().filter(timetable_new -> timetable_new.getSchoolClass().equals(schoolClass)).findFirst();
     }
 
-    public void addSubject(Day day, int hour, TeacherSubject teacherSubject, Timetable timetable){
-        getTimetables().get(getTimetables().indexOf(timetable)).addSubject(day, hour, new Lesson(teacherSubject.getSubject(), Arrays.asList(teacherSubject)));
+    public void addSubject(Day day, int hour, TeacherSubject teacherSubject, Timetable_new timetable){
+        getTimetables().get(getTimetables().indexOf(timetable)).addSubject(day, hour, teacherSubject);
     }
 
     public List<TeacherSubject> getTeacherBySubject(Subject subject){
@@ -110,15 +107,15 @@ public class SchoolDB {
                 teacherSubject.getSubject() == subject).collect(Collectors.toList());
     }
 
-    public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable timetable){
-        Lesson sourceTeacherLesson = timetable.getSubjects().get(sourceDay).get(sourceHour);
-        Lesson targetTeacherLesson = timetable.getSubjects().get(targetDay).get(targetHour);
+    public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable_new timetable){
+        TeacherSubject sourceTeacherSubject = timetable.getSubjects().get(sourceDay).get(sourceHour);
+        TeacherSubject targetTeacherSubject = timetable.getSubjects().get(targetDay).get(targetHour);
 
         timetables.stream()
                 .filter(timetable_new -> timetable_new.getSchoolClass()
-                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherLesson);
+                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherSubject);
         timetables.stream()
                 .filter(timetable_new -> timetable_new.getSchoolClass()
-                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherLesson);
+                        .equals(timetable_new.getSchoolClass())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherSubject);
     }
 }
