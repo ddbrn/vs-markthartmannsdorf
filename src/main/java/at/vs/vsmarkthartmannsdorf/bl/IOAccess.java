@@ -129,12 +129,12 @@ public class IOAccess {
         return teacherList;
     }
 
-    public static synchronized boolean storeTimetableFiles(List<Timetable> timetableList) {
+    public static synchronized boolean storeTimetableFiles() {
         try {
             FILE_TIMETABLE.getParentFile().mkdirs();
 
             ObjectMapper om = new ObjectMapper();
-            String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(timetableList);
+            String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(SchoolDB.getInstance().getTimetables());
 
             FileWriter fileWriter = new FileWriter(IOAccess.FILE_TIMETABLE.getAbsolutePath(), StandardCharsets.UTF_8);
             fileWriter.write(jsonStr);
@@ -166,7 +166,7 @@ public class IOAccess {
             ObjectMapper om = new ObjectMapper();
             Timetable[] timetables = om.readValue(result, Timetable[].class);
 
-            timetableList = Arrays.asList(timetables);
+            SchoolDB.getInstance().setTimetables(Arrays.asList(timetables));
             System.out.println("FileWrite read in \"" + IOAccess.FILE_TIMETABLE.getName() + "\".");
 
         } catch (IOException e) {

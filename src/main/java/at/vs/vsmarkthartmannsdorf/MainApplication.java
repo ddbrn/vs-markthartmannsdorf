@@ -30,6 +30,7 @@ public class MainApplication extends Application {
 
         // IOAccess_Excel.setStage(stage);
         IOAccess_PDF.setStage(stage);
+        IOAccess.readTimetableFiles();
     }
 
     @Override
@@ -38,6 +39,7 @@ public class MainApplication extends Application {
 
         IOAccess.storeTeacherFiles(SchoolDB.getInstance().getTeachers());
         IOAccess.storeClassFiles(SchoolDB.getInstance().getSchoolClasses());
+        IOAccess.storeTimetableFiles();
         // IOAccess.storeTimetableFiles(controller.getTimetables());
 
         //IOAccess_Excel.createExcelFile(controller.getTeacher(), controller.getClasses());

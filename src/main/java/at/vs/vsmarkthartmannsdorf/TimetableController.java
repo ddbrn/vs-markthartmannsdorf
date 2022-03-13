@@ -106,7 +106,6 @@ public class TimetableController implements Initializable {
                 if (lesson.getSubject() != null) {
                     String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(lesson.getSubject().name());
                     color = Color.valueOf(colorHex);
-
                     vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
 
@@ -130,7 +129,11 @@ public class TimetableController implements Initializable {
                 lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().name());
 
                 if (color != null) {
-                    if (color.getBrightness() < 0) {
+                    double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue())/255;
+                    if (luminance > 0.002){
+                        lblTeacher.setStyle("-fx-text-fill: black");
+                        lblSubject.setStyle("-fx-text-fill: black");
+                    }else{
                         lblTeacher.setStyle("-fx-text-fill: white");
                         lblSubject.setStyle("-fx-text-fill: white");
                     }
@@ -371,11 +374,20 @@ public class TimetableController implements Initializable {
             int j = 0;
             for (Subject subject : Subject.values()) {
                 VBox vBox = new VBox();
-                vBox.getChildren().add(new Label(subject.name()));
-                vBox.setPadding(new Insets(5, 5, 5, 5));
 
                 String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(subject.name());
                 Color color = Color.valueOf(colorHex);
+
+                Label label = new Label(subject.name());
+                double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue())/255;
+                if (luminance > 0.002){
+                    label.setStyle("-fx-text-fill: black");
+                }else{
+                    label.setStyle("-fx-text-fill: white");
+                }
+
+                vBox.getChildren().add(label);
+                vBox.setPadding(new Insets(5, 5, 5, 5));
                 vBox.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5), Insets.EMPTY)));
                 vBox.setPadding(new Insets(10, 10, 10, 10));
                 vBox.setAlignment(Pos.CENTER);

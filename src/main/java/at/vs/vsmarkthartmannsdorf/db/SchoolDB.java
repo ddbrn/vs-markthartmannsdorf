@@ -4,6 +4,7 @@ import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,7 +54,6 @@ public class SchoolDB {
 
     public void addSchoolClass(SchoolClass schoolClass) {
         schoolClasses.add(schoolClass);
-
         addTimetable(new Timetable(schoolClass));
     }
 
@@ -63,6 +63,10 @@ public class SchoolDB {
         Optional<Timetable> timetableToRemove =
                 timetables.stream().filter(timetable -> timetable.getSchoolClass().getClassname().equals(schoolClass.getClassname())).findFirst();
         timetableToRemove.ifPresent(timetable -> timetables.remove(timetable));
+    }
+
+    public void setTimetables(List<Timetable> timetables){
+        this.timetables = FXCollections.observableArrayList(timetables);
     }
 
     private void addTimetable(Timetable timetable) {
@@ -92,7 +96,7 @@ public class SchoolDB {
     public void setSchoolClasses(List<SchoolClass> schoolClasses) {
         this.schoolClasses = FXCollections.observableArrayList();
         for (SchoolClass schoolClass : schoolClasses) {
-            addSchoolClass(schoolClass);
+            this.schoolClasses.add(schoolClass);
         }
     }
 

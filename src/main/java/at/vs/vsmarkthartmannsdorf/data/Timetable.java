@@ -1,12 +1,16 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Timetable {
     private SchoolClass schoolClass;
     private HashMap<Day, HashMap<Integer, Lesson>> subjects;
