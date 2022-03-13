@@ -75,6 +75,7 @@ public class TimetableController implements Initializable {
 
         lvTimetables.setItems(SchoolDB.getInstance().getTimetables());
         lvTimetables.refresh();
+        root.getCenter().setVisible(false);
     }
 
     public GridPane buildTimetable() {
@@ -334,6 +335,7 @@ public class TimetableController implements Initializable {
     }
 
     public void setContent() {
+        root.getCenter().setVisible(true);
         ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().clear();
         ((BorderPane) root.getCenter()).getTop().setVisible(true);
 
