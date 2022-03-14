@@ -9,48 +9,6 @@
     }
   },
   "subjects" : {
-    "Dienstag" : {
-      "1" : {
-        "subject" : "Mathematik",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "2" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "3" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "4" : {
-        "subject" : "Deutsch",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
     "Mittwoch" : {
       "1" : {
         "subject" : null,
@@ -71,48 +29,6 @@
         "subject" : null,
         "teacher" : [ ],
         "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
-    "Donnerstag" : {
-      "1" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "2" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "3" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "4" : {
-        "subject" : "Sozialkunde",
-        "teacher" : [ ],
-        "emptyLesson" : false
       },
       "5" : {
         "subject" : null,
@@ -158,7 +74,113 @@
       },
       "5" : {
         "subject" : "Sachkunde",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Sachkunde"
+        } ],
+        "emptyLesson" : false
+      },
+      "6" : {
+        "subject" : null,
         "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Dienstag" : {
+      "1" : {
+        "subject" : "Mathematik",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Simon",
+            "surname" : "SCHÖGGLER",
+            "abbreviation" : "SGR",
+            "subjects" : [ "Mathematik", "Musik" ]
+          },
+          "subject" : "Mathematik"
+        }, {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Mathematik"
+        } ],
+        "emptyLesson" : false
+      },
+      "2" : {
+        "subject" : "Deutsch",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Deutsch"
+        } ],
+        "emptyLesson" : false
+      },
+      "3" : {
+        "subject" : "Sozialkunde",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Sozialkunde"
+        } ],
+        "emptyLesson" : false
+      },
+      "4" : {
+        "subject" : "Deutsch",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Deutsch"
+        } ],
+        "emptyLesson" : false
+      },
+      "5" : {
+        "subject" : "Mathematik",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Simon",
+            "surname" : "SCHÖGGLER",
+            "abbreviation" : "SGR",
+            "subjects" : [ "Mathematik", "Musik" ]
+          },
+          "subject" : "Mathematik"
+        }, {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Mathematik"
+        } ],
         "emptyLesson" : false
       },
       "6" : {
@@ -179,14 +201,96 @@
     },
     "Montag" : {
       "1" : {
+        "subject" : "Mathematik",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Simon",
+            "surname" : "SCHÖGGLER",
+            "abbreviation" : "SGR",
+            "subjects" : [ "Mathematik", "Musik" ]
+          },
+          "subject" : "Mathematik"
+        }, {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Mathematik"
+        } ],
+        "emptyLesson" : false
+      },
+      "2" : {
+        "subject" : "Englisch",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Englisch"
+        } ],
+        "emptyLesson" : false
+      },
+      "3" : {
+        "subject" : "Religion",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Religion"
+        } ],
+        "emptyLesson" : false
+      },
+      "4" : {
+        "subject" : "Sozialkunde",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Sozialkunde"
+        } ],
+        "emptyLesson" : false
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Donnerstag" : {
+      "1" : {
         "subject" : null,
         "teacher" : [ ],
         "emptyLesson" : true
       },
       "2" : {
-        "subject" : "Englisch",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "3" : {
         "subject" : null,
@@ -194,9 +298,17 @@
         "emptyLesson" : true
       },
       "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
+        "subject" : "Sozialkunde",
+        "teacher" : [ {
+          "teacher" : {
+            "firstname" : "Alexander",
+            "surname" : "DESCOVICH-JENTSCH",
+            "abbreviation" : "DA",
+            "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+          },
+          "subject" : "Sozialkunde"
+        } ],
+        "emptyLesson" : false
       },
       "5" : {
         "subject" : null,

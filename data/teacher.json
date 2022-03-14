@@ -3,4 +3,9 @@
   "surname" : "SCHÖGGLER",
   "abbreviation" : "SGR",
   "subjects" : [ "Mathematik", "Musik" ]
+}, {
+  "firstname" : "Alexander",
+  "surname" : "DESCOVICH-JENTSCH",
+  "abbreviation" : "DA",
+  "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
 } ]

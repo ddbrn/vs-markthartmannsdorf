@@ -81,14 +81,35 @@ public class TimetableController implements Initializable {
     public GridPane buildTimetable() {
         timetableView = new GridPane();
 
+        VBox firstBox = new VBox();
+        firstBox.setStyle("-fx-background-color: #e1d9d9");
+        timetableView.add(firstBox, 0, 0);
+
         int column = 1;
         int row = 1;
 
         for (int i = 1; i <= Timetable.MAX_HOURS; i++) {
-            timetableView.add(new Label(i + ""), 0, i);
+            VBox vBox = new VBox();
+            Label label = new Label(i + "");
+            label.setStyle("-fx-font-weight: bold;-fx-font-size: 15");
+            vBox.getChildren().add(label);
+
+            vBox.setAlignment(Pos.CENTER);
+            vBox.setStyle("-fx-background-color: #e1d9d9");
+
+            timetableView.add(vBox, 0, i);
         }
         for (Day day : Day.values()) {
-            timetableView.add(new Label(day.name()), column, 0);
+            VBox vBox = new VBox();
+
+            Label label = new Label(day.name());
+            label.setStyle("-fx-font-weight: bold;-fx-font-size: 17");
+
+            vBox.getChildren().add(label);
+            vBox.setAlignment(Pos.CENTER);
+            vBox.setStyle("-fx-background-color: #e1d9d9");
+
+            timetableView.add(vBox, column, 0);
             column++;
         }
 
@@ -131,17 +152,18 @@ public class TimetableController implements Initializable {
                 }
 
                 lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().name());
-
                 if (color != null) {
                     double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue())/255;
                     if (luminance > 0.002){
                         lblTeacher.setStyle("-fx-text-fill: black");
-                        lblSubject.setStyle("-fx-text-fill: black");
+                        lblSubject.setStyle("-fx-text-fill: black;-fx-font-weight: bold");
                     }else{
                         lblTeacher.setStyle("-fx-text-fill: white");
-                        lblSubject.setStyle("-fx-text-fill: white");
+                        lblSubject.setStyle("-fx-text-fill: white;-fx-font-weight: bold");
                     }
                 }
+
+
 
                 vBox.getChildren().add(lblSubject);
                 vBox.getChildren().add(lblTeacher);
