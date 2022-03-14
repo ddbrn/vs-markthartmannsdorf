@@ -95,13 +95,11 @@ public class SchoolDB {
 
     public void setSchoolClasses(List<SchoolClass> schoolClasses) {
         this.schoolClasses = FXCollections.observableArrayList();
-        for (SchoolClass schoolClass : schoolClasses) {
-            this.schoolClasses.add(schoolClass);
-        }
+        this.schoolClasses.addAll(schoolClasses);
     }
 
     public Optional<Timetable> findTimetableByClass(SchoolClass schoolClass) {
-        return timetables.stream().filter(timetable -> timetable.equals(schoolClass)).findFirst();
+        return timetables.stream().filter(timetable -> timetable.getSchoolClass().equals(schoolClass)).findFirst();
     }
 
     public void addSubject(Day day, int hour, Lesson lesson, Timetable timetable) {

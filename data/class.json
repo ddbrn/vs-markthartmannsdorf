@@ -1,9 +1,9 @@
 [ {
-  "classname" : "1A",
+  "classname" : "1D",
   "teacher" : {
     "firstname" : "Simon",
     "surname" : "SCHÖGGLER",
     "abbreviation" : "SGR",
-    "subjects" : [ "Mathematik", "Musik" ]
+    "subjects" : [ "Mathematik", "Musik", "Sachkunde" ]
   }
 } ]
