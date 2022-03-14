@@ -37,7 +37,6 @@ public class ClassViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         classList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         classList.getSelectionModel().selectFirst();
-
     }
 
     public void setParent(MainController parent) {
@@ -104,18 +103,6 @@ public class ClassViewController implements Initializable {
                 classList.setItems(SchoolDB.getInstance().getSchoolClasses());
             }
         });
-
-
-        /*ObservableList<Integer> indices = classList.getSelectionModel().getSelectedIndices();
-        System.out.println(classes);
-        for (int i = indices.size() - 1; i >= 0; i--){
-            parent.removeClasses(classes.get(indices.get(i)));
-        }
-        classList.setItems(classes);
-        final ObservableList<TimetableDay> data = FXCollections.observableArrayList(
-                new TimetableDay(0, "", "", "","", "", "")
-        );*/
-        // parent.getTimetableViewController().getTimeTableView().setItems(data);
     }
 
     @FXML

@@ -464,7 +464,6 @@ public class TimetableController implements Initializable {
                 boolean success = false;
 
                 if (db.hasString()) {
-                    System.out.println(db.getString());
                     if (db.getString().contains(",")){
                         String split[] = db.getString().split(",");
                         int sourceColumn = Integer.parseInt(split[0]);

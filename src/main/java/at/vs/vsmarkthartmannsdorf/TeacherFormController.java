@@ -23,7 +23,6 @@ import java.util.stream.IntStream;
 public class TeacherFormController implements Initializable {
     @FXML
     public TextField firstname, surname, abbreviation;
-    public ListView<Subject> availableSubjects, assignedSubjects;
     public Label info;
     public VBox teacherVBox;
 
@@ -39,9 +38,6 @@ public class TeacherFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //olAvailableSubjects.addAll(Subject.values());
-        //availableSubjects.setItems(olAvailableSubjects);
-
         GridPane gp = new GridPane();
         gp.setAlignment(Pos.BASELINE_CENTER);
         gp.prefWidthProperty().bind(teacherVBox.widthProperty());
@@ -76,8 +72,6 @@ public class TeacherFormController implements Initializable {
 
 
         info.setVisible(false);
-        //availableSubjects.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        //assignedSubjects.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     public void setItemsIfEdited(Teacher teacher) {

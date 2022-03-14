@@ -95,7 +95,6 @@ public class TeacherViewController implements Initializable {
             if (type.getButtonData().equals(ButtonBar.ButtonData.YES)) {
 
                 dismountForm();
-                System.out.println(teachers);
 
                 indices.stream().sorted(Comparator.reverseOrder()).forEach(i -> {
                     SchoolDB.getInstance().removeTeacher(teacherList.getItems().get(i));

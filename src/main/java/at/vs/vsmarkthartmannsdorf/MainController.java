@@ -30,8 +30,6 @@ public class MainController implements Initializable {
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
-    private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
-    private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
     private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     private TeacherViewController teacherViewController;
@@ -69,7 +67,6 @@ public class MainController implements Initializable {
             FXMLLoader timetableLoader = fxmlLoad("demo/timetable.fxml");
             timetableView = timetableLoader.load();
             timetableViewController = timetableLoader.getController();
-            // timetableViewController.setParent(this);
 
             // Load SettingsView
             FXMLLoader settingsLoader = fxmlLoad("demo/settings.fxml");
@@ -80,13 +77,6 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-    public void resetTableView(){
-
-    }
-
-    /*public TimetableViewController getTimetableViewController() {
-        return timetableViewController;
-    }*/
 
     // Method to load fxml
     public FXMLLoader fxmlLoad(String location) throws IOException {
@@ -143,8 +133,6 @@ public class MainController implements Initializable {
 
         absenceView = new GridPane();
 
-        // FlowPane fp = new FlowPane();
-        // fp.setOrientation(Orientation.VERTICAL);
 
         int column = 0;
         int row = 1;
@@ -162,7 +150,6 @@ public class MainController implements Initializable {
                     row++;
                 }
 
-                // fp.getChildren().add(hBox);
                 absenceView.add(hBox, column++, row);
                 GridPane.setMargin(hBox, new Insets(5));
             }
@@ -170,10 +157,6 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         main.setCenter(null);
-
-        // ScrollPane sp = new ScrollPane();
-        // sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        // sp.setContent(fp);
 
         main.setCenter(absenceView);
     }
@@ -264,7 +247,6 @@ public class MainController implements Initializable {
     public void setClasses(List<SchoolClass> classes) {
         SchoolDB.getInstance().setSchoolClasses(classes);
         classViewController.setItems(SchoolDB.getInstance().getSchoolClasses());
-        // timetableViewController.setItems(this.classes);
     }
 
 

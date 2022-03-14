@@ -26,7 +26,6 @@ public class MainApplication extends Application {
         controller.setTeachers(IOAccess.readTeacherFiles());
         controller.setClasses(IOAccess.readClassFiles());
         controller.setStage(stage);
-        // controller.setTeachers(IOAccess.readTeacherFiles());
 
         IOAccess_Excel.setStage(stage);
         IOAccess_PDF.setStage(stage);
@@ -40,7 +39,6 @@ public class MainApplication extends Application {
         IOAccess.storeTeacherFiles(SchoolDB.getInstance().getTeachers());
         IOAccess.storeClassFiles(SchoolDB.getInstance().getSchoolClasses());
         IOAccess.storeTimetableFiles();
-        // IOAccess.storeTimetableFiles(controller.getTimetables());
 
         //IOAccess_Excel.createExcelFile(controller.getTeacher(), controller.getClasses());
     }
