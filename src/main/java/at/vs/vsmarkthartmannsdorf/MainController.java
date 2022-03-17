@@ -211,7 +211,7 @@ public class MainController implements Initializable {
         DialogPane pane = classPDF.load();
         PDFController controller = classPDF.getController();
 
-        controller.setClasses(classes);
+        controller.setClasses(SchoolDB.getInstance().getSchoolClasses());
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(pane);
