@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Absence;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
 import at.vs.vsmarkthartmannsdorf.data.*;
@@ -30,7 +31,9 @@ public class MainController implements Initializable {
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
-    private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
+    private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
+    private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
+    //private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     private TeacherViewController teacherViewController;
     private ClassViewController classViewController;
@@ -67,6 +70,7 @@ public class MainController implements Initializable {
             FXMLLoader timetableLoader = fxmlLoad("demo/timetable.fxml");
             timetableView = timetableLoader.load();
             timetableViewController = timetableLoader.getController();
+            // timetableViewController.setParent(this);
 
             // Load SettingsView
             FXMLLoader settingsLoader = fxmlLoad("demo/settings.fxml");
@@ -77,6 +81,13 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+    public void resetTableView(){
+
+    }
+
+    /*public TimetableViewController getTimetableViewController() {
+        return timetableViewController;
+    }*/
 
     // Method to load fxml
     public FXMLLoader fxmlLoad(String location) throws IOException {
@@ -133,23 +144,26 @@ public class MainController implements Initializable {
 
         absenceView = new GridPane();
 
+        // FlowPane fp = new FlowPane();
+        // fp.setOrientation(Orientation.VERTICAL);
 
         int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < teacherAbsenceList.size(); i++) {
+            for (int i = 0; i < SchoolDB.getInstance().getTeacherAbsences().size(); i++) {
                 FXMLLoader fxmlAbsenceLoader = fxmlLoad("demo/absenceitem.fxml");
                 HBox hBox = fxmlAbsenceLoader.load();
 
                 TeacherAbsenceController teacherAbsenceController = fxmlAbsenceLoader.getController();
                 teacherAbsenceController.setStartController(this);
-                teacherAbsenceController.setData(teacherAbsenceList.get(i));
+                teacherAbsenceController.setData(SchoolDB.getInstance().getTeacherAbsences().get(i));
 
                 if (column == 5) {
                     column = 0;
                     row++;
                 }
 
+                // fp.getChildren().add(hBox);
                 absenceView.add(hBox, column++, row);
                 GridPane.setMargin(hBox, new Insets(5));
             }
@@ -157,6 +171,10 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         main.setCenter(null);
+
+        // ScrollPane sp = new ScrollPane();
+        // sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        // sp.setContent(fp);
 
         main.setCenter(absenceView);
     }
@@ -172,7 +190,7 @@ public class MainController implements Initializable {
     }
 
     public void teacherChangedAbsentStatus(TeacherAbsence teacherAbsence) {
-        teacherAbsenceList.stream().filter(t -> t.getTeacher()
+        SchoolDB.getInstance().getTeacherAbsences().stream().filter(t -> t.getTeacher()
                 .getAbbreviation() == teacherAbsence.getTeacher()
                 .getAbbreviation()).findFirst().get()
                 .setAbsent(teacherAbsence.isAbsent());
@@ -193,7 +211,7 @@ public class MainController implements Initializable {
         DialogPane pane = classPDF.load();
         PDFController controller = classPDF.getController();
 
-        controller.setClasses(classes);
+        controller.setClasses(SchoolDB.getInstance().getSchoolClasses());
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(pane);
@@ -220,6 +238,7 @@ public class MainController implements Initializable {
                     alert.setHeaderText("Es wurde erfolgreich Importiert!");
                     alert.showAndWait();
                 }
+
             }
         } catch (NullPointerException ignored) {
         }
@@ -247,6 +266,7 @@ public class MainController implements Initializable {
     public void setClasses(List<SchoolClass> classes) {
         SchoolDB.getInstance().setSchoolClasses(classes);
         classViewController.setItems(SchoolDB.getInstance().getSchoolClasses());
+        // timetableViewController.setItems(this.classes);
     }
 
 
@@ -265,7 +285,8 @@ public class MainController implements Initializable {
 
     public void loadAbsence() {
         for (Teacher teacher : SchoolDB.getInstance().getTeachers()) {
-            teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+            //teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+            SchoolDB.getInstance().getTeacherAbsences().add(new TeacherAbsence(teacher, false));
         }
     }
 

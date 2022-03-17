@@ -478,7 +478,7 @@ public class IOAccess_Excel {
             String exceptionText = sw.toString();
 
             e.printStackTrace();
-            System.out.println("FEHLERHAFTE LEHER EINGABE");
+            System.out.println("FEHLERHAFTE LEHRER EINGABE");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("vs-martkhartmannsdorf | FEHLER");
             alert.setHeaderText("Es ist ein Fehler beim Importieren passiert!");
@@ -504,6 +504,7 @@ public class IOAccess_Excel {
             alert.showAndWait();
 
             try {
+                assert workbook != null;
                 workbook.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -513,9 +514,11 @@ public class IOAccess_Excel {
     }
 
     public static List<SchoolClass> readFromExcelFileClass(List<Teacher> teacherList, List<SchoolClass> schoolClassList) {
+
+        XSSFWorkbook workbook = null;
         try {
+            workbook = new XSSFWorkbook(file);
             //Create Workbook instance holding reference to .xlsx file
-            XSSFWorkbook workbook = new XSSFWorkbook(file);
 
             //Get first/desired sheet from the workbook
             XSSFSheet sheet = workbook.getSheetAt(1);
@@ -554,7 +557,43 @@ public class IOAccess_Excel {
 
             workbook.close();
         } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            String exceptionText = sw.toString();
+
             e.printStackTrace();
+            System.out.println("FEHLERHAFTE KLASSEN EINGABE");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("vs-martkhartmannsdorf | FEHLER");
+            alert.setHeaderText("Es ist ein Fehler beim Importieren passiert!");
+            alert.setContentText("Es wurde eine fehlerhafte Eingabe im Excel Sheet getätigt, überprüfen Sie den Reiter \"Klassen\".");
+
+            Label label = new Label("The exception stacktrace was:");
+
+            TextArea textArea = new TextArea(exceptionText);
+            textArea.setEditable(false);
+            textArea.setWrapText(true);
+
+            textArea.setMaxWidth(Double.MAX_VALUE);
+            textArea.setMaxHeight(Double.MAX_VALUE);
+            GridPane.setVgrow(textArea, Priority.ALWAYS);
+            GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+            GridPane expContent = new GridPane();
+            expContent.setMaxWidth(Double.MAX_VALUE);
+            expContent.add(label, 0, 0);
+            expContent.add(textArea, 0, 1);
+
+            alert.getDialogPane().setExpandableContent(expContent);
+            alert.showAndWait();
+
+            try {
+                assert workbook != null;
+                workbook.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
         return schoolClassList;
     }

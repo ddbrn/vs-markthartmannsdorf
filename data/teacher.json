@@ -2,10 +2,30 @@
   "firstname" : "Simon",
   "surname" : "SCHÖGGLER",
   "abbreviation" : "SGR",
-  "subjects" : [ "Mathematik", "Musik", "Sachkunde" ]
+  "subjects" : [ "Mathematik", "Deutsch" ]
 }, {
-  "firstname" : "Alexander",
-  "surname" : "DESCOVICH-JENTSCH",
-  "abbreviation" : "DA",
+  "firstname" : "David",
+  "surname" : "BRANNAN",
+  "abbreviation" : "BRN",
   "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+}, {
+  "firstname" : "Marcel",
+  "surname" : "SCHMIDL",
+  "abbreviation" : "SMI",
+  "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Religion" ]
+}, {
+  "firstname" : "Manuel",
+  "surname" : "REINPRECHT",
+  "abbreviation" : "RPT",
+  "subjects" : [ "Musik", "Chor", "Werken" ]
+}, {
+  "firstname" : "Klemens",
+  "surname" : "PECHMANN",
+  "abbreviation" : "PMN",
+  "subjects" : [ "Deutsch" ]
+}, {
+  "firstname" : "Bene",
+  "surname" : "RENGER",
+  "abbreviation" : "RNR",
+  "subjects" : [ "Musik" ]
 } ]

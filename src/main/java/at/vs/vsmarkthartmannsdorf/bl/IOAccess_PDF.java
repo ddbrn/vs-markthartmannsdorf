@@ -16,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class IOAccess_PDF {
@@ -45,7 +47,7 @@ public class IOAccess_PDF {
         // System.out.println(schoolClass.getTimetable().getTimeTableContent().size());
         PdfPTable table = new PdfPTable(6);
         addTableHeader(table);
-        // addRows(table);
+        addRows(table);
 
         document.add(table);
         document.close();
@@ -53,7 +55,7 @@ public class IOAccess_PDF {
 
 
     private static void addTableHeader(PdfPTable table) {
-        Stream.of("", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag")
+        Stream.of("", Day.Montag.name(), Day.Dienstag.name(), Day.Mittwoch.name(), Day.Donnerstag.name(), Day.Freitag.name())
                 .forEach(columnTitle -> {
                     PdfPCell header = new PdfPCell();
                     header.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -63,98 +65,52 @@ public class IOAccess_PDF {
                 });
     }
 
-    /*
+
     private static void addRows(PdfPTable table) {
-        for (TimetableDay timetableDay : schoolClass.getTimetable().getTimeTableContent()) {
-            table.addCell(timetableDay.getTime());
-            table.addCell(timetableDay.getMonday());
-            table.addCell(timetableDay.getTuesday());
-            table.addCell(timetableDay.getWednesday());
-            table.addCell(timetableDay.getThursday());
-            table.addCell(timetableDay.getFriday());
+        Timetable timetable = SchoolDB.getInstance().getTimetableFromClass(schoolClass);
+        System.out.println(timetable);
+        HashMap<Day, HashMap<Integer, Lesson>> subjects = timetable.getSubjects();
+        System.out.println(subjects.size());
 
-            PdfPCell[] cells = table.getRow(timetableDay.getId()).getCells();
-
-            for (PdfPCell cell : cells) {
-                Color color;
-                System.out.println(cell.getPhrase().getContent());
-
-                String hex;
-                int red, blue, green;
-                switch (cell.getPhrase().getContent()){
-                    case "Mathematik":
-                         color = Color.valueOf(PropertiesLoader.getInstance().
-                                getProperties().getProperty(Subject.Mathematik.name()));
-                         hex = color.toString().substring(2);
-                         red = Integer.parseInt(hex.substring(1, 3), 16);
-                         blue = Integer.parseInt(hex.substring(3, 5), 16);
-                         green = Integer.parseInt(hex.substring(5, 7), 16);
-
-                        cell.setBackgroundColor(new BaseColor(red, blue, green));
-                        break;
-                    case "Deutsch":
-                         color = Color.valueOf(PropertiesLoader.getInstance().
-                                getProperties().getProperty(Subject.Deutsch.name()));
-                        hex = color.toString().substring(2);
-                        red = Integer.parseInt(hex.substring(1, 3), 16);
-                        blue = Integer.parseInt(hex.substring(3, 5), 16);
-                        green = Integer.parseInt(hex.substring(5, 7), 16);
-
-                        cell.setBackgroundColor(new BaseColor(red, blue, green));
-                        break;
-                    case "Sport":
-                         color = Color.valueOf(PropertiesLoader.getInstance().
-                                getProperties().getProperty(Subject.Sport.name()));
-                        hex = color.toString().substring(2);
-                        red = Integer.parseInt(hex.substring(1, 3), 16);
-                        blue = Integer.parseInt(hex.substring(3, 5), 16);
-                        green = Integer.parseInt(hex.substring(5, 7), 16);
-
-                        cell.setBackgroundColor(new BaseColor(red, blue, green));
-                        break;
-                    case "Musik":
-                        color = Color.valueOf(PropertiesLoader.getInstance().
-                                getProperties().getProperty(Subject.Musik.name()));
-                        hex = color.toString().substring(2);
-                        red = Integer.parseInt(hex.substring(1, 3), 16);
-                        blue = Integer.parseInt(hex.substring(3, 5), 16);
-                        green = Integer.parseInt(hex.substring(5, 7), 16);
-
-                        cell.setBackgroundColor(new BaseColor(red, blue, green));
-                        break;
-                    case "Sachkunde":
-                        color = Color.valueOf(PropertiesLoader.getInstance().
-                                getProperties().getProperty(Subject.Sachkunde.name()));
-                        hex = color.toString().substring(2);
-                        red = Integer.parseInt(hex.substring(1, 3), 16);
-                        blue = Integer.parseInt(hex.substring(3, 5), 16);
-                        green = Integer.parseInt(hex.substring(5, 7), 16);
-
-                        cell.setBackgroundColor(new BaseColor(red, blue, green));
-                        break;
-                    case "Englisch":
-                        color = Color.valueOf(PropertiesLoader.getInstance().
-                                getProperties().getProperty(Subject.Englisch.name()));
-                        hex = color.toString().substring(2);
-                        red = Integer.parseInt(hex.substring(1, 3), 16);
-                        blue = Integer.parseInt(hex.substring(3, 5), 16);
-                        green = Integer.parseInt(hex.substring(5, 7), 16);
-
-                        cell.setBackgroundColor(new BaseColor(red, blue, green));
-                        break;
-                    case "Sozialkunde":
-                        color = Color.valueOf(PropertiesLoader.getInstance().
-                                getProperties().getProperty(Subject.Sozialkunde.name()));
-                        hex = color.toString().substring(2);
-                        red = Integer.parseInt(hex.substring(1, 3), 16);
-                        blue = Integer.parseInt(hex.substring(3, 5), 16);
-                        green = Integer.parseInt(hex.substring(5, 7), 16);
-
-                        cell.setBackgroundColor(new BaseColor(red, blue, green));
-                        break;
-                    default:
+        IntStream.range(1, 9).forEach(i -> {
+            table.addCell(i + "");
+            for (Day day : Day.values()) {
+                Lesson lesson = subjects.get(day).get(i);
+                if (lesson.isEmptyLesson()) {
+                    table.addCell("");
+                } else {
+                    table.addCell(lesson.getSubject().name());
                 }
             }
+            PdfPCell[] cells = table.getRow(i).getCells();
+
+            IntStream.range(1, cells.length).forEach(j -> {
+                setColorCell(cells[j]);
+            });
+        });
+
+    }
+
+    private static void setColorCell(PdfPCell cell) {
+        System.out.println(cell.getPhrase().getContent());
+        if (!cell.getPhrase().getContent().isEmpty()) {
+            Color color = Color.valueOf(PropertiesLoader.getInstance().
+                    getProperties().getProperty(cell.getPhrase().getContent()));
+            String hex = color.toString().substring(2);
+            int red = Integer.parseInt(hex.substring(1, 3), 16);
+            int blue = Integer.parseInt(hex.substring(3, 5), 16);
+            int green = Integer.parseInt(hex.substring(5, 7), 16);
+
+            double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue())/255;
+
+            if(luminance < 0.002){
+                Font font = new Font();
+                font.setColor(new BaseColor(255, 255, 255));
+                Phrase phrase = new Phrase(cell.getPhrase().getContent(), font);
+                cell.setPhrase(phrase);
+            }
+
+            cell.setBackgroundColor(new BaseColor(red, blue, green));
         }
-    } */
+    }
 }
