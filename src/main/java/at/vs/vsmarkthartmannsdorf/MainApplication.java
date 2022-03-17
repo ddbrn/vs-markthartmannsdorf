@@ -1,9 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
-import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
-import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
-import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
+import at.vs.vsmarkthartmannsdorf.bl.*;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +25,7 @@ public class MainApplication extends Application {
         controller.setStage(stage);
         // controller.setTeachers(IOAccess.readTeacherFiles());
 
+        IOAccess_Absence.setStage(stage);
         IOAccess_Excel.setStage(stage);
         IOAccess_PDF.setStage(stage);
         IOAccess.readTimetableFiles();

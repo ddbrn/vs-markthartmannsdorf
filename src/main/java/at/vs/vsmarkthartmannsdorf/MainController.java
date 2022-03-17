@@ -32,7 +32,7 @@ public class MainController implements Initializable {
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
     private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
     private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
-    private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
+    //private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     private TeacherViewController teacherViewController;
     private ClassViewController classViewController;
@@ -149,13 +149,13 @@ public class MainController implements Initializable {
         int column = 0;
         int row = 1;
         try {
-            for (int i = 0; i < teacherAbsenceList.size(); i++) {
+            for (int i = 0; i < SchoolDB.getInstance().getTeacherAbsences().size(); i++) {
                 FXMLLoader fxmlAbsenceLoader = fxmlLoad("demo/absenceitem.fxml");
                 HBox hBox = fxmlAbsenceLoader.load();
 
                 TeacherAbsenceController teacherAbsenceController = fxmlAbsenceLoader.getController();
                 teacherAbsenceController.setStartController(this);
-                teacherAbsenceController.setData(teacherAbsenceList.get(i));
+                teacherAbsenceController.setData(SchoolDB.getInstance().getTeacherAbsences().get(i));
 
                 if (column == 5) {
                     column = 0;
@@ -189,7 +189,7 @@ public class MainController implements Initializable {
     }
 
     public void teacherChangedAbsentStatus(TeacherAbsence teacherAbsence) {
-        teacherAbsenceList.stream().filter(t -> t.getTeacher()
+        SchoolDB.getInstance().getTeacherAbsences().stream().filter(t -> t.getTeacher()
                 .getAbbreviation() == teacherAbsence.getTeacher()
                 .getAbbreviation()).findFirst().get()
                 .setAbsent(teacherAbsence.isAbsent());
@@ -283,7 +283,8 @@ public class MainController implements Initializable {
 
     public void loadAbsence() {
         for (Teacher teacher : SchoolDB.getInstance().getTeachers()) {
-            teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+            //teacherAbsenceList.add(new TeacherAbsence(teacher, false));
+            SchoolDB.getInstance().getTeacherAbsences().add(new TeacherAbsence(teacher, false));
         }
     }
 
