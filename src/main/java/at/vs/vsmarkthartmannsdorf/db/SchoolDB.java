@@ -3,12 +3,14 @@ package at.vs.vsmarkthartmannsdorf.db;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Data
 public class SchoolDB {
     private static SchoolDB instance;
 
@@ -17,11 +19,15 @@ public class SchoolDB {
     private ObservableList<Timetable> timetables;
     private ObservableList<TeacherSubject> teacherSubjects;
 
+    private List<TeacherAbsence> teacherAbsences;
+
     private SchoolDB() {
         teachers = FXCollections.observableArrayList();
         schoolClasses = FXCollections.observableArrayList();
         timetables = FXCollections.observableArrayList();
         teacherSubjects = FXCollections.observableArrayList();
+
+        teacherAbsences = new ArrayList<>();
 
         for (Teacher teacher : teachers) {
             for (Subject subject : teacher.getSubjects()) {
