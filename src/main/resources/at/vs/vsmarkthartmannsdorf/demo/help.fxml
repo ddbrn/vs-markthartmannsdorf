@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.HelpController">
+   <center>
+      <BorderPane>
+         <center>
+            <AnchorPane prefHeight="400.0" prefWidth="600.0">
+               <children>
+                  <HBox id="toolbar" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="567.0">
+                     <children>
+                        <Button fx:id="btnTimetable" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Button">
+                        </Button>
+                        <Button fx:id="btnTeacher" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
+                        <Button fx:id="btnClass" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
+                     </children>
+                  </HBox>
+                  <BorderPane layoutY="49.0" prefHeight="351.0" prefWidth="600.0" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

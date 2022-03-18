@@ -25,7 +25,7 @@ public class MainController implements Initializable {
 
     @FXML
     public BorderPane main;
-    public HBox teacherBox, timetableBox, classBox, absenceBox, settingsBox, excelImportBox, excelExportBox;
+    public HBox teacherBox, timetableBox, classBox, absenceBox, settingsBox, excelImportBox, excelExportBox, helpBox;
 
     private List<HBox> navbar = Arrays.asList(teacherBox, timetableBox, classBox, absenceBox);
 
@@ -39,11 +39,13 @@ public class MainController implements Initializable {
     private ClassViewController classViewController;
     private TimetableController timetableViewController;
     private SettingsController settingsController;
+    private HelpController helpController;
     private BorderPane teacherView;
     private BorderPane classView;
     private BorderPane timetableView;
     private GridPane absenceView;
     private BorderPane settingsView;
+    private BorderPane helpView;
 
     private boolean classesOpened = false;
     private Stage stage;
@@ -77,17 +79,15 @@ public class MainController implements Initializable {
             settingsView = settingsLoader.load();
             settingsController = settingsLoader.getController();
 
+            //Load HelpView
+            FXMLLoader helpLoader = fxmlLoad("demo/help.fxml");
+            helpView = helpLoader.load();
+            helpController = helpLoader.getController();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void resetTableView(){
-
-    }
-
-    /*public TimetableViewController getTimetableViewController() {
-        return timetableViewController;
-    }*/
 
     // Method to load fxml
     public FXMLLoader fxmlLoad(String location) throws IOException {
@@ -95,6 +95,7 @@ public class MainController implements Initializable {
         fxmlLoader.setLocation(getClass().getResource(location));
         return fxmlLoader;
     }
+
 
     @FXML
     public void onClickTeacher() {
@@ -137,7 +138,6 @@ public class MainController implements Initializable {
         main.setRight(null);
 
     }
-
     @FXML
     public void onClickAbsence() {
         setHighlightedNav(absenceBox);
@@ -178,11 +178,20 @@ public class MainController implements Initializable {
 
         main.setCenter(absenceView);
     }
+    @FXML
+    public void onClickHelp(){
+        setHighlightedNav(helpBox);
 
+        teacherViewController.updateTeacher();
+
+        main.setCenter(helpView);
+        main.setBottom(null);
+        main.setRight(null);
+    }
     // used to highlight selected field in navbar
     public void setHighlightedNav(HBox hBox) {
         List<HBox> navbar = Arrays.asList(timetableBox, teacherBox, absenceBox, classBox,
-                settingsBox, excelImportBox, excelExportBox);
+                settingsBox, excelImportBox, excelExportBox, helpBox);
         navbar.forEach(hBox1 -> hBox1.setStyle(null));
         hBox.setStyle("-fx-background-color: #518ef0;\n" +
                 "    -fx-border-radius: 30;\n" +
