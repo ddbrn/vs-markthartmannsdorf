@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,10 +67,8 @@ public class SchoolDB {
     public void removeSchoolClass(SchoolClass schoolClass) {
         schoolClasses.remove(schoolClass);
 
-        Optional<Timetable> timetableToRemove =
-                timetables.stream().filter(timetable -> timetable.getSchoolClass().getClassname().equals(schoolClass.getClassname())).findFirst();
-        System.out.println(timetableToRemove.get().getSchoolClass().toString());
-        timetableToRemove.ifPresent(timetable -> timetables.remove(timetable));
+        List<Timetable> timetablesToRemove = getTimetablesFromClass(schoolClass);
+        timetablesToRemove.forEach(t -> timetables.remove(t));
     }
 
     public void setTimetables(List<Timetable> timetables){
@@ -105,8 +104,8 @@ public class SchoolDB {
         this.schoolClasses.addAll(schoolClasses);
     }
 
-    public Optional<Timetable> findTimetableByClass(SchoolClass schoolClass) {
-        return timetables.stream().filter(timetable -> timetable.getSchoolClass().equals(schoolClass)).findFirst();
+    public Optional<Timetable> findTimetableByClass(SchoolClass schoolClass, Week week) {
+        return timetables.stream().filter(t -> t.getSchoolClass().equals(schoolClass) && t.getWeek().equals(week)).findFirst();
     }
 
     public void addSubject(Day day, int hour, Lesson lesson, Timetable timetable) {
@@ -124,19 +123,23 @@ public class SchoolDB {
 
         timetables.stream()
                 .filter(t -> t.getSchoolClass()
-                        .equals(timetable.getSchoolClass())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherLesson);
+                        .equals(timetable.getSchoolClass())
+                        && t.getWeek().equals(timetable.getWeek())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherLesson);
         timetables.stream()
                 .filter(t -> t.getSchoolClass()
-                        .equals(timetable.getSchoolClass())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherLesson);
+                        .equals(timetable.getSchoolClass())
+                        && t.getWeek().equals(timetable.getWeek())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherLesson);
     }
 
     public void removeSubject(Day day, int hour, Timetable timetable){
-        timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass())).findFirst().get().removeSubject(day, hour);
+        timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass())
+                && t.getWeek().equals(timetable.getWeek())).findFirst().get().removeSubject(day, hour);
     }
 
     public void addTeacherToLesson(Day day, int hour, Timetable timetable, TeacherSubject teacherSubject){
         if (!timetable.getSubjects().get(day).get(hour).getTeacher().contains(teacherSubject)) {
-            timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass()))
+            timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass())
+                            && t.getWeek().equals(timetable.getWeek()))
                     .findFirst()
                     .get()
                     .getSubjects()
@@ -179,5 +182,17 @@ public class SchoolDB {
             weeks.add(timetable.getWeek());
         }
         return weeks;
+    }
+
+    public void addWeekToTimetable(SchoolClass schoolClass){
+        List<Week> weeks = getWeeksFromSchoolClass(schoolClass);
+        Week lastWeek = weeks.get(weeks.size() - 1);
+
+        List<Week> availableWeeks = Arrays.asList(Week.values());
+        Timetable timetable = new Timetable(getTimetablesFromClass(schoolClass).get(0));
+        if (!availableWeeks.get(availableWeeks.size() - 1).equals(lastWeek)){
+            timetable.setWeek(availableWeeks.get(availableWeeks.indexOf(lastWeek) + 1));
+            addTimetable(timetable);
+        }
     }
 }

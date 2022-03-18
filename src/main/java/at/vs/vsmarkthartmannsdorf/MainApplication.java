@@ -13,6 +13,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        System.out.println(getClass().getResource("demo/start.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("demo/start.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Stundenplaner");

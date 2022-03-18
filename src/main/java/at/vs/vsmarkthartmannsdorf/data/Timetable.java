@@ -32,6 +32,12 @@ public class Timetable {
         this.week = week;
     }
 
+    public Timetable(Timetable timetable){
+        this.schoolClass = timetable.getSchoolClass();
+        this.subjects = timetable.getSubjects();
+        this.week = timetable.getWeek();
+    }
+
     public void addSubject(Day day, int hour, Lesson lesson){
         subjects.get(day).put(hour, lesson);
     }

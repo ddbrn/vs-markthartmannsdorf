@@ -67,7 +67,7 @@ public class IOAccess_PDF {
 
 
     private static void addRows(PdfPTable table) {
-        Timetable timetable = SchoolDB.getInstance().getTimetableFromClass(schoolClass);
+        Timetable timetable = SchoolDB.getInstance().getTimetablesFromClass(schoolClass).get(0);
         System.out.println(timetable);
         HashMap<Day, HashMap<Integer, Lesson>> subjects = timetable.getSubjects();
         System.out.println(subjects.size());

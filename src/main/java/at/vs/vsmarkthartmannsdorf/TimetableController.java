@@ -358,7 +358,8 @@ public class TimetableController implements Initializable {
 
     public void reload() {
         SchoolClass schoolClass = visibleTimetable.getSchoolClass();
-        Optional<Timetable> timetable = SchoolDB.getInstance().findTimetableByClass(schoolClass);
+        Optional<Timetable> timetable = SchoolDB.getInstance()
+                .findTimetableByClass(schoolClass, visibleTimetable.getWeek());
         timetable.ifPresent(value -> visibleTimetable = value);
     }
 
@@ -480,6 +481,7 @@ public class TimetableController implements Initializable {
                 .getTimetablesFromClass(schoolClass)
                 .stream()
                 .filter(timetable -> timetable.getWeek().equals(week)).findFirst().get();
+        reload();
         setContent();
     }
 
@@ -490,5 +492,6 @@ public class TimetableController implements Initializable {
         weeks.add(Arrays.asList(Week.values()).get(Arrays.asList(Week.values()).indexOf(lastWeek) + 1));
         System.out.println(weeks);
         cbWeek.setItems(weeks);
+        SchoolDB.getInstance().addWeekToTimetable(visibleTimetable.getSchoolClass());
     }
 }
