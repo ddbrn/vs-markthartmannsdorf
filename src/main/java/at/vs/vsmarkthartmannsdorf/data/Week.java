@@ -1,4 +1,5 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
-public enum SubjectAbbreviation {
+public enum Week {
+    A,B,C,D;
 }

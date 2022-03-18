@@ -60,7 +60,7 @@ public class SchoolDB {
 
     public void addSchoolClass(SchoolClass schoolClass) {
         schoolClasses.add(schoolClass);
-        addTimetable(new Timetable(schoolClass));
+        addTimetable(new Timetable(schoolClass, Week.A));
     }
 
     public void removeSchoolClass(SchoolClass schoolClass) {
@@ -68,6 +68,7 @@ public class SchoolDB {
 
         Optional<Timetable> timetableToRemove =
                 timetables.stream().filter(timetable -> timetable.getSchoolClass().getClassname().equals(schoolClass.getClassname())).findFirst();
+        System.out.println(timetableToRemove.get().getSchoolClass().toString());
         timetableToRemove.ifPresent(timetable -> timetables.remove(timetable));
     }
 
@@ -167,10 +168,16 @@ public class SchoolDB {
                 .contains(teacherSubject);
     }
 
-    public Timetable getTimetableFromClass(SchoolClass schoolClass){
+    public List<Timetable> getTimetablesFromClass(SchoolClass schoolClass){
         return timetables.stream()
-                .filter(t -> t.getSchoolClass().equals(schoolClass))
-                .findFirst()
-                .get();
+                .filter(t -> t.getSchoolClass().equals(schoolClass)).collect(Collectors.toList());
+    }
+
+    public List<Week> getWeeksFromSchoolClass(SchoolClass schoolClass){
+        List<Week> weeks = new ArrayList<>();
+        for (Timetable timetable: getTimetablesFromClass(schoolClass)){
+            weeks.add(timetable.getWeek());
+        }
+        return weeks;
     }
 }

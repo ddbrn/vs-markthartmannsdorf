@@ -15,9 +15,10 @@ public class Timetable {
     private SchoolClass schoolClass;
     private HashMap<Day, HashMap<Integer, Lesson>> subjects;
     public static final int MAX_HOURS = 8;
+    private Week week;
 
 
-    public Timetable(SchoolClass schoolClass) {
+    public Timetable(SchoolClass schoolClass, Week week) {
         this.schoolClass = schoolClass;
 
         subjects = new HashMap<>();
@@ -28,6 +29,7 @@ public class Timetable {
             }
             subjects.put(day, subjectsPerDay);
         }
+        this.week = week;
     }
 
     public void addSubject(Day day, int hour, Lesson lesson){

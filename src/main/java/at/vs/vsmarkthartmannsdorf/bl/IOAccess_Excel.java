@@ -165,7 +165,7 @@ public class IOAccess_Excel {
                 cellH.setCellValue(Day.Freitag.name());
                 cellH.setCellStyle(styleH);
 
-                Timetable timetable = SchoolDB.getInstance().getTimetableFromClass(schoolClass);
+                Timetable timetable = SchoolDB.getInstance().getTimetablesFromClass(schoolClass).get(0); // Needs to be fixed sgr
 
 
                 IntStream.range(1, 9).forEach(i -> {

@@ -16,7 +16,6 @@ public class SchoolClass {
     private String classname;
     private Teacher teacher;
 
-
     public SchoolClass(String classname, Teacher teacher) {
         this.classname = classname;
         this.teacher = teacher;
