@@ -67,7 +67,23 @@
                            </graphic></Button>
                         <Label text="Woche" />
                         <ComboBox fx:id="cbWeek" onAction="#onChangeWeek" />
-                        <Button mnemonicParsing="false" onAction="#onAddWeek" text="Woche hinzufügen" />
+                        <Button fx:id="btnAddWeek" mnemonicParsing="false" onAction="#onAddWeek">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/add-user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="btnRemoveWeek" mnemonicParsing="false" onAction="#onRemoveWeek">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/x.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label fx:id="lblInfo" text="Label" />

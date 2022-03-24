@@ -195,4 +195,12 @@ public class SchoolDB {
             addTimetable(timetable);
         }
     }
+
+    public void removeWeekFromTimetable(SchoolClass schoolClass, Week week){
+        timetables.remove(timetables
+                .stream()
+                .filter(timetable -> timetable.getSchoolClass().equals(schoolClass) && timetable.getWeek().equals(week))
+                .findFirst()
+                .get());
+    }
 }

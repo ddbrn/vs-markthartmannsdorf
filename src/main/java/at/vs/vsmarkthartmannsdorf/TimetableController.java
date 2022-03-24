@@ -30,6 +30,8 @@ public class TimetableController implements Initializable {
     public Label lblInfo;
     public VBox vbSidePanel;
     public ComboBox<Week> cbWeek;
+    public Button btnAddWeek;
+    public Button btnRemoveWeek;
 
     private boolean isEdit;
     private Timetable visibleTimetable;
@@ -50,6 +52,9 @@ public class TimetableController implements Initializable {
         lblInfo.setStyle("-fx-font-size: 20; -fx-font-weight: bold");
         vbSidePanel.setVisible(false);
         timetableView = null;
+
+        btnAddWeek.setTooltip(new Tooltip("Woche hinzufügen"));
+        btnRemoveWeek.setTooltip(new Tooltip("Woche entfernen"));
     }
 
     public void load() {
@@ -311,7 +316,7 @@ public class TimetableController implements Initializable {
     public void onSelectClass() {
         if (!lvTimetables.getSelectionModel().isEmpty()){
             visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(lvTimetables.getSelectionModel().getSelectedItem()).get(0);
-            lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
+            changeLabelText();
             cbWeek.setItems(FXCollections.observableList(SchoolDB
                     .getInstance()
                     .getWeeksFromSchoolClass(visibleTimetable.getSchoolClass())));
@@ -369,14 +374,12 @@ public class TimetableController implements Initializable {
         if (isEdit) {
             isEdit = false;
             vbSidePanel.setVisible(false);
-
-            lblInfo.setText(visibleTimetable.getSchoolClass().getClassname());
             setContent();
         } else {
             isEdit = true;
             vbSidePanel.setVisible(true);
-            lblInfo.setText("Bearbeitungsmodus | " + visibleTimetable.getSchoolClass().getClassname());
         }
+        changeLabelText();
 
         if (isEdit) {
             hbSubjects = new HBox();
@@ -477,21 +480,53 @@ public class TimetableController implements Initializable {
     public void onChangeWeek(){
         SchoolClass schoolClass = visibleTimetable.getSchoolClass();
         Week week = cbWeek.getSelectionModel().getSelectedItem();
-        visibleTimetable = SchoolDB.getInstance()
-                .getTimetablesFromClass(schoolClass)
-                .stream()
-                .filter(timetable -> timetable.getWeek().equals(week)).findFirst().get();
+        if (week != null){
+            visibleTimetable = SchoolDB.getInstance()
+                    .getTimetablesFromClass(schoolClass)
+                    .stream()
+                    .filter(timetable -> timetable.getWeek().equals(week)).findFirst().get();
+        }
         reload();
         setContent();
     }
 
     @FXML
     public void onAddWeek(){
-        Week lastWeek = cbWeek.getItems().get(cbWeek.getItems().size() - 1);
-        ObservableList<Week> weeks = cbWeek.getItems();
-        weeks.add(Arrays.asList(Week.values()).get(Arrays.asList(Week.values()).indexOf(lastWeek) + 1));
-        System.out.println(weeks);
-        cbWeek.setItems(weeks);
-        SchoolDB.getInstance().addWeekToTimetable(visibleTimetable.getSchoolClass());
+        if (cbWeek.getItems().size() != Week.values().length){
+            Week lastWeek = cbWeek.getItems().get(cbWeek.getItems().size() - 1);
+            ObservableList<Week> weeks = cbWeek.getItems();
+            weeks.add(Arrays.asList(Week.values()).get(Arrays.asList(Week.values()).indexOf(lastWeek) + 1));
+            cbWeek.setItems(weeks);
+            SchoolDB.getInstance().addWeekToTimetable(visibleTimetable.getSchoolClass());
+            cbWeek.getSelectionModel().select(weeks.get(weeks.size() - 1));
+        }
+    }
+
+    @FXML
+    public void onRemoveWeek(){
+        Week week = cbWeek.getSelectionModel().getSelectedItem();
+        if (!week.equals(Week.A)){
+            SchoolClass schoolClass = visibleTimetable.getSchoolClass();
+            SchoolDB.getInstance().removeWeekFromTimetable(schoolClass, visibleTimetable.getWeek());
+            visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(schoolClass).get(0);
+            cbWeek.getItems().remove(week);
+            setContent();
+            reload();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("vs-martkhartmannsdorf | WOCHE ENTFERNEN");
+            alert.setHeaderText("Sie können die A-Woche nicht entfernen!");
+            alert.showAndWait();
+        }
+    }
+
+    private void changeLabelText(){
+        if (isEdit){
+            lblInfo.setText(String.format("Bearbeitungsmodus | %s",
+                    visibleTimetable.getSchoolClass().getClassname()));
+        }else{
+            lblInfo.setText(String.format("%s",
+                    visibleTimetable.getSchoolClass().getClassname()));
+        }
     }
 }
