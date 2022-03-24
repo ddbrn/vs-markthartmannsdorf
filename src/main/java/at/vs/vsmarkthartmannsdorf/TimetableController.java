@@ -506,12 +506,23 @@ public class TimetableController implements Initializable {
     public void onRemoveWeek(){
         Week week = cbWeek.getSelectionModel().getSelectedItem();
         if (!week.equals(Week.A)){
-            SchoolClass schoolClass = visibleTimetable.getSchoolClass();
-            SchoolDB.getInstance().removeWeekFromTimetable(schoolClass, visibleTimetable.getWeek());
-            visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(schoolClass).get(0);
-            cbWeek.getItems().remove(week);
-            setContent();
-            reload();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("vs-martkhartmannsdorf | LÖSCHEN");
+            alert.setHeaderText(String.format("Wollen sie wirklich die %s-Woche löschen?", week.name()));
+            alert.setContentText("Löschen?");
+            ButtonType okButton = new ButtonType("Ja", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("Nein", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type.getButtonData().equals(ButtonBar.ButtonData.YES)) {
+                    SchoolClass schoolClass = visibleTimetable.getSchoolClass();
+                    SchoolDB.getInstance().removeWeekFromTimetable(schoolClass, visibleTimetable.getWeek());
+                    visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(schoolClass).get(0);
+                    cbWeek.getItems().remove(week);
+                    setContent();
+                    reload();
+                }
+            });
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("vs-martkhartmannsdorf | WOCHE ENTFERNEN");
