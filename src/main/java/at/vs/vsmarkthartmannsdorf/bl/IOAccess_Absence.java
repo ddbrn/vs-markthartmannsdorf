@@ -26,5 +26,6 @@ public class IOAccess_Absence {
         }
 
         System.out.println(SchoolDB.getInstance().getTeacherAbsences());
+        System.out.println(IOAccess.storeAbsenceFiles());
     }
 }
