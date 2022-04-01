@@ -9,9 +9,9 @@
     }
   },
   "subjects" : {
-    "Donnerstag" : {
+    "Montag" : {
       "1" : {
-        "subject" : "Religion",
+        "subject" : "Mathematik",
         "teacher" : [ ],
         "emptyLesson" : false
       },
@@ -21,14 +21,14 @@
         "emptyLesson" : false
       },
       "3" : {
-        "subject" : "Musik",
+        "subject" : "Religion",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "4" : {
-        "subject" : "Religion",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "5" : {
         "subject" : null,
@@ -135,26 +135,26 @@
         "emptyLesson" : true
       }
     },
-    "Montag" : {
+    "Mittwoch" : {
       "1" : {
-        "subject" : "Mathematik",
+        "subject" : "Musik",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "2" : {
-        "subject" : "Englisch",
+        "subject" : "Sachkunde",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "3" : {
-        "subject" : "Religion",
+        "subject" : "Deutsch",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "4" : {
-        "subject" : null,
+        "subject" : "Deutsch",
         "teacher" : [ ],
-        "emptyLesson" : true
+        "emptyLesson" : false
       },
       "5" : {
         "subject" : null,
@@ -177,24 +177,24 @@
         "emptyLesson" : true
       }
     },
-    "Mittwoch" : {
+    "Donnerstag" : {
       "1" : {
-        "subject" : "Musik",
+        "subject" : "Religion",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "2" : {
-        "subject" : "Sachkunde",
+        "subject" : "Englisch",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "3" : {
-        "subject" : "Deutsch",
+        "subject" : "Musik",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "4" : {
-        "subject" : "Deutsch",
+        "subject" : "Religion",
         "teacher" : [ ],
         "emptyLesson" : false
       },
@@ -232,9 +232,9 @@
     }
   },
   "subjects" : {
-    "Donnerstag" : {
+    "Montag" : {
       "1" : {
-        "subject" : "Religion",
+        "subject" : "Mathematik",
         "teacher" : [ ],
         "emptyLesson" : false
       },
@@ -244,14 +244,14 @@
         "emptyLesson" : false
       },
       "3" : {
-        "subject" : "Musik",
+        "subject" : "Religion",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "4" : {
-        "subject" : "Religion",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "5" : {
         "subject" : null,
@@ -358,26 +358,26 @@
         "emptyLesson" : true
       }
     },
-    "Montag" : {
+    "Mittwoch" : {
       "1" : {
-        "subject" : "Mathematik",
+        "subject" : "Musik",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "2" : {
-        "subject" : "Englisch",
+        "subject" : "Sachkunde",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "3" : {
-        "subject" : "Religion",
+        "subject" : "Deutsch",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "4" : {
-        "subject" : null,
+        "subject" : "Deutsch",
         "teacher" : [ ],
-        "emptyLesson" : true
+        "emptyLesson" : false
       },
       "5" : {
         "subject" : null,
@@ -400,24 +400,24 @@
         "emptyLesson" : true
       }
     },
-    "Mittwoch" : {
+    "Donnerstag" : {
       "1" : {
-        "subject" : "Musik",
+        "subject" : "Religion",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "2" : {
-        "subject" : "Sachkunde",
+        "subject" : "Englisch",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "3" : {
-        "subject" : "Deutsch",
+        "subject" : "Musik",
         "teacher" : [ ],
         "emptyLesson" : false
       },
       "4" : {
-        "subject" : "Deutsch",
+        "subject" : "Religion",
         "teacher" : [ ],
         "emptyLesson" : false
       },
