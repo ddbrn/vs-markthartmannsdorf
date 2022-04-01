@@ -4,14 +4,6 @@
     "firstname" : "Simon",
     "surname" : "SCHÖGGLER",
     "abbreviation" : "SGR",
-    "subjects" : [ "Mathematik", "Deutsch" ]
-  }
-}, {
-  "classname" : "2A",
-  "teacher" : {
-    "firstname" : "David",
-    "surname" : "BRANNAN",
-    "abbreviation" : "BRN",
-    "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+    "subjects" : [ "Mathematik", "Englisch" ]
   }
 } ]

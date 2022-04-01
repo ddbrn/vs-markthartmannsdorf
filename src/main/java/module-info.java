@@ -15,4 +15,5 @@ module at.vs.vsmarkthartmannsdorf {
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;
     exports at.vs.vsmarkthartmannsdorf;
     exports at.vs.vsmarkthartmannsdorf.data;
+    exports at.vs.vsmarkthartmannsdorf.serializer;
 }

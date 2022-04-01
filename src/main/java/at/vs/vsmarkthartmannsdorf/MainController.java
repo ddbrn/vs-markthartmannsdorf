@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Absence;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
 
 public class MainController implements Initializable {
@@ -141,6 +143,7 @@ public class MainController implements Initializable {
     @FXML
     public void onClickAbsence() {
         setHighlightedNav(absenceBox);
+        loadAbsence();
 
         absenceView = new GridPane();
 
@@ -181,6 +184,8 @@ public class MainController implements Initializable {
     @FXML
     public void onClickHelp(){
         setHighlightedNav(helpBox);
+
+        //IOAccess_Absence.storeAbsence();
 
         teacherViewController.updateTeacher();
 
@@ -269,6 +274,7 @@ public class MainController implements Initializable {
 
     public void setTeachers(List<Teacher> teachers) {
         SchoolDB.getInstance().setTeacher(teachers);
+        IOAccess.storeAbsenceFiles();
         loadAbsence();
     }
 
@@ -295,8 +301,11 @@ public class MainController implements Initializable {
     public void loadAbsence() {
         for (Teacher teacher : SchoolDB.getInstance().getTeachers()) {
             //teacherAbsenceList.add(new TeacherAbsence(teacher, false));
-            SchoolDB.getInstance().getTeacherAbsences().add(new TeacherAbsence(teacher, false));
+            //TODO: Von Datei lesen
+            SchoolDB.getInstance().setNewTeacherAbsence(new TeacherAbsence(teacher, false, null, null, ""));
         }
+
+        //IOAccess.readAbsenceFiles();
     }
 
     public void setClassesOpened(boolean classesOpened) {

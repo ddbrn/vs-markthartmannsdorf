@@ -7,16 +7,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import lombok.Data;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+@Data
 public class TeacherAbsenceFormController implements Initializable {
     @FXML
     public Label lblName;
     public DatePicker dPFrom;
     public DatePicker dPTo;
+    public TextArea txtReason;
 
     private TeacherAbsence teacherAbsence;
 
@@ -49,5 +53,6 @@ public class TeacherAbsenceFormController implements Initializable {
         this.teacherAbsence = teacherAbsence;
 
         lblName.setText(teacherAbsence.getTeacher().getSurname() + " " + teacherAbsence.getTeacher().getFirstname());
+        //txtReason.setText(teacherAbsence.getReason());
     }
 }

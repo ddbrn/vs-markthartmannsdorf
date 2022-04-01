@@ -12,9 +12,11 @@ import java.util.*;
 import at.vs.vsmarkthartmannsdorf.Main;
 import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.data.TeacherAbsence;
 import at.vs.vsmarkthartmannsdorf.data.Timetable;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
 
 // 25.11.2021 Simon: create "storeClassFiles", "readClassFiles" Functions
 // 02.12.2021 Simon: fixed JSON /read and /write
@@ -28,6 +30,7 @@ public class IOAccess {
     private static final File FILE_CLASS = Paths.get("", "data", "class.json").toFile();
     private static final File FILE_TEACHER = Paths.get("", "data", "teacher.json").toFile();
     private static final File FILE_TIMETABLE = Paths.get("", "data", "timetable.json").toFile();
+    private static final File FILE_ABSENCE = Paths.get("", "data", "absence.json").toFile();
 
 
     public static synchronized boolean storeClassFiles(List<SchoolClass> schoolClassList) {
@@ -173,6 +176,50 @@ public class IOAccess {
             e.printStackTrace();
         }
         return timetableList;
+    }
+
+    public static synchronized boolean storeAbsenceFiles() {
+        try {
+            FILE_CLASS.getParentFile().mkdirs();
+            ObjectMapper om = new ObjectMapper();
+            String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(SchoolDB.getInstance().getTeacherAbsences());
+
+            FileWriter fileWriter = new FileWriter(IOAccess.FILE_ABSENCE.getAbsolutePath(), StandardCharsets.UTF_8);
+            fileWriter.write(jsonStr);
+            fileWriter.close();
+            System.out.println("FileWrite wrote in \"" + IOAccess.FILE_ABSENCE.getName() + "\".");
+
+            return true; //successfully wrote data
+
+        } catch (IOException e) {
+            System.out.println("Failed to write in the File: \"" + IOAccess.FILE_ABSENCE.getName() + "\".");
+            e.printStackTrace();
+            return false; //not successfully wrote data
+        }
+    }
+
+    public static synchronized void readAbsenceFiles() {
+        List<TeacherAbsence> teacherAbsences = new ArrayList<>();
+        if (!new File(FILE_ABSENCE.getAbsolutePath()).exists()) {
+            return;
+        }
+        try {
+            String result = Files.readString(Paths.get(FILE_ABSENCE.getAbsolutePath()), StandardCharsets.UTF_8);
+
+            if (result.isEmpty()) {
+                return;
+            }
+
+            ObjectMapper om = new ObjectMapper();
+            TeacherAbsence[] teacherAbsence = om.readValue(result, TeacherAbsence[].class);
+
+            teacherAbsences = Arrays.asList(teacherAbsence);
+            System.out.println("FileWrite read in \"" + IOAccess.FILE_ABSENCE.getName() + "\".");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SchoolDB.getInstance().setTeacherAbsences(FXCollections.observableArrayList(teacherAbsences));
     }
 
 }
