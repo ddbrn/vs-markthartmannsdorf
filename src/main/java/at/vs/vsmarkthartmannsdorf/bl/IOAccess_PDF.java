@@ -2,11 +2,12 @@ package at.vs.vsmarkthartmannsdorf.bl;
 
 import at.vs.vsmarkthartmannsdorf.data.*;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -14,11 +15,10 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
 
 public class IOAccess_PDF {
     private static Stage stage;
@@ -55,10 +55,10 @@ public class IOAccess_PDF {
 
 
     private static void addTableHeader(PdfPTable table) {
-        Stream.of("", Day.Montag.name(), Day.Dienstag.name(), Day.Mittwoch.name(), Day.Donnerstag.name(), Day.Freitag.name())
+        Stream.of("Stunde", Day.Montag.name(), Day.Dienstag.name(), Day.Mittwoch.name(), Day.Donnerstag.name(), Day.Freitag.name())
                 .forEach(columnTitle -> {
                     PdfPCell header = new PdfPCell();
-                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                    header.setBackgroundColor(BaseColor.WHITE);
                     header.setBorderWidth(1);
                     header.setPhrase(new Phrase(columnTitle));
                     table.addCell(header);
@@ -88,7 +88,6 @@ public class IOAccess_PDF {
                 setColorCell(cells[j]);
             });
         });
-
     }
 
     private static void setColorCell(PdfPCell cell) {
@@ -96,7 +95,7 @@ public class IOAccess_PDF {
         if (!cell.getPhrase().getContent().isEmpty()) {
             Color color = Color.valueOf(PropertiesLoader.getInstance().
                     getProperties().getProperty(cell.getPhrase().getContent()));
-            String hex = color.toString().substring(2);
+            String hex = color.toString().substring(1);
             int red = Integer.parseInt(hex.substring(1, 3), 16);
             int blue = Integer.parseInt(hex.substring(3, 5), 16);
             int green = Integer.parseInt(hex.substring(5, 7), 16);
@@ -111,6 +110,7 @@ public class IOAccess_PDF {
             }
 
             cell.setBackgroundColor(new BaseColor(red, blue, green));
+
         }
     }
 }

@@ -99,7 +99,7 @@ public class ClassFormController implements Initializable {
                 info.setVisible(true);
             }
         }
-
+        parent.parent.setClassesOpened(false);
     }
 
     public void refreshItems() {
