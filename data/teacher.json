@@ -2,30 +2,30 @@
   "firstname" : "Simon",
   "surname" : "SCHÖGGLER",
   "abbreviation" : "SGR",
-  "subjects" : [ "Mathematik", "Deutsch" ]
+  "subjects" : [ "Mathematik", "Englisch" ]
 }, {
   "firstname" : "David",
   "surname" : "BRANNAN",
   "abbreviation" : "BRN",
-  "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
-}, {
-  "firstname" : "Marcel",
-  "surname" : "SCHMIDL",
-  "abbreviation" : "SMI",
-  "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Religion" ]
+  "subjects" : [ "Musik" ]
 }, {
   "firstname" : "Manuel",
   "surname" : "REINPRECHT",
   "abbreviation" : "RPT",
-  "subjects" : [ "Musik", "Chor", "Werken" ]
+  "subjects" : [ "Musik" ]
+}, {
+  "firstname" : "Marcel",
+  "surname" : "SCHMIDL",
+  "abbreviation" : "SML",
+  "subjects" : [ "Sachkunde" ]
 }, {
   "firstname" : "Klemens",
   "surname" : "PECHMANN",
-  "abbreviation" : "PMN",
-  "subjects" : [ "Deutsch" ]
-}, {
-  "firstname" : "Bene",
-  "surname" : "RENGER",
-  "abbreviation" : "RNR",
+  "abbreviation" : "PHN",
   "subjects" : [ "Musik" ]
+}, {
+  "firstname" : "Benedikt",
+  "surname" : "RENGER",
+  "abbreviation" : "RGR",
+  "subjects" : [ "Deutsch", "Sport" ]
 } ]

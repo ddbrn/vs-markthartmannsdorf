@@ -1,11 +1,15 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.bl.*;
+import at.vs.vsmarkthartmannsdorf.data.TeacherAbsence;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.lang.reflect.AccessibleObject;
+import java.security.PrivilegedAction;
 
 public class MainApplication extends Application {
 
@@ -29,6 +33,7 @@ public class MainApplication extends Application {
         IOAccess_Excel.setStage(stage);
         IOAccess_PDF.setStage(stage);
         IOAccess.readTimetableFiles();
+        IOAccess.readAbsenceFiles();
     }
 
     @Override
@@ -38,6 +43,7 @@ public class MainApplication extends Application {
         IOAccess.storeTeacherFiles(SchoolDB.getInstance().getTeachers());
         IOAccess.storeClassFiles(SchoolDB.getInstance().getSchoolClasses());
         IOAccess.storeTimetableFiles();
+        IOAccess.storeAbsenceFiles();
 
         //IOAccess_Excel.createExcelFile(controller.getTeacher(), controller.getClasses());
     }

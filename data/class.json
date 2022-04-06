@@ -4,30 +4,6 @@
     "firstname" : "Simon",
     "surname" : "SCHÖGGLER",
     "abbreviation" : "SGR",
-    "subjects" : [ "Mathematik", "Deutsch" ]
-  }
-}, {
-  "classname" : "1B",
-  "teacher" : {
-    "firstname" : "David",
-    "surname" : "BRANNAN",
-    "abbreviation" : "BRN",
-    "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
-  }
-}, {
-  "classname" : "2A",
-  "teacher" : {
-    "firstname" : "Marcel",
-    "surname" : "SCHMIDL",
-    "abbreviation" : "SMI",
-    "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Religion" ]
-  }
-}, {
-  "classname" : "2B",
-  "teacher" : {
-    "firstname" : "Manuel",
-    "surname" : "REINPRECHT",
-    "abbreviation" : "RPT",
-    "subjects" : [ "Musik", "Chor", "Werken" ]
+    "subjects" : [ "Mathematik", "Englisch" ]
   }
 } ]

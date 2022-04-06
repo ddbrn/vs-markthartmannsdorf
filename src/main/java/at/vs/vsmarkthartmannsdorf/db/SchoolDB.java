@@ -20,7 +20,7 @@ public class SchoolDB {
     private ObservableList<Timetable> timetables;
     private ObservableList<TeacherSubject> teacherSubjects;
 
-    private List<TeacherAbsence> teacherAbsences;
+    private ObservableList<TeacherAbsence> teacherAbsences;
 
     private SchoolDB() {
         teachers = FXCollections.observableArrayList();
@@ -28,7 +28,7 @@ public class SchoolDB {
         timetables = FXCollections.observableArrayList();
         teacherSubjects = FXCollections.observableArrayList();
 
-        teacherAbsences = new ArrayList<>();
+        teacherAbsences = FXCollections.observableArrayList();
 
         for (Teacher teacher : teachers) {
             for (Subject subject : teacher.getSubjects()) {
@@ -193,6 +193,31 @@ public class SchoolDB {
         if (!availableWeeks.get(availableWeeks.size() - 1).equals(lastWeek)){
             timetable.setWeek(availableWeeks.get(availableWeeks.indexOf(lastWeek) + 1));
             addTimetable(timetable);
+        }
+    }
+
+    public void removeWeekFromTimetable(SchoolClass schoolClass, Week week){
+        timetables.remove(timetables
+                .stream()
+                .filter(timetable -> timetable.getSchoolClass().equals(schoolClass) && timetable.getWeek().equals(week))
+                .findFirst()
+                .get());
+    }
+
+
+    public void setNewTeacherAbsence (TeacherAbsence teacherAbsence) {
+        Optional<TeacherAbsence> oldTeacherAbsence = teacherAbsences
+                .stream()
+                .filter(tA -> tA.getTeacher().getAbbreviation().equals(teacherAbsence.getTeacher().getAbbreviation()))
+                .findFirst();
+
+        if (oldTeacherAbsence.isPresent()) {
+
+            int index = teacherAbsences.indexOf(oldTeacherAbsence.get());
+            teacherAbsences.add(index, teacherAbsence);
+            teacherAbsences.remove(oldTeacherAbsence.get());
+        } else {
+            teacherAbsences.add(teacherAbsence);
         }
     }
 }
