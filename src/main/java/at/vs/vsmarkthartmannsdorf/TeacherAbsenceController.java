@@ -29,7 +29,7 @@ public class TeacherAbsenceController implements Initializable {
     private HBox container;
 
     private MainController parent;
-    private TeacherAbsence teacherAbsence;
+    private Teacher teacher;
     private boolean isAbsent;
 
     @Override
@@ -47,7 +47,7 @@ public class TeacherAbsenceController implements Initializable {
                 DialogPane absenceDialog = fxmlLoader.load();
 
                 TeacherAbsenceFormController teacherAbsenceFormController = fxmlLoader.getController();
-                teacherAbsenceFormController.setTeacher(teacherAbsence);
+                teacherAbsenceFormController.setTeacher(teacher);
 
 
                 Dialog<ButtonType> dialog = new Dialog<>();
@@ -63,12 +63,7 @@ public class TeacherAbsenceController implements Initializable {
                     LocalDate toDate = teacherAbsenceFormController.getDPTo().getValue();
                     String reason = teacherAbsenceFormController.getTxtReason().getText();
 
-                    teacherAbsence.setFromDate(fromDate);
-                    teacherAbsence.setToDate(toDate);
-                    teacherAbsence.setReason(reason);
-
-
-                    System.out.println(teacherAbsence);
+                    SchoolDB.getInstance().setNewTeacherAbsence(new TeacherAbsence(teacher.getId(), fromDate, toDate, reason));
                 }
 
 
@@ -81,17 +76,15 @@ public class TeacherAbsenceController implements Initializable {
             isAbsent = false;
             container.setStyle("-fx-background-color: #ffffff");
         }
-        teacherAbsence.setAbsent(isAbsent);
-        parent.teacherChangedAbsentStatus(teacherAbsence);
 
     }
 
-    public void setData(TeacherAbsence teacherAbsence) {
-        this.teacherAbsence = teacherAbsence;
+    public void setData(Teacher teacher) {
+        this.teacher = teacher;
 
-        lbFirstname.setText(teacherAbsence.getTeacher().getFirstname());
-        lbSurname.setText(teacherAbsence.getTeacher().getSurname());
-        if (teacherAbsence.isAbsent()) {
+        lbFirstname.setText(teacher.getFirstname());
+        lbSurname.setText(teacher.getSurname());
+        if (SchoolDB.getInstance().isTeacherAbsence(teacher)) {
             isAbsent = true;
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
             container.setStyle("-fx-background-color: #b4aeae");

@@ -205,7 +205,7 @@ public class SchoolDB {
     public void setNewTeacherAbsence (TeacherAbsence teacherAbsence) {
         Optional<TeacherAbsence> oldTeacherAbsence = teacherAbsences
                 .stream()
-                .filter(tA -> tA.getTeacher().getAbbreviation().equals(teacherAbsence.getTeacher().getAbbreviation()))
+                .filter(tA -> tA.getTeacherID() == teacherAbsence.getTeacherID())
                 .findFirst();
 
         if (oldTeacherAbsence.isPresent()) {
@@ -238,5 +238,9 @@ public class SchoolDB {
 
     public Optional<Teacher> getTeacherByID(int id){
         return teachers.stream().filter(t -> t.getId() == id).findFirst();
+    }
+
+    public boolean isTeacherAbsence (Teacher teacher) {
+        return teacherAbsences.stream().anyMatch(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId());
     }
 }

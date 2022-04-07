@@ -2,6 +2,7 @@ package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.data.TeacherAbsence;
+import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DateCell;
@@ -22,7 +23,7 @@ public class TeacherAbsenceFormController implements Initializable {
     public DatePicker dPTo;
     public TextArea txtReason;
 
-    private TeacherAbsence teacherAbsence;
+    private Teacher teacher;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,10 +50,12 @@ public class TeacherAbsenceFormController implements Initializable {
         dPTo.setValue(LocalDate.now());
     }
 
-    public void setTeacher(TeacherAbsence teacherAbsence){
-        this.teacherAbsence = teacherAbsence;
+    public void setTeacher(Teacher teacher){
+        this.teacher = teacher;
 
-        lblName.setText(teacherAbsence.getTeacher().getSurname() + " " + teacherAbsence.getTeacher().getFirstname());
+        lblName.setText(teacher.getSurname() +
+                " " + teacher.getFirstname());
+        //txtReason.setText(teacherAbsence.getReason());
         //txtReason.setText(teacherAbsence.getReason());
     }
 }

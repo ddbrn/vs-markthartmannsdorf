@@ -2,6 +2,12 @@
   "id" : 0,
   "firstname" : "Simon",
   "surname" : "SCHÖGGLER",
-  "abbreviation" : "SS",
-  "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+  "abbreviation" : "SGR",
+  "subjects" : [ "Mathematik", "Englisch" ]
+}, {
+  "id" : 1,
+  "firstname" : "David",
+  "surname" : "BRANNAN",
+  "abbreviation" : "BRN",
+  "subjects" : [ "Chor", "Werken" ]
 } ]

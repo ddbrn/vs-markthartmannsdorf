@@ -19,15 +19,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TeacherAbsence {
-    private Teacher teacher;
-    private boolean isAbsent;
+    private int teacherID;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate fromDate;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate toDate;
