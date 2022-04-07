@@ -457,7 +457,7 @@ public class IOAccess_Excel {
 
 
                 Teacher teacher =
-                        new Teacher(cells[0].getStringCellValue(),
+                        new Teacher(SchoolDB.getInstance().getLastTeacherID(), cells[0].getStringCellValue(),
                                 cells[1].getStringCellValue(),
                                 cells[2].getStringCellValue().toUpperCase(),
                                 Arrays.stream(cells[3]
@@ -540,12 +540,12 @@ public class IOAccess_Excel {
                     //Check the cell type and format accordingly
                 }
                 SchoolClass schoolClass =
-                        new SchoolClass(
+                        new SchoolClass(SchoolDB.getInstance().getLastTeacherID(),
                                 cells[0].getStringCellValue(),
                                 teacherList
                                         .stream()
                                         .filter(teacher -> (teacher.getFirstname() + " " + teacher.getSurname() + " (" + teacher.getAbbreviation() + ")").equals(cells[1].getStringCellValue()))
-                                        .findFirst().get());
+                                        .findFirst().get().getId());
 
 
                 if (schoolClassList.stream().noneMatch(schoolClass1 -> schoolClass1.getClassname().equals(schoolClass.getClassname()))) {

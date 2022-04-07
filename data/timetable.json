@@ -1,71 +1,25 @@
 [ {
   "schoolClass" : {
+    "id" : 0,
     "classname" : "1A",
-    "teacher" : {
-      "firstname" : "Simon",
-      "surname" : "SCHÖGGLER",
-      "abbreviation" : "SGR",
-      "subjects" : [ "Mathematik", "Englisch" ]
-    }
+    "teacherID" : 0
   },
   "subjects" : {
-    "Montag" : {
-      "1" : {
-        "subject" : "Mathematik",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "2" : {
-        "subject" : "Englisch",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "3" : {
-        "subject" : "Religion",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
     "Freitag" : {
       "1" : {
-        "subject" : "Deutsch",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "2" : {
-        "subject" : "Chor",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "3" : {
-        "subject" : "Musik",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "4" : {
         "subject" : null,
@@ -95,66 +49,24 @@
     },
     "Dienstag" : {
       "1" : {
-        "subject" : "Deutsch",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "2" : {
-        "subject" : "Sachkunde",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "3" : {
-        "subject" : "Musik",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "4" : {
-        "subject" : "Sozialkunde",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "5" : {
         "subject" : null,
         "teacher" : [ ],
         "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
-    "Mittwoch" : {
-      "1" : {
-        "subject" : "Musik",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "2" : {
-        "subject" : "Sachkunde",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "3" : {
-        "subject" : "Deutsch",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "4" : {
-        "subject" : "Deutsch",
-        "teacher" : [ ],
-        "emptyLesson" : false
       },
       "5" : {
         "subject" : null,
@@ -179,24 +91,108 @@
     },
     "Donnerstag" : {
       "1" : {
-        "subject" : "Religion",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "2" : {
-        "subject" : "Englisch",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "3" : {
-        "subject" : "Musik",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "4" : {
-        "subject" : "Religion",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Mittwoch" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Montag" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
       },
       "5" : {
         "subject" : null,
@@ -223,72 +219,26 @@
   "week" : "A"
 }, {
   "schoolClass" : {
+    "id" : 0,
     "classname" : "1A",
-    "teacher" : {
-      "firstname" : "Simon",
-      "surname" : "SCHÖGGLER",
-      "abbreviation" : "SGR",
-      "subjects" : [ "Mathematik", "Englisch" ]
-    }
+    "teacherID" : 0
   },
   "subjects" : {
-    "Montag" : {
-      "1" : {
-        "subject" : "Mathematik",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "2" : {
-        "subject" : "Englisch",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "3" : {
-        "subject" : "Religion",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
     "Freitag" : {
       "1" : {
-        "subject" : "Deutsch",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "2" : {
-        "subject" : "Chor",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "3" : {
-        "subject" : "Musik",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "4" : {
         "subject" : null,
@@ -318,66 +268,24 @@
     },
     "Dienstag" : {
       "1" : {
-        "subject" : "Deutsch",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "2" : {
-        "subject" : "Sachkunde",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "3" : {
-        "subject" : "Musik",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "4" : {
-        "subject" : "Sozialkunde",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "5" : {
         "subject" : null,
         "teacher" : [ ],
         "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
-    "Mittwoch" : {
-      "1" : {
-        "subject" : "Musik",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "2" : {
-        "subject" : "Sachkunde",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "3" : {
-        "subject" : "Deutsch",
-        "teacher" : [ ],
-        "emptyLesson" : false
-      },
-      "4" : {
-        "subject" : "Deutsch",
-        "teacher" : [ ],
-        "emptyLesson" : false
       },
       "5" : {
         "subject" : null,
@@ -402,24 +310,108 @@
     },
     "Donnerstag" : {
       "1" : {
-        "subject" : "Religion",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "2" : {
-        "subject" : "Englisch",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "3" : {
-        "subject" : "Musik",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "4" : {
-        "subject" : "Religion",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Mittwoch" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Montag" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
       },
       "5" : {
         "subject" : null,

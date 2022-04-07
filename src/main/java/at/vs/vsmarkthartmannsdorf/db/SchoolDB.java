@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
@@ -219,5 +216,27 @@ public class SchoolDB {
         } else {
             teacherAbsences.add(teacherAbsence);
         }
+    }
+
+    public int getLastTeacherID(){
+        List<Integer> ids = teachers.stream().map(t -> t.getId()).collect(Collectors.toList());
+        if (!ids.isEmpty()){
+            return Collections.max(ids) + 1;
+        }else{
+            return 0;
+        }
+    }
+
+    public int getLastSchoolClassID(){
+        List<Integer> ids = schoolClasses.stream().map(c -> c.getId()).collect(Collectors.toList());
+        if (!ids.isEmpty()){
+            return Collections.max(ids) + 1;
+        }else{
+            return 0;
+        }
+    }
+
+    public Optional<Teacher> getTeacherByID(int id){
+        return teachers.stream().filter(t -> t.getId() == id).findFirst();
     }
 }

@@ -1,9 +1,5 @@
 [ {
+  "id" : 0,
   "classname" : "1A",
-  "teacher" : {
-    "firstname" : "Simon",
-    "surname" : "SCHÖGGLER",
-    "abbreviation" : "SGR",
-    "subjects" : [ "Mathematik", "Englisch" ]
-  }
+  "teacherID" : 0
 } ]

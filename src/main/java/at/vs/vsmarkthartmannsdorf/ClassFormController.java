@@ -50,7 +50,7 @@ public class ClassFormController implements Initializable {
     }
 
     public void setItemsIfEdited(SchoolClass schoolClass) {
-        classTeacher.getSelectionModel().select(schoolClass.getTeacher());
+        classTeacher.getSelectionModel().select(SchoolDB.getInstance().getTeacherByID(schoolClass.getTeacherID()).get());
         inputYear.getSelectionModel().select(Integer.valueOf(schoolClass.getClassname().substring(0, 1)));
         inputClass.getSelectionModel().select(Character.valueOf(schoolClass.getClassname().charAt(1)));
 
