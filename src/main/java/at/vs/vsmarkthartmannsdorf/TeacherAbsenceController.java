@@ -52,7 +52,7 @@ public class TeacherAbsenceController implements Initializable {
                 dialog.setTitle("Abwesenheit");
 
                 Optional<ButtonType> clickedButton = dialog.showAndWait();
-                if (clickedButton.get() == ButtonType.APPLY){
+                if (clickedButton.get() == ButtonType.APPLY) {
                     iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
                     container.setStyle("-fx-background-color: #b4aeae");
 
@@ -81,7 +81,8 @@ public class TeacherAbsenceController implements Initializable {
 
         lbFirstname.setText(teacher.getFirstname());
         lbSurname.setText(teacher.getSurname());
-        if (SchoolDB.getInstance().isTeacherAbsence(teacher)) {iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
+        if (SchoolDB.getInstance().isTeacherAbsence(teacher)) {
+            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
             container.setStyle("-fx-background-color: #b4aeae");
         } else {
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));

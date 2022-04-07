@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -45,7 +46,7 @@ public class SchoolDB {
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
         for (Subject subject : teacher.getSubjects()) {
-            teacherSubjects.add(new TeacherSubject(teacher, subject));
+            teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
         }
     }
 
@@ -242,7 +243,16 @@ public class SchoolDB {
     }
 
     public boolean isTeacherAbsence (Teacher teacher) {
-        return teacherAbsences.stream().anyMatch(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId());
+        //return teacherAbsences.stream().anyMatch(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId());
+
+        LocalDate latestTeacherAbsenceDate = teacherAbsences
+                .stream()
+                .filter(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId())
+                .map(TeacherAbsence::getToDate)
+                .max(LocalDate::compareTo)
+                .get();
+
+        return latestTeacherAbsenceDate.isAfter(LocalDate.now());
     }
 
     public void removeAbsenceFromTeacher (Teacher teacher) {
