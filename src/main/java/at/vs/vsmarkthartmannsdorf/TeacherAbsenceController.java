@@ -30,17 +30,14 @@ public class TeacherAbsenceController implements Initializable {
 
     private MainController parent;
     private Teacher teacher;
-    private boolean isAbsent;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        isAbsent = false;
     }
 
     @FXML
     private void setIsAbsent() {
-        if (!isAbsent) {
-            isAbsent = true;
+        if (!SchoolDB.getInstance().isTeacherAbsence(teacher)) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("demo/absence-dialog.fxml"));
@@ -72,8 +69,8 @@ public class TeacherAbsenceController implements Initializable {
                 System.out.println("Datei nicht gefunden");
             }
         } else {
+            SchoolDB.getInstance().removeAbsenceFromTeacher(teacher);
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
-            isAbsent = false;
             container.setStyle("-fx-background-color: #ffffff");
         }
 
@@ -84,13 +81,10 @@ public class TeacherAbsenceController implements Initializable {
 
         lbFirstname.setText(teacher.getFirstname());
         lbSurname.setText(teacher.getSurname());
-        if (SchoolDB.getInstance().isTeacherAbsence(teacher)) {
-            isAbsent = true;
-            iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
+        if (SchoolDB.getInstance().isTeacherAbsence(teacher)) {iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
             container.setStyle("-fx-background-color: #b4aeae");
         } else {
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
-            isAbsent = false;
         }
     }
 

@@ -243,4 +243,16 @@ public class SchoolDB {
     public boolean isTeacherAbsence (Teacher teacher) {
         return teacherAbsences.stream().anyMatch(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId());
     }
+
+    public void removeAbsenceFromTeacher (Teacher teacher) {
+        List<TeacherAbsence> teacherAbsenceList =
+                teacherAbsences
+                        .stream()
+                        .filter(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId()).toList();
+
+        teacherAbsenceList.forEach(teacherAbsence -> {
+            teacherAbsences.remove(teacherAbsence);
+        });
+
+    }
 }
