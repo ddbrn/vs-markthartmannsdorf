@@ -16,6 +16,7 @@ public class SchoolDB {
     private ObservableList<SchoolClass> schoolClasses;
     private ObservableList<Timetable> timetables;
     private ObservableList<TeacherSubject> teacherSubjects;
+    private ObservableList<TeacherTimetable> teacherTimetables;
 
     private ObservableList<TeacherAbsence> teacherAbsences;
 
@@ -24,12 +25,12 @@ public class SchoolDB {
         schoolClasses = FXCollections.observableArrayList();
         timetables = FXCollections.observableArrayList();
         teacherSubjects = FXCollections.observableArrayList();
-
+        teacherTimetables = FXCollections.observableArrayList();
         teacherAbsences = FXCollections.observableArrayList();
 
         for (Teacher teacher : teachers) {
             for (Subject subject : teacher.getSubjects()) {
-                teacherSubjects.add(new TeacherSubject(teacher, subject));
+                teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
             }
         }
     }
@@ -44,7 +45,7 @@ public class SchoolDB {
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
         for (Subject subject : teacher.getSubjects()) {
-            teacherSubjects.add(new TeacherSubject(teacher, subject));
+            teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
         }
     }
 
@@ -243,4 +244,6 @@ public class SchoolDB {
     public boolean isTeacherAbsence (Teacher teacher) {
         return teacherAbsences.stream().anyMatch(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId());
     }
+
+
 }
