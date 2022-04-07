@@ -4,6 +4,7 @@ import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Absence;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Print;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import com.itextpdf.text.DocumentException;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
@@ -233,7 +234,11 @@ public class MainController implements Initializable {
         Optional<ButtonType> clickedButton = dialog.showAndWait();
         if (clickedButton.get() == ButtonType.OK) {
             System.out.println(controller.classes.getValue());
-            IOAccess_PDF.createPDF(controller.classes.getValue());
+            if(controller.classes.getValue() == null){
+                return;
+            }else{
+                IOAccess_PDF.createPDF(controller.classes.getValue());
+            }
         }
     }
 

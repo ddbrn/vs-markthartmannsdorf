@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf.bl;
 
+import at.vs.vsmarkthartmannsdorf.Main;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import com.itextpdf.text.*;
@@ -12,10 +13,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -43,6 +43,17 @@ public class IOAccess_PDF {
         PdfWriter.getInstance(document, new FileOutputStream(selectedDirectory.getAbsolutePath() + "/Stundenplan-" + schoolClass.getClassname() + ".pdf"));
 
         document.open();
+        try {
+            System.out.println(Objects.requireNonNull
+                    (Main.class.getClassLoader().getResource("Logo_Volksschule_MH.jpg")).getFile().replace("%20", " "));
+            FileInputStream fis = new FileInputStream(Objects.requireNonNull
+                    (Main.class.getClassLoader().getResource("Logo_Volksschule_MH.jpg")).getFile().replace("%20", " "));
+            Image image = Image.getInstance(fis.readAllBytes());
+            image.setSpacingAfter(200);
+            document.add(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // System.out.println(schoolClass.getTimetable().getTimeTableContent().size());
         PdfPTable table = new PdfPTable(6);
@@ -64,7 +75,6 @@ public class IOAccess_PDF {
                     table.addCell(header);
                 });
     }
-
 
     private static void addRows(PdfPTable table) {
         Timetable timetable = SchoolDB.getInstance().getTimetablesFromClass(schoolClass).get(0);
@@ -100,9 +110,9 @@ public class IOAccess_PDF {
             int blue = Integer.parseInt(hex.substring(3, 5), 16);
             int green = Integer.parseInt(hex.substring(5, 7), 16);
 
-            double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue())/255;
+            double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
 
-            if(luminance < 0.002){
+            if (luminance < 0.002) {
                 Font font = new Font();
                 font.setColor(new BaseColor(255, 255, 255));
                 Phrase phrase = new Phrase(cell.getPhrase().getContent(), font);
