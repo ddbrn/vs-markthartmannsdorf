@@ -135,9 +135,12 @@ public class TimetableController implements Initializable {
                     StringBuilder teacher = new StringBuilder();
                     for (int k = 0; k < lesson.getTeacher().size(); k++) {
                         if (k == 0) {
-                            teacher = new StringBuilder(lesson.getTeacher().get(k).getTeacher().getAbbreviation());
+                            teacher = new StringBuilder(SchoolDB.getInstance().getTeacherByID(lesson.getTeacher().get(k).getTeacherId()).get().getAbbreviation());
                         }else{
-                            teacher.append(" | ").append(lesson.getTeacher().get(k).getTeacher().getAbbreviation());
+                            teacher.append(" | ").append(SchoolDB.getInstance()
+                                    .getTeacherByID(lesson.getTeacher().get(k).getTeacherId())
+                                    .get()
+                                    .getAbbreviation());
                         }
                     }
                     lblTeacher.setText(teacher.toString());

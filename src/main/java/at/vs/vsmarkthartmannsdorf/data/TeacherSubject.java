@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TeacherSubject {
-    private Teacher teacher;
+    private int teacherId;
     private Subject subject;
 }
