@@ -268,6 +268,7 @@ public class TimetableController implements Initializable {
         timetableView.setGridLinesVisible(true);
         addStyle(timetableView);
 
+        SchoolDB.getInstance().setPrintTimetables(timetableView);
         return timetableView;
     }
 

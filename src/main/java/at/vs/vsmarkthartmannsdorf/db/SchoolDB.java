@@ -3,6 +3,7 @@ package at.vs.vsmarkthartmannsdorf.db;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.GridPane;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class SchoolDB {
     private ObservableList<TeacherTimetable> teacherTimetables;
 
     private ObservableList<TeacherAbsence> teacherAbsences;
+    private GridPane printTimetables;
 
     private SchoolDB() {
         teachers = FXCollections.observableArrayList();
@@ -28,6 +30,7 @@ public class SchoolDB {
         teacherSubjects = FXCollections.observableArrayList();
         teacherTimetables = FXCollections.observableArrayList();
         teacherAbsences = FXCollections.observableArrayList();
+        printTimetables = new GridPane();
 
         for (Teacher teacher : teachers) {
             for (Subject subject : teacher.getSubjects()) {

@@ -11,13 +11,13 @@ import lombok.Data;
 public class IOAccess_Print {
     private static Stage stage;
 
-    public static void printTest(SchoolClass klasse) {
+    public static void printTest() {
         PrinterJob pj = PrinterJob.createPrinterJob();
         System.out.println(Printer.getAllPrinters());
 
         boolean success = pj.showPrintDialog(stage.getOwner());
 
-        Node node = SchoolDB.getInstance().getPrintTimeTables();
+        Node node = SchoolDB.getInstance().getPrintTimetables();
 
         System.out.println(pj.getJobSettings().getPageLayout());
 
