@@ -32,6 +32,7 @@ public class MainApplication extends Application {
         IOAccess_Absence.setStage(stage);
         IOAccess_Excel.setStage(stage);
         IOAccess_PDF.setStage(stage);
+        IOAccess_Print.setStage(stage);
         IOAccess.readTimetableFiles();
         IOAccess.readAbsenceFiles();
     }

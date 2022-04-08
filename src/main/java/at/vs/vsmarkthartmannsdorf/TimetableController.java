@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Print;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
@@ -543,5 +544,9 @@ public class TimetableController implements Initializable {
             lblInfo.setText(String.format("%s",
                     visibleTimetable.getSchoolClass().getClassname()));
         }
+    }
+    @FXML
+    public void onPrintTimetable(){
+        IOAccess_Print.printTest();
     }
 }
