@@ -1,14 +1,14 @@
 package at.vs.vsmarkthartmannsdorf.db;
 
 import at.vs.vsmarkthartmannsdorf.data.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfPTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.GridPane;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
@@ -19,6 +19,8 @@ public class SchoolDB {
     private ObservableList<SchoolClass> schoolClasses;
     private ObservableList<Timetable> timetables;
     private ObservableList<TeacherSubject> teacherSubjects;
+    private HashMap<SchoolClass, Document> timetablePDFs;
+    private GridPane printTimeTables;
 
     private ObservableList<TeacherAbsence> teacherAbsences;
 
@@ -27,6 +29,8 @@ public class SchoolDB {
         schoolClasses = FXCollections.observableArrayList();
         timetables = FXCollections.observableArrayList();
         teacherSubjects = FXCollections.observableArrayList();
+        timetablePDFs = new HashMap<>();
+        printTimeTables = new GridPane();
 
         teacherAbsences = FXCollections.observableArrayList();
 
@@ -219,5 +223,12 @@ public class SchoolDB {
         } else {
             teacherAbsences.add(teacherAbsence);
         }
+    }
+    public void setSchoolClassDocument(SchoolClass klasse, Document doc){
+        timetablePDFs.put(klasse, doc);
+    }
+
+    public void setPrintTimeTables(GridPane pane){
+        this.printTimeTables = pane;
     }
 }

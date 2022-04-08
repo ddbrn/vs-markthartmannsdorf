@@ -1,5 +1,6 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Print;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
@@ -18,6 +19,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import lombok.Data;
+
 import java.net.URL;
 import java.util.*;
 
@@ -136,7 +138,7 @@ public class TimetableController implements Initializable {
                     for (int k = 0; k < lesson.getTeacher().size(); k++) {
                         if (k == 0) {
                             teacher = new StringBuilder(lesson.getTeacher().get(k).getTeacher().getAbbreviation());
-                        }else{
+                        } else {
                             teacher.append(" | ").append(lesson.getTeacher().get(k).getTeacher().getAbbreviation());
                         }
                     }
@@ -145,11 +147,11 @@ public class TimetableController implements Initializable {
 
                 lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().name());
                 if (color != null) {
-                    double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue())/255;
-                    if (luminance > 0.002){
+                    double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
+                    if (luminance > 0.002) {
                         lblTeacher.setStyle("-fx-text-fill: black");
                         lblSubject.setStyle("-fx-text-fill: black;-fx-font-weight: bold");
-                    }else{
+                    } else {
                         lblTeacher.setStyle("-fx-text-fill: white");
                         lblSubject.setStyle("-fx-text-fill: white;-fx-font-weight: bold");
                     }
@@ -192,14 +194,14 @@ public class TimetableController implements Initializable {
                         boolean success = false;
 
                         if (db.hasString()) {
-                            if (db.getString().contains(",")){
+                            if (db.getString().contains(",")) {
                                 String[] split = db.getString().split(",");
                                 int source_column = Integer.parseInt(split[0]);
                                 int source_row = Integer.parseInt(split[1]);
 
                                 Node sourceNode = getNodeByRowColumnIndex(source_row, source_column);
                                 switchNodes(sourceNode, vBox, timetableView);
-                            }else{
+                            } else {
                                 Subject subject = Subject.valueOf(db.getString());
                                 addSubject(day, finalRow, new Lesson(subject, List.of()));
                             }
@@ -215,14 +217,14 @@ public class TimetableController implements Initializable {
                 int finalRow1 = row;
                 vBox.setOnMouseClicked(mouseEvent -> {
                     hbTeacher = new HBox();
-                    if (isEdit){
+                    if (isEdit) {
                         hbTeacher.setVisible(true);
                         GridPane teacherGrid = new GridPane();
                         List<TeacherSubject> availableTeacher = SchoolDB.getInstance().getTeacherBySubject(lesson.getSubject());
                         int k = 0;
                         int j = 0;
-                        for (TeacherSubject teacherSubject: availableTeacher){
-                            if (k == (int) Math.ceil(availableTeacher.size() / 3.0)){
+                        for (TeacherSubject teacherSubject : availableTeacher) {
+                            if (k == (int) Math.ceil(availableTeacher.size() / 3.0)) {
                                 j++;
                                 k = 0;
                             }
@@ -231,9 +233,9 @@ public class TimetableController implements Initializable {
                             cb.setSelected(SchoolDB.getInstance().checkIfTeacherContainsInLesson(day, finalRow1, visibleTimetable, teacherSubject));
 
                             cb.setOnAction(actionEvent -> {
-                                if (cb.isSelected()){
+                                if (cb.isSelected()) {
                                     SchoolDB.getInstance().addTeacherToLesson(day, finalRow1, visibleTimetable, cb.getTeacherSubject());
-                                }else{
+                                } else {
                                     SchoolDB.getInstance().removeTeacherFromLesson(day, finalRow, visibleTimetable, cb.getTeacherSubject());
                                 }
                                 reload();
@@ -245,11 +247,11 @@ public class TimetableController implements Initializable {
                         teacherGrid.setVgap(5);
                         hbTeacher.getChildren().clear();
                         hbTeacher.getChildren().add(teacherGrid);
-                    }else{
+                    } else {
                         vBox.setBorder(null);
                     }
 
-                    if (vbSidePanel.getChildren().size() == 2){
+                    if (vbSidePanel.getChildren().size() == 2) {
                         vbSidePanel.getChildren().remove(1);
                     }
                     vbSidePanel.getChildren().add(hbTeacher);
@@ -264,6 +266,8 @@ public class TimetableController implements Initializable {
 
         timetableView.setGridLinesVisible(true);
         addStyle(timetableView);
+
+        SchoolDB.getInstance().setPrintTimeTables(timetableView);
 
         return timetableView;
     }
@@ -306,7 +310,7 @@ public class TimetableController implements Initializable {
         setContent();
     }
 
-    public void removeSubject(Day day, int hour){
+    public void removeSubject(Day day, int hour) {
         SchoolDB.getInstance().removeSubject(day, hour, visibleTimetable);
         reload();
         setContent();
@@ -314,7 +318,7 @@ public class TimetableController implements Initializable {
 
     @FXML
     public void onSelectClass() {
-        if (!lvTimetables.getSelectionModel().isEmpty()){
+        if (!lvTimetables.getSelectionModel().isEmpty()) {
             visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(lvTimetables.getSelectionModel().getSelectedItem()).get(0);
             changeLabelText();
             cbWeek.setItems(FXCollections.observableList(SchoolDB
@@ -400,10 +404,10 @@ public class TimetableController implements Initializable {
                 Color color = Color.valueOf(colorHex);
 
                 Label label = new Label(subject.name());
-                double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue())/255;
-                if (luminance > 0.002){
+                double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
+                if (luminance > 0.002) {
                     label.setStyle("-fx-text-fill: black");
-                }else{
+                } else {
                     label.setStyle("-fx-text-fill: white");
                 }
 
@@ -429,12 +433,12 @@ public class TimetableController implements Initializable {
                 });
 
                 vBox.setOnDragOver(dragEvent -> {
-                        if (dragEvent.getGestureSource() != vBox &&
-                                dragEvent.getDragboard().hasString()) {
-                            dragEvent.acceptTransferModes(TransferMode.MOVE);
-                        }
+                    if (dragEvent.getGestureSource() != vBox &&
+                            dragEvent.getDragboard().hasString()) {
+                        dragEvent.acceptTransferModes(TransferMode.MOVE);
+                    }
 
-                        dragEvent.consume();
+                    dragEvent.consume();
                 });
 
                 subjects.add(vBox, i++, j);
@@ -443,7 +447,7 @@ public class TimetableController implements Initializable {
             hbSubjects.setOnDragOver(dragEvent -> {
                 if (isEdit) {
                     if (dragEvent.getGestureSource() != hbSubjects &&
-                            dragEvent.getDragboard().hasString()  && dragEvent.getDragboard().getString().contains(",")) {
+                            dragEvent.getDragboard().hasString() && dragEvent.getDragboard().getString().contains(",")) {
                         dragEvent.acceptTransferModes(TransferMode.MOVE);
                     }
 
@@ -456,7 +460,7 @@ public class TimetableController implements Initializable {
                 boolean success = false;
 
                 if (db.hasString()) {
-                    if (db.getString().contains(",")){
+                    if (db.getString().contains(",")) {
                         String[] split = db.getString().split(",");
                         int sourceColumn = Integer.parseInt(split[0]);
                         int sourceRow = Integer.parseInt(split[1]);
@@ -477,10 +481,10 @@ public class TimetableController implements Initializable {
     }
 
     @FXML
-    public void onChangeWeek(){
+    public void onChangeWeek() {
         SchoolClass schoolClass = visibleTimetable.getSchoolClass();
         Week week = cbWeek.getSelectionModel().getSelectedItem();
-        if (week != null){
+        if (week != null) {
             visibleTimetable = SchoolDB.getInstance()
                     .getTimetablesFromClass(schoolClass)
                     .stream()
@@ -491,8 +495,8 @@ public class TimetableController implements Initializable {
     }
 
     @FXML
-    public void onAddWeek(){
-        if (cbWeek.getItems().size() != Week.values().length){
+    public void onAddWeek() {
+        if (cbWeek.getItems().size() != Week.values().length) {
             Week lastWeek = cbWeek.getItems().get(cbWeek.getItems().size() - 1);
             ObservableList<Week> weeks = cbWeek.getItems();
             weeks.add(Arrays.asList(Week.values()).get(Arrays.asList(Week.values()).indexOf(lastWeek) + 1));
@@ -503,9 +507,9 @@ public class TimetableController implements Initializable {
     }
 
     @FXML
-    public void onRemoveWeek(){
+    public void onRemoveWeek() {
         Week week = cbWeek.getSelectionModel().getSelectedItem();
-        if (!week.equals(Week.A)){
+        if (!week.equals(Week.A)) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("vs-martkhartmannsdorf | LÖSCHEN");
             alert.setHeaderText(String.format("Wollen sie wirklich die %s-Woche löschen?", week.name()));
@@ -523,7 +527,7 @@ public class TimetableController implements Initializable {
                     reload();
                 }
             });
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("vs-martkhartmannsdorf | WOCHE ENTFERNEN");
             alert.setHeaderText("Sie können die A-Woche nicht entfernen!");
@@ -531,13 +535,18 @@ public class TimetableController implements Initializable {
         }
     }
 
-    private void changeLabelText(){
-        if (isEdit){
+    private void changeLabelText() {
+        if (isEdit) {
             lblInfo.setText(String.format("Bearbeitungsmodus | %s",
                     visibleTimetable.getSchoolClass().getClassname()));
-        }else{
+        } else {
             lblInfo.setText(String.format("%s",
                     visibleTimetable.getSchoolClass().getClassname()));
         }
+    }
+
+    @FXML
+    public void onPrintTimeTable() {
+        IOAccess_Print.printTest(lvTimetables.getSelectionModel().getSelectedItem());
     }
 }
