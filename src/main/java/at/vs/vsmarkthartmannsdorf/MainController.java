@@ -4,7 +4,6 @@ import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Absence;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
-import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Print;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import com.itextpdf.text.DocumentException;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
@@ -23,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainController implements Initializable {
 
@@ -141,20 +141,17 @@ public class MainController implements Initializable {
         main.setRight(null);
 
     }
+
     @FXML
     public void onClickAbsence() {
         setHighlightedNav(absenceBox);
-        loadAbsence();
 
         absenceView = new GridPane();
 
         // FlowPane fp = new FlowPane();
         // fp.setOrientation(Orientation.VERTICAL);
 
-        int column = 0;
-        int row = 1;
-        try {
-            for (int i = 0; i < SchoolDB.getInstance().getTeacherAbsences().size(); i++) {
+            /*for (int i = 0; i < SchoolDB.getInstance().getTeacherAbsences().size(); i++) {
                 FXMLLoader fxmlAbsenceLoader = fxmlLoad("demo/absenceitem.fxml");
                 HBox hBox = fxmlAbsenceLoader.load();
 
@@ -170,9 +167,32 @@ public class MainController implements Initializable {
                 // fp.getChildren().add(hBox);
                 absenceView.add(hBox, column++, row);
                 GridPane.setMargin(hBox, new Insets(5));
+            }*/
+
+        final AtomicInteger[] column = {new AtomicInteger(0)};
+        AtomicInteger row = new AtomicInteger(1);
+        for (Teacher teacher : SchoolDB.getInstance().getTeachers()) {
+            FXMLLoader fxmlAbsenceLoader = null;
+            try {
+                fxmlAbsenceLoader = fxmlLoad("demo/absenceitem.fxml");
+                HBox hBox = fxmlAbsenceLoader.load();
+
+                TeacherAbsenceController teacherAbsenceController = fxmlAbsenceLoader.getController();
+                teacherAbsenceController.setStartController(this);
+
+                teacherAbsenceController.setData(teacher);
+
+                if (column[0].get() == 5) {
+                    column[0].set(0);
+                    row.incrementAndGet();
+                }
+
+                // fp.getChildren().add(hBox);
+                absenceView.add(hBox, column[0].getAndIncrement(), row.get());
+                GridPane.setMargin(hBox, new Insets(5));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         main.setCenter(null);
 
@@ -182,8 +202,9 @@ public class MainController implements Initializable {
 
         main.setCenter(absenceView);
     }
+
     @FXML
-    public void onClickHelp(){
+    public void onClickHelp() {
         setHighlightedNav(helpBox);
 
         //IOAccess_Absence.storeAbsence();
@@ -194,6 +215,7 @@ public class MainController implements Initializable {
         main.setBottom(null);
         main.setRight(null);
     }
+
     // used to highlight selected field in navbar
     public void setHighlightedNav(HBox hBox) {
         List<HBox> navbar = Arrays.asList(timetableBox, teacherBox, absenceBox, classBox,
@@ -205,15 +227,12 @@ public class MainController implements Initializable {
     }
 
     public void teacherChangedAbsentStatus(TeacherAbsence teacherAbsence) {
-        SchoolDB.getInstance().getTeacherAbsences().stream().filter(t -> t.getTeacher()
-                .getAbbreviation() == teacherAbsence.getTeacher()
-                .getAbbreviation()).findFirst().get()
-                .setAbsent(teacherAbsence.isAbsent());
+
     }
 
     @FXML
     public void exportAsExcel() {
-        IOAccess_Excel.createExcelFile(SchoolDB.getInstance().getTeachers(),SchoolDB.getInstance().getSchoolClasses());
+        IOAccess_Excel.createExcelFile(SchoolDB.getInstance().getTeachers(), SchoolDB.getInstance().getSchoolClasses());
 
         classes.forEach(schoolClass ->
                 System.out.println(SchoolDB.getInstance().getSchoolClasses().stream().filter(schoolClass1 ->
@@ -234,9 +253,9 @@ public class MainController implements Initializable {
         Optional<ButtonType> clickedButton = dialog.showAndWait();
         if (clickedButton.get() == ButtonType.OK) {
             System.out.println(controller.classes.getValue());
-            if(controller.classes.getValue() == null){
+            if (controller.classes.getValue() == null) {
                 return;
-            }else{
+            } else {
                 IOAccess_PDF.createPDF(controller.classes.getValue());
             }
         }
@@ -279,8 +298,6 @@ public class MainController implements Initializable {
 
     public void setTeachers(List<Teacher> teachers) {
         SchoolDB.getInstance().setTeacher(teachers);
-        IOAccess.storeAbsenceFiles();
-        loadAbsence();
     }
 
     public void setClasses(List<SchoolClass> classes) {
@@ -303,15 +320,6 @@ public class MainController implements Initializable {
     }
 
 
-    public void loadAbsence() {
-        for (Teacher teacher : SchoolDB.getInstance().getTeachers()) {
-            //teacherAbsenceList.add(new TeacherAbsence(teacher, false));
-            //TODO: Von Datei lesen
-            SchoolDB.getInstance().setNewTeacherAbsence(new TeacherAbsence(teacher, false, null, null, ""));
-        }
-
-        //IOAccess.readAbsenceFiles();
-    }
 
     public void setClassesOpened(boolean classesOpened) {
         this.classesOpened = classesOpened;

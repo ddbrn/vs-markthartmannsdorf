@@ -71,10 +71,15 @@ public class IOAccess {
 
 
            Arrays.stream(schoolClasses).forEach(schoolClass -> {
-               Optional<Teacher> teacherLink = SchoolDB.getInstance().getTeachers().stream().filter(teacher -> teacher.getAbbreviation().equals(schoolClass.getTeacher().getAbbreviation())).findFirst();
+               Optional<Teacher> teacherLink = SchoolDB.getInstance().getTeachers().stream().filter(teacher -> teacher
+                       .getAbbreviation()
+                       .equals(SchoolDB.getInstance().getTeacherByID(teacher.getId()).get().getAbbreviation()))
+                       .findFirst();
 
-               teacherLink.ifPresent(schoolClass::setTeacher);
-
+               if (teacherLink.isPresent()){
+                   int id = teacherLink.get().getId();
+                   schoolClass.setTeacherID(id);
+               }
             });
 
             schoolClassList = Arrays.asList(schoolClasses);

@@ -135,11 +135,11 @@ public class ClassViewController implements Initializable {
     }
 
     public void editClass (SchoolClass oldSchoolClass, String classname, Teacher teacher) {
-        SchoolClass schoolClass = new SchoolClass(classname, teacher);
+        SchoolClass schoolClass = new SchoolClass(oldSchoolClass.getId() ,classname, teacher.getId());
         dismountForm();
 
         oldSchoolClass.setClassname(schoolClass.getClassname());
-        oldSchoolClass.setTeacher(schoolClass.getTeacher());
+        oldSchoolClass.setTeacherID(schoolClass.getTeacherID());
 
         updateClasses();
     }
@@ -149,7 +149,7 @@ public class ClassViewController implements Initializable {
     }
 
     public void submitForm(String classname, Teacher teacher) {
-        SchoolClass schoolClass = new SchoolClass(classname, teacher);
+        SchoolClass schoolClass = new SchoolClass(SchoolDB.getInstance().getLastSchoolClassID() ,classname, teacher.getId());
 
         dismountForm();
         SchoolDB.getInstance().addSchoolClass(schoolClass);

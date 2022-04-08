@@ -29,25 +29,22 @@ public class TeacherAbsenceController implements Initializable {
     private HBox container;
 
     private MainController parent;
-    private TeacherAbsence teacherAbsence;
-    private boolean isAbsent;
+    private Teacher teacher;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        isAbsent = false;
     }
 
     @FXML
     private void setIsAbsent() {
-        if (!isAbsent) {
-            isAbsent = true;
+        if (!SchoolDB.getInstance().isTeacherAbsence(teacher)) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("demo/absence-dialog.fxml"));
                 DialogPane absenceDialog = fxmlLoader.load();
 
                 TeacherAbsenceFormController teacherAbsenceFormController = fxmlLoader.getController();
-                teacherAbsenceFormController.setTeacher(teacherAbsence);
+                teacherAbsenceFormController.setTeacher(teacher);
 
 
                 Dialog<ButtonType> dialog = new Dialog<>();
@@ -55,7 +52,7 @@ public class TeacherAbsenceController implements Initializable {
                 dialog.setTitle("Abwesenheit");
 
                 Optional<ButtonType> clickedButton = dialog.showAndWait();
-                if (clickedButton.get() == ButtonType.APPLY){
+                if (clickedButton.get() == ButtonType.APPLY) {
                     iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
                     container.setStyle("-fx-background-color: #b4aeae");
 
@@ -63,12 +60,7 @@ public class TeacherAbsenceController implements Initializable {
                     LocalDate toDate = teacherAbsenceFormController.getDPTo().getValue();
                     String reason = teacherAbsenceFormController.getTxtReason().getText();
 
-                    teacherAbsence.setFromDate(fromDate);
-                    teacherAbsence.setToDate(toDate);
-                    teacherAbsence.setReason(reason);
-
-
-                    System.out.println(teacherAbsence);
+                    SchoolDB.getInstance().setNewTeacherAbsence(new TeacherAbsence(teacher.getId(), fromDate, toDate, reason));
                 }
 
 
@@ -77,27 +69,23 @@ public class TeacherAbsenceController implements Initializable {
                 System.out.println("Datei nicht gefunden");
             }
         } else {
+            SchoolDB.getInstance().removeAbsenceFromTeacher(teacher);
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
-            isAbsent = false;
             container.setStyle("-fx-background-color: #ffffff");
         }
-        teacherAbsence.setAbsent(isAbsent);
-        parent.teacherChangedAbsentStatus(teacherAbsence);
 
     }
 
-    public void setData(TeacherAbsence teacherAbsence) {
-        this.teacherAbsence = teacherAbsence;
+    public void setData(Teacher teacher) {
+        this.teacher = teacher;
 
-        lbFirstname.setText(teacherAbsence.getTeacher().getFirstname());
-        lbSurname.setText(teacherAbsence.getTeacher().getSurname());
-        if (teacherAbsence.isAbsent()) {
-            isAbsent = true;
+        lbFirstname.setText(teacher.getFirstname());
+        lbSurname.setText(teacher.getSurname());
+        if (SchoolDB.getInstance().isTeacherAbsence(teacher)) {
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
             container.setStyle("-fx-background-color: #b4aeae");
         } else {
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
-            isAbsent = false;
         }
     }
 

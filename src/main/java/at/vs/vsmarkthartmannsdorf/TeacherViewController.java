@@ -137,7 +137,7 @@ public class TeacherViewController implements Initializable {
     }
 
     public void submitForm(String firstname, String lastname, String abbrevation, List<Subject> subjects) {
-        Teacher teacher = new Teacher(StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
+        Teacher teacher = new Teacher(SchoolDB.getInstance().getLastTeacherID(),StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
 
         dismountForm();
 
@@ -155,7 +155,7 @@ public class TeacherViewController implements Initializable {
     }
 
     public void editTeacher (Teacher oldTeacher, String firstname, String lastname, String abbrevation, List<Subject> subjects) {
-        Teacher teacher = new Teacher(StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
+        Teacher teacher = new Teacher(oldTeacher.getId(), StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
         dismountForm();
        /* int index = SchoolDB.getInstance().getTeachers().indexOf(oldTeacher);
 

@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Teacher {
+    private int id;
     private String firstname;
     private String surname;
     private String abbreviation;

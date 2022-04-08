@@ -1,13 +1,11 @@
 package at.vs.vsmarkthartmannsdorf.db;
 
 import at.vs.vsmarkthartmannsdorf.data.*;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.pdf.PdfPTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.GridPane;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,8 +17,7 @@ public class SchoolDB {
     private ObservableList<SchoolClass> schoolClasses;
     private ObservableList<Timetable> timetables;
     private ObservableList<TeacherSubject> teacherSubjects;
-    private HashMap<SchoolClass, Document> timetablePDFs;
-    private GridPane printTimeTables;
+    private ObservableList<TeacherTimetable> teacherTimetables;
 
     private ObservableList<TeacherAbsence> teacherAbsences;
 
@@ -29,14 +26,12 @@ public class SchoolDB {
         schoolClasses = FXCollections.observableArrayList();
         timetables = FXCollections.observableArrayList();
         teacherSubjects = FXCollections.observableArrayList();
-        timetablePDFs = new HashMap<>();
-        printTimeTables = new GridPane();
-
+        teacherTimetables = FXCollections.observableArrayList();
         teacherAbsences = FXCollections.observableArrayList();
 
         for (Teacher teacher : teachers) {
             for (Subject subject : teacher.getSubjects()) {
-                teacherSubjects.add(new TeacherSubject(teacher, subject));
+                teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
             }
         }
     }
@@ -51,7 +46,7 @@ public class SchoolDB {
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
         for (Subject subject : teacher.getSubjects()) {
-            teacherSubjects.add(new TeacherSubject(teacher, subject));
+            teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
         }
     }
 
@@ -212,7 +207,7 @@ public class SchoolDB {
     public void setNewTeacherAbsence (TeacherAbsence teacherAbsence) {
         Optional<TeacherAbsence> oldTeacherAbsence = teacherAbsences
                 .stream()
-                .filter(tA -> tA.getTeacher().getAbbreviation().equals(teacherAbsence.getTeacher().getAbbreviation()))
+                .filter(tA -> tA.getTeacherID() == teacherAbsence.getTeacherID())
                 .findFirst();
 
         if (oldTeacherAbsence.isPresent()) {
@@ -224,11 +219,51 @@ public class SchoolDB {
             teacherAbsences.add(teacherAbsence);
         }
     }
-    public void setSchoolClassDocument(SchoolClass klasse, Document doc){
-        timetablePDFs.put(klasse, doc);
+
+    public int getLastTeacherID(){
+        List<Integer> ids = teachers.stream().map(t -> t.getId()).collect(Collectors.toList());
+        if (!ids.isEmpty()){
+            return Collections.max(ids) + 1;
+        }else{
+            return 0;
+        }
     }
 
-    public void setPrintTimeTables(GridPane pane){
-        this.printTimeTables = pane;
+    public int getLastSchoolClassID(){
+        List<Integer> ids = schoolClasses.stream().map(c -> c.getId()).collect(Collectors.toList());
+        if (!ids.isEmpty()){
+            return Collections.max(ids) + 1;
+        }else{
+            return 0;
+        }
+    }
+
+    public Optional<Teacher> getTeacherByID(int id){
+        return teachers.stream().filter(t -> t.getId() == id).findFirst();
+    }
+
+    public boolean isTeacherAbsence (Teacher teacher) {
+        //return teacherAbsences.stream().anyMatch(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId());
+
+        LocalDate latestTeacherAbsenceDate = teacherAbsences
+                .stream()
+                .filter(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId())
+                .map(TeacherAbsence::getToDate)
+                .max(LocalDate::compareTo)
+                .get();
+
+        return latestTeacherAbsenceDate.isAfter(LocalDate.now());
+    }
+
+    public void removeAbsenceFromTeacher (Teacher teacher) {
+        List<TeacherAbsence> teacherAbsenceList =
+                teacherAbsences
+                        .stream()
+                        .filter(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId()).toList();
+
+        teacherAbsenceList.forEach(teacherAbsence -> {
+            teacherAbsences.remove(teacherAbsence);
+        });
+
     }
 }
