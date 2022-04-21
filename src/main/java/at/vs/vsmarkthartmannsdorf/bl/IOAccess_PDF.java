@@ -47,7 +47,7 @@ public class IOAccess_PDF {
             System.out.println(Objects.requireNonNull
                     (Main.class.getClassLoader().getResource("Logo_Volksschule_MH.jpg")).getFile().replace("%20", " "));
             FileInputStream fis = new FileInputStream(Objects.requireNonNull
-                    (Main.class.getClassLoader().getResource("Logo_Volksschule_MH.jpg")).getFile().replace("%20", " "));
+                    (Main.class.getClassLoader().getResource("Volksschule-Logo_Abstand.jpg")).getFile().replace("%20", " "));
             Image image = Image.getInstance(fis.readAllBytes());
             image.setSpacingAfter(200);
             document.add(image);
