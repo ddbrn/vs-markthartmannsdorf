@@ -6,21 +6,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.HelpController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.HelpController">
    <top>
       <HBox id="toolbar" alignment="TOP_CENTER" prefHeight="35.0" prefWidth="567.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnTimetable" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Stundenplan">
-               <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnTeacher" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Klasse">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnClass" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Lehrer" />
+            <Button fx:id="btnClass" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="PDF anzeigen" />
          </children>
          <BorderPane.margin>
             <Insets left="10.0" right="10.0" top="10.0" />

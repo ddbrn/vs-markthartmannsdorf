@@ -5,11 +5,11 @@
     "teacherID" : 0
   },
   "subjects" : {
-    "Donnerstag" : {
+    "Montag" : {
       "1" : {
-        "subject" : null,
+        "subject" : "Englisch",
         "teacher" : [ ],
-        "emptyLesson" : true
+        "emptyLesson" : false
       },
       "2" : {
         "subject" : null,
@@ -89,7 +89,7 @@
         "emptyLesson" : true
       }
     },
-    "Freitag" : {
+    "Donnerstag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -131,11 +131,11 @@
         "emptyLesson" : true
       }
     },
-    "Montag" : {
+    "Freitag" : {
       "1" : {
-        "subject" : "Englisch",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "2" : {
         "subject" : null,

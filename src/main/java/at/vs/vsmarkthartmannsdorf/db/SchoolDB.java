@@ -23,6 +23,8 @@ public class SchoolDB {
     private ObservableList<TeacherAbsence> teacherAbsences;
     private GridPane printTimetables;
 
+    private List subjects;
+
     private SchoolDB() {
         teachers = FXCollections.observableArrayList();
         schoolClasses = FXCollections.observableArrayList();
@@ -31,6 +33,7 @@ public class SchoolDB {
         teacherTimetables = FXCollections.observableArrayList();
         teacherAbsences = FXCollections.observableArrayList();
         printTimetables = new GridPane();
+        subjects = new ArrayList();
 
         for (Teacher teacher : teachers) {
             for (Subject subject : teacher.getSubjects()) {
