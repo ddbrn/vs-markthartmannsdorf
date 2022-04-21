@@ -1,4 +1,4 @@
-module at.vs.vsmarkthartmannsdorf {
+module vs.markthartmannsdorf {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -11,6 +11,7 @@ module at.vs.vsmarkthartmannsdorf {
     requires org.apache.poi.ooxml;
     requires itextpdf;
     requires org.apache.commons.lang3;
+    requires com.jfoenix;
 
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;
     exports at.vs.vsmarkthartmannsdorf;

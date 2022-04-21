@@ -18,7 +18,7 @@
       <ButtonType fx:constant="CANCEL" />
    </buttonTypes>
    <content>
-      <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="600.0">
+      <GridPane fx:id="gpAbsence" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="600.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="353.60002441406255" minWidth="0.0" prefWidth="146.60002441406246" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="492.9999755859374" minWidth="10.0" prefWidth="432.9999755859374" />

@@ -241,3 +241,7 @@ check-box .box {
 .check-box > .box {
     -fx-background-color: red;
 }
+
+.jfx-check-box {
+    
+}

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,7 +70,7 @@ public class TeacherController {
     }
 
     public List<Subject> getAssignedSubjects(){
-        return olAssignedSubjects.stream().collect(Collectors.toList());
+        return new ArrayList<>(olAssignedSubjects);
     }
 
     public void setFirstnameVisibility(boolean v){

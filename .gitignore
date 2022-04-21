@@ -24,3 +24,8 @@ hs_err_pid*
 
 .target/
 */target/**
+!/data/absence.json
+!/data/class.json
+!/data/config.properties
+!/data/teacher.json
+!/data/timetable.json

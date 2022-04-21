@@ -224,7 +224,7 @@ public class SchoolDB {
     }
 
     public int getLastTeacherID(){
-        List<Integer> ids = teachers.stream().map(t -> t.getId()).collect(Collectors.toList());
+        List<Integer> ids = teachers.stream().map(Teacher::getId).toList();
         if (!ids.isEmpty()){
             return Collections.max(ids) + 1;
         }else{
@@ -233,7 +233,7 @@ public class SchoolDB {
     }
 
     public int getLastSchoolClassID(){
-        List<Integer> ids = schoolClasses.stream().map(c -> c.getId()).collect(Collectors.toList());
+        List<Integer> ids = schoolClasses.stream().map(SchoolClass::getId).toList();
         if (!ids.isEmpty()){
             return Collections.max(ids) + 1;
         }else{
@@ -248,14 +248,14 @@ public class SchoolDB {
     public boolean isTeacherAbsence (Teacher teacher) {
         //return teacherAbsences.stream().anyMatch(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId());
 
-        LocalDate latestTeacherAbsenceDate = teacherAbsences
+        Optional<LocalDate> latestTeacherAbsenceDate = teacherAbsences
                 .stream()
                 .filter(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId())
                 .map(TeacherAbsence::getToDate)
-                .max(LocalDate::compareTo)
-                .get();
+                .max(LocalDate::compareTo);
 
-        return latestTeacherAbsenceDate.isAfter(LocalDate.now());
+        return latestTeacherAbsenceDate.map(localDate -> localDate.isAfter(LocalDate.now())).orElse(false);
+
     }
 
     public void removeAbsenceFromTeacher (Teacher teacher) {

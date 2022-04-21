@@ -3,6 +3,7 @@ package at.vs.vsmarkthartmannsdorf;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,7 +29,7 @@ public class TeacherFormController implements Initializable {
 
     private TeacherViewController parent;
 
-    private List<CheckBox> cbs;
+    private List<JFXCheckBox> cbs;
     private List<Subject> selectedSubjects;
 
     private Teacher oldTeacher;
@@ -57,7 +58,7 @@ public class TeacherFormController implements Initializable {
                 j.set(0);
             }
 
-            CheckBox cb = new CheckBox(subject.name());
+            JFXCheckBox cb = new JFXCheckBox(subject.name());
             cb.setAlignment(Pos.CENTER_LEFT);
             cbs.add(cb);
             gp.add(cb, i.get(), j.getAndIncrement());
