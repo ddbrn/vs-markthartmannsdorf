@@ -23,6 +23,7 @@ public class SchoolDB {
     private ObservableList<TeacherAbsence> teacherAbsences;
     private GridPane printTimetables;
 
+
     private SchoolDB() {
         teachers = FXCollections.observableArrayList();
         schoolClasses = FXCollections.observableArrayList();
@@ -50,6 +51,7 @@ public class SchoolDB {
         teachers.add(teacher);
         for (Subject subject : teacher.getSubjects()) {
             teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
+            teacherTimetables.add(new TeacherTimetable(teacher.getId()));
         }
     }
 
@@ -99,6 +101,7 @@ public class SchoolDB {
 
     public void removeTeacher(Teacher teacher) {
         teachers.remove(teacher);
+        teacherTimetables.remove(findTeacherTimetableByID(teacher.getId()));
     }
 
     public void setSchoolClasses(List<SchoolClass> schoolClasses) {
@@ -268,5 +271,9 @@ public class SchoolDB {
             teacherAbsences.remove(teacherAbsence);
         });
 
+    }
+
+    public Optional<TeacherTimetable> findTeacherTimetableByID(int id){
+        return teacherTimetables.stream().filter(teacherTimetable -> teacherTimetable.getTeacherID() == id).findFirst();
     }
 }

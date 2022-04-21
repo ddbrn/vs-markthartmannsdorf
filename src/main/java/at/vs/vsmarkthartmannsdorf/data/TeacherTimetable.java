@@ -1,7 +1,10 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
+import lombok.Data;
+
 import java.util.HashMap;
 
+@Data
 public class TeacherTimetable {
     private int teacherID;
     private HashMap<Week, HashMap<Day, HashMap<Integer, Subject>>> weeklySubjects;
@@ -18,7 +21,7 @@ public class TeacherTimetable {
         if (!weeklySubjects.containsKey(week)){
             addWeek(week);
         }
-        weeklySubjects.get(day).get(day).put(hour, subject);
+        weeklySubjects.get(week).get(day).put(hour, subject);
     }
 
     public void addWeek(Week week){
