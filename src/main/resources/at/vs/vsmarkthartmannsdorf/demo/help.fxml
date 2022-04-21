@@ -23,20 +23,7 @@
             <ImageView fitHeight="284.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_CENTER" />
          </center>
          <bottom>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" text="&lt;">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="&gt;">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </left>
