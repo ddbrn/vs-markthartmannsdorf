@@ -122,18 +122,42 @@ public class SchoolDB {
                 teacherSubject.getSubject() == subject).collect(Collectors.toList());
     }
 
-    public void switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable timetable) {
+    public boolean switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable timetable) {
         Lesson sourceTeacherLesson = timetable.getSubjects().get(sourceDay).get(sourceHour);
         Lesson targetTeacherLesson = timetable.getSubjects().get(targetDay).get(targetHour);
 
-        timetables.stream()
-                .filter(t -> t.getSchoolClass()
-                        .equals(timetable.getSchoolClass())
-                        && t.getWeek().equals(timetable.getWeek())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherLesson);
-        timetables.stream()
-                .filter(t -> t.getSchoolClass()
-                        .equals(timetable.getSchoolClass())
-                        && t.getWeek().equals(timetable.getWeek())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherLesson);
+        boolean switchable = true;
+
+        List<TeacherSubject> teachers = sourceTeacherLesson.getTeacher();
+
+        for (TeacherSubject teacherSubject: teachers){
+            int teacherID = teacherSubject.getTeacherId();
+            Optional<TeacherTimetable> teacherTimetable = findTeacherTimetableByID(teacherID);
+            if (teacherTimetable.isPresent()){
+                System.out.println(teacherTimetable.get().getWeeklySubjects().get(timetable.getWeek()).get(targetDay).get(targetHour));
+                if (teacherTimetable.get().getWeeklySubjects().get(timetable.getWeek()).get(targetDay).get(targetHour) != null){
+                    switchable = false;
+                }
+            }
+        }
+
+        if (switchable){
+            for (TeacherSubject teacherSubject: teachers){
+                removeSubjectFromTeacherTimetable(teacherSubject.getTeacherId(), sourceDay, sourceHour, timetable.getWeek());
+                addSubjectToTeacherTimetable(teacherSubject.getTeacherId(), targetDay, targetHour, timetable.getWeek(), sourceTeacherLesson.getSubject());
+            }
+
+            timetables.stream()
+                    .filter(t -> t.getSchoolClass()
+                            .equals(timetable.getSchoolClass())
+                            && t.getWeek().equals(timetable.getWeek())).findFirst().get().addSubject(sourceDay, sourceHour, targetTeacherLesson);
+            timetables.stream()
+                    .filter(t -> t.getSchoolClass()
+                            .equals(timetable.getSchoolClass())
+                            && t.getWeek().equals(timetable.getWeek())).findFirst().get().addSubject(targetDay, targetHour, sourceTeacherLesson);
+            return true;
+        }
+        return false;
     }
 
     public void removeSubject(Day day, int hour, Timetable timetable){
@@ -151,7 +175,16 @@ public class SchoolDB {
                     .get(day)
                     .get(hour)
                     .addTeacher(teacherSubject);
+            addSubjectToTeacherTimetable(teacherSubject.getTeacherId(), day, hour, timetable.getWeek(),teacherSubject.getSubject());
         }
+    }
+
+    public void addSubjectToTeacherTimetable(int id, Day day, int hour, Week week, Subject subject){
+        findTeacherTimetableByID(id).get().addSubject(day, hour, subject, week);
+    }
+
+    public void removeSubjectFromTeacherTimetable(int id, Day day, int hour, Week week){
+        findTeacherTimetableByID(id).get().addSubject(day, hour, null, week);
     }
 
     public void removeTeacherFromLesson(Day day, int hour, Timetable timetable, TeacherSubject teacherSubject){

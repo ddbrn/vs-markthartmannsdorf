@@ -284,11 +284,19 @@ public class TimetableController implements Initializable {
         pane.add(source, targetColumnIndex, targetRowIndex);
         pane.add(target, sourceColumnIndex, sourceRowIndex);
 
-        SchoolDB.getInstance().switchLessons(Day.values()[sourceColumnIndex - 1],
+        boolean switched = SchoolDB.getInstance().switchLessons(Day.values()[sourceColumnIndex - 1],
                 Day.values()[targetColumnIndex - 1],
                 sourceRowIndex, targetRowIndex, visibleTimetable);
+
         reload();
         setContent();
+
+        if (!switched){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("vs-martkhartmannsdorf | Stunde");
+            alert.setHeaderText("Stundenwechsel nicht möglich, da der Lehrer schon belegt ist!");
+            alert.show();
+        }
     }
 
     public Node getNodeByRowColumnIndex(int row, int column) {

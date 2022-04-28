@@ -2,4 +2,8 @@
   "id" : 0,
   "classname" : "1A",
   "teacherID" : 0
+}, {
+  "id" : 1,
+  "classname" : "2B",
+  "teacherID" : 0
 } ]
