@@ -134,7 +134,6 @@ public class SchoolDB {
             int teacherID = teacherSubject.getTeacherId();
             Optional<TeacherTimetable> teacherTimetable = findTeacherTimetableByID(teacherID);
             if (teacherTimetable.isPresent()){
-                System.out.println(teacherTimetable.get().getWeeklySubjects().get(timetable.getWeek()).get(targetDay).get(targetHour));
                 if (teacherTimetable.get().getWeeklySubjects().get(timetable.getWeek()).get(targetDay).get(targetHour) != null){
                     switchable = false;
                 }
