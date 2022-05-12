@@ -303,6 +303,7 @@ public class TimetableController implements Initializable {
         Node result = null;
         ObservableList<Node> childrens = timetableView.getChildren();
 
+
         for (Node node : childrens) {
             if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
                 result = node;
