@@ -243,7 +243,7 @@ public class SchoolDB {
 
 
     public void setNewTeacherAbsence (TeacherAbsence teacherAbsence) {
-        Optional<TeacherAbsence> oldTeacherAbsence = teacherAbsences
+        /*Optional<TeacherAbsence> oldTeacherAbsence = teacherAbsences
                 .stream()
                 .filter(tA -> tA.getTeacherID() == teacherAbsence.getTeacherID())
                 .findFirst();
@@ -253,9 +253,9 @@ public class SchoolDB {
             int index = teacherAbsences.indexOf(oldTeacherAbsence.get());
             teacherAbsences.add(index, teacherAbsence);
             teacherAbsences.remove(oldTeacherAbsence.get());
-        } else {
+        } else {*/
             teacherAbsences.add(teacherAbsence);
-        }
+        /*}*/
     }
 
     public int getLastTeacherID(){

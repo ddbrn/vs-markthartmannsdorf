@@ -49,10 +49,11 @@ public class TeacherAbsenceController implements Initializable {
 
             JFXButton showAbsence = new JFXButton("Show absence");
             JFXButton addAbsence = new JFXButton("Add absence");
-            JFXButton removeAbsence = new JFXButton("Remove absence");
+
             showAbsence.setOnAction(actionEvent -> {
                 System.out.println("Push");
             });
+            addAbsence.setMinWidth(popup.getPrefWidth());
             addAbsence.setOnAction(actionEvent -> {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -86,14 +87,39 @@ public class TeacherAbsenceController implements Initializable {
                 }
             });
 
-            buttons.getItems().addAll(showAbsence, addAbsence, removeAbsence);
+            showAbsence.setOnAction(actionEvent -> {
+                try {
+                    System.out.println("Absence Show");
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("demo/absence-show.fxml"));
+                    DialogPane absenceDialog = fxmlLoader.load();
+
+                    AbsenceShowController absenceShowController = fxmlLoader.getController();
+                    absenceShowController.setTeacher(teacher);
+
+                    Dialog<ButtonType> dialog = new Dialog<>();
+                    dialog.setDialogPane(absenceDialog);
+                    dialog.setTitle("Abwesenheit");
+
+
+                    Optional<ButtonType> clickedButton = dialog.showAndWait();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            buttons.getItems().addAll(showAbsence, addAbsence);
             popup.setPopupContent(buttons);
 
                 /*popup.setX(mouseEvent.getSceneX() + IOAccess_Absence.getStage().getX());
                 popup.setY(mouseEvent.getSceneY() + IOAccess_Absence.getStage().getY());*/
 
-
             popup.show(container);
+
+            showAbsence.setPrefWidth(popup.getWidth() / 1.5);
+            addAbsence.setPrefWidth(popup.getWidth() / 1.5);
+            System.out.println(popup.getWidth());
+
         });
 
     }

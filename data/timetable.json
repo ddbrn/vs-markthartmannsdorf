@@ -47,7 +47,7 @@
         "emptyLesson" : true
       }
     },
-    "Mittwoch" : {
+    "Freitag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -134,7 +134,7 @@
         "emptyLesson" : true
       }
     },
-    "Freitag" : {
+    "Mittwoch" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -269,7 +269,7 @@
         "emptyLesson" : true
       }
     },
-    "Mittwoch" : {
+    "Freitag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -353,7 +353,7 @@
         "emptyLesson" : true
       }
     },
-    "Freitag" : {
+    "Mittwoch" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
