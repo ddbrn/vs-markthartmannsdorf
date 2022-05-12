@@ -47,6 +47,48 @@
         "emptyLesson" : true
       }
     },
+    "Mittwoch" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
     "Dienstag" : {
       "1" : {
         "subject" : "Deutsch",
@@ -93,48 +135,6 @@
       }
     },
     "Freitag" : {
-      "1" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "2" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "3" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
-    "Mittwoch" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -269,6 +269,48 @@
         "emptyLesson" : true
       }
     },
+    "Mittwoch" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
     "Dienstag" : {
       "1" : {
         "subject" : null,
@@ -312,48 +354,6 @@
       }
     },
     "Freitag" : {
-      "1" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "2" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "3" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
-    "Mittwoch" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
