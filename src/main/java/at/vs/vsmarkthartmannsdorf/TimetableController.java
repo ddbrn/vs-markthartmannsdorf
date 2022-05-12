@@ -329,7 +329,11 @@ public class TimetableController implements Initializable {
     @FXML
     public void onSelectClass() {
         if (!lvTimetables.getSelectionModel().isEmpty()){
+            Timetable oldVisibleTimetable = visibleTimetable;
             visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(lvTimetables.getSelectionModel().getSelectedItem()).get(0);
+            if (!oldVisibleTimetable.equals(visibleTimetable)){
+                isEdit = false;
+            }
             changeLabelText();
             cbWeek.setItems(FXCollections.observableList(SchoolDB
                     .getInstance()

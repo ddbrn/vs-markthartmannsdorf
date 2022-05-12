@@ -8,7 +8,6 @@ import java.util.HashMap;
 public class TeacherTimetable {
     private int teacherID;
     private HashMap<Week, HashMap<Day, HashMap<Integer, TeacherLesson>>> weeklySubjects;
-    public static final int MAX_HOURS = 8;
 
     public TeacherTimetable(int teacherID) {
         this.teacherID = teacherID;
@@ -28,7 +27,7 @@ public class TeacherTimetable {
         HashMap<Day, HashMap<Integer, TeacherLesson>> subjects = new HashMap<>();
         for (Day day: Day.values()){
             HashMap<Integer, TeacherLesson> dailySubjects = new HashMap<>();
-            for (int i = 1; i <= MAX_HOURS; i++){
+            for (int i = 1; i <= 8; i++){
                 dailySubjects.put(i, new TeacherLesson());
             }
             subjects.put(day, dailySubjects);

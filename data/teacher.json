@@ -2,6 +2,6 @@
   "id" : 0,
   "firstname" : "David",
   "surname" : "BRANNAN",
-  "abbreviation" : "BD",
-  "subjects" : [ "Mathematik", "Englisch", "Deutsch", "Sport", "Musik", "Sachkunde", "Sozialkunde", "Religion", "Chor", "Werken" ]
+  "abbreviation" : "DB",
+  "subjects" : [ "Mathematik" ]
 } ]

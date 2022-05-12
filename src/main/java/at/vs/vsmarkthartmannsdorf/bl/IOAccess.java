@@ -229,7 +229,7 @@ public class IOAccess {
         try {
             FILE_TEACHER_TIMETABLE.getParentFile().mkdirs();
             ObjectMapper om = new ObjectMapper();
-            String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(SchoolDB.getInstance().getTeacherAbsences());
+            String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(SchoolDB.getInstance().getTeacherTimetables());
 
             FileWriter fileWriter = new FileWriter(IOAccess.FILE_TEACHER_TIMETABLE.getAbsolutePath(), StandardCharsets.UTF_8);
             fileWriter.write(jsonStr);
