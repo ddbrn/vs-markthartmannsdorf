@@ -134,7 +134,7 @@ public class SchoolDB {
             int teacherID = teacherSubject.getTeacherId();
             Optional<TeacherTimetable> teacherTimetable = findTeacherTimetableByID(teacherID);
             if (teacherTimetable.isPresent()){
-                if (teacherTimetable.get().getWeeklySubjects().get(timetable.getWeek()).get(targetDay).get(targetHour) != null){
+                if (!teacherTimetable.get().getWeeklySubjects().get(timetable.getWeek()).get(targetDay).get(targetHour).isEmpty()){
                     switchable = false;
                 }
             }
@@ -143,7 +143,8 @@ public class SchoolDB {
         if (switchable){
             for (TeacherSubject teacherSubject: teachers){
                 removeSubjectFromTeacherTimetable(teacherSubject.getTeacherId(), sourceDay, sourceHour, timetable.getWeek());
-                addSubjectToTeacherTimetable(teacherSubject.getTeacherId(), targetDay, targetHour, timetable.getWeek(), sourceTeacherLesson.getSubject());
+                addSubjectToTeacherTimetable(teacherSubject.getTeacherId(), targetDay, targetHour, timetable.getWeek(),
+                        new TeacherLesson(teacherSubject.getSubject(), timetable.getSchoolClass().getId()));
             }
 
             timetables.stream()
@@ -174,12 +175,13 @@ public class SchoolDB {
                     .get(day)
                     .get(hour)
                     .addTeacher(teacherSubject);
-            addSubjectToTeacherTimetable(teacherSubject.getTeacherId(), day, hour, timetable.getWeek(),teacherSubject.getSubject());
+            addSubjectToTeacherTimetable(teacherSubject.getTeacherId(), day, hour, timetable.getWeek(), new TeacherLesson(
+                    teacherSubject.getSubject(), timetable.getSchoolClass().getId()));
         }
     }
 
-    public void addSubjectToTeacherTimetable(int id, Day day, int hour, Week week, Subject subject){
-        findTeacherTimetableByID(id).get().addSubject(day, hour, subject, week);
+    public void addSubjectToTeacherTimetable(int id, Day day, int hour, Week week, TeacherLesson teacherLesson){
+        findTeacherTimetableByID(id).get().addSubject(day, hour, teacherLesson, week);
     }
 
     public void removeSubjectFromTeacherTimetable(int id, Day day, int hour, Week week){

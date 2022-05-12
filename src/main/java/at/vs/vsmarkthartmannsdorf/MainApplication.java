@@ -35,6 +35,7 @@ public class MainApplication extends Application {
         IOAccess_Print.setStage(stage);
         IOAccess.readTimetableFiles();
         IOAccess.readAbsenceFiles();
+        IOAccess.readTeacherTimetableFiles();
     }
 
     @Override
@@ -45,6 +46,7 @@ public class MainApplication extends Application {
         IOAccess.storeClassFiles(SchoolDB.getInstance().getSchoolClasses());
         IOAccess.storeTimetableFiles();
         IOAccess.storeAbsenceFiles();
+        IOAccess.storeTeacherTimetableFiles();
 
         //IOAccess_Excel.createExcelFile(controller.getTeacher(), controller.getClasses());
     }
