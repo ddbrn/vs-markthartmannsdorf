@@ -12,50 +12,49 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane prefHeight="410.0" prefWidth="600.0" styleClass="absenceDialog" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherAbsenceFormController">
-   <buttonTypes>
-      <ButtonType fx:constant="APPLY" />
-      <ButtonType fx:constant="CANCEL" />
-   </buttonTypes>
-   <content>
-      <GridPane fx:id="gpAbsence" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="600.0">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="353.60002441406255" minWidth="0.0" prefWidth="146.60002441406246" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="492.9999755859374" minWidth="10.0" prefWidth="432.9999755859374" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="130.0" minHeight="0.0" prefHeight="77.60000610351562" vgrow="NEVER" />
-          <RowConstraints maxHeight="267.0" minHeight="0.0" prefHeight="70.39999389648438" vgrow="NEVER" />
-            <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="93.59998779296876" vgrow="NEVER" />
-            <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="67.20001220703125" vgrow="ALWAYS" />
-        </rowConstraints>
-         <children>
-            <Label text="Abwesenheitsgrund" GridPane.rowIndex="1" />
-            <TextArea fx:id="txtReason" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Abwesenheitszeitraum" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
-               <children>
-                  <Label text="Von" />
-                  <DatePicker fx:id="dPFrom" />
-                  <Label text="Bis" />
-                  <DatePicker fx:id="dPTo" />
-               </children>
+<DialogPane prefHeight="410.0" prefWidth="600.0" styleClass="absenceDialog" stylesheets="@style.css"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.vs.vsmarkthartmannsdorf.TeacherAbsenceFormController">
+    <content>
+        <GridPane fx:id="gpAbsence" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                  minWidth="-Infinity" prefHeight="335.0" prefWidth="600.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="353.60002441406255" minWidth="0.0"
+                                   prefWidth="146.60002441406246"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="492.9999755859374" minWidth="10.0"
+                                   prefWidth="432.9999755859374"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="130.0" minHeight="0.0" prefHeight="77.60000610351562" vgrow="NEVER"/>
+                <RowConstraints maxHeight="267.0" minHeight="0.0" prefHeight="70.39999389648438" vgrow="NEVER"/>
+                <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="93.59998779296876" vgrow="NEVER"/>
+                <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="67.20001220703125" vgrow="ALWAYS"/>
+            </rowConstraints>
+            <Label text="Abwesenheitsgrund" GridPane.rowIndex="1"/>
+            <TextArea fx:id="txtReason" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
+                      GridPane.rowIndex="1"/>
+            <Label text="Abwesenheitszeitraum"/>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
+                  GridPane.columnIndex="1">
+                <Label text="Von"/>
+                <DatePicker fx:id="dPFrom"/>
+                <Label text="Bis"/>
+                <DatePicker fx:id="dPTo"/>
             </HBox>
-         </children>
-      </GridPane>
-   </content>
-   <header>
-      <HBox id="header" alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="600.0">
-         <children>
+        </GridPane>
+    </content>
+    <header>
+        <HBox id="header" alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="600.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
             <Label fx:id="lblName" text="Label">
-               <font>
-                  <Font size="15.0" />
-               </font>
+                <font>
+                    <Font size="15.0"/>
+                </font>
             </Label>
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </HBox>
-   </header>
+        </HBox>
+    </header>
+    <ButtonType fx:constant="APPLY"/>
+    <ButtonType fx:constant="CANCEL"/>
 </DialogPane>
