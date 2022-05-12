@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Data
 @AllArgsConstructor
@@ -49,5 +49,18 @@ public class Timetable {
 
     public void removeSubject(Day day, int hour){
         subjects.get(day).put(hour, new Lesson());
+    }
+
+    public boolean hasEmptyLesson(){
+        for(Day day: Arrays.asList(Day.values())){
+            for (int i = 0; i < MAX_HOURS; i++){
+                if(subjects.get(day).get(i) != null){
+                    if (subjects.get(day).get(i).isEmptyLesson()){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

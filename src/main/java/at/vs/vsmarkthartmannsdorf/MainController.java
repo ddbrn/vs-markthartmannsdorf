@@ -132,7 +132,6 @@ public class MainController implements Initializable {
     public void onClickTimetable() {
         setHighlightedNav(timetableBox);
 
-
         timetableViewController.load();
         timetableViewController.getLvTimetables().refresh();
 

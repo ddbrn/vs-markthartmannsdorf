@@ -5,7 +5,52 @@
     "teacherID" : 0
   },
   "subjects" : {
-    "Dienstag" : {
+    "Montag" : {
+      "1" : {
+        "subject" : "Mathematik",
+        "teacher" : [ {
+          "teacherId" : 0,
+          "subject" : "Mathematik"
+        } ],
+        "emptyLesson" : false
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Donnerstag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -89,48 +134,6 @@
         "emptyLesson" : true
       }
     },
-    "Donnerstag" : {
-      "1" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "2" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "3" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
     "Freitag" : {
       "1" : {
         "subject" : null,
@@ -173,13 +176,10 @@
         "emptyLesson" : true
       }
     },
-    "Montag" : {
+    "Dienstag" : {
       "1" : {
-        "subject" : "Mathematik",
-        "teacher" : [ {
-          "teacherId" : 0,
-          "subject" : "Mathematik"
-        } ],
+        "subject" : "Englisch",
+        "teacher" : [ ],
         "emptyLesson" : false
       },
       "2" : {
@@ -227,52 +227,7 @@
     "teacherID" : 0
   },
   "subjects" : {
-    "Dienstag" : {
-      "1" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "2" : {
-        "subject" : "Mathematik",
-        "teacher" : [ {
-          "teacherId" : 0,
-          "subject" : "Mathematik"
-        } ],
-        "emptyLesson" : false
-      },
-      "3" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
-    "Mittwoch" : {
+    "Montag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -356,6 +311,48 @@
         "emptyLesson" : true
       }
     },
+    "Mittwoch" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
     "Freitag" : {
       "1" : {
         "subject" : null,
@@ -398,16 +395,19 @@
         "emptyLesson" : true
       }
     },
-    "Montag" : {
+    "Dienstag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
         "emptyLesson" : true
       },
       "2" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
+        "subject" : "Mathematik",
+        "teacher" : [ {
+          "teacherId" : 0,
+          "subject" : "Mathematik"
+        } ],
+        "emptyLesson" : false
       },
       "3" : {
         "subject" : null,

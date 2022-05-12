@@ -329,17 +329,24 @@ public class TimetableController implements Initializable {
     @FXML
     public void onSelectClass() {
         if (!lvTimetables.getSelectionModel().isEmpty()){
-            Timetable oldVisibleTimetable = visibleTimetable;
-            visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(lvTimetables.getSelectionModel().getSelectedItem()).get(0);
-            if (!oldVisibleTimetable.equals(visibleTimetable)){
+            if(visibleTimetable != null && visibleTimetable.hasEmptyLesson() && ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().size() != 0){
+                lvTimetables.getSelectionModel().select(visibleTimetable.getSchoolClass());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("vs-martkhartmannsdorf | Bearbeiten");
+                alert.setHeaderText("Es gibt noch Stunden ohne Lehrer!");
+                alert.show();
+            }else{
+                visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(lvTimetables.getSelectionModel().getSelectedItem()).get(0);
                 isEdit = false;
+                vbSidePanel.getChildren().clear();
+                vbSidePanel.setVisible(false);
+                changeLabelText();
+                cbWeek.setItems(FXCollections.observableList(SchoolDB
+                        .getInstance()
+                        .getWeeksFromSchoolClass(visibleTimetable.getSchoolClass())));
+                cbWeek.getSelectionModel().select(Week.A);
+                setContent();
             }
-            changeLabelText();
-            cbWeek.setItems(FXCollections.observableList(SchoolDB
-                    .getInstance()
-                    .getWeeksFromSchoolClass(visibleTimetable.getSchoolClass())));
-            cbWeek.getSelectionModel().select(Week.A);
-            setContent();
         }
     }
 
@@ -389,10 +396,18 @@ public class TimetableController implements Initializable {
     @FXML
     public void onEditTimetable() {
         vbSidePanel.getChildren().clear();
+        System.out.println(visibleTimetable.hasEmptyLesson());
         if (isEdit) {
-            isEdit = false;
-            vbSidePanel.setVisible(false);
-            setContent();
+            if (!visibleTimetable.hasEmptyLesson()){
+                isEdit = false;
+                vbSidePanel.setVisible(false);
+                setContent();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("vs-martkhartmannsdorf | Bearbeiten");
+                alert.setHeaderText("Es gibt noch Stunden ohne Lehrer!");
+                alert.show();
+            }
         } else {
             isEdit = true;
             vbSidePanel.setVisible(true);
@@ -561,5 +576,12 @@ public class TimetableController implements Initializable {
     @FXML
     public void onPrintTimetable(){
         IOAccess_Print.printTest();
+    }
+
+    public boolean hasEmptyLessons(){
+        if(visibleTimetable == null){
+            return false;
+        }
+        return visibleTimetable.hasEmptyLesson();
     }
 }
