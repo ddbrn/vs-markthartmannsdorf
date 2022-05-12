@@ -10,10 +10,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 import at.vs.vsmarkthartmannsdorf.Main;
-import at.vs.vsmarkthartmannsdorf.data.SchoolClass;
-import at.vs.vsmarkthartmannsdorf.data.Teacher;
-import at.vs.vsmarkthartmannsdorf.data.TeacherAbsence;
-import at.vs.vsmarkthartmannsdorf.data.Timetable;
+import at.vs.vsmarkthartmannsdorf.data.*;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
@@ -249,7 +246,7 @@ public class IOAccess {
     }
 
     public static synchronized void readTeacherTimetableFiles() {
-        List<TeacherAbsence> teacherTimetable = new ArrayList<>();
+        List<TeacherTimetable> teacherTimetable = new ArrayList<>();
         if (!new File(FILE_TEACHER_TIMETABLE.getAbsolutePath()).exists()) {
             return;
         }
@@ -261,15 +258,15 @@ public class IOAccess {
             }
 
             ObjectMapper om = new ObjectMapper();
-            TeacherAbsence[] teacherAbsence = om.readValue(result, TeacherAbsence[].class);
+            TeacherTimetable[] teacherTimetables = om.readValue(result, TeacherTimetable[].class);
 
-            teacherTimetable = Arrays.asList(teacherAbsence);
+            teacherTimetable = Arrays.asList(teacherTimetables);
             System.out.println("FileWrite read in \"" + IOAccess.FILE_TEACHER_TIMETABLE.getName() + "\".");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        SchoolDB.getInstance().setTeacherAbsences(FXCollections.observableArrayList(teacherTimetable));
+        SchoolDB.getInstance().setTeacherTimetables(FXCollections.observableArrayList(teacherTimetable));
     }
 
 }
