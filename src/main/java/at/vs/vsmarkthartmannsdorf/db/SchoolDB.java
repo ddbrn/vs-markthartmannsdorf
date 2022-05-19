@@ -307,6 +307,10 @@ public class SchoolDB {
 
     }
 
+    public void removeAbsence (TeacherAbsence teacherAbsence) {
+        teacherAbsences.remove(teacherAbsence);
+    }
+
     public Optional<TeacherTimetable> findTeacherTimetableByID(int id){
         return teacherTimetables.stream().filter(teacherTimetable -> teacherTimetable.getTeacherID() == id).findFirst();
     }

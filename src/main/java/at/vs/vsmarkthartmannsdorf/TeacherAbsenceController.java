@@ -96,6 +96,7 @@ public class TeacherAbsenceController implements Initializable {
 
                     AbsenceShowController absenceShowController = fxmlLoader.getController();
                     absenceShowController.setTeacher(teacher);
+                    absenceShowController.setParent(this);
 
                     Dialog<ButtonType> dialog = new Dialog<>();
                     dialog.setDialogPane(absenceDialog);
@@ -171,11 +172,16 @@ public class TeacherAbsenceController implements Initializable {
 
         lbFirstname.setText(teacher.getFirstname());
         lbSurname.setText(teacher.getSurname());
+        updateAbsenceColor();
+    }
+
+    public void updateAbsenceColor() {
         if (SchoolDB.getInstance().isTeacherAbsence(teacher)) {
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
             container.setStyle("-fx-background-color: #b4aeae");
         } else {
             iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/checked.png"))));
+            container.setStyle("-fx-background-color: #ffffff");
         }
     }
 

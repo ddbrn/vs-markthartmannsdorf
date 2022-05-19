@@ -1,10 +1,12 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 
 @Data
+@NoArgsConstructor
 public class TeacherTimetable {
     private int teacherID;
     private HashMap<Week, HashMap<Day, HashMap<Integer, TeacherLesson>>> weeklySubjects;
