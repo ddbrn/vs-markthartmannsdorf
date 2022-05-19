@@ -1,12 +1,15 @@
 package at.vs.vsmarkthartmannsdorf;
 
+import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Print;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
+import com.fasterxml.jackson.databind.node.ValueNode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -20,6 +23,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import lombok.Data;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -114,7 +118,9 @@ public class TimetableController implements Initializable {
                 column = 1;
             }
             for (int i = 1; i <= Timetable.MAX_HOURS; i++) {
+
                 Lesson lesson = visibleTimetable.getSubjects().get(day).get(i);
+                System.out.println(lesson);
                 if (row == Timetable.MAX_HOURS + 1) {
                     row = 1;
                 }
@@ -260,7 +266,6 @@ public class TimetableController implements Initializable {
                     vbSidePanel.getChildren().add(hbTeacher);
                 });
 
-
                 timetableView.add(vBox, column, row);
                 row++;
             }
@@ -270,7 +275,6 @@ public class TimetableController implements Initializable {
         timetableView.setGridLinesVisible(true);
         addStyle(timetableView);
 
-        SchoolDB.getInstance().setPrintTimetables(timetableView);
         return timetableView;
     }
 
@@ -575,6 +579,7 @@ public class TimetableController implements Initializable {
 
     @FXML
     public void onPrintTimetable() {
+        SchoolDB.getInstance().setPrintTimetables(timetableView);
         IOAccess_Print.printTest();
     }
 
@@ -583,5 +588,25 @@ public class TimetableController implements Initializable {
             return false;
         }
         return visibleTimetable.hasEmptyLesson();
+    }
+
+    @FXML
+    public void onShowTimetableViews() {
+        FXMLLoader timetabledayLoader = new FXMLLoader();
+        timetabledayLoader.setLocation(getClass().getResource("demo/timetableviews.fxml"));
+
+        try {
+            DialogPane pane = new DialogPane();
+            pane.setContent(timetabledayLoader.load());
+            TimetableViews controller = timetabledayLoader.getController();
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+
+            controller.loadTimetable();
+            dialog.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
