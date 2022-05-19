@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import java.util.HashMap;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 public class TeacherTimetable {
