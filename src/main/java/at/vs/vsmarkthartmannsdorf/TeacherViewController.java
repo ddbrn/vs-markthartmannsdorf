@@ -2,6 +2,7 @@ package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Subject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
+import at.vs.vsmarkthartmannsdorf.data.TeacherTimetable;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,8 @@ public class TeacherViewController implements Initializable {
 
     @FXML
     public ImageView ivAdd, ivRemove, ivEdit;
+    private TeacherTimetable visibileTimetable;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -169,6 +172,21 @@ public class TeacherViewController implements Initializable {
         oldTeacher.setSubjects(teacher.getSubjects());
 
         updateTeacher();
+    }
+
+    @FXML
+    public void selectTeacher(){
+        Teacher teacher = teacherList.getSelectionModel().getSelectedItem();
+        visibileTimetable = SchoolDB.getInstance().findTeacherTimetableByID(teacher.getId()).get();
+
+        buildTimetable();
+    }
+
+    private void buildTimetable(){
+
+    }
+
+    private void setContent(){
 
     }
 }

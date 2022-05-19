@@ -5,48 +5,6 @@
     "teacherID" : 0
   },
   "subjects" : {
-    "Dienstag" : {
-      "1" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "2" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "3" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
     "Freitag" : {
       "1" : {
         "subject" : null,
@@ -176,11 +134,50 @@
     "Montag" : {
       "1" : {
         "subject" : "Mathematik",
-        "teacher" : [ {
-          "teacherId" : 0,
-          "subject" : "Mathematik"
-        } ],
+        "teacher" : [ ],
         "emptyLesson" : false
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Dienstag" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
       },
       "2" : {
         "subject" : null,
@@ -227,51 +224,6 @@
     "teacherID" : 0
   },
   "subjects" : {
-    "Dienstag" : {
-      "1" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "2" : {
-        "subject" : "Mathematik",
-        "teacher" : [ {
-          "teacherId" : 0,
-          "subject" : "Mathematik"
-        } ],
-        "emptyLesson" : false
-      },
-      "3" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "4" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "5" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "6" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "7" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      },
-      "8" : {
-        "subject" : null,
-        "teacher" : [ ],
-        "emptyLesson" : true
-      }
-    },
     "Freitag" : {
       "1" : {
         "subject" : null,
@@ -399,6 +351,48 @@
       }
     },
     "Montag" : {
+      "1" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "2" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "3" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "4" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "5" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "6" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "7" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      },
+      "8" : {
+        "subject" : null,
+        "teacher" : [ ],
+        "emptyLesson" : true
+      }
+    },
+    "Dienstag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
