@@ -28,7 +28,7 @@ public class MainController implements Initializable {
 
     @FXML
     public BorderPane main;
-    public HBox teacherBox, timetableBox, classBox, absenceBox, settingsBox, excelImportBox, excelExportBox, helpBox;
+    public HBox teacherBox, timetableBox, timetableDaysBox, classBox, absenceBox, settingsBox, excelImportBox, excelExportBox, helpBox;
 
     private List<HBox> navbar = Arrays.asList(teacherBox, timetableBox, classBox, absenceBox);
 
@@ -42,10 +42,12 @@ public class MainController implements Initializable {
     private ClassViewController classViewController;
     private TimetableController timetableViewController;
     private SettingsController settingsController;
+    private TimetableViews timetableDayController;
     private HelpController helpController;
     private BorderPane teacherView;
     private BorderPane classView;
     private BorderPane timetableView;
+    private BorderPane timetableDayView;
     private GridPane absenceView;
     private BorderPane settingsView;
     private BorderPane helpView;
@@ -76,6 +78,10 @@ public class MainController implements Initializable {
             timetableView = timetableLoader.load();
             timetableViewController = timetableLoader.getController();
             // timetableViewController.setParent(this);
+
+            FXMLLoader timetabledayLoader = fxmlLoad("demo/timetableviews.fxml");
+            timetableDayView = timetabledayLoader.load();
+            timetableDayController = timetabledayLoader.getController();
 
             // Load SettingsView
             FXMLLoader settingsLoader = fxmlLoad("demo/settings.fxml");
@@ -132,11 +138,22 @@ public class MainController implements Initializable {
     public void onClickTimetable() {
         setHighlightedNav(timetableBox);
 
-
         timetableViewController.load();
         timetableViewController.getLvTimetables().refresh();
 
         main.setCenter(timetableView);
+        main.setBottom(null);
+        main.setRight(null);
+
+    }
+
+    @FXML
+    public void onClickTimetableDay() {
+        setHighlightedNav(timetableDaysBox);
+
+        timetableDayController.loadTimetable();
+
+        main.setCenter(timetableDayView);
         main.setBottom(null);
         main.setRight(null);
 
@@ -253,9 +270,7 @@ public class MainController implements Initializable {
         Optional<ButtonType> clickedButton = dialog.showAndWait();
         if (clickedButton.get() == ButtonType.OK) {
             System.out.println(controller.classes.getValue());
-            if (controller.classes.getValue() == null) {
-                return;
-            } else {
+            if (controller.classes.getValue() != null) {
                 IOAccess_PDF.createPDF(controller.classes.getValue());
             }
         }
@@ -296,6 +311,7 @@ public class MainController implements Initializable {
         main.setRight(null);
     }
 
+
     public void setTeachers(List<Teacher> teachers) {
         SchoolDB.getInstance().setTeacher(teachers);
     }
@@ -318,7 +334,6 @@ public class MainController implements Initializable {
     public List<SchoolClass> getClasses() {
         return classes;
     }
-
 
 
     public void setClassesOpened(boolean classesOpened) {

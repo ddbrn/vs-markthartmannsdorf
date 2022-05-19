@@ -29,7 +29,6 @@ public class PropertiesLoader {
 
         properties = new Properties();
         try (InputStream is = new FileInputStream(PROPERTY_FILE)){
-            System.out.println(is.available());
             properties.load(is);
         }catch(Exception e){
             e.printStackTrace();

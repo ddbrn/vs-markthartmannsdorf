@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="teacherView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherViewController">
+<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="teacherView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherViewController">
    <right>
       <VBox id="rightContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="553.0" prefWidth="197.0">
          <children>
@@ -34,7 +38,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <ListView id="teacherList" fx:id="teacherList" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
+            <ListView id="teacherList" fx:id="teacherList" onMouseClicked="#selectTeacher" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -43,10 +47,10 @@
       </VBox>
    </right>
    <center>
-      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
-         </BorderPane.margin>
-      </VBox>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
    </center>
 </BorderPane>
