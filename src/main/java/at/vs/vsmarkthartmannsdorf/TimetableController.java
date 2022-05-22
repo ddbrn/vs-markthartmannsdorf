@@ -399,18 +399,16 @@ public class TimetableController implements Initializable {
     @FXML
     public void onEditTimetable() {
         vbSidePanel.getChildren().clear();
-        System.out.println(visibleTimetable.hasEmptyLesson());
         if (isEdit) {
-            if (!visibleTimetable.hasEmptyLesson()) {
-                isEdit = false;
-                vbSidePanel.setVisible(false);
-                setContent();
-            } else {
+            if (visibleTimetable.hasEmptyLesson()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("vs-martkhartmannsdorf | Bearbeiten");
                 alert.setHeaderText("Es gibt noch Stunden ohne Lehrer!");
                 alert.show();
             }
+            isEdit = false;
+            vbSidePanel.setVisible(false);
+            setContent();
         } else {
             isEdit = true;
             vbSidePanel.setVisible(true);
