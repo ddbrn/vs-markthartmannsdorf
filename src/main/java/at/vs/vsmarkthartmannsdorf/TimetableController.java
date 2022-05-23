@@ -21,6 +21,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import lombok.Data;
 
 import java.io.IOException;
@@ -600,6 +601,9 @@ public class TimetableController implements Initializable {
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(pane);
+
+            pane.getButtonTypes().add(ButtonType.CLOSE);
+            dialog.initModality(Modality.WINDOW_MODAL);
 
             controller.loadTimetable();
             dialog.show();
