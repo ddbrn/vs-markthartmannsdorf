@@ -45,6 +45,7 @@ public class TimetableController implements Initializable {
     private GridPane timetableView;
     private HBox hbTeacher;
     private HBox hbSubjects;
+    private TimetableViews controller;
 
 
     @Override
@@ -324,12 +325,14 @@ public class TimetableController implements Initializable {
         SchoolDB.getInstance().addSubject(day, hour, lesson, visibleTimetable);
         reload();
         setContent();
+        refreshTimetableViews();
     }
 
     public void removeSubject(Day day, int hour) {
         SchoolDB.getInstance().removeSubject(day, hour, visibleTimetable);
         reload();
         setContent();
+        refreshTimetableViews();
     }
 
     @FXML
@@ -351,6 +354,7 @@ public class TimetableController implements Initializable {
                     .getWeeksFromSchoolClass(visibleTimetable.getSchoolClass())));
             cbWeek.getSelectionModel().select(Week.A);
             setContent();
+            refreshTimetableViews();
         }
     }
 
@@ -388,6 +392,7 @@ public class TimetableController implements Initializable {
         ((BorderPane) root.getCenter()).getTop().setVisible(true);
 
         ((VBox) ((BorderPane) root.getCenter()).getCenter()).getChildren().add(buildTimetable());
+        refreshTimetableViews();
     }
 
     public void reload() {
@@ -395,6 +400,7 @@ public class TimetableController implements Initializable {
         Optional<Timetable> timetable = SchoolDB.getInstance()
                 .findTimetableByClass(schoolClass, visibleTimetable.getWeek());
         timetable.ifPresent(value -> visibleTimetable = value);
+        refreshTimetableViews();
     }
 
     @FXML
@@ -509,6 +515,7 @@ public class TimetableController implements Initializable {
             hbSubjects.getChildren().add(subjects);
             vbSidePanel.getChildren().add(hbSubjects);
         }
+        refreshTimetableViews();
     }
 
     @FXML
@@ -564,6 +571,7 @@ public class TimetableController implements Initializable {
             alert.setHeaderText("Sie können die A-Woche nicht entfernen!");
             alert.showAndWait();
         }
+
     }
 
     private void changeLabelText() {
@@ -574,6 +582,7 @@ public class TimetableController implements Initializable {
             lblInfo.setText(String.format("%s",
                     visibleTimetable.getSchoolClass().getClassname()));
         }
+        refreshTimetableViews();
     }
 
     @FXML
@@ -597,11 +606,12 @@ public class TimetableController implements Initializable {
         try {
             DialogPane pane = new DialogPane();
             pane.setContent(timetabledayLoader.load());
-            TimetableViews controller = timetabledayLoader.getController();
+            controller = timetabledayLoader.getController();
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(pane);
 
+            dialog.setTitle("Tagesstundenpläne");
             pane.getButtonTypes().add(ButtonType.CLOSE);
             dialog.initModality(Modality.WINDOW_MODAL);
 
@@ -610,5 +620,9 @@ public class TimetableController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void refreshTimetableViews(){
+        controller.loadTimetable();
     }
 }

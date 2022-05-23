@@ -37,7 +37,7 @@ public class TimetableViews implements Initializable {
         visibleTimetable = null;
 
         days.addAll(Arrays.asList(Day.Montag.name(), Day.Dienstag.name(), Day.Mittwoch.name(),
-                Day.Dienstag.name(), Day.Freitag.name()));
+                Day.Donnerstag.name(), Day.Freitag.name()));
 
         cbDay.setItems(days);
 
