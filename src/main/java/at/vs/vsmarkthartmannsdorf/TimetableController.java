@@ -354,7 +354,6 @@ public class TimetableController implements Initializable {
                     .getWeeksFromSchoolClass(visibleTimetable.getSchoolClass())));
             cbWeek.getSelectionModel().select(Week.A);
             setContent();
-            refreshTimetableViews();
         }
     }
 
@@ -530,6 +529,7 @@ public class TimetableController implements Initializable {
         }
         reload();
         setContent();
+        refreshTimetableViews();
     }
 
     @FXML
@@ -582,7 +582,6 @@ public class TimetableController implements Initializable {
             lblInfo.setText(String.format("%s",
                     visibleTimetable.getSchoolClass().getClassname()));
         }
-        refreshTimetableViews();
     }
 
     @FXML
