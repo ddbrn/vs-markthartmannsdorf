@@ -46,13 +46,13 @@ public class TimetableViews implements Initializable {
 
     private GridPane buildTimetableView(Day day) {
         timetableView = new GridPane();
-        List<SchoolClass> klassen = SchoolDB.getInstance().getSchoolClasses();
+        List<SchoolClass> klassen = new ArrayList<>(SchoolDB.getInstance().getSchoolClasses());
 
-        for (SchoolClass schoolClass : klassen) {
-            klassen.sort(Comparator.comparing(t1 -> t1.getClassname()
-                    .compareTo(klassen.get(schoolClass.getId()).getClassname())));
+        for (int i = 0; i < klassen.size(); i++) {
+            int finalI = i;
+            Collections.sort(klassen, Comparator.comparing(o1 -> o1.getClassname().compareTo
+                    (klassen.get(finalI).getClassname())));
         }
-
         int column = 1;
         int row = 1;
 
@@ -62,7 +62,7 @@ public class TimetableViews implements Initializable {
 
         for (SchoolClass schoolClass : klassen) {
             visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(schoolClass).get(0);
-            //System.out.println(schoolClass.getClassname());
+            System.out.println(visibleTimetable.getSchoolClass());
 
             for (int i = 1; i <= Timetable.MAX_HOURS; i++) {
                 VBox vBox = new VBox();
@@ -103,7 +103,7 @@ public class TimetableViews implements Initializable {
                 }
 
                 vBox.setPadding(new Insets(10, 10, 10, 10));
-                vBox.setPrefWidth(85);
+                vBox.setPrefWidth(100);
 
                 Label lblSubject;
                 Label lblTeacher = new Label("");
