@@ -12,6 +12,7 @@ module vs.markthartmannsdorf {
     requires itextpdf;
     requires org.apache.commons.lang3;
     requires com.jfoenix;
+    requires javafx.web;
 
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;
     exports at.vs.vsmarkthartmannsdorf;

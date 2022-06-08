@@ -90,7 +90,7 @@ public class MainController implements Initializable {
 
             //Load HelpView
             FXMLLoader helpLoader = fxmlLoad("demo/help.fxml");
-            helpView = helpLoader.  load();
+            helpView = helpLoader.load();
             helpController = helpLoader.getController();
 
         } catch (Exception e) {

@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 @Data
@@ -285,13 +286,23 @@ public class SchoolDB {
     public boolean isTeacherAbsence (Teacher teacher) {
         //return teacherAbsences.stream().anyMatch(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId());
 
-        Optional<LocalDate> latestTeacherAbsenceDate = teacherAbsences
+        /*Optional<LocalDate> latestTeacherAbsenceDate = teacherAbsences
                 .stream()
                 .filter(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId())
                 .map(TeacherAbsence::getToDate)
                 .max(LocalDate::compareTo);
 
-        return latestTeacherAbsenceDate.map(localDate -> localDate.isAfter(LocalDate.now())).orElse(false);
+        return latestTeacherAbsenceDate.map(localDate -> localDate.isAfter(LocalDate.now())).orElse(false);*/
+
+        AtomicBoolean isAbsence = new AtomicBoolean(false);
+        teacherAbsences.forEach(teacherAbsence -> {
+            if (teacherAbsence.getFromDate().isBefore(LocalDate.now()) && teacherAbsence.getToDate().isAfter(LocalDate.now())) {
+                isAbsence.set(true);
+            }
+        });
+        return isAbsence.get();
+
+
 
     }
 
