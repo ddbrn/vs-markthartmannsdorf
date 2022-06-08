@@ -245,3 +245,18 @@ check-box .box {
 .jfx-check-box {
     
 }
+
+.teacherView #timetable {
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-background-radius: 10 10 10 10;
+
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}
+
+.teacherView #toolbar {
+    -fx-background-color: lightgray;
+    -fx-background-radius: 10 10 10 10;
+
+    -fx-effect: dropShadow(three-pass-box, rgb(225, 225, 225), 10, 0, 0, 10);
+}

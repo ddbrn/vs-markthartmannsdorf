@@ -4,7 +4,6 @@ import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -138,13 +137,34 @@ public class SchoolDB {
         boolean switchable = true;
 
         List<TeacherSubject> teachers = sourceTeacherLesson.getTeacher();
+        List<TeacherSubject> teachers2 = targetTeacherLesson.getTeacher();
 
         for (TeacherSubject teacherSubject: teachers){
             int teacherID = teacherSubject.getTeacherId();
             Optional<TeacherTimetable> teacherTimetable = findTeacherTimetableByID(teacherID);
             if (teacherTimetable.isPresent()){
+                if (checkIfTeacherIsBlocked(teacherID, targetDay, targetHour, timetable.getWeek())){
+                    switchable = false;
+                    break;
+                }
                 if (!teacherTimetable.get().getWeeklySubjects().get(timetable.getWeek()).get(targetDay).get(targetHour).isEmpty()){
                     switchable = false;
+                    break;
+                }
+            }
+        }
+
+        for (TeacherSubject teacherSubject: teachers){
+            int teacherID = teacherSubject.getTeacherId();
+            Optional<TeacherTimetable> teacherTimetable = findTeacherTimetableByID(teacherID);
+            if (teacherTimetable.isPresent()){
+                if (checkIfTeacherIsBlocked(teacherID, sourceDay, sourceHour, timetable.getWeek())){
+                    switchable = false;
+                    break;
+                }
+                if (!teacherTimetable.get().getWeeklySubjects().get(timetable.getWeek()).get(sourceDay).get(sourceHour).isEmpty()){
+                    switchable = false;
+                    break;
                 }
             }
         }
@@ -346,5 +366,10 @@ public class SchoolDB {
             if(subjects.get(i).getName().equals(name))
                 return true;
         return false;
+    }
+
+    public boolean checkIfTeacherIsBlocked(int teacherId, Day day, int hour, Week week){
+        TeacherTimetable teacherTimetable = findTeacherTimetableByID(teacherId).get();
+        return teacherTimetable.getWeeklySubjects().get(week).get(day).get(hour).isBlocked();
     }
 }

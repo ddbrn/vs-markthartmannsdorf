@@ -109,6 +109,8 @@ public class MainController implements Initializable {
         main.setCenter(teacherView);
         main.setBottom(null);
         main.setRight(null);
+
+        teacherViewController.clearRoot();
     }
 
     @FXML
@@ -323,6 +325,8 @@ public class MainController implements Initializable {
     }
 
     public void updateTimetableViews(){
-        timetableViewController.getController().loadTimetable();
+        if(timetableViewController.getController() != null){
+            timetableViewController.getController().loadTimetable();
+        }
     }
 }
