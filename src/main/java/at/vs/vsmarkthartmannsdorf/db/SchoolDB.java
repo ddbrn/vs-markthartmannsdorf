@@ -3,7 +3,9 @@ package at.vs.vsmarkthartmannsdorf.db;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -23,6 +25,8 @@ public class SchoolDB {
     private ObservableList<TeacherAbsence> teacherAbsences;
     private GridPane printTimetables;
 
+    private ArrayList<Subjectobject> subjects;
+
 
     private SchoolDB() {
         teachers = FXCollections.observableArrayList();
@@ -32,12 +36,17 @@ public class SchoolDB {
         teacherTimetables = FXCollections.observableArrayList();
         teacherAbsences = FXCollections.observableArrayList();
         printTimetables = new GridPane();
+        subjects = new ArrayList<Subjectobject>();
 
         for (Teacher teacher : teachers) {
             for (Subject subject : teacher.getSubjects()) {
                 teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
             }
         }
+        subjects.add(new Subjectobject("Mathe", Color.BLUE));
+        subjects.add(new Subjectobject("Deutsch", Color.YELLOW));
+        subjects.add(new Subjectobject("Englisch", Color.GREEN));
+
     }
 
     public static SchoolDB getInstance() {
@@ -313,5 +322,12 @@ public class SchoolDB {
 
     public Optional<TeacherTimetable> findTeacherTimetableByID(int id){
         return teacherTimetables.stream().filter(teacherTimetable -> teacherTimetable.getTeacherID() == id).findFirst();
+    }
+
+    public ArrayList<Subjectobject> getSubjects() {
+        return subjects;
+    }
+    public void addSubject(String name, Color color){
+        subjects.add(new Subjectobject(name, color));
     }
 }
