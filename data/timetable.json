@@ -5,11 +5,11 @@
     "teacherID" : 0
   },
   "subjects" : {
-    "Montag" : {
+    "Donnerstag" : {
       "1" : {
-        "subject" : "Mathematik",
+        "subject" : null,
         "teacher" : [ ],
-        "emptyLesson" : false
+        "emptyLesson" : true
       },
       "2" : {
         "subject" : null,
@@ -89,7 +89,7 @@
         "emptyLesson" : true
       }
     },
-    "Donnerstag" : {
+    "Freitag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -131,11 +131,11 @@
         "emptyLesson" : true
       }
     },
-    "Freitag" : {
+    "Montag" : {
       "1" : {
-        "subject" : null,
+        "subject" : "Mathematik",
         "teacher" : [ ],
-        "emptyLesson" : true
+        "emptyLesson" : false
       },
       "2" : {
         "subject" : null,
@@ -224,7 +224,7 @@
     "teacherID" : 0
   },
   "subjects" : {
-    "Montag" : {
+    "Donnerstag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -308,7 +308,7 @@
         "emptyLesson" : true
       }
     },
-    "Donnerstag" : {
+    "Freitag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
@@ -350,7 +350,7 @@
         "emptyLesson" : true
       }
     },
-    "Freitag" : {
+    "Montag" : {
       "1" : {
         "subject" : null,
         "teacher" : [ ],
