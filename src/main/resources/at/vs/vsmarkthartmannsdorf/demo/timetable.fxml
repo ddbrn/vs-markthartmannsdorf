@@ -15,6 +15,7 @@
    <right>
       <VBox id="rightContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="553.0" prefWidth="197.0" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="showTimetableViews" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onShowTimetableViews" text="Tagesstundenpläne" />
             <ListView id="teacherList" fx:id="lvTimetables" onMouseClicked="#onSelectClass" prefHeight="539.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

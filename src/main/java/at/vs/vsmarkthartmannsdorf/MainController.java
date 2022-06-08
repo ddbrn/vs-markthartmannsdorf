@@ -42,12 +42,10 @@ public class MainController implements Initializable {
     private ClassViewController classViewController;
     private TimetableController timetableViewController;
     private SettingsController settingsController;
-    private TimetableViews timetableDayController;
     private HelpController helpController;
     private BorderPane teacherView;
     private BorderPane classView;
     private BorderPane timetableView;
-    private BorderPane timetableDayView;
     private GridPane absenceView;
     private BorderPane settingsView;
     private BorderPane helpView;
@@ -78,10 +76,6 @@ public class MainController implements Initializable {
             timetableView = timetableLoader.load();
             timetableViewController = timetableLoader.getController();
             // timetableViewController.setParent(this);
-
-            FXMLLoader timetabledayLoader = fxmlLoad("demo/timetableviews.fxml");
-            timetableDayView = timetabledayLoader.load();
-            timetableDayController = timetabledayLoader.getController();
 
             // Load SettingsView
             FXMLLoader settingsLoader = fxmlLoad("demo/settings.fxml");
@@ -142,18 +136,6 @@ public class MainController implements Initializable {
         timetableViewController.getLvTimetables().refresh();
 
         main.setCenter(timetableView);
-        main.setBottom(null);
-        main.setRight(null);
-
-    }
-
-    @FXML
-    public void onClickTimetableDay() {
-        setHighlightedNav(timetableDaysBox);
-
-        timetableDayController.loadTimetable();
-
-        main.setCenter(timetableDayView);
         main.setBottom(null);
         main.setRight(null);
 
