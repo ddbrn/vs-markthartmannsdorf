@@ -13,6 +13,7 @@ module vs.markthartmannsdorf {
     requires org.apache.commons.lang3;
     requires com.jfoenix;
     requires javafx.web;
+    requires java.desktop;
 
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;
     exports at.vs.vsmarkthartmannsdorf;

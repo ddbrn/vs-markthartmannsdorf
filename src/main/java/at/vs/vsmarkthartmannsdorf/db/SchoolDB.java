@@ -4,6 +4,7 @@ import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import lombok.Data;
 
 import java.time.LocalDate;
