@@ -122,7 +122,6 @@ public class TimetableController implements Initializable {
             for (int i = 1; i <= Timetable.MAX_HOURS; i++) {
 
                 Lesson lesson = visibleTimetable.getSubjects().get(day).get(i);
-                System.out.println(lesson);
                 if (row == Timetable.MAX_HOURS + 1) {
                     row = 1;
                 }
@@ -241,6 +240,13 @@ public class TimetableController implements Initializable {
                             }
 
                             TeacherCheckbox cb = new TeacherCheckbox(teacherSubject);
+                            if (SchoolDB.getInstance().checkIfTeacherIsBlocked(teacherSubject.getTeacherId(), day, finalRow, cbWeek.getSelectionModel().getSelectedItem())) {
+                                cb.setDisable(true);
+                                cb.setText(SchoolDB.getInstance().getTeacherByID(teacherSubject.getTeacherId()).get().getSurname()
+                                        + " " + SchoolDB.getInstance().getTeacherByID(teacherSubject.getTeacherId()).get().getFirstname() + " (blockiert)");
+                            }else{
+                                cb.setDisable(false);
+                            }
                             cb.setSelected(SchoolDB.getInstance().checkIfTeacherContainsInLesson(day, finalRow1, visibleTimetable, teacherSubject));
 
                             cb.setOnAction(actionEvent -> {
