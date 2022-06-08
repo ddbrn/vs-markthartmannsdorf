@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class TeacherLesson {
-    private Subject subject;
+    private Subjectobject subject;
     private int classID;
     private boolean isEmpty;
     private boolean isBlocked;
 
-    public TeacherLesson(Subject subject, int classID) {
+    public TeacherLesson(Subjectobject subject, int classID) {
         this.subject = subject;
         this.classID = classID;
         this.isEmpty = false;

@@ -91,7 +91,7 @@ public class IOAccess_Excel {
 
                 cell = row.createCell(columCount[0]);
                 StringBuilder subjects = new StringBuilder();
-                for (Subject subject : teacher.getSubjects()) {
+                for (Subjectobject subject : teacher.getSubjects()) {
                     subjects.append(subject).append(";");
                 }
                 cell.setCellValue(subjects.substring(0, subjects.length() - 1));
@@ -182,13 +182,13 @@ public class IOAccess_Excel {
                         cell.set(rowClasses.createCell(index.getAndIncrement()));
                         Lesson lesson = timetable.getSubjects().get(day).get(i);
                         if (!lesson.isEmptyLesson()) {
-                            cell.get().setCellValue(lesson.getSubject().name());
+                            cell.get().setCellValue(lesson.getSubject().getName());
 
                             color.set(Color.valueOf(
                                     PropertiesLoader
                                             .getInstance()
                                             .getProperties()
-                                            .getProperty(lesson.getSubject().name())));
+                                            .getProperty(lesson.getSubject().getName())));
 
                             byte[] rgb =
                                     new byte[]{(byte) (color.get().getRed() * 127), (byte) (color.get().getGreen() * 127), (byte) (color.get().getBlue() * 127)};
@@ -463,7 +463,7 @@ public class IOAccess_Excel {
                                 Arrays.stream(cells[3]
                                                 .getStringCellValue()
                                                 .split(";"))
-                                        .map(Subject::valueOf).collect(Collectors.toList()));
+                                        .map(s -> SchoolDB.getInstance().getSubjectobjectFromName(s)).collect(Collectors.toList()));
                 teacherList.add(teacher);
                 System.out.println(teacher);
 

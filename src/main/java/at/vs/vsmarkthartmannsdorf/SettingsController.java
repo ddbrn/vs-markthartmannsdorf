@@ -2,32 +2,23 @@ package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.PropertyName;
-import at.vs.vsmarkthartmannsdorf.data.Subject;
-import at.vs.vsmarkthartmannsdorf.data.Subjectobject;
-import at.vs.vsmarkthartmannsdorf.data.TeacherAbsence;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
-import javafx.application.Application;
-import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import lombok.Data;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -53,7 +44,6 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // new Subjects
         update();
 
         /*
@@ -137,7 +127,7 @@ public class SettingsController implements Initializable {
                 colorPicker.setValue(SchoolDB.getInstance().getSubjects().get(i).getColor());
             }
             j = i;
-            colorPicker.setOnAction(actionEvent -> changedColori(colorPicker, j));
+            colorPicker.setOnAction(actionEvent -> changedColor(colorPicker, j));
             deleteButton.setOnAction(actionEvent -> deleteSubject(j));
             gridPane.add(colorPicker, 1, 0);
             gridPane.add(deleteButton, 2,0);
@@ -187,11 +177,7 @@ public class SettingsController implements Initializable {
 
     }
 
-    public void changedColor(ColorPicker colorPicker,Subject subject){
-        PropertiesLoader.getInstance().addProperty(subject.name(), colorPicker.getValue().toString());
-    }
-
-    public void changedColori(ColorPicker colorPicker, int index){
+    public void changedColor(ColorPicker colorPicker, int index){
         PropertiesLoader.getInstance().addProperty(SchoolDB.getInstance().getSubjects().get(index).getName(), colorPicker.getValue().toString());
     }
 }

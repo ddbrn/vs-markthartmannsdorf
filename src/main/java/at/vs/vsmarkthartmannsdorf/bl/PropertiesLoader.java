@@ -2,7 +2,6 @@ package at.vs.vsmarkthartmannsdorf.bl;
 
 import at.vs.vsmarkthartmannsdorf.data.PropertyName;
 import at.vs.vsmarkthartmannsdorf.data.Subject;
-import javafx.beans.property.Property;
 import javafx.scene.paint.Color;
 
 import java.io.*;

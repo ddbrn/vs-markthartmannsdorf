@@ -1,6 +1,7 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Subject;
+import at.vs.vsmarkthartmannsdorf.data.Subjectobject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,17 +11,16 @@ import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TeacherController {
 
     @FXML
     public TextField firstname, surname, abbreviation;
-    public ListView<Subject> availableSubjects, assignedSubjects;
+    public ListView<Subjectobject> availableSubjects, assignedSubjects;
     public Label firstnameInfo, surnameInfo, abbreviationInfo, assignedSubjectsInfo;
 
-    private ObservableList<Subject> olAvailableSubjects;
-    private ObservableList<Subject> olAssignedSubjects;
+    private ObservableList<Subjectobject> olAvailableSubjects;
+    private ObservableList<Subjectobject> olAssignedSubjects;
 
 
     public TextField getFirstname() {
@@ -35,7 +35,7 @@ public class TeacherController {
         return abbreviation;
     }
 
-    public void setSubjects(List<Subject> subjectsAvailable){
+    public void setSubjects(List<Subjectobject> subjectsAvailable){
         olAvailableSubjects = FXCollections.observableArrayList(subjectsAvailable);
         olAssignedSubjects = FXCollections.observableArrayList();
 
@@ -45,7 +45,7 @@ public class TeacherController {
 
     @FXML
     public void addSubject(){
-        Subject subject = availableSubjects.getSelectionModel().getSelectedItem();
+        Subjectobject subject = availableSubjects.getSelectionModel().getSelectedItem();
 
         if (subject != null){
             olAvailableSubjects.remove(subject);
@@ -58,7 +58,7 @@ public class TeacherController {
 
     @FXML
     public void removeSubject(){
-        Subject subject = assignedSubjects.getSelectionModel().getSelectedItem();
+        Subjectobject subject = assignedSubjects.getSelectionModel().getSelectedItem();
 
         if (subject != null){
             olAssignedSubjects.remove(subject);
@@ -69,7 +69,7 @@ public class TeacherController {
         assignedSubjects.setItems(olAssignedSubjects);
     }
 
-    public List<Subject> getAssignedSubjects(){
+    public List<Subjectobject> getAssignedSubjects(){
         return new ArrayList<>(olAssignedSubjects);
     }
 
@@ -101,8 +101,8 @@ public class TeacherController {
         abbreviation.setText(text);
     }
 
-    public void setAssignedSubjects(List<Subject> subjects){
-        ObservableList<Subject> os = FXCollections.observableArrayList(subjects);
+    public void setAssignedSubjects(List<Subjectobject> subjects){
+        ObservableList<Subjectobject> os = FXCollections.observableArrayList(subjects);
 
         olAvailableSubjects.removeAll(subjects);
         availableSubjects.setItems(olAvailableSubjects);

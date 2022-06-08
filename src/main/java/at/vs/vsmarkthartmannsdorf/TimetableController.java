@@ -1,11 +1,9 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Print;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import at.vs.vsmarkthartmannsdorf.bl.PropertiesLoader;
 import at.vs.vsmarkthartmannsdorf.data.*;
-import com.fasterxml.jackson.databind.node.ValueNode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -130,8 +128,7 @@ public class TimetableController implements Initializable {
 
                 Color color = null;
                 if (lesson.getSubject() != null) {
-                    String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(lesson.getSubject().name());
-                    color = Color.valueOf(colorHex);
+                    color = lesson.getSubject().getColor();
                     vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
 
@@ -155,7 +152,7 @@ public class TimetableController implements Initializable {
                     lblTeacher.setText(teacher.toString());
                 }
 
-                lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().name());
+                lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().getName());
                 if (color != null) {
                     double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
                     if (luminance > 0.002) {
@@ -212,7 +209,7 @@ public class TimetableController implements Initializable {
                                 Node sourceNode = getNodeByRowColumnIndex(source_row, source_column);
                                 switchNodes(sourceNode, vBox, timetableView);
                             } else {
-                                Subject subject = Subject.valueOf(db.getString());
+                                Subjectobject subject = SchoolDB.getInstance().getSubjects().stream().filter(s -> s.getName().equals(db.getString())).findFirst().get();
                                 addSubject(day, finalRow, new Lesson(subject, List.of()));
                             }
                             success = true;
@@ -439,13 +436,12 @@ public class TimetableController implements Initializable {
 
             int i = 0;
             int j = 0;
-            for (Subject subject : Subject.values()) {
+            for (Subjectobject subject : SchoolDB.getInstance().getSubjects()) {
                 VBox vBox = new VBox();
 
-                String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(subject.name());
-                Color color = Color.valueOf(colorHex);
+                Color color = subject.getColor();
 
-                Label label = new Label(subject.name());
+                Label label = new Label(subject.getName());
                 double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
                 if (luminance > 0.002) {
                     label.setStyle("-fx-text-fill: black");
@@ -459,7 +455,7 @@ public class TimetableController implements Initializable {
                 vBox.setPadding(new Insets(10, 10, 10, 10));
                 vBox.setAlignment(Pos.CENTER);
 
-                if (i == (int) Math.ceil(Subject.values().length / 4.0)) {
+                if (i == (int) Math.ceil(SchoolDB.getInstance().getSubjects().size() / 4.0)) {
                     i = 0;
                     j += 1;
                 }
@@ -468,7 +464,7 @@ public class TimetableController implements Initializable {
                     Dragboard db = vBox.startDragAndDrop(TransferMode.ANY);
                     db.setDragView(vBox.snapshot(null, null), mouseDragEvent.getX(), mouseDragEvent.getY());
                     ClipboardContent clipboardContent = new ClipboardContent();
-                    String content = subject.name();
+                    String content = subject.getName();
                     clipboardContent.putString(content);
                     db.setContent(clipboardContent);
                     mouseDragEvent.consume();

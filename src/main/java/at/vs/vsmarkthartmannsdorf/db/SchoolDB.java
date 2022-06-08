@@ -39,7 +39,7 @@ public class SchoolDB {
         subjects = new ArrayList<Subjectobject>();
 
         for (Teacher teacher : teachers) {
-            for (Subject subject : teacher.getSubjects()) {
+            for (Subjectobject subject : subjects) {
                 teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
             }
         }
@@ -58,7 +58,7 @@ public class SchoolDB {
 
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
-        for (Subject subject : teacher.getSubjects()) {
+        for (Subjectobject subject : teacher.getSubjects()) {
             teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
             teacherTimetables.add(new TeacherTimetable(teacher.getId()));
         }
@@ -126,9 +126,9 @@ public class SchoolDB {
         getTimetables().get(getTimetables().indexOf(timetable)).addSubject(day, hour, lesson);
     }
 
-    public List<TeacherSubject> getTeacherBySubject(Subject subject) {
+    public List<TeacherSubject> getTeacherBySubject(Subjectobject subject) {
         return SchoolDB.getInstance().getTeacherSubjects().stream().filter(teacherSubject ->
-                teacherSubject.getSubject() == subject).collect(Collectors.toList());
+                teacherSubject.getSubject().equals(subject)).collect(Collectors.toList());
     }
 
     public boolean switchLessons(Day sourceDay, Day targetDay, int sourceHour, int targetHour, Timetable timetable) {
@@ -155,7 +155,7 @@ public class SchoolDB {
             }
         }
 
-        for (TeacherSubject teacherSubject: teachers){
+        for (TeacherSubject teacherSubject: teachers2){
             int teacherID = teacherSubject.getTeacherId();
             Optional<TeacherTimetable> teacherTimetable = findTeacherTimetableByID(teacherID);
             if (teacherTimetable.isPresent()){
@@ -372,5 +372,9 @@ public class SchoolDB {
     public boolean checkIfTeacherIsBlocked(int teacherId, Day day, int hour, Week week){
         TeacherTimetable teacherTimetable = findTeacherTimetableByID(teacherId).get();
         return teacherTimetable.getWeeklySubjects().get(week).get(day).get(hour).isBlocked();
+    }
+
+    public Subjectobject getSubjectobjectFromName(String name){
+        return SchoolDB.getInstance().getSubjects().stream().filter(subject -> subject.getName().equals(name)).findFirst().get();
     }
 }

@@ -1,6 +1,5 @@
 package at.vs.vsmarkthartmannsdorf.data;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 @Data
 public class Lesson {
-    private Subject subject;
+    private Subjectobject subject;
     private List<TeacherSubject> teacher;
     private boolean isEmptyLesson;
 
@@ -19,7 +18,7 @@ public class Lesson {
         teacher = new ArrayList<>();
     }
 
-    public Lesson(Subject subject, List<TeacherSubject> teacherSubject) {
+    public Lesson(Subjectobject subject, List<TeacherSubject> teacherSubject) {
         isEmptyLesson = false;
 
         this.teacher = new ArrayList<>();

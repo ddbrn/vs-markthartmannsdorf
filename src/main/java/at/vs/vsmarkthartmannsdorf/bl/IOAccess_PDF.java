@@ -89,7 +89,7 @@ public class IOAccess_PDF {
                 if (lesson.isEmptyLesson()) {
                     table.addCell("");
                 } else {
-                    table.addCell(lesson.getSubject().name());
+                    table.addCell(lesson.getSubject().getName());
                 }
             }
             PdfPCell[] cells = table.getRow(i).getCells();

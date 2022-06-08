@@ -1,23 +1,18 @@
 package at.vs.vsmarkthartmannsdorf;
 
 import at.vs.vsmarkthartmannsdorf.data.Subject;
+import at.vs.vsmarkthartmannsdorf.data.Subjectobject;
 import at.vs.vsmarkthartmannsdorf.data.Teacher;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import com.jfoenix.controls.JFXCheckBox;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
@@ -30,7 +25,7 @@ public class TeacherFormController implements Initializable {
     private TeacherViewController parent;
 
     private List<JFXCheckBox> cbs;
-    private List<Subject> selectedSubjects;
+    private List<Subjectobject> selectedSubjects;
 
     private Teacher oldTeacher;
 
@@ -51,14 +46,13 @@ public class TeacherFormController implements Initializable {
         AtomicInteger i = new AtomicInteger(0);
         AtomicInteger j = new AtomicInteger(0);
 
-        Arrays.stream(Subject.values()).forEach(subject -> {
-
-            if (j.get() == (int) Math.ceil(Subject.values().length / 3.0)) {
+        SchoolDB.getInstance().getSubjects().stream().forEach(subjectobject -> {
+            if (j.get() == (int) Math.ceil(SchoolDB.getInstance().getSubjects().size() / 3.0)) {
                 i.incrementAndGet();
                 j.set(0);
             }
 
-            JFXCheckBox cb = new JFXCheckBox(subject.name());
+            JFXCheckBox cb = new JFXCheckBox(subjectobject.getName());
             cb.setAlignment(Pos.CENTER_LEFT);
             cbs.add(cb);
             gp.add(cb, i.get(), j.getAndIncrement());
@@ -86,7 +80,6 @@ public class TeacherFormController implements Initializable {
                 .stream()
                 .filter(checkBox -> teacher.getSubjects()
                         .stream()
-                        .map(Enum::name)
                         .toList()
                         .contains(checkBox.getText()))
                 .forEach(checkBox -> checkBox.setSelected(true));
@@ -94,7 +87,7 @@ public class TeacherFormController implements Initializable {
         selectedSubjects = new ArrayList<>();
         cbs.forEach(checkBox -> {
             if (checkBox.isSelected()) {
-                selectedSubjects.add(Subject.valueOf(checkBox.getText()));
+                selectedSubjects.add(SchoolDB.getInstance().getSubjects().stream().filter(subjectobject -> subjectobject.getName().equals(checkBox.getText())).findFirst().get());
             }
         });
 
@@ -116,7 +109,7 @@ public class TeacherFormController implements Initializable {
         selectedSubjects = new ArrayList<>();
         cbs.forEach(checkBox -> {
             if (checkBox.isSelected()) {
-                selectedSubjects.add(Subject.valueOf(checkBox.getText()));
+                selectedSubjects.add(SchoolDB.getInstance().getSubjects().stream().filter(subjectobject -> subjectobject.getName().equals(checkBox.getText())).findFirst().get());
             }
         });
 

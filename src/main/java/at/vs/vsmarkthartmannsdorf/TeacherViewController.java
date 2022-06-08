@@ -154,7 +154,7 @@ public class TeacherViewController implements Initializable {
         root.setCenter(null);
     }
 
-    public void submitForm(String firstname, String lastname, String abbrevation, List<Subject> subjects) {
+    public void submitForm(String firstname, String lastname, String abbrevation, List<Subjectobject> subjects) {
         Teacher teacher = new Teacher(SchoolDB.getInstance().getLastTeacherID(), StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
 
         dismountForm();
@@ -172,7 +172,7 @@ public class TeacherViewController implements Initializable {
         teacherList.refresh();
     }
 
-    public void editTeacher(Teacher oldTeacher, String firstname, String lastname, String abbrevation, List<Subject> subjects) {
+    public void editTeacher(Teacher oldTeacher, String firstname, String lastname, String abbrevation, List<Subjectobject> subjects) {
         Teacher teacher = new Teacher(oldTeacher.getId(), StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
         dismountForm();
        /* int index = SchoolDB.getInstance().getTeachers().indexOf(oldTeacher);
@@ -256,8 +256,7 @@ public class TeacherViewController implements Initializable {
 
                 Color color = null;
                 if (teacherLesson.getSubject() != null) {
-                    String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(teacherLesson.getSubject().name());
-                    color = Color.valueOf(colorHex);
+                    color = teacherLesson.getSubject().getColor();
                     vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
 
@@ -308,7 +307,7 @@ public class TeacherViewController implements Initializable {
                     }
                 });
 
-                lblSubject = teacherLesson.getSubject() == null ? new Label(" ") : new Label(teacherLesson.getSubject().name());
+                lblSubject = teacherLesson.getSubject() == null ? new Label(" ") : new Label(teacherLesson.getSubject().getName());
                 if (color != null) {
                     double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
                     if (luminance > 0.002) {

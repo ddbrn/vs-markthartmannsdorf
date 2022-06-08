@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TeacherSubject {
     private int teacherId;
-    private Subject subject;
+    private Subjectobject subject;
 }

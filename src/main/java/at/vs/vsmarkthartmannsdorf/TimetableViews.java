@@ -107,8 +107,7 @@ public class TimetableViews implements Initializable {
 
                 Color color = null;
                 if (lesson.getSubject() != null) {
-                    String colorHex = PropertiesLoader.getInstance().getProperties().getProperty(lesson.getSubject().name());
-                    color = Color.valueOf(colorHex);
+                    color = lesson.getSubject().getColor();
                     vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
 
@@ -133,7 +132,7 @@ public class TimetableViews implements Initializable {
                     lblTeacher.setText(teacher.toString());
                 }
 
-                lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().name());
+                lblSubject = lesson.getSubject() == null ? new Label(" ") : new Label(lesson.getSubject().getName());
                 if (color != null) {
                     double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
                     if (luminance > 0.002) {

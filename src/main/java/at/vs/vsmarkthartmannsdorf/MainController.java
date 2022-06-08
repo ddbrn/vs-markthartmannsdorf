@@ -1,7 +1,5 @@
 package at.vs.vsmarkthartmannsdorf;
 
-import at.vs.vsmarkthartmannsdorf.bl.IOAccess;
-import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Absence;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_Excel;
 import at.vs.vsmarkthartmannsdorf.bl.IOAccess_PDF;
 import at.vs.vsmarkthartmannsdorf.data.*;
@@ -20,7 +18,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -34,9 +31,6 @@ public class MainController implements Initializable {
 
     private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
     private ObservableList<SchoolClass> classes = FXCollections.observableArrayList();
-    private ObservableList<Timetable> timetables = FXCollections.observableArrayList();
-    private ObservableList<Subject> timetableSubs = FXCollections.observableArrayList();
-    //private ArrayList<TeacherAbsence> teacherAbsenceList = new ArrayList<>();
 
     private TeacherViewController teacherViewController;
     private ClassViewController classViewController;
