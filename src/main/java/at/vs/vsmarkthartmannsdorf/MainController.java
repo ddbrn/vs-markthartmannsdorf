@@ -323,6 +323,8 @@ public class MainController implements Initializable {
     }
 
     public void updateTimetableViews(){
-        timetableViewController.getController().loadTimetable();
+        if(timetableViewController.getController() != null){
+            timetableViewController.getController().loadTimetable();
+        }
     }
 }
