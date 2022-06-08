@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -47,9 +48,7 @@ public class AbsenceShowController implements Initializable  {
 
             List<TeacherAbsence> teacherAbsenceList =  lstAbsence.getSelectionModel().getSelectedItems().stream().toList();
 
-            if (teacherAbsenceList.isEmpty()) {
-
-            } else {
+            if (!teacherAbsenceList.isEmpty()) {
                 teacherAbsenceList.forEach(teacherAbsence -> SchoolDB.getInstance().removeAbsence(teacherAbsence));
                 lstAbsence.setItems(FXCollections.observableList(SchoolDB.getInstance().getTeacherAbsences()
                         .stream().filter(teacherAbsence -> teacherAbsence.getTeacherID() == teacher.getId()).toList()));
