@@ -32,6 +32,7 @@ public class ClassViewController implements Initializable {
     private ObservableList<SchoolClass> classes;
 
     private boolean isEdit;
+    private TimetableController controller;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -154,6 +155,9 @@ public class ClassViewController implements Initializable {
         dismountForm();
         SchoolDB.getInstance().addSchoolClass(schoolClass);
         classList.setItems(SchoolDB.getInstance().getSchoolClasses());
+        parent.updateTimetableViews();
+        //controller.getController().loadTimetable();
+
     }
 
     public MainController getParent() {

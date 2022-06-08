@@ -47,12 +47,22 @@ public class TimetableViews implements Initializable {
     private GridPane buildTimetableView(Day day) {
         timetableView = new GridPane();
         List<SchoolClass> klassen = new ArrayList<>(SchoolDB.getInstance().getSchoolClasses());
-
-        for (int i = 0; i < klassen.size(); i++) {
-            int finalI = i;
-            Collections.sort(klassen, Comparator.comparing(o1 -> o1.getClassname().compareTo
-                    (klassen.get(finalI).getClassname())));
+        List<SchoolClass> sortedClasses = new ArrayList<>();
+        List<String> classnames = new ArrayList<>();
+        for (SchoolClass schoolClass : klassen) {
+            classnames.add(schoolClass.getClassname());
         }
+        Collections.sort(classnames);
+
+        for (String classname : classnames) {
+            for (int i = 0; i < klassen.size(); i++) {
+                if (klassen.get(i).getClassname().equals(classname)) {
+                    sortedClasses.add(klassen.get(i));
+                }
+
+            }
+        }
+
         int column = 1;
         int row = 1;
 
@@ -60,7 +70,7 @@ public class TimetableViews implements Initializable {
         firstBox.setStyle("-fx-background-color: #e1d9d9");
         timetableView.add(firstBox, 0, 0);
 
-        for (SchoolClass schoolClass : klassen) {
+        for (SchoolClass schoolClass : sortedClasses) {
             visibleTimetable = SchoolDB.getInstance().getTimetablesFromClass(schoolClass).get(0);
             System.out.println(visibleTimetable.getSchoolClass());
 

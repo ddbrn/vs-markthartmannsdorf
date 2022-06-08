@@ -321,4 +321,8 @@ public class MainController implements Initializable {
     public void setClassesOpened(boolean classesOpened) {
         this.classesOpened = classesOpened;
     }
+
+    public void updateTimetableViews(){
+        timetableViewController.getController().loadTimetable();
+    }
 }

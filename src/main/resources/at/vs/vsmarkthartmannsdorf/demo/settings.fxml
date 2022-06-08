@@ -31,15 +31,13 @@
          </top>
          <center>
             <VBox fx:id="vbProperties" prefHeight="389.0" prefWidth="602.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="44.0" prefWidth="200.0" spacing="20.0">
-                     <children>
-                        <Label text="Standardordner" textAlignment="CENTER" />
-                        <TextField fx:id="tfDirectory" editable="false" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="332.0" />
-                        <Button mnemonicParsing="false" onAction="#setDirectory" text="auswählen" />
-                     </children>
-                  </HBox>
-               </children>
+               <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="44.0" prefWidth="200.0"
+                     spacing="20.0">
+                  <Label text="Standardordner" textAlignment="CENTER"/>
+                  <TextField fx:id="tfDirectory" editable="false" maxWidth="1.7976931348623157E308" prefHeight="25.0"
+                             prefWidth="332.0"/>
+                  <Button mnemonicParsing="false" onAction="#setDirectory" text="auswählen"/>
+               </HBox>
             </VBox>
          </center>
       </BorderPane>
