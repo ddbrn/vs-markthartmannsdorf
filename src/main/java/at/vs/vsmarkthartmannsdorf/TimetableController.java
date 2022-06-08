@@ -628,4 +628,8 @@ public class TimetableController implements Initializable {
             controller.loadTimetable();
         }
     }
+
+    public TimetableViews getController(){
+        return controller;
+    }
 }
