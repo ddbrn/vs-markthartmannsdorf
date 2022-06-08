@@ -1,7 +1,6 @@
 package at.vs.vsmarkthartmannsdorf.bl;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -9,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-import at.vs.vsmarkthartmannsdorf.Main;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +27,7 @@ public class IOAccess {
     private static final File FILE_TIMETABLE = Paths.get("", "data", "timetable.json").toFile();
     private static final File FILE_ABSENCE = Paths.get("", "data", "absence.json").toFile();
     private static final File FILE_TEACHER_TIMETABLE = Paths.get("", "data", "teacherTimetable.json").toFile();
+    private static final File FILE_SUBJECT_TIMETABLE = Paths.get("", "data", "subjects.json").toFile();
 
 
     public static synchronized boolean storeClassFiles(List<SchoolClass> schoolClassList) {
@@ -268,5 +267,49 @@ public class IOAccess {
         }
         SchoolDB.getInstance().setTeacherTimetables(FXCollections.observableArrayList(teacherTimetable));
     }
+    public static synchronized void readSubjectFiles() {
+        List<Subjectobject> subjectobject = new ArrayList<>();
+        if (!new File(FILE_SUBJECT_TIMETABLE.getAbsolutePath()).exists()) {
+            return;
+        }
+        try {
+            String result = Files.readString(Paths.get(FILE_SUBJECT_TIMETABLE.getAbsolutePath()), StandardCharsets.UTF_8);
+
+            if (result.isEmpty()) {
+                return;
+            }
+
+            ObjectMapper om = new ObjectMapper();
+            Subjectobject subjectobjects = om.readValue(result, Subjectobject.class);
+
+            subjectobject.addAll(Arrays.asList(subjectobjects));
+            System.out.println("FileWrite read in \"" + IOAccess.FILE_SUBJECT_TIMETABLE.getName() + "\".");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //SchoolDB.getInstance().setSubjects(FXCollections.observableArrayList(subjectobject));
+    }
+
+        public static synchronized boolean storeSubjectFiles() {
+            try {
+                FILE_SUBJECT_TIMETABLE.getParentFile().mkdirs();
+                ObjectMapper om = new ObjectMapper();
+                String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(SchoolDB.getInstance().getTeacherTimetables());
+
+                FileWriter fileWriter = new FileWriter(IOAccess.FILE_SUBJECT_TIMETABLE.getAbsolutePath(), StandardCharsets.UTF_8);
+                fileWriter.write(jsonStr);
+                fileWriter.close();
+                System.out.println("FileWrite wrote in \"" + IOAccess.FILE_SUBJECT_TIMETABLE.getName() + "\".");
+
+                return true; //successfully wrote data
+
+            } catch (IOException e) {
+                System.out.println("Failed to write in the File: \"" + IOAccess.FILE_SUBJECT_TIMETABLE.getName() + "\".");
+                e.printStackTrace();
+                return false; //not successfully wrote data
+            }
+        }
+
 
 }

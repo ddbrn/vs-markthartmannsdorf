@@ -167,9 +167,6 @@ public class SettingsController implements Initializable {
             Optional<ButtonType> clickedButton = dialog.showAndWait();
             if (clickedButton.get() == ButtonType.OK) {
                 if(SchoolDB.getInstance().subjectalreadyexist(subjectFormController.getTxtSubject().getText())){
-                    JOptionPane.showMessageDialog(null,
-                            "Es gibt bereits ein Fach welches " +subjectFormController.getTxtSubject().getText() + " heißt." , "Fach bereits vorhanden",
-                            JOptionPane.ERROR_MESSAGE);
                 }else
                     SchoolDB.getInstance().addSubject(subjectFormController.getTxtSubject().getText(), subjectFormController.getClrPicker().getValue());
 
