@@ -23,6 +23,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import lombok.Data;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -53,9 +54,9 @@ public class SettingsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // new Subjects
-        //update();
+        update();
 
-
+        /*
         for (Subject subject: Subject.values()){
             HBox hBox = new HBox();
 
@@ -84,6 +85,7 @@ public class SettingsController implements Initializable {
 
             vbProperties.getChildren().add(hBox);
         }
+        */
 
 
     }
@@ -114,6 +116,7 @@ public class SettingsController implements Initializable {
         hBox.setPrefHeight(44.0);
         hBox.setPrefWidth(200.0);
         hBox.setSpacing(20.0);
+        btnDirectory.setOnAction(actionEvent -> setDirectory());
         hBox.getChildren().add(lblDirectory);
         hBox.getChildren().add(txtDirectory);
         hBox.getChildren().add(btnDirectory);
@@ -130,6 +133,8 @@ public class SettingsController implements Initializable {
             String property = PropertiesLoader.getInstance().getProperties().getProperty(SchoolDB.getInstance().getSubjects().get(i).getName());
             if (property != null){
                 colorPicker.setValue(Color.valueOf(property));
+            } else {
+                colorPicker.setValue(SchoolDB.getInstance().getSubjects().get(i).getColor());
             }
             j = i;
             colorPicker.setOnAction(actionEvent -> changedColori(colorPicker, j));
@@ -161,8 +166,13 @@ public class SettingsController implements Initializable {
             dialog.setTitle("Fäch hinzufügen");
             Optional<ButtonType> clickedButton = dialog.showAndWait();
             if (clickedButton.get() == ButtonType.OK) {
-                System.out.println("Fach:" + subjectFormController.txtSubject.getText());
-                SchoolDB.getInstance().addSubject(subjectFormController.getTxtSubject().getText(), subjectFormController.getClrPicker().getValue());
+                if(SchoolDB.getInstance().subjectalreadyexist(subjectFormController.getTxtSubject().getText())){
+                    JOptionPane.showMessageDialog(null,
+                            "Es gibt bereits ein Fach welches " +subjectFormController.getTxtSubject().getText() + " heißt." , "Fach bereits vorhanden",
+                            JOptionPane.ERROR_MESSAGE);
+                }else
+                    SchoolDB.getInstance().addSubject(subjectFormController.getTxtSubject().getText(), subjectFormController.getClrPicker().getValue());
+
                 update();
             }
         } catch (IOException e) {

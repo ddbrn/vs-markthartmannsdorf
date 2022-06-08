@@ -3,7 +3,6 @@ package at.vs.vsmarkthartmannsdorf.db;
 import at.vs.vsmarkthartmannsdorf.data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import lombok.Data;
@@ -339,6 +338,13 @@ public class SchoolDB {
         return subjects;
     }
     public void addSubject(String name, Color color){
+        System.out.println("C:" + color);
         subjects.add(new Subjectobject(name, color));
+    }
+    public boolean subjectalreadyexist(String name){
+        for(int i=0;i<subjects.size();i++)
+            if(subjects.get(i).getName().equals(name))
+                return true;
+        return false;
     }
 }
