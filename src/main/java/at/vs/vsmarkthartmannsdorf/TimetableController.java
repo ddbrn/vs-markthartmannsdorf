@@ -614,9 +614,8 @@ public class TimetableController implements Initializable {
 
             dialog.setTitle("Tagesstundenpläne");
             pane.getButtonTypes().add(ButtonType.CLOSE);
-            pane.setPrefWidth(1200);
-            pane.setPrefHeight(700);
             dialog.initModality(Modality.WINDOW_MODAL);
+            dialog.setResizable(true);
 
             controller.loadTimetable();
             dialog.show();
