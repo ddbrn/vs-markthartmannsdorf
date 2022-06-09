@@ -49,9 +49,6 @@ public class TeacherViewController implements Initializable {
     public Label lblInfo;
     private boolean blockHours;
 
-    @FXML
-    public ComboBox cbxWeek;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -197,8 +194,6 @@ public class TeacherViewController implements Initializable {
 
             lblInfo.setText(teacher.getSurname().toUpperCase() + " " + teacher.getFirstname());
 
-            cbxWeek.setItems(FXCollections.observableArrayList(visibileTimetable.getWeeklySubjects().keySet()));
-            cbxWeek.getSelectionModel().select(0);
 
             buildTimetable();
             setContent();
@@ -276,25 +271,25 @@ public class TeacherViewController implements Initializable {
                 int finalI1 = i;
                 vBox.setOnMouseClicked(mouseEvent -> {
                     if (blockHours){
-                        if (visibileTimetable.getWeeklySubjects().get((Week) cbxWeek.getSelectionModel().getSelectedItem()).get(day).get(finalI1).isEmpty()){
+                        if (visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isEmpty()){
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("vs-martkhartmannsdorf | BLOCKIEREN");
                             alert.setHeaderText("Wollen Sie wirklich diese Stunde blockieren?");
                             Optional<ButtonType> answer = alert.showAndWait();
 
                             if (answer.get().equals(ButtonType.OK)){
-                                visibileTimetable.addSubject(day, finalI, new TeacherLesson(true), (Week) cbxWeek.getSelectionModel().getSelectedItem());
+                                visibileTimetable.addSubject(day, finalI, new TeacherLesson(true), Week.A);
                                 buildTimetable();
                                 setContent();
                             }
-                        }else if(visibileTimetable.getWeeklySubjects().get((Week) cbxWeek.getSelectionModel().getSelectedItem()).get(day).get(finalI1).isBlocked()){
+                        }else if(visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isBlocked()){
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("vs-martkhartmannsdorf | FREIGEBEN");
                             alert.setHeaderText("Wollen Sie wirklich diese Stunde freigeben?");
                             Optional<ButtonType> answer = alert.showAndWait();
 
                             if (answer.get().equals(ButtonType.OK)){
-                                visibileTimetable.addSubject(day, finalI, new TeacherLesson(), (Week) cbxWeek.getSelectionModel().getSelectedItem());
+                                visibileTimetable.addSubject(day, finalI, new TeacherLesson(), Week.A);
                                 buildTimetable();
                                 setContent();
                             }
