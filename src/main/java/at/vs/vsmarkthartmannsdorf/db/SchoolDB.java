@@ -372,6 +372,9 @@ public class SchoolDB {
 
     public boolean checkIfTeacherIsBlocked(int teacherId, Day day, int hour, Week week){
         TeacherTimetable teacherTimetable = findTeacherTimetableByID(teacherId).get();
+        if (!teacherTimetable.getWeeklySubjects().keySet().contains(week)){
+            return false;
+        }
         return teacherTimetable.getWeeklySubjects().get(week).get(day).get(hour).isBlocked();
     }
 
