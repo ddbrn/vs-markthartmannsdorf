@@ -18,4 +18,9 @@ public class Subjectobject {
     public Color getColor(){
         return Color.color(colorred, colorgreen,colorblue);
     }
+    public void setColor(Color color){
+        colorred = color.getRed();
+        colorgreen = color.getGreen();
+        colorblue= color.getBlue();
+    }
 }

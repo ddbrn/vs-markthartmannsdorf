@@ -172,5 +172,6 @@ public class SettingsController implements Initializable {
 
     public void changedColor(ColorPicker colorPicker, int index){
         PropertiesLoader.getInstance().addProperty(SchoolDB.getInstance().getSubjects().get(index).getName(), colorPicker.getValue().toString());
+        SchoolDB.getInstance().getSubjects().get(index).setColor(colorPicker.getValue());
     }
 }
