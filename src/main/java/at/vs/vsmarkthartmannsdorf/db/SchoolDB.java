@@ -376,4 +376,29 @@ public class SchoolDB {
     public void setSubjects(ObservableList<Subjectobject> subjects){
         this.subjects = new ArrayList<>(subjects);
     }
+
+    public boolean subjectexistsinanytimetable(Subjectobject subject){
+        for(int i=0;i<timetables.size();i++){
+            System.out.println(timetables.get(i).getSubjects());
+            for(int k=0;k<timetables.get(i).getSubjects().size();k++){
+                    try {
+                        if(timetables.get(i).getSubjects().get(Day.Montag).get(k).getSubject().getName().equals(subject.getName()))
+                            return true;
+                        else if(timetables.get(i).getSubjects().get(Day.Dienstag).get(k).getSubject().getName().equals(subject.getName()))
+                            return true;
+                        else if(timetables.get(i).getSubjects().get(Day.Mittwoch).get(k).getSubject().getName().equals(subject.getName()))
+                            return true;
+                        else if(timetables.get(i).getSubjects().get(Day.Donnerstag).get(k).getSubject().getName().equals(subject.getName()))
+                            return true;
+                        else if(timetables.get(i).getSubjects().get(Day.Freitag).get(k).getSubject().getName().equals(subject.getName()))
+                            return true;
+
+                    }catch (Exception e){
+
+                    }
+            }
+
+        }
+        return false;
+    }
 }

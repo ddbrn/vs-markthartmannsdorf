@@ -78,6 +78,7 @@ public class SettingsController implements Initializable {
     }
 
     private void deleteSubject(int index) {
+        if(!SchoolDB.getInstance().subjectexistsinanytimetable(SchoolDB.getInstance().getSubjects().get(index)))
         SchoolDB.getInstance().getSubjects().remove(index);
         for(int i = 0;i<SchoolDB.getInstance().getSubjects().size();i++)
             System.out.println(SchoolDB.getInstance().getSubjects().get(i).getName());
