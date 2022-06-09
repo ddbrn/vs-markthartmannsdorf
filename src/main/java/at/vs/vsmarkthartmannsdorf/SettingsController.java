@@ -45,7 +45,6 @@ public class SettingsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         update();
-
         /*
         for (Subject subject: Subject.values()){
             HBox hBox = new HBox();
@@ -76,8 +75,6 @@ public class SettingsController implements Initializable {
             vbProperties.getChildren().add(hBox);
         }
         */
-
-
     }
 
     private void deleteSubject(int index) {
@@ -117,6 +114,7 @@ public class SettingsController implements Initializable {
             deleteButton = new Button("-");
             gridPane.setAlignment(Pos.CENTER);
             gridPane.add(new Label(SchoolDB.getInstance().getSubjects().get(i).getName()), 0, 0);
+            System.out.println(SchoolDB.getInstance().getSubjects().get(i).getName());
             int j;
             // Initialize ColorPicker
             ColorPicker colorPicker = new ColorPicker();
@@ -147,8 +145,7 @@ public class SettingsController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("demo/subject-dialog.fxml"));
-            DialogPane addSubjectDialog = null;
-            addSubjectDialog = fxmlLoader.load();
+            DialogPane addSubjectDialog = fxmlLoader.load();
 
             SubjectFormController subjectFormController = fxmlLoader.getController();
             Dialog<ButtonType> dialog = new Dialog<>();
@@ -158,8 +155,7 @@ public class SettingsController implements Initializable {
             if (clickedButton.get() == ButtonType.OK) {
                 if(SchoolDB.getInstance().subjectalreadyexist(subjectFormController.getTxtSubject().getText())){
                 }else
-                    SchoolDB.getInstance().addSubject(subjectFormController.getTxtSubject().getText(), subjectFormController.getClrPicker().getValue());
-
+                    SchoolDB.getInstance().addSubject(subjectFormController.getTxtSubject().getText(), subjectFormController.getClrPicker().getValue().getRed(),subjectFormController.getClrPicker().getValue().getGreen(),subjectFormController.getClrPicker().getValue().getBlue());
                 update();
             }
         } catch (IOException e) {
@@ -171,10 +167,6 @@ public class SettingsController implements Initializable {
         columnConstraints.setPercentWidth(50);
         hBox.getChildren().add(addButton);
         vbProperties.getChildren().add(hBox);
-    }
-
-    private void addSubject() throws IOException {
-
     }
 
     public void changedColor(ColorPicker colorPicker, int index){

@@ -283,7 +283,7 @@ public class MainController implements Initializable {
     public void onSettings() {
         settingsController.setStage(stage);
         setHighlightedNav(settingsBox);
-
+        settingsController.update();
         main.setCenter(settingsView);
         main.setBottom(null);
         main.setRight(null);

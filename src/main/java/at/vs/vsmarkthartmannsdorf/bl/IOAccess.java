@@ -12,6 +12,7 @@ import at.vs.vsmarkthartmannsdorf.data.*;
 import at.vs.vsmarkthartmannsdorf.db.SchoolDB;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 // 25.11.2021 Simon: create "storeClassFiles", "readClassFiles" Functions
 // 02.12.2021 Simon: fixed JSON /read and /write
@@ -280,22 +281,22 @@ public class IOAccess {
             }
 
             ObjectMapper om = new ObjectMapper();
-            Subjectobject subjectobjects = om.readValue(result, Subjectobject.class);
+            Subjectobject[] subjectobjects = om.readValue(result, Subjectobject[].class);
 
-            subjectobject.addAll(Arrays.asList(subjectobjects));
+            subjectobject = Arrays.asList(subjectobjects);
             System.out.println("FileWrite read in \"" + IOAccess.FILE_SUBJECT_TIMETABLE.getName() + "\".");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //SchoolDB.getInstance().setSubjects(FXCollections.observableArrayList(subjectobject));
+        SchoolDB.getInstance().setSubjects(FXCollections.observableArrayList(subjectobject));
     }
 
         public static synchronized boolean storeSubjectFiles() {
             try {
                 FILE_SUBJECT_TIMETABLE.getParentFile().mkdirs();
                 ObjectMapper om = new ObjectMapper();
-                String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(SchoolDB.getInstance().getTeacherTimetables());
+                String jsonStr = om.writerWithDefaultPrettyPrinter().writeValueAsString(SchoolDB.getInstance().getSubjects());
 
                 FileWriter fileWriter = new FileWriter(IOAccess.FILE_SUBJECT_TIMETABLE.getAbsolutePath(), StandardCharsets.UTF_8);
                 fileWriter.write(jsonStr);

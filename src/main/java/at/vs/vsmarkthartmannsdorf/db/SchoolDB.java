@@ -24,7 +24,6 @@ public class SchoolDB {
 
     private ObservableList<TeacherAbsence> teacherAbsences;
     private GridPane printTimetables;
-
     private ArrayList<Subjectobject> subjects;
 
 
@@ -43,9 +42,6 @@ public class SchoolDB {
                 teacherSubjects.add(new TeacherSubject(teacher.getId(), subject));
             }
         }
-        subjects.add(new Subjectobject("Mathe", Color.BLUE));
-        subjects.add(new Subjectobject("Deutsch", Color.YELLOW));
-        subjects.add(new Subjectobject("Englisch", Color.GREEN));
 
     }
 
@@ -358,9 +354,9 @@ public class SchoolDB {
     public ArrayList<Subjectobject> getSubjects() {
         return subjects;
     }
-    public void addSubject(String name, Color color){
-        System.out.println("C:" + color);
-        subjects.add(new Subjectobject(name, color));
+    public void addSubject(String name, double red, double green, double blue){
+        System.out.println(Color.color(red,green,blue));
+        subjects.add(new Subjectobject(name, red,green,blue));
     }
     public boolean subjectalreadyexist(String name){
         for(int i=0;i<subjects.size();i++)
@@ -376,5 +372,8 @@ public class SchoolDB {
 
     public Subjectobject getSubjectobjectFromName(String name){
         return SchoolDB.getInstance().getSubjects().stream().filter(subject -> subject.getName().equals(name)).findFirst().get();
+    }
+    public void setSubjects(ObservableList<Subjectobject> subjects){
+        this.subjects = new ArrayList<>(subjects);
     }
 }
