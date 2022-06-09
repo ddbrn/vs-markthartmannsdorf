@@ -187,6 +187,10 @@ public class SchoolDB {
     }
 
     public void removeSubject(Day day, int hour, Timetable timetable){
+        List<TeacherSubject> teacherSubjects = timetable.getSubjects().get(day).get(hour).getTeacher();
+        teacherSubjects.forEach(teacherSubject -> {
+           findTeacherTimetableByID(teacherSubject.getTeacherId()).get().addSubject(day, hour, new TeacherLesson(), timetable.getWeek());
+        });
         timetables.stream().filter(t -> t.getSchoolClass().equals(timetable.getSchoolClass())
                 && t.getWeek().equals(timetable.getWeek())).findFirst().get().removeSubject(day, hour);
     }
@@ -222,6 +226,7 @@ public class SchoolDB {
                 .get(day)
                 .get(hour)
                 .removeTeacher(teacherSubject);
+        findTeacherTimetableByID(teacherSubject.getTeacherId()).get().addSubject(day, hour, new TeacherLesson(), timetable.getWeek());
     }
 
     public boolean checkIfTeacherContainsInLesson(Day day, int hour, Timetable timetable, TeacherSubject teacherSubject){
