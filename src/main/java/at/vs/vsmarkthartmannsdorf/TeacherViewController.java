@@ -380,4 +380,5 @@ public class TeacherViewController implements Initializable {
             lblInfo.setText("Bearbeiten aktiviert | " + teacher.getSurname().toUpperCase() + " " + teacher.getFirstname());
         }
     }
+
 }

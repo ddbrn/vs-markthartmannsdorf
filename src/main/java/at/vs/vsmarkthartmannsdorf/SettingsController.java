@@ -33,7 +33,7 @@ public class SettingsController implements Initializable {
     public HBox hBox = new HBox();
     public GridPane gridPane = new GridPane();
     public ColorPicker colorPicker = new ColorPicker();
-    public Label lblDirectory = new Label("Standartordner");
+    public Label lblDirectory = new Label("Standardordner");
     public TextField txtDirectory = new TextField(PropertiesLoader.getInstance().getProperties().getProperty(PropertyName.export_folder.toString()));
     public Button btnDirectory = new Button("auswählen");
     public Button addButton;
