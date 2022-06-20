@@ -250,6 +250,9 @@ public class TeacherViewController implements Initializable {
                 VBox vBox = new VBox();
 
                 Color color = null;
+                if (teacherLesson == null) {
+                    continue;
+                }
                 if (teacherLesson.getSubject() != null) {
                     color = teacherLesson.getSubject().getColor();
                     vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -366,7 +369,7 @@ public class TeacherViewController implements Initializable {
 
             Teacher teacher = teacherList.getSelectionModel().getSelectedItem();
 
-            lblInfo.setText("Bearbeiten deaktiviert | " + teacher.getSurname().toUpperCase() + " " + teacher.getFirstname());
+            lblInfo.setText(teacher.getSurname().toUpperCase() + " " + teacher.getFirstname());
         } else {
             blockHours = true;
 
