@@ -58,6 +58,11 @@ public class TeacherFormController implements Initializable {
             gp.add(cb, i.get(), j.getAndIncrement());
         });
 
+        if (SchoolDB.getInstance().getSubjects().isEmpty()) {
+            info.setText("Es sind noch keine Fächer erstellt werden. Erstellen Sie neue Fächer unter dem Punkt Einstellungen");
+            info.setVisible(true);
+        }
+
         IntStream.range(0, 3).mapToObj(k -> new ColumnConstraints()).forEach(cc -> {
             cc.setHgrow(Priority.ALWAYS);
             gp.getColumnConstraints().add(cc);
