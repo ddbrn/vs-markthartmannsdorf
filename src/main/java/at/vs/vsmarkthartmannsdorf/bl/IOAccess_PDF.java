@@ -105,22 +105,23 @@ public class IOAccess_PDF {
         if (!cell.getPhrase().getContent().isEmpty()) {
             Color color = Color.valueOf(PropertiesLoader.getInstance().
                     getProperties().getProperty(cell.getPhrase().getContent()));
-            String hex = color.toString().substring(1);
-            int red = Integer.parseInt(hex.substring(1, 3), 16);
-            int blue = Integer.parseInt(hex.substring(3, 5), 16);
-            int green = Integer.parseInt(hex.substring(5, 7), 16);
+            if (color != null) {
+                String hex = color.toString().substring(1);
+                int red = Integer.parseInt(hex.substring(1, 3), 16);
+                int blue = Integer.parseInt(hex.substring(3, 5), 16);
+                int green = Integer.parseInt(hex.substring(5, 7), 16);
 
-            double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
+                double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
 
-            if (luminance < 0.002) {
-                Font font = new Font();
-                font.setColor(new BaseColor(255, 255, 255));
-                Phrase phrase = new Phrase(cell.getPhrase().getContent(), font);
-                cell.setPhrase(phrase);
+                if (luminance < 0.002) {
+                    Font font = new Font();
+                    font.setColor(new BaseColor(255, 255, 255));
+                    Phrase phrase = new Phrase(cell.getPhrase().getContent(), font);
+                    cell.setPhrase(phrase);
+                }
+
+                cell.setBackgroundColor(new BaseColor(red, blue, green));
             }
-
-            cell.setBackgroundColor(new BaseColor(red, blue, green));
-
         }
     }
 }
