@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="vs-markthartmannsdorf:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1eea1d82-ac2f-4ee3-a645-e7b5cd910c58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/help.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/data/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/timetable.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/timetable.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/vs/vsmarkthartmannsdorf/HelpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/vs/vsmarkthartmannsdorf/HelpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/vs/vsmarkthartmannsdorf/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/vs/vsmarkthartmannsdorf/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/at/vs/vsmarkthartmannsdorf/demo/help.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/vs/vsmarkthartmannsdorf/demo/help.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="module-info" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="27VEMQOOHE8520euDG5VePyxIE1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "WebServerToolWindowFactoryState": "false",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.at.vs.vsmarkthartmannsdorf.Main">
+    <configuration name="ImmutableTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="at.vs.vsmarkthartmannsdorf.test.ImmutableTester" />
+      <module name="vs-markthartmannsdorf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="at.vs.vsmarkthartmannsdorf.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="at.vs.vsmarkthartmannsdorf.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="at.vs.vsmarkthartmannsdorf.Main" />
+      <module name="vs-markthartmannsdorf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="at.vs.vsmarkthartmannsdorf.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.at.vs.vsmarkthartmannsdorf.Main" />
+        <item itemvalue="Application.ImmutableTester" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1eea1d82-ac2f-4ee3-a645-e7b5cd910c58" name="Changes" comment="" />
+      <created>1649396814458</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649396814458</updated>
+      <workItem from="1649396822648" duration="4613000" />
+      <workItem from="1649404048644" duration="1541000" />
+      <workItem from="1649405821984" duration="1393000" />
+      <workItem from="1649407399495" duration="817000" />
+      <workItem from="1649431500995" duration="1273000" />
+      <workItem from="1649441146228" duration="3538000" />
+      <workItem from="1650048009825" duration="138000" />
+      <workItem from="1650299797035" duration="295000" />
+      <workItem from="1650357281911" duration="513000" />
+      <workItem from="1650535316642" duration="75000" />
+      <workItem from="1650535459644" duration="1307000" />
+      <workItem from="1650543007638" duration="5415000" />
+      <workItem from="1650866784390" duration="87000" />
+      <workItem from="1651124966264" duration="125000" />
+      <workItem from="1651147701637" duration="6375000" />
+      <workItem from="1651223291345" duration="55000" />
+      <workItem from="1651755511429" duration="3238000" />
+      <workItem from="1652082358855" duration="15000" />
+      <workItem from="1652357148862" duration="6580000" />
+      <workItem from="1652687405830" duration="186000" />
+      <workItem from="1652890818061" duration="608000" />
+      <workItem from="1652962798098" duration="6377000" />
+    </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1650543064109</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650543064110</updated>
+    </task>
+    <task id="LOCAL-00002" summary="teacher">
+      <created>1652357836212</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652357836212</updated>
+    </task>
+    <task id="LOCAL-00003" summary="absence">
+      <created>1652363367049</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652363367049</updated>
+    </task>
+    <task id="LOCAL-00004" summary="absence teacher show and right coloring if deleted, deleting in DB and updating">
+      <created>1652966206756</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652966206756</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix">
+      <created>1652966296637</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652966296637</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <MESSAGE value="teacher" />
+    <MESSAGE value="absence" />
+    <MESSAGE value="absence teacher show and right coloring if deleted, deleting in DB and updating" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/vs_markthartmannsdorf$Main.ic" NAME="Main Coverage Results" MODIFIED="1649406686541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>at.vs.vsmarkthartmannsdorf.*</FILTER>
+    </SUITE>
+  </component>
+</project>

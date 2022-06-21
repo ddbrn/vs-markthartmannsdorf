@@ -64,13 +64,13 @@ public class TeacherAbsenceController implements Initializable {
                     Optional<ButtonType> clickedButton = dialog.showAndWait();
                     if (clickedButton.get() == ButtonType.APPLY) {
                         iv.setImage(new Image(String.valueOf(getClass().getResource("demo/icons/cancel.png"))));
-                        container.setStyle("-fx-background-color: #b4aeae");
 
                         LocalDate fromDate = teacherAbsenceFormController.getDPFrom().getValue();
                         LocalDate toDate = teacherAbsenceFormController.getDPTo().getValue();
                         String reason = teacherAbsenceFormController.getTxtReason().getText();
 
                         SchoolDB.getInstance().setNewTeacherAbsence(new TeacherAbsence(teacher.getId(), fromDate, toDate, reason));
+                        updateAbsenceColor();
                     }
 
 

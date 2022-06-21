@@ -1,6 +1,8 @@
 module vs.markthartmannsdorf {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.web;
+    requires javafx.webEmpty;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -12,7 +14,6 @@ module vs.markthartmannsdorf {
     requires itextpdf;
     requires org.apache.commons.lang3;
     requires com.jfoenix;
-    requires javafx.web;
     requires java.desktop;
 
     opens at.vs.vsmarkthartmannsdorf to javafx.fxml;

@@ -326,7 +326,8 @@ public class SchoolDB {
 
         AtomicBoolean isAbsence = new AtomicBoolean(false);
         teacherAbsences.forEach(teacherAbsence -> {
-            if (teacherAbsence.getFromDate().isBefore(LocalDate.now()) && teacherAbsence.getToDate().isAfter(LocalDate.now())) {
+            if (teacherAbsence.getFromDate().isBefore(LocalDate.now()) && teacherAbsence.getToDate().isAfter(LocalDate.now())
+            || teacherAbsence.getFromDate().isEqual(LocalDate.now()) || teacherAbsence.getToDate().isEqual(LocalDate.now())){
                 isAbsence.set(true);
             }
         });

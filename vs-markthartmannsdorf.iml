@@ -53,10 +53,10 @@
     <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.5.13.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.12.0" level="project" />
     <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:9.0.10" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-web:16" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-web:win:16" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:16" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:win:16" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-web:18.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-web:win:18.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:18.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:win:18.0.1" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.11.0" level="project" />
   </component>
 </module>

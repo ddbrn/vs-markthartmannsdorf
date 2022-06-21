@@ -1,1 +1,12 @@
-[ ]
+[ {
+  "id" : 0,
+  "firstname" : "S",
+  "surname" : "S",
+  "abbreviation" : "S",
+  "subjects" : [ {
+    "name" : "Englisch",
+    "colorred" : 1.0,
+    "colorgreen" : 1.0,
+    "colorblue" : 0.0
+  } ]
+} ]
