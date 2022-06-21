@@ -244,6 +244,7 @@ public class MainController implements Initializable {
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(pane);
+        dialog.setTitle("Stundenplan zu PDF exportieren");
 
         Optional<ButtonType> clickedButton = dialog.showAndWait();
         if (clickedButton.get() == ButtonType.OK) {
