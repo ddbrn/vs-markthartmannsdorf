@@ -46,7 +46,7 @@ public class IOAccess_PDF {
            //System.out.println(Objects.requireNonNull
             //(Paths.get("", "data", "Logo_Volksschule_MH.jpg").toFile().getName().replace("%20", " ")));
            FileInputStream fis = new FileInputStream(Objects.requireNonNull
-                    (Paths.get("", "data", "Logo_Volksschule_MH.jpg").toFile()));
+                    (Paths.get("", "data", "Logo_Volksschule_MH.jpg").toAbsolutePath().toString().replace("%20", " ")));
             Image image = Image.getInstance(fis.readAllBytes());
             image.setSpacingAfter(200);
             document.add(image);
@@ -104,7 +104,6 @@ public class IOAccess_PDF {
         if (!cell.getPhrase().getContent().isEmpty()) {
             Color color = Color.valueOf(PropertiesLoader.getInstance().
                     getProperties().getProperty(cell.getPhrase().getContent()));
-            if (color != null) {
                 String hex = color.toString().substring(1);
                 int red = Integer.parseInt(hex.substring(1, 3), 16);
                 int blue = Integer.parseInt(hex.substring(3, 5), 16);
@@ -117,7 +116,6 @@ public class IOAccess_PDF {
                     font.setColor(new BaseColor(255, 255, 255));
                     Phrase phrase = new Phrase(cell.getPhrase().getContent(), font);
                     cell.setPhrase(phrase);
-                }
 
                 cell.setBackgroundColor(new BaseColor(red, blue, green));
             }
