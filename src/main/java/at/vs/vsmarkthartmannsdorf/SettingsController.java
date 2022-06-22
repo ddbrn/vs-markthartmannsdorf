@@ -91,7 +91,8 @@ public class SettingsController implements Initializable {
         File dir = directoryChooser.showDialog(stage);
 
         if (dir != null){
-            tfDirectory.setText(dir.toString());
+            System.out.println(dir.toString());
+            txtDirectory.setText(dir.toString());
             PropertiesLoader.getInstance().addProperty(PropertyName.export_folder.name(), dir.toString());
         }
     }
