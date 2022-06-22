@@ -7,13 +7,12 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import javafx.print.PrinterJob;
-import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -44,10 +43,10 @@ public class IOAccess_PDF {
 
         document.open();
         try {
-            System.out.println(Objects.requireNonNull
-                    (Main.class.getClassLoader().getResource("Logo_Volksschule_MH.jpg")).getFile().replace("%20", " "));
-            FileInputStream fis = new FileInputStream(Objects.requireNonNull
-                    (Main.class.getClassLoader().getResource("Volksschule-Logo_Abstand.jpg")).getFile().replace("%20", " "));
+           //System.out.println(Objects.requireNonNull
+            //(Paths.get("", "data", "Logo_Volksschule_MH.jpg").toFile().getName().replace("%20", " ")));
+           FileInputStream fis = new FileInputStream(Objects.requireNonNull
+                    (Paths.get("", "data", "Logo_Volksschule_MH.jpg").toFile()));
             Image image = Image.getInstance(fis.readAllBytes());
             image.setSpacingAfter(200);
             document.add(image);
