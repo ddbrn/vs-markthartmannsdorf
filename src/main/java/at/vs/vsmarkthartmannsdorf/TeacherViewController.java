@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @Data
 public class TeacherViewController implements Initializable {
@@ -210,7 +211,7 @@ public class TeacherViewController implements Initializable {
             buildTimetable();
             setContent();
 
-            cbWeek.setItems(FXCollections.observableArrayList(visibileTimetable.getWeeklySubjects().keySet().stream().toList()));
+            cbWeek.setItems(FXCollections.observableArrayList(visibileTimetable.getWeeklySubjects().keySet().stream().sorted().collect(Collectors.toList())));
             cbWeek.getSelectionModel().select(Week.A);
         }
     }

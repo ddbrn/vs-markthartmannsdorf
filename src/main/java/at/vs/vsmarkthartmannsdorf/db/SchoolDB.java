@@ -259,19 +259,25 @@ public class SchoolDB {
         Week lastWeek = weeks.get(weeks.size() - 1);
 
         List<Week> availableWeeks = Arrays.asList(Week.values());
-        Timetable timetable = new Timetable(getTimetablesFromClass(schoolClass).get(0));
         if (!availableWeeks.get(availableWeeks.size() - 1).equals(lastWeek)){
-            timetable.setWeek(availableWeeks.get(availableWeeks.indexOf(lastWeek) + 1));
+            Timetable timetable = new Timetable(schoolClass, availableWeeks.get(availableWeeks.indexOf(lastWeek) + 1));
             addTimetable(timetable);
         }
     }
 
     public void removeWeekFromTimetable(SchoolClass schoolClass, Week week){
-        timetables.remove(timetables
-                .stream()
-                .filter(timetable -> timetable.getSchoolClass().equals(schoolClass) && timetable.getWeek().equals(week))
+        Timetable timetable = timetables.stream().filter(t -> t.getSchoolClass().equals(schoolClass) && t.getWeek().equals(week))
                 .findFirst()
-                .get());
+                .get();
+
+        timetable.getSubjects().forEach((day, integerLessonHashMap) -> {
+            integerLessonHashMap.forEach((hour, lesson) -> {
+                lesson.getTeacher().forEach(teacherSubject -> {
+                    removeTeacherFromLesson(day, hour, timetable, teacherSubject);
+                });
+            });
+        });
+        timetables.remove(timetable);
     }
 
 

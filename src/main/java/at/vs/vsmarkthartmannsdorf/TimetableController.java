@@ -225,6 +225,7 @@ public class TimetableController implements Initializable {
                 vBox.setOnMouseClicked(mouseEvent -> {
                     hbTeacher = new HBox();
                     if (isEdit) {
+                        System.out.println(visibleTimetable.getWeek());
                         hbTeacher.setVisible(true);
                         GridPane teacherGrid = new GridPane();
                         List<TeacherSubject> availableTeacher = SchoolDB.getInstance().getTeacherBySubject(lesson.getSubject());
