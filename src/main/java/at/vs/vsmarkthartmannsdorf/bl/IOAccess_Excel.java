@@ -97,7 +97,7 @@ public class IOAccess_Excel {
                 cell = row.createCell(columCount[0]);
                 StringBuilder subjects = new StringBuilder();
                 for (Subjectobject subject : teacher.getSubjects()) {
-                    subjects.append(subject).append(";");
+                    subjects.append(subject.getName()).append(";");
                 }
                 cell.setCellValue(subjects.substring(0, subjects.length() - 1));
             }
