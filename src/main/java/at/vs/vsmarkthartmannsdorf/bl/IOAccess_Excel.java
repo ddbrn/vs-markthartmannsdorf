@@ -17,6 +17,11 @@ import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -381,7 +386,7 @@ public class IOAccess_Excel {
                 }
 
                 final FileInputStream stream =
-                        new FileInputStream(Objects.requireNonNull(Main.class.getClassLoader().getResource("Logo_Volksschule_MH.jpg")).getFile().replace("%20", " "));
+                        new FileInputStream(Paths.get("", "data", "Logo_Volksschule_MH.jpg").toAbsolutePath().toString().replace("%20", " "));
                 final CreationHelper helper = wb.getCreationHelper();
                 Drawing<XSSFShape> drawing = sheetS.createDrawingPatriarch();
 
@@ -453,7 +458,7 @@ public class IOAccess_Excel {
                     //Check the cell type and format accordingly
                 }
 
-               Arrays.stream(cells).forEach(System.out::println);
+                Arrays.stream(cells).forEach(System.out::println);
 
 
                 Teacher teacher =
