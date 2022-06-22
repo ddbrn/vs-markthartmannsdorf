@@ -151,12 +151,17 @@ public class SettingsController implements Initializable {
             SubjectFormController subjectFormController = fxmlLoader.getController();
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(addSubjectDialog);
-            dialog.setTitle("Fäch hinzufügen");
+            dialog.setTitle("Fach hinzufügen");
             Optional<ButtonType> clickedButton = dialog.showAndWait();
             if (clickedButton.get() == ButtonType.OK) {
                 if(SchoolDB.getInstance().subjectalreadyexist(subjectFormController.getTxtSubject().getText())){
                 }else
-                    SchoolDB.getInstance().addSubject(subjectFormController.getTxtSubject().getText(), subjectFormController.getClrPicker().getValue().getRed(),subjectFormController.getClrPicker().getValue().getGreen(),subjectFormController.getClrPicker().getValue().getBlue());
+                    SchoolDB.getInstance().addSubject(subjectFormController.getTxtSubject().getText(),
+                            subjectFormController.getClrPicker().getValue().getRed(),
+                            subjectFormController.getClrPicker().getValue().getGreen(),
+                            subjectFormController.getClrPicker().getValue().getBlue());
+                PropertiesLoader.getInstance().addProperty(subjectFormController.getTxtSubject().getText(),
+                        subjectFormController.getClrPicker().getValue().toString());
                 update();
             }
         } catch (IOException e) {
