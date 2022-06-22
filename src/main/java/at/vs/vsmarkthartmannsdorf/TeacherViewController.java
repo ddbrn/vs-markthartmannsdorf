@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 public class TeacherViewController implements Initializable {
@@ -111,11 +112,28 @@ public class TeacherViewController implements Initializable {
 
                 dismountForm();
 
+                AtomicInteger nonRemovedTeacher = new AtomicInteger(0);
+
                 indices.stream().sorted(Comparator.reverseOrder()).forEach(i -> {
-                    SchoolDB.getInstance().removeTeacher(teacherList.getItems().get(i));
+                    if (SchoolDB.getInstance().getSchoolClasses().stream().map(SchoolClass::getTeacherID).anyMatch(teacherID -> teacherID == teacherList.getItems().get(i).getId())) {
+                        nonRemovedTeacher.incrementAndGet();
+                    } else {
+                        SchoolDB.getInstance().removeTeacher(teacherList.getItems().get(i));
+                    }
                 });
 
                 updateTeacher();
+
+                Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                alertInfo.setTitle("vs-martkhartmannsdorf | INFORMATION");
+                if (nonRemovedTeacher.get() == 0) {
+                    alertInfo.setHeaderText(indices.size() + " Lehrer wurden erfolgreich gelöscht");
+                } else if (nonRemovedTeacher.get() == 1) {
+                    alertInfo.setContentText("Es wurde ein Lehrer nicht gelöscht, da er noch in einer Klasse verwendet wird");
+                } else {
+                    alertInfo.setHeaderText("Es wurden " + nonRemovedTeacher.get() + " Lehrer nicht gelöscht, da sie noch Klassen zugeordnet sind.");
+                }
+                alertInfo.showAndWait();
             }
         });
 
@@ -189,7 +207,7 @@ public class TeacherViewController implements Initializable {
     @FXML
     public void selectTeacher() {
         Teacher teacher = teacherList.getSelectionModel().getSelectedItem();
-        if (teacher != null){
+        if (teacher != null) {
             visibileTimetable = SchoolDB.getInstance().findTeacherTimetableByID(teacher.getId()).get();
 
             lblInfo.setText(teacher.getSurname().toUpperCase() + " " + teacher.getFirstname());
@@ -258,7 +276,7 @@ public class TeacherViewController implements Initializable {
                     vBox.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
                 }
 
-                if (teacherLesson.isBlocked()){
+                if (teacherLesson.isBlocked()) {
                     vBox.setStyle("-fx-background-color: #000000");
                     Label label = new Label("BLOCKIERT");
                     label.setStyle("-fx-text-fill: white;-fx-font-weight: bold");
@@ -273,30 +291,30 @@ public class TeacherViewController implements Initializable {
                 int finalI = i;
                 int finalI1 = i;
                 vBox.setOnMouseClicked(mouseEvent -> {
-                    if (blockHours){
-                        if (visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isEmpty()){
+                    if (blockHours) {
+                        if (visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isEmpty()) {
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("vs-martkhartmannsdorf | BLOCKIEREN");
                             alert.setHeaderText("Wollen Sie wirklich diese Stunde blockieren?");
                             Optional<ButtonType> answer = alert.showAndWait();
 
-                            if (answer.get().equals(ButtonType.OK)){
+                            if (answer.get().equals(ButtonType.OK)) {
                                 visibileTimetable.addSubject(day, finalI, new TeacherLesson(true), Week.A);
                                 buildTimetable();
                                 setContent();
                             }
-                        }else if(visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isBlocked()){
+                        } else if (visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isBlocked()) {
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("vs-martkhartmannsdorf | FREIGEBEN");
                             alert.setHeaderText("Wollen Sie wirklich diese Stunde freigeben?");
                             Optional<ButtonType> answer = alert.showAndWait();
 
-                            if (answer.get().equals(ButtonType.OK)){
+                            if (answer.get().equals(ButtonType.OK)) {
                                 visibileTimetable.addSubject(day, finalI, new TeacherLesson(), Week.A);
                                 buildTimetable();
                                 setContent();
                             }
-                        }else{
+                        } else {
                             Alert alert = new Alert(Alert.AlertType.WARNING);
                             alert.setTitle("vs-martkhartmannsdorf | BLOCKIEREN");
                             alert.setHeaderText("Blockieren einer belegten Stunde nicht möglich!");
@@ -358,13 +376,13 @@ public class TeacherViewController implements Initializable {
         GridPane.setVgrow(timetableView, Priority.ALWAYS);
     }
 
-    public void clearRoot(){
+    public void clearRoot() {
         root.setCenter(null);
     }
 
     @FXML
-    public void onClickBlock(){
-        if (blockHours){
+    public void onClickBlock() {
+        if (blockHours) {
             blockHours = false;
 
             Teacher teacher = teacherList.getSelectionModel().getSelectedItem();
