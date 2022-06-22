@@ -361,7 +361,6 @@ public class SchoolDB {
         return subjects;
     }
     public void addSubject(String name, double red, double green, double blue){
-        System.out.println(Color.color(red,green,blue));
         subjects.add(new Subjectobject(name, red,green,blue));
     }
     public boolean subjectalreadyexist(String name){
@@ -409,5 +408,22 @@ public class SchoolDB {
 
         }
         return false;
+    }
+
+    public SchoolClass findSchoolClassByID(int schoolClassID){
+        return schoolClasses.stream().filter(schoolClass -> schoolClass.getId() == schoolClassID).findFirst().get();
+    }
+
+    public void editTeacher(int id, String firstname, String lastname, String abbrevation, List<Subjectobject> subjects){
+        getTeachers().stream().filter(teacher -> teacher.getId() == id).findFirst().get().setFirstname(firstname);
+        getTeachers().stream().filter(teacher -> teacher.getId() == id).findFirst().get().setSurname(lastname);
+        getTeachers().stream().filter(teacher -> teacher.getId() == id).findFirst().get().setAbbreviation(abbrevation);
+        getTeachers().stream().filter(teacher -> teacher.getId() == id).findFirst().get().setSubjects(subjects);
+
+        getTeacherSubjects().stream().filter(teacherSubject -> teacherSubject.getTeacherId() == id).collect(Collectors.toList());
+        getTeacherSubjects().removeAll(getTeacherSubjects().stream().filter(teacherSubject -> teacherSubject.getTeacherId() == id).collect(Collectors.toList()));
+        for(int i=0;i<subjects.size();i++){
+            getTeacherSubjects().add(new TeacherSubject(id, subjects.get(i)));
+        }
     }
 }

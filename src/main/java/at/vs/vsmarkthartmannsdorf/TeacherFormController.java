@@ -82,7 +82,6 @@ public class TeacherFormController implements Initializable {
         abbreviation.setText(teacher.getAbbreviation());
 
         oldTeacher = teacher;
-
         cbs
                 .stream()
                 .filter(checkBox -> teacher.getSubjects()
@@ -123,7 +122,6 @@ public class TeacherFormController implements Initializable {
 
         if (parent.isEdit()) {
             if(!(firstname.getText().isEmpty() || surname.getText().isEmpty() || abbreviation.getText().isEmpty() || selectedSubjects.size() == 0)){
-                System.out.println(SchoolDB.getInstance().getTeachers().stream().filter(teacher -> !teacher.equals(oldTeacher)).toList());
                 if(SchoolDB.getInstance().getTeachers().stream().filter(teacher -> !teacher.equals(oldTeacher)).noneMatch(teacherDB -> teacherDB.getAbbreviation().equalsIgnoreCase(abbreviation.getText()))){
                     parent.editTeacher(oldTeacher, firstname.getText(), surname.getText(), abbreviation.getText(), selectedSubjects);
                 }else{

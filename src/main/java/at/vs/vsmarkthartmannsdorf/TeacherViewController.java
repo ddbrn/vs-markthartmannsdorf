@@ -50,6 +50,9 @@ public class TeacherViewController implements Initializable {
     public Label lblInfo;
     private boolean blockHours;
 
+    @FXML
+    public ComboBox<Week> cbWeek;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,6 +64,7 @@ public class TeacherViewController implements Initializable {
 
         teacherList.setItems(SchoolDB.getInstance().getTeachers());
         blockHours = false;
+        cbWeek.getSelectionModel().select(Week.A);
     }
 
     public void setParent(MainController parent) {
@@ -190,17 +194,7 @@ public class TeacherViewController implements Initializable {
     public void editTeacher(Teacher oldTeacher, String firstname, String lastname, String abbrevation, List<Subjectobject> subjects) {
         Teacher teacher = new Teacher(oldTeacher.getId(), StringUtils.capitalize(firstname), lastname.toUpperCase(), abbrevation.toUpperCase(), subjects);
         dismountForm();
-       /* int index = SchoolDB.getInstance().getTeachers().indexOf(oldTeacher);
-
-        SchoolDB.getInstance().getTeachers().set(index, teacher);
-
-        SchoolDB.getInstance().getTeachers().remove(oldTeacher);*/
-
-        oldTeacher.setFirstname(teacher.getFirstname());
-        oldTeacher.setSurname(teacher.getSurname());
-        oldTeacher.setAbbreviation(teacher.getAbbreviation());
-        oldTeacher.setSubjects(teacher.getSubjects());
-
+        SchoolDB.getInstance().editTeacher(oldTeacher.getId(), firstname, lastname, abbrevation, subjects);
         updateTeacher();
     }
 
@@ -213,6 +207,17 @@ public class TeacherViewController implements Initializable {
             lblInfo.setText(teacher.getSurname().toUpperCase() + " " + teacher.getFirstname());
 
 
+            buildTimetable();
+            setContent();
+
+            cbWeek.setItems(FXCollections.observableArrayList(visibileTimetable.getWeeklySubjects().keySet().stream().toList()));
+            cbWeek.getSelectionModel().select(Week.A);
+        }
+    }
+
+    @FXML
+    public void changeWeek(){
+        if (cbWeek.getSelectionModel().getSelectedItem() != null){
             buildTimetable();
             setContent();
         }
@@ -260,7 +265,8 @@ public class TeacherViewController implements Initializable {
                 column = 1;
             }
             for (int i = 1; i <= Timetable.MAX_HOURS; i++) {
-                TeacherLesson teacherLesson = visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(i);
+                TeacherLesson teacherLesson = visibileTimetable.getWeeklySubjects().get(cbWeek.getSelectionModel().getSelectedItem()).get(day).get(i);
+
                 if (row == Timetable.MAX_HOURS + 1) {
                     row = 1;
                 }
@@ -287,34 +293,35 @@ public class TeacherViewController implements Initializable {
                 vBox.setPadding(new Insets(10, 10, 10, 10));
 
                 Label lblSubject;
+                Label lblTeacher;
 
                 int finalI = i;
                 int finalI1 = i;
                 vBox.setOnMouseClicked(mouseEvent -> {
-                    if (blockHours) {
-                        if (visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isEmpty()) {
+                    if (blockHours){
+                        if (visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isEmpty()){
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("vs-martkhartmannsdorf | BLOCKIEREN");
                             alert.setHeaderText("Wollen Sie wirklich diese Stunde blockieren?");
                             Optional<ButtonType> answer = alert.showAndWait();
 
-                            if (answer.get().equals(ButtonType.OK)) {
+                            if (answer.get().equals(ButtonType.OK)){
                                 visibileTimetable.addSubject(day, finalI, new TeacherLesson(true), Week.A);
                                 buildTimetable();
                                 setContent();
                             }
-                        } else if (visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isBlocked()) {
+                        }else if(visibileTimetable.getWeeklySubjects().get(Week.A).get(day).get(finalI1).isBlocked()){
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("vs-martkhartmannsdorf | FREIGEBEN");
                             alert.setHeaderText("Wollen Sie wirklich diese Stunde freigeben?");
                             Optional<ButtonType> answer = alert.showAndWait();
 
-                            if (answer.get().equals(ButtonType.OK)) {
+                            if (answer.get().equals(ButtonType.OK)){
                                 visibileTimetable.addSubject(day, finalI, new TeacherLesson(), Week.A);
                                 buildTimetable();
                                 setContent();
                             }
-                        } else {
+                        }else{
                             Alert alert = new Alert(Alert.AlertType.WARNING);
                             alert.setTitle("vs-martkhartmannsdorf | BLOCKIEREN");
                             alert.setHeaderText("Blockieren einer belegten Stunde nicht möglich!");
@@ -324,6 +331,8 @@ public class TeacherViewController implements Initializable {
                 });
 
                 lblSubject = teacherLesson.getSubject() == null ? new Label(" ") : new Label(teacherLesson.getSubject().getName());
+                String classname = SchoolDB.getInstance().findSchoolClassByID(teacherLesson.getClassID()).getClassname();
+                lblTeacher = classname == null ? new Label(" ") : new Label(classname);
                 if (color != null) {
                     double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
                     if (luminance > 0.002) {
@@ -333,6 +342,7 @@ public class TeacherViewController implements Initializable {
                     }
 
                     vBox.getChildren().add(lblSubject);
+                    vBox.getChildren().add(lblTeacher);
                 }
 
                 timetableView.add(vBox, column, row);

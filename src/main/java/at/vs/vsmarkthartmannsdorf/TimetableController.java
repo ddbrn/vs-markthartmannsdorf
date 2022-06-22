@@ -528,6 +528,7 @@ public class TimetableController implements Initializable {
                     .getTimetablesFromClass(schoolClass)
                     .stream()
                     .filter(timetable -> timetable.getWeek().equals(week)).findFirst().get();
+            System.out.println(visibleTimetable.getWeek());
         }
         reload();
         setContent();
