@@ -88,6 +88,8 @@ public class TeacherViewController implements Initializable {
     @FXML
     public void removeTeacher() {
         ObservableList<Integer> indices = teacherList.getSelectionModel().getSelectedIndices();
+        int amount = indices.size();
+
         boolean singular = false;
 
         if (indices.size() == 0) {
@@ -127,7 +129,11 @@ public class TeacherViewController implements Initializable {
                 Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
                 alertInfo.setTitle("vs-martkhartmannsdorf | INFORMATION");
                 if (nonRemovedTeacher.get() == 0) {
-                    alertInfo.setHeaderText(indices.size() + " Lehrer wurden erfolgreich gelöscht");
+                    if (amount == 1) {
+                        alertInfo.setHeaderText("Ein Lehrer wurde erfolgreich gelöscht");
+                    } else {
+                        alertInfo.setHeaderText(amount + " Lehrer wurden erfolgreich gelöscht");
+                    }
                 } else if (nonRemovedTeacher.get() == 1) {
                     alertInfo.setContentText("Es wurde ein Lehrer nicht gelöscht, da er noch in einer Klasse verwendet wird");
                 } else {
