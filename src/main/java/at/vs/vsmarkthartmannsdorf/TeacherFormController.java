@@ -85,6 +85,7 @@ public class TeacherFormController implements Initializable {
                 .stream()
                 .filter(checkBox -> teacher.getSubjects()
                         .stream()
+                        .map(Subjectobject::getName)
                         .toList()
                         .contains(checkBox.getText()))
                 .forEach(checkBox -> checkBox.setSelected(true));

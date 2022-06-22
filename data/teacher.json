@@ -4,6 +4,11 @@
   "surname" : "S",
   "abbreviation" : "S",
   "subjects" : [ {
+    "name" : "Mathe",
+    "colorred" : 0.0,
+    "colorgreen" : 0.0,
+    "colorblue" : 1.0
+  }, {
     "name" : "Englisch",
     "colorred" : 1.0,
     "colorgreen" : 1.0,
