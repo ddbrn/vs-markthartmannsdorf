@@ -259,19 +259,25 @@ public class SchoolDB {
         Week lastWeek = weeks.get(weeks.size() - 1);
 
         List<Week> availableWeeks = Arrays.asList(Week.values());
-        Timetable timetable = new Timetable(getTimetablesFromClass(schoolClass).get(0));
         if (!availableWeeks.get(availableWeeks.size() - 1).equals(lastWeek)){
-            timetable.setWeek(availableWeeks.get(availableWeeks.indexOf(lastWeek) + 1));
+            Timetable timetable = new Timetable(schoolClass, availableWeeks.get(availableWeeks.indexOf(lastWeek) + 1));
             addTimetable(timetable);
         }
     }
 
     public void removeWeekFromTimetable(SchoolClass schoolClass, Week week){
-        timetables.remove(timetables
-                .stream()
-                .filter(timetable -> timetable.getSchoolClass().equals(schoolClass) && timetable.getWeek().equals(week))
+        Timetable timetable = timetables.stream().filter(t -> t.getSchoolClass().equals(schoolClass) && t.getWeek().equals(week))
                 .findFirst()
-                .get());
+                .get();
+
+        timetable.getSubjects().forEach((day, integerLessonHashMap) -> {
+            integerLessonHashMap.forEach((hour, lesson) -> {
+                lesson.getTeacher().forEach(teacherSubject -> {
+                    removeTeacherFromLesson(day, hour, timetable, teacherSubject);
+                });
+            });
+        });
+        timetables.remove(timetable);
     }
 
 
@@ -361,7 +367,6 @@ public class SchoolDB {
         return subjects;
     }
     public void addSubject(String name, double red, double green, double blue){
-        System.out.println(Color.color(red,green,blue));
         subjects.add(new Subjectobject(name, red,green,blue));
     }
     public boolean subjectalreadyexist(String name){
@@ -409,5 +414,22 @@ public class SchoolDB {
 
         }
         return false;
+    }
+
+    public SchoolClass findSchoolClassByID(int schoolClassID){
+        return schoolClasses.stream().filter(schoolClass -> schoolClass.getId() == schoolClassID).findFirst().get();
+    }
+
+    public void editTeacher(int id, String firstname, String lastname, String abbrevation, List<Subjectobject> subjects){
+        getTeachers().stream().filter(teacher -> teacher.getId() == id).findFirst().get().setFirstname(firstname);
+        getTeachers().stream().filter(teacher -> teacher.getId() == id).findFirst().get().setSurname(lastname);
+        getTeachers().stream().filter(teacher -> teacher.getId() == id).findFirst().get().setAbbreviation(abbrevation);
+        getTeachers().stream().filter(teacher -> teacher.getId() == id).findFirst().get().setSubjects(subjects);
+
+        getTeacherSubjects().stream().filter(teacherSubject -> teacherSubject.getTeacherId() == id).collect(Collectors.toList());
+        getTeacherSubjects().removeAll(getTeacherSubjects().stream().filter(teacherSubject -> teacherSubject.getTeacherId() == id).collect(Collectors.toList()));
+        for(int i=0;i<subjects.size();i++){
+            getTeacherSubjects().add(new TeacherSubject(id, subjects.get(i)));
+        }
     }
 }
