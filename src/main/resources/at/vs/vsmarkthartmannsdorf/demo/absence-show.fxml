@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane prefHeight="410.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.AbsenceShowController">
+   <header>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <Label fx:id="lblName" text="Label">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <GridPane.margin>
+               <Insets left="25.0" />
+            </GridPane.margin>
+         </Label>
+         <Button fx:id="btnDelete" text="Delete" GridPane.columnIndex="1">
+            <GridPane.margin>
+               <Insets right="25.0" />
+            </GridPane.margin>
+         </Button>
+      </GridPane>
+   </header>
+   <content>
+      <ListView fx:id="lstAbsence" prefHeight="200.0" prefWidth="200.0" />
+   </content>
+   <ButtonType fx:constant="CLOSE" />
+</DialogPane>
