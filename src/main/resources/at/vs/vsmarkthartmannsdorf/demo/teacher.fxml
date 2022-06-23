@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -12,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="teacherView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherViewController">
+<BorderPane fx:id="root" prefHeight="573.0" prefWidth="820.0" styleClass="teacherView" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.vs.vsmarkthartmannsdorf.TeacherViewController">
    <right>
       <VBox id="rightContainer" nodeOrientation="LEFT_TO_RIGHT" prefHeight="553.0" prefWidth="197.0">
          <children>
@@ -65,6 +71,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
+                        <ComboBox fx:id="cbWeek" minHeight="-Infinity" minWidth="-Infinity" onAction="#changeWeek" />
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label fx:id="lblInfo" text="Label">

@@ -83,6 +83,7 @@ public class TimetableViews implements Initializable {
                 vBox.setAlignment(Pos.CENTER);
                 vBox.setStyle("-fx-background-color: #e1d9d9");
                 vBox.setPrefWidth(30);
+                vBox.setPrefHeight(100);
 
                 timetableView.add(vBox, 0, i);
             }
