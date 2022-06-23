@@ -531,6 +531,8 @@ public class TimetableController implements Initializable {
                     .filter(timetable -> timetable.getWeek().equals(week)).findFirst().get();
             System.out.println(visibleTimetable.getWeek());
         }
+        isEdit = false;
+        vbSidePanel.setVisible(false);
         reload();
         setContent();
         refreshTimetableViews();

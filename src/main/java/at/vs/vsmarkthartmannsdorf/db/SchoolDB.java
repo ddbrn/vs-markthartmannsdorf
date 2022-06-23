@@ -416,8 +416,8 @@ public class SchoolDB {
         return false;
     }
 
-    public SchoolClass findSchoolClassByID(int schoolClassID){
-        return schoolClasses.stream().filter(schoolClass -> schoolClass.getId() == schoolClassID).findFirst().get();
+    public Optional<SchoolClass> findSchoolClassByID(int schoolClassID){
+        return schoolClasses.stream().filter(schoolClass -> schoolClass.getId() == schoolClassID).findFirst();
     }
 
     public void editTeacher(int id, String firstname, String lastname, String abbrevation, List<Subjectobject> subjects){

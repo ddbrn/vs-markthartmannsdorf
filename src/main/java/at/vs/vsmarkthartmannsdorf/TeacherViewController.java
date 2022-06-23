@@ -338,7 +338,7 @@ public class TeacherViewController implements Initializable {
                 });
 
                 lblSubject = teacherLesson.getSubject() == null ? new Label(" ") : new Label(teacherLesson.getSubject().getName());
-                String classname = SchoolDB.getInstance().findSchoolClassByID(teacherLesson.getClassID()).getClassname();
+                String classname = SchoolDB.getInstance().findSchoolClassByID(teacherLesson.getClassID()).isPresent() ? SchoolDB.getInstance().findSchoolClassByID(teacherLesson.getClassID()).get().getClassname() : "";
                 lblTeacher = classname == null ? new Label(" ") : new Label(classname);
                 if (color != null) {
                     double luminance = (0.299 * color.getRed() + 0.587 * color.getGreen() + 0.114 * color.getBlue()) / 255;
